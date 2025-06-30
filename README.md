@@ -1,7 +1,7 @@
 # Dissertação de Mestrado - UNICAMP FT
 ## Classificação LULC usando Imagens Hiperespectrais de Drones
 
-[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) ![OverleafReady](https://img.shields.io/badge/Ready_for-Overleaf-success) ![Apache license](https://img.shields.io/badge/license-Apache%202.0-blue) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) ![OverleafReady](https://img.shields.io/badge/Ready_for-Overleaf-success) ![Apache license](https://img.shields.io/badge/license-Apache%202.0-blue) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
 
 **Autor**: Diego Maia  
 **Email**: maia.df11@gmail.com  
@@ -10,14 +10,14 @@
 
 ## 📊 Status Atual do Projeto
 
-**Etapa Atual**: ✅ **Planejamento Concluído** - 8 etapas estruturadas criadas  
-**Última Atualização**: 2024-12-16  
-**Progresso Geral**: 15% (Planejamento e estruturação)
+**Etapa Atual**: ✅ **Etapa 1 Concluída** - Revisão e Organização da Bibliografia  
+**Última Atualização**: 2024-12-17  
+**Progresso Geral**: 27% (Planejamento + Etapa 1)
 
 ### 🎯 Próximos Passos Imediatos:
-- Iniciar **Etapa 1**: Revisão e Organização da Bibliografia
-- Análise detalhada dos artigos de referência na pasta `levantamento_teorico/treinados/`
-- Criação do banco de dados bibliográfico organizado
+- Iniciar **Etapa 2**: Reestruturação do Levantamento Teórico
+- Reescrita do capítulo teórico baseado na bibliografia analisada
+- Estruturação em 6 seções conforme esboço criado
 
 ## 🔬 Contexto da Pesquisa
 
@@ -64,8 +64,8 @@ artigo-mestrado-unicamp-ft/
 
 | Etapa | Título | Duração | Status | Entregáveis Principais |
 |-------|--------|---------|--------|----------------------|
-| **1** | Revisão e Organização da Bibliografia | 1 semana | 🔄 **Próxima** | Banco bibliográfico, gaps identificados |
-| **2** | Reestruturação do Levantamento Teórico | 1 semana | ⏳ Pendente | Capítulo teórico atualizado |
+| **1** | Revisão e Organização da Bibliografia | 1 semana | ✅ **Concluída** | Banco bibliográfico, fichamento, gaps identificados |
+| **2** | Reestruturação do Levantamento Teórico | 1 semana | 🔄 **Próxima** | Capítulo teórico atualizado |
 | **3** | Definição da Metodologia | 1 semana | ⏳ Pendente | Metodologia detalhada, fluxogramas |
 | **4** | Desenvolvimento Experimental | 2 semanas | ⏳ Pendente | Código implementado, experimentos |
 | **5** | Análise dos Resultados | 1 semana | ⏳ Pendente | Análises estatísticas, validação |
@@ -115,6 +115,16 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 ```
 
 ## 📈 Histórico de Mudanças Recentes
+
+### 2024-12-17:
+- ✅ **Etapa 1 concluída** - Revisão e Organização da Bibliografia
+- ✅ **14 artigos analisados** e catalogados no banco bibliográfico
+- ✅ **4 artigos prioritários** com fichamento detalhado
+- ✅ **Matriz temática** criada organizando artigos por 6 categorias
+- ✅ **Gaps na literatura** identificados e documentados
+- ✅ **Esboço do estado da arte** estruturado em 6 seções
+- ✅ **Relatório da Etapa 1** gerado em PDF (relatorio-etapa1.pdf)
+- ✅ **Base teórica sólida** estabelecida para próximas etapas
 
 ### 2024-12-16:
 - ✅ **Criado plano detalhado de 8 etapas** para escrita da dissertação

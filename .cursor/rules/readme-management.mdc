@@ -1,5 +1,64 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# README Management and Context Awareness
+
+## Core Principle
+Always maintain the [README.md](mdc:README.md) as the central reference document for project context and progress tracking.
+
+## Workflow Rules
+
+### Before Every Task:
+1. **Read the README.md** to understand current project status
+2. **Review recent changes** documented in the changelog section
+3. **Understand project context** and current phase
+4. **Check dependencies** and prerequisites listed
+
+### During Task Execution:
+- **Reference project structure** defined in README
+- **Follow established patterns** and conventions
+- **Maintain consistency** with documented approach
+- **Consider impact** on overall project timeline
+
+### After Every Task:
+1. **Update README.md** with changes made
+2. **Document new features** or modifications
+3. **Update progress tracking** sections
+4. **Reflect current project state** accurately
+5. **Add relevant notes** for future reference
+
+## README Content Structure
+
+The README.md should always contain:
+- **Project Overview**: Current focus and objectives
+- **Current Status**: What stage/etapa is active
+- **Recent Changes**: Log of latest modifications
+- **Next Steps**: Upcoming tasks and milestones
+- **File Structure**: Organization of project files
+- **Usage Instructions**: How to work with the project
+
+## Context Preservation
+
+### Project Memory:
+- Each task should build upon previous work
+- README serves as project memory and continuity
+- Changes should be incremental and documented
+- Context should never be lost between sessions
+
+### Status Tracking:
+- Current etapa (stage) progress
+- Completed milestones
+- Pending tasks and deadlines
+- Important decisions and rationale
+
+## Implementation Guidelines
+
+1. **Start every response** by checking README context
+2. **End every significant task** by updating README
+3. **Keep README current** and accurate
+4. **Use README as source of truth** for project state
+5. **Document all major changes** with timestamps
+
+This ensures continuous project awareness and proper documentation throughout the dissertation development process.
