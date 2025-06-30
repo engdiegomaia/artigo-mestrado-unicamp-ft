@@ -1,4 +1,22 @@
 # Ignore these directories
 templates_unicamp/
 levantamento_teorico/
-meus_trabalhos/ dissertacao-versoes/
+meus_trabalhos/ 
+dissertacao-versoes/
+
+# Arquivos de compilação LaTeX
+compilacao/
+dist/*.pdf
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+*~
+
+# Arquivos de backup do editor
+*.bak
+*.swp
+*.swo
+
+# Logs
+*.log

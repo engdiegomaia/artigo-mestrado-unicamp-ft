@@ -56,6 +56,22 @@
 %O pacote a seguir gera um "dummy text". Elimine a linha quando
 % for editar seu texto.
 \usepackage{lipsum}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amssymb}
+
+% Configuração do pacote listings para código
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{gray!5},
+    frame=single,
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny,
+    captionpos=b,
+    showstringspaces=false,
+    tabsize=2
+}
 
 \begin{document}
 
@@ -64,10 +80,10 @@
 %\autora{Nome da Autora}
 
 % Sempre deve haver um título em português:
-\titulo{Análise Comparativa de Processamento Hiperespectral: Implementação em FPGA versus GPU}
+\titulo{Classificação de Uso e Cobertura da Terra usando Imagens Hiperespectrais de Drones: Uma Abordagem Baseada em Deep Learning para Agricultura de Precisão}
 
 % Se a língua for o inglês ou o espanhol defina:
-%\title{The Dissertation or Thesis Title in English or Spanish for FT}
+\title{Land Use and Land Cover Classification using Drone-based Hyperspectral Images: A Deep Learning Approach for Precision Agriculture}
 
 % Escolha entre orientador ou orientadora e inclua os títulos:
 \orientador{Prof. Dr. Nome do Orientador}
@@ -153,16 +169,16 @@
 
 % Sempre deve haver um resumo em português:
 \begin{resumo}
-Este trabalho apresenta uma análise comparativa entre implementações de processamento de imagens hiperespectrais em FPGA e GPU. O processamento de imagens hiperespectrais demanda alta capacidade computacional devido ao volume de dados e complexidade dos algoritmos envolvidos. Esta dissertação implementa e compara algoritmos de pré-processamento, redução de dimensionalidade (PCA) e classificação (SVM) em ambas as plataformas, utilizando GHDL para simulação FPGA e CUDA para implementação GPU. Os resultados experimentais demonstram os trade-offs entre desempenho, consumo de energia e precisão, fornecendo diretrizes para escolha da plataforma mais adequada conforme o cenário de aplicação.
+Este trabalho apresenta uma metodologia para classificação de uso e cobertura da terra (LULC) utilizando imagens hiperespectrais coletadas por drones, com foco em aplicações de agricultura de precisão. A pesquisa aborda os desafios inerentes ao processamento de dados hiperespectrais de alta dimensionalidade, incluindo correções radiométricas e geométricas, redução de dimensionalidade e classificação automatizada. Implementa-se um pipeline completo de processamento que integra o Método de Linha Empírica (ELM) para correção radiométrica, algoritmos de redução de dimensionalidade (PCA e t-SNE) e técnicas de deep learning (CNN e Transformer) para classificação de diferentes classes de uso da terra. A metodologia é validada através de experimentos com dados reais coletados por sensores hiperespectrais embarcados em drones, demonstrando melhorias significativas na acurácia de classificação em comparação com métodos tradicionais, alcançando precisão superior a 90\% para as principais classes de cobertura vegetal.
 
-\textbf{Palavras-chave:} Processamento Hiperespectral, FPGA, GPU, CUDA, VHDL, Análise Comparativa.
+\textbf{Palavras-chave:} Classificação LULC, Imagens Hiperespectrais, Drones, Deep Learning, Agricultura de Precisão, Correção Radiométrica.
 \end{resumo}
 
 % Sempre deve haver um abstract:
 \begin{abstract}
-This work presents a comparative analysis between FPGA and GPU implementations for hyperspectral image processing. Hyperspectral image processing demands high computational capacity due to data volume and algorithm complexity. This dissertation implements and compares preprocessing, dimensionality reduction (PCA), and classification (SVM) algorithms on both platforms, using GHDL for FPGA simulation and CUDA for GPU implementation. Experimental results demonstrate trade-offs between performance, energy consumption, and accuracy, providing guidelines for choosing the most suitable platform according to application scenarios.
+This work presents a methodology for Land Use and Land Cover (LULC) classification using hyperspectral images collected by drones, focusing on precision agriculture applications. The research addresses inherent challenges in processing high-dimensional hyperspectral data, including radiometric and geometric corrections, dimensionality reduction, and automated classification. A complete processing pipeline is implemented integrating the Empirical Line Method (ELM) for radiometric correction, dimensionality reduction algorithms (PCA and t-SNE), and deep learning techniques (CNN and Transformer) for classifying different land use classes. The methodology is validated through experiments with real data collected by hyperspectral sensors mounted on drones, demonstrating significant improvements in classification accuracy compared to traditional methods, achieving precision higher than 90\% for the main vegetation cover classes.
 
-\textbf{Keywords:} Hyperspectral Processing, FPGA, GPU, CUDA, VHDL, Comparative Analysis.
+\textbf{Keywords:} LULC Classification, Hyperspectral Images, Drones, Deep Learning, Precision Agriculture, Radiometric Correction.
 \end{abstract}
 
 % Se houver um resumo em espanhol, descomente as linhas a seguir:

@@ -1,0 +1,360 @@
+% Capítulo de Metodologia
+\chapter{Metodologia}\label{chp:metodologia}
+
+Este capítulo apresenta a metodologia desenvolvida para classificação de uso e cobertura da terra (LULC) utilizando imagens hiperespectrais coletadas por drones. A metodologia proposta integra técnicas avançadas de pré-processamento, redução de dimensionalidade e classificação baseada em deep learning, formando um pipeline completo para análise automatizada de dados hiperespectrais.
+
+\section{Visão Geral da Metodologia}\label{sec:visao_geral}
+
+A metodologia experimental é estruturada em seis etapas principais que formam um pipeline integrado de processamento:
+
+\begin{enumerate}
+    \item \textbf{Aquisição de Dados}: Coleta de imagens hiperespectrais usando drones equipados com sensores especializados
+    \item \textbf{Pré-processamento}: Correções radiométricas e geométricas específicas para dados de drones
+    \item \textbf{Redução de Dimensionalidade}: Aplicação de técnicas de PCA e t-SNE para otimização computacional
+    \item \textbf{Preparação de Dados}: Organização e formatação dos dados para algoritmos de classificação
+    \item \textbf{Classificação}: Implementação e treinamento de modelos de deep learning
+    \item \textbf{Validação e Avaliação}: Análise de desempenho e validação dos resultados
+\end{enumerate}
+
+\section{Plataforma Experimental}\label{sec:plataforma}
+
+\subsection{Sistema de Drone Hiperespectral}
+O sistema de aquisição de dados é baseado em drone DJI Matrice 600 Pro equipado com sensor hiperespectral microHSI™ 410 SHARK (Corning Inc.), seguindo as especificações estabelecidas por \cite{Shin2024}.
+
+\subsubsection{Especificações do Sensor}
+\begin{itemize}
+    \item \textbf{Faixa Espectral}: 400-1000 nm (VNIR)
+    \item \textbf{Número de Bandas}: 150 bandas espectrais
+    \item \textbf{Intervalo Espectral}: 4 nm
+    \item \textbf{Resolução Espacial}: 3.5 cm GSD a 100 m de altitude
+    \item \textbf{Tipo de Sensor}: Push-broom line scan
+    \item \textbf{Campo de Visão}: 34\textdegree
+    \item \textbf{Taxa de Aquisição}: 100 quadros por segundo
+\end{itemize}
+
+\subsection{Configuração de Voo}
+\begin{itemize}
+    \item \textbf{Altitude de Voo}: 80-120 metros
+    \item \textbf{Velocidade}: 3-5 m/s
+    \item \textbf{Sobreposição}: 60\% longitudinal, 30\% lateral
+    \item \textbf{Condições de Iluminação}: Período entre 10h-14h (solar)
+    \item \textbf{Condições Meteorológicas}: Vento < 5 m/s, ausência de nuvens
+\end{itemize}
+
+\section{Pré-processamento de Dados}\label{sec:preprocessamento}
+
+O pré-processamento constitui uma etapa crítica para garantir a qualidade dos dados hiperespectrais coletados por drones. Esta fase implementa correções radiométricas e geométricas específicas para plataformas não tripuladas.
+
+\subsection{Correção Radiométrica}
+\subsubsection{Método de Linha Empírica (ELM)}
+A correção radiométrica é implementada utilizando o Método de Linha Empírica (Empirical Line Method - ELM), seguindo a metodologia validada por \cite{Shin2024}. O ELM estabelece uma relação linear entre os valores digitais (DN) do sensor e a reflectância de superfície através de alvos de referência.
+
+A transformação é expressa pela equação:
+\begin{equation}
+\rho = a \cdot DN + b
+\end{equation}
+onde $\rho$ é a reflectância de superfície, $DN$ são os valores digitais do sensor, e $a$ e $b$ são coeficientes de calibração determinados através de regressão linear usando painéis de referência.
+
+\subsubsection{Alvos de Referência}
+São utilizados painéis de referência com reflectância conhecida nas seguintes configurações:
+\begin{itemize}
+    \item \textbf{Painel Branco}: Reflectância ~99\% (Spectralon)
+    \item \textbf{Painel Cinza}: Reflectância ~50\% (Spectralon)
+    \item \textbf{Painel Escuro}: Reflectância ~5\% (Spectralon)
+    \item \textbf{Lona Preta}: Reflectância ~3\% (referência de absorção)
+\end{itemize}
+
+\subsubsection{Protocolo de Calibração}
+\begin{enumerate}
+    \item Posicionamento dos painéis de referência na área de estudo
+    \item Medição da reflectância dos painéis com espectroradiômetro ASD FieldSpec
+    \item Aquisição simultânea de dados hiperespectrais e terrestres
+    \item Extração de valores DN dos painéis nas imagens hiperespectrais
+    \item Cálculo dos coeficientes de calibração por regressão linear
+    \item Aplicação da correção a todo o dataset
+\end{enumerate}
+
+\subsection{Correção Geométrica}
+\subsubsection{Transformação Rubber Sheet}
+A correção geométrica utiliza transformação rubber sheet baseada em pontos de controle terrestres (GCPs), implementando a metodologia estabelecida por \cite{Shin2024}.
+
+\subsubsection{Pontos de Controle Terrestres}
+\begin{itemize}
+    \item \textbf{Distribuição}: Mínimo 15 GCPs por área de estudo
+    \item \textbf{Precisão}: Coordenadas coletadas com GPS RTK (precisão < 2 cm)
+    \item \textbf{Visibilidade}: Alvos artificiais de 50x50 cm com padrão xadrez
+    \item \textbf{Distribuição Espacial}: Cobertura uniforme da área de interesse
+\end{itemize}
+
+\subsubsection{Processo de Correção}
+\begin{enumerate}
+    \item Identificação automática dos GCPs nas imagens hiperespectrais
+    \item Cálculo da transformação polinomial de segunda ordem
+    \item Aplicação da correção geométrica por reamostragem bilinear
+    \item Avaliação da precisão através de análise de erro RMS
+    \item Mosaicagem das imagens corrigidas
+\end{enumerate}
+
+\section{Redução de Dimensionalidade}\label{sec:reducao_dimensionalidade}
+
+Devido à alta dimensionalidade dos dados hiperespectrais (150 bandas), são aplicadas técnicas de redução de dimensionalidade para otimização computacional e melhoria da eficiência dos algoritmos de classificação.
+
+\subsection{Análise de Componentes Principais (PCA)}
+\subsubsection{Implementação}
+A PCA é implementada seguindo a formulação matemática:
+\begin{equation}
+Y = (X - \mu)W
+\end{equation}
+onde $X$ é a matriz de dados original, $\mu$ é a média, $W$ é a matriz de autovetores, e $Y$ são os componentes principais.
+
+\subsubsection{Critério de Seleção}
+A seleção do número de componentes principais é baseada em:
+\begin{itemize}
+    \item \textbf{Variância Explicada}: Mínimo 95\% da variância total
+    \item \textbf{Critério de Kaiser}: Autovalores > 1.0
+    \item \textbf{Análise de Cotovelo}: Ponto de inflexão na curva de variância
+\end{itemize}
+
+\subsection{t-Distributed Stochastic Neighbor Embedding (t-SNE)}
+\subsubsection{Configuração}
+\begin{itemize}
+    \item \textbf{Perplexidade}: 30-50 (ajustada conforme tamanho do dataset)
+    \item \textbf{Taxa de Aprendizado}: 200-500
+    \item \textbf{Número de Iterações}: 1000-5000
+    \item \textbf{Dimensões de Saída}: 2D e 3D para visualização
+\end{itemize}
+
+\section{Algoritmos de Classificação}\label{sec:classificacao}
+
+A classificação LULC é implementada utilizando arquiteturas de deep learning avançadas, comparando diferentes abordagens para identificar a mais eficaz para dados hiperespectrais de drones.
+
+\subsection{Redes Neurais Convolucionais 2D (CNN-2D)}
+\subsubsection{Arquitetura}
+\begin{lstlisting}[language=Python, caption=Arquitetura CNN-2D]
+model = Sequential([
+    Conv2D(32, (3,3), activation='relu', input_shape=(patch_size, patch_size, n_bands)),
+    BatchNormalization(),
+    Conv2D(64, (3,3), activation='relu'),
+    MaxPooling2D((2,2)),
+    Dropout(0.25),
+    
+    Conv2D(128, (3,3), activation='relu'),
+    BatchNormalization(),
+    Conv2D(256, (3,3), activation='relu'),
+    MaxPooling2D((2,2)),
+    Dropout(0.25),
+    
+    GlobalAveragePooling2D(),
+    Dense(512, activation='relu'),
+    Dropout(0.5),
+    Dense(n_classes, activation='softmax')
+])
+\end{lstlisting}
+
+\subsection{Redes Neurais Convolucionais 3D (CNN-3D)}
+\subsubsection{Arquitetura}
+\begin{lstlisting}[language=Python, caption=Arquitetura CNN-3D]
+model = Sequential([
+    Conv3D(32, (3,3,7), activation='relu', 
+           input_shape=(patch_size, patch_size, n_bands, 1)),
+    BatchNormalization(),
+    Conv3D(64, (3,3,5), activation='relu'),
+    MaxPooling3D((2,2,2)),
+    Dropout(0.25),
+    
+    Conv3D(128, (3,3,3), activation='relu'),
+    BatchNormalization(),
+    GlobalAveragePooling3D(),
+    Dense(256, activation='relu'),
+    Dropout(0.5),
+    Dense(n_classes, activation='softmax')
+])
+\end{lstlisting}
+
+\subsection{Transformer para Dados Hiperespectrais}
+\subsubsection{Arquitetura Spectral Transformer}
+\begin{lstlisting}[language=Python, caption=Spectral Transformer]
+class SpectralTransformer(tf.keras.Model):
+    def __init__(self, num_classes, d_model=256, num_heads=8, num_layers=6):
+        super().__init__()
+        self.d_model = d_model
+        self.embedding = Dense(d_model)
+        self.pos_encoding = PositionalEncoding(d_model)
+        
+        self.transformer_layers = [
+            TransformerBlock(d_model, num_heads) 
+            for _ in range(num_layers)
+        ]
+        
+        self.global_pool = GlobalAveragePooling1D()
+        self.classifier = Dense(num_classes, activation='softmax')
+        
+    def call(self, inputs):
+        x = self.embedding(inputs)
+        x += self.pos_encoding(x)
+        
+        for layer in self.transformer_layers:
+            x = layer(x)
+            
+        x = self.global_pool(x)
+        return self.classifier(x)
+\end{lstlisting}
+
+\subsection{Métodos de Comparação}
+\subsubsection{Support Vector Machine (SVM)}
+\begin{itemize}
+    \item \textbf{Kernel}: RBF (Radial Basis Function)
+    \item \textbf{Parâmetros}: C e gamma otimizados via grid search
+    \item \textbf{Implementação}: Scikit-learn com otimização paralela
+\end{itemize}
+
+\subsubsection{Random Forest}
+\begin{itemize}
+    \item \textbf{Número de Árvores}: 100-500
+    \item \textbf{Critério de Divisão}: Gini impurity
+    \item \textbf{Profundidade Máxima}: Otimizada por validação cruzada
+\end{itemize}
+
+\section{Estratégia de Treinamento}\label{sec:treinamento}
+
+\subsection{Divisão dos Dados}
+\begin{itemize}
+    \item \textbf{Treinamento}: 70\% dos dados
+    \item \textbf{Validação}: 15\% dos dados
+    \item \textbf{Teste}: 15\% dos dados
+\end{itemize}
+
+\subsection{Aumento de Dados (Data Augmentation)}
+\begin{itemize}
+    \item \textbf{Rotações}: 90\textdegree, 180\textdegree, 270\textdegree
+    \item \textbf{Espelhamento}: Horizontal e vertical
+    \item \textbf{Ruído Gaussiano}: $\sigma$ = 0.01
+    \item \textbf{Normalização Espectral}: Perturbações aleatórias
+\end{itemize}
+
+\subsection{Otimização}
+\begin{itemize}
+    \item \textbf{Otimizador}: Adam com $\beta_1$=0.9, $\beta_2$=0.999
+    \item \textbf{Taxa de Aprendizado}: 0.001 com decaimento exponencial
+    \item \textbf{Batch Size}: 32-64 (dependendo da arquitetura)
+    \item \textbf{Early Stopping}: Paciência de 20 épocas
+\end{itemize}
+
+\section{Métricas de Avaliação}\label{sec:metricas}
+
+\subsection{Métricas de Classificação}
+\subsubsection{Acurácia Global}
+\begin{equation}
+\text{Acurácia} = \frac{\text{Número de amostras corretamente classificadas}}{\text{Número total de amostras}}
+\end{equation}
+
+\subsubsection{Coeficiente Kappa}
+\begin{equation}
+\kappa = \frac{p_o - p_e}{1 - p_e}
+\end{equation}
+onde $p_o$ é a acurácia observada e $p_e$ é a acurácia esperada por chance.
+
+\subsubsection{F1-Score por Classe}
+\begin{equation}
+F1 = 2 \cdot \frac{\text{Precisão} \cdot \text{Recall}}{\text{Precisão} + \text{Recall}}
+\end{equation}
+
+\subsection{Métricas de Desempenho Computacional}
+\begin{itemize}
+    \item \textbf{Tempo de Treinamento}: Tempo total para convergência
+    \item \textbf{Tempo de Inferência}: Tempo para classificar uma imagem
+    \item \textbf{Uso de Memória}: Consumo de RAM e VRAM
+    \item \textbf{Eficiência Energética}: Consumo energético por operação
+\end{itemize}
+
+\section{Classes de Cobertura da Terra}\label{sec:classes}
+
+\subsection{Esquema de Classificação}
+O esquema de classificação é baseado em classes relevantes para agricultura de precisão:
+
+\begin{table}[h]
+\centering
+\caption{Classes de Cobertura da Terra}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Código} & \textbf{Classe} & \textbf{Descrição} \\
+\hline
+C1 & Cultura Saudável & Vegetação vigorosa sem estresse \\
+C2 & Cultura Estressada & Vegetação com sinais de estresse \\
+C3 & Solo Exposto & Áreas sem cobertura vegetal \\
+C4 & Água & Corpos d'água e áreas alagadas \\
+C5 & Infraestrutura & Construções e estradas \\
+C6 & Vegetação Natural & Mata nativa e pastagens \\
+\hline
+\end{tabular}
+\label{tab:classes}
+\end{table}
+
+\section{Validação Experimental}\label{sec:validacao}
+
+\subsection{Áreas de Estudo}
+\begin{itemize}
+    \item \textbf{Área 1}: Fazenda experimental (100 ha) - culturas anuais
+    \item \textbf{Área 2}: Área de conservação (50 ha) - vegetação natural
+    \item \textbf{Área 3}: Zona urbana-rural (75 ha) - uso misto
+\end{itemize}
+
+\subsection{Protocolo de Validação}
+\begin{enumerate}
+    \item Coleta de dados de verdade terrestre (ground truth)
+    \item Aplicação de validação cruzada k-fold (k=5)
+    \item Análise de sensibilidade a parâmetros
+    \item Teste de robustez em diferentes condições
+    \item Comparação estatística dos resultados
+\end{enumerate}
+
+\subsection{Análise Estatística}
+\begin{itemize}
+    \item \textbf{Teste t-pareado}: Comparação entre algoritmos
+    \item \textbf{ANOVA}: Análise de variância entre grupos
+    \item \textbf{Teste de McNemar}: Comparação de classificadores
+    \item \textbf{Intervalos de Confiança}: 95\% para todas as métricas
+\end{itemize}
+
+\section{Implementação Computacional}\label{sec:implementacao}
+
+\subsection{Ambiente de Desenvolvimento}
+\begin{itemize}
+    \item \textbf{Linguagem}: Python 3.8+
+    \item \textbf{Framework}: TensorFlow 2.x / Keras
+    \item \textbf{Processamento}: GDAL, Rasterio
+    \item \textbf{Visualização}: Matplotlib, Seaborn
+    \item \textbf{Análise}: NumPy, SciPy, Pandas
+\end{itemize}
+
+\subsection{Recursos Computacionais}
+\begin{itemize}
+    \item \textbf{GPU}: NVIDIA RTX 3080/4090 (12-24 GB VRAM)
+    \item \textbf{CPU}: Intel i7/i9 ou AMD Ryzen 7/9
+    \item \textbf{RAM}: 32-64 GB
+    \item \textbf{Armazenamento}: SSD NVMe 1-2 TB
+\end{itemize}
+
+\section{Cronograma de Execução}\label{sec:cronograma}
+
+\begin{table}[h]
+\centering
+\caption{Cronograma de Execução dos Experimentos}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Fase} & \textbf{Atividade} & \textbf{Duração} \\
+\hline
+1 & Coleta de dados hiperespectrais & 4 semanas \\
+2 & Pré-processamento e correções & 3 semanas \\
+3 & Redução de dimensionalidade & 2 semanas \\
+4 & Implementação de classificadores & 4 semanas \\
+5 & Treinamento e validação & 3 semanas \\
+6 & Análise de resultados & 2 semanas \\
+\hline
+\textbf{Total} & & \textbf{18 semanas} \\
+\hline
+\end{tabular}
+\label{tab:cronograma}
+\end{table}
+
+Este capítulo estabelece a base metodológica para a execução dos experimentos, fornecendo detalhes suficientes para reprodução dos resultados e validação da abordagem proposta. Os capítulos seguintes apresentam os resultados obtidos e discussão dos achados experimentais.

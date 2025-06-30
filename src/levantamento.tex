@@ -1,0 +1,250 @@
+% Capítulo de Levantamento Bibliográfico / Trabalhos Relacionados
+\chapter{Levantamento Bibliográfico}\label{chp:levantamento}
+
+Este capítulo apresenta uma revisão sistemática da literatura sobre classificação de uso e cobertura da terra (LULC) utilizando imagens hiperespectrais, com foco especial em aplicações com drones/VANTs. A revisão abrange desde os conceitos fundamentais do sensoriamento remoto hiperespectral até as técnicas mais avançadas de processamento e classificação baseadas em deep learning.
+
+\section{Sensoriamento Remoto Hiperespectral}\label{sec:hiperespectral}
+
+\subsection{Conceitos Fundamentais}
+O sensoriamento remoto hiperespectral representa uma evolução significativa em relação às técnicas multiespectrais tradicionais. Enquanto imagens multiespectrais capturam informações em poucas bandas espectrais discretas (tipicamente 3-10 bandas), as imagens hiperespectrais adquirem dados em centenas de bandas espectrais contíguas e estreitas, geralmente variando de 5 a 20 nanômetros de largura \cite{Lou2024}.
+
+Esta rica informação espectral permite uma caracterização muito mais precisa dos materiais e coberturas terrestres, possibilitando a distinção entre objetos que apresentam assinaturas espectrais similares nas poucas bandas de sensores multiespectrais convencionais. O resultado é uma estrutura de dados tridimensional chamada "cubo hiperespectral" ou "cubo de dados", onde as duas primeiras dimensões representam informações espaciais e a terceira dimensão contém informações espectrais \cite{Lou2024}.
+
+\subsection{Evolução Tecnológica}
+O desenvolvimento da tecnologia de imageamento hiperespectral teve início com espectrômetros imageadores aerotransportados, evoluindo para sistemas como o Advanced Visible and Infrared Imaging Spectrometer (AVIRIS), que se tornou uma referência na geração de datasets hiperespectrais acadêmicos \cite{Lou2024}. 
+
+Nos últimos anos, a miniaturização dos sensores hiperespectrais e o desenvolvimento de plataformas não tripuladas revolucionaram o campo, tornando essa tecnologia mais acessível e permitindo aplicações em escalas locais e regionais com alta resolução temporal e espacial.
+
+\subsection{Aplicações em Monitoramento Terrestre}
+As imagens hiperespectrais têm encontrado aplicações em diversos campos científicos e comerciais:
+
+\begin{itemize}
+    \item \textbf{Agricultura de Precisão}: Monitoramento da saúde das culturas, detecção precoce de estresses hídricos e nutricionais, identificação de pragas e doenças \cite{Shin2024}
+    \item \textbf{Monitoramento Florestal}: Classificação de espécies vegetais, avaliação de biomassa, detecção de mudanças na cobertura vegetal
+    \item \textbf{Geologia}: Identificação e mapeamento de minerais, prospecção mineral, estudos geológicos estruturais
+    \item \textbf{Recursos Hídricos}: Monitoramento da qualidade da água, detecção de poluição aquática, mapeamento de corpos d'água
+    \item \textbf{Monitoramento Ambiental}: Avaliação de impactos ambientais, detecção de mudanças no uso da terra, conservação da biodiversidade
+\end{itemize}
+
+\section{Classificação LULC com Imagens Hiperespectrais}\label{sec:classificacao_lulc}
+
+\subsection{Definição e Importância da Classificação LULC}
+A classificação de uso e cobertura da terra (Land Use/Land Cover - LULC) constitui uma das aplicações mais importantes do sensoriamento remoto hiperespectral. Segundo \cite{Lou2024}, LULC pode ser categorizada em dois domínios principais:
+
+\begin{itemize}
+    \item \textbf{Cobertura da Terra (Land Cover)}: Refere-se aos fatores naturais e antrópicos existentes na superfície terrestre, incluindo florestas, pastagens, terras agrícolas, solo exposto, corpos d'água e áreas construídas.
+    \item \textbf{Uso da Terra (Land Use)}: Representa o processo de transformação do ecossistema natural em sistemas artificiais, influenciado por fatores naturais, econômicos e sociais, incluindo áreas residenciais, comerciais, industriais e destinadas ao transporte.
+\end{itemize}
+
+A classificação precisa de LULC é fundamental para o planejamento territorial, gestão de recursos naturais, monitoramento de mudanças ambientais e formulação de políticas públicas de desenvolvimento sustentável.
+
+\subsection{Desafios na Classificação LULC Hiperespectral}
+O processamento de imagens hiperespectrais para classificação LULC apresenta desafios únicos devido às características intrínsecas dos dados:
+
+\subsubsection{Maldição da Dimensionalidade}
+A alta dimensionalidade dos dados hiperespectrais (centenas de bandas espectrais) pode levar ao fenômeno conhecido como "maldição da dimensionalidade" (curse of dimensionality), onde o desempenho dos algoritmos de classificação pode degradar devido à escassez relativa de amostras de treinamento em espaços de alta dimensionalidade \cite{Lou2024}.
+
+\subsubsection{Redundância Espectral}
+Muitas bandas espectrais adjacentes apresentam alta correlação, introduzindo redundância nos dados que pode afetar negativamente o desempenho dos classificadores e aumentar o custo computacional \cite{Lou2024}.
+
+\subsubsection{Variabilidade Espectral}
+A mesma classe de cobertura pode apresentar variações espectrais significativas devido a fatores como estado fenológico da vegetação, condições de iluminação, propriedades do solo e efeitos atmosféricos \cite{Lou2024}.
+
+\subsection{Evolução dos Métodos de Classificação}
+A literatura apresenta uma evolução clara nos métodos de classificação LULC hiperespectral, que podem ser organizados em três gerações principais \cite{Lou2024}:
+
+\subsubsection{Primeira Geração: Métodos Estatísticos Tradicionais}
+Os primeiros métodos incluíam classificadores como:
+\begin{itemize}
+    \item \textbf{Máxima Verossimilhança (Maximum Likelihood)}: Baseado na assumptiva de distribuições gaussianas para as classes
+    \item \textbf{Distância Mínima}: Classificação baseada na distância euclidiana até centroides das classes
+    \item \textbf{Paralelepípedo}: Definição de limites espectrais para cada banda
+\end{itemize}
+
+\subsubsection{Segunda Geração: Métodos de Machine Learning}
+O desenvolvimento de técnicas de aprendizado de máquina trouxe melhorias significativas:
+\begin{itemize}
+    \item \textbf{Support Vector Machine (SVM)}: Demonstrou excelente desempenho em dados de alta dimensionalidade, tornando-se um dos métodos mais utilizados \cite{Lou2024}
+    \item \textbf{Random Forest}: Método ensemble que combina múltiplas árvores de decisão, eficaz para grandes datasets \cite{Lou2024}
+    \item \textbf{k-Nearest Neighbors (k-NN)}: Método não-paramétrico baseado na proximidade no espaço de características
+\end{itemize}
+
+\subsubsection{Terceira Geração: Deep Learning}
+A emergência do deep learning revolucionou a classificação de imagens hiperespectrais:
+\begin{itemize}
+    \item \textbf{Redes Neurais Convolucionais (CNNs)}: Capazes de extrair características espaciais e espectrais automaticamente
+    \item \textbf{Redes Neurais Recorrentes (RNNs)}: Eficazes para modelar dependências sequenciais nas bandas espectrais
+    \item \textbf{Autoencoders}: Utilizados para redução de dimensionalidade e extração de características não-supervisionada
+    \item \textbf{Transformers}: Arquiteturas baseadas em atenção que demonstram excelente desempenho em tarefas de classificação \cite{Lou2024}
+\end{itemize}
+
+\section{Tecnologia de Drones para Sensoriamento Hiperespectral}\label{sec:drones_hiperespectral}
+
+\subsection{Vantagens dos Sistemas Hiperespectrais Embarcados em Drones}
+A integração de sensores hiperespectrais em plataformas de drones oferece vantagens significativas em comparação com plataformas tradicionais \cite{Shin2024}:
+
+\subsubsection{Flexibilidade Operacional}
+Os drones proporcionam alta flexibilidade para aquisição de dados em diferentes condições temporais e espaciais, permitindo monitoramento adaptado às necessidades específicas de cada aplicação.
+
+\subsubsection{Resolução Espacial Superior}
+A capacidade de voo em baixas altitudes permite a aquisição de imagens com resolução espacial muito superior à obtida por satélites, chegando a centímetros por pixel.
+
+\subsubsection{Minimização de Interferências Atmosféricas}
+O voo em baixas altitudes reduz significativamente os efeitos de dispersão atmosférica e absorção, resultando em dados espectrais de maior qualidade \cite{Shin2024}.
+
+\subsubsection{Custo-Benefício}
+Comparado a plataformas aerotransportadas tripuladas, os drones oferecem uma solução muito mais econômica para aquisição de dados hiperespectrais em áreas relativamente pequenas.
+
+\subsection{Desafios Técnicos}
+Apesar das vantagens, os sistemas hiperespectrais em drones apresentam desafios únicos \cite{Shin2024}:
+
+\subsubsection{Estabilidade de Plataforma}
+As instabilidades inerentes aos drones podem introduzir distorções geométricas que requerem correções específicas durante o pré-processamento.
+
+\subsubsection{Limitações de Payload}
+O peso e consumo energético dos sensores hiperespectrais impõem restrições no tempo de voo e na escolha da plataforma aérea.
+
+\subsubsection{Calibração e Correção}
+A necessidade de correções radiométricas e geométricas específicas para dados adquiridos por drones requer protocolos de calibração adaptados.
+
+\section{Pré-processamento de Imagens Hiperespectrais de Drones}\label{sec:preprocessamento}
+
+\subsection{Correção Radiométrica}
+A correção radiométrica é fundamental para converter os valores digitais capturados pelo sensor em valores de reflectância de superfície, removendo efeitos indesejados de iluminação e resposta do sensor \cite{Shin2024}.
+
+\subsubsection{Método de Linha Empírica (Empirical Line Method - ELM)}
+O ELM é uma das técnicas mais utilizadas para correção radiométrica em dados hiperespectrais de drones. O método utiliza alvos de referência com reflectância conhecida, coletados simultaneamente à aquisição das imagens, para estabelecer uma relação linear entre os valores digitais do sensor e a reflectância real \cite{Shin2024}.
+
+Segundo \cite{Shin2024}, a aplicação do ELM demonstrou melhorias de 5-55\% na precisão da reflectância para painéis de referência, resultando em perfis espectrais mais uniformes ao longo das diferentes bandas, com correlações de 0.97-0.99 entre valores medidos e corrigidos.
+
+\subsubsection{Outras Técnicas de Correção}
+\begin{itemize}
+    \item \textbf{Correção Atmosférica}: Modelagem dos efeitos de dispersão e absorção atmosférica
+    \item \textbf{Correção de Sombreamento}: Compensação de variações de iluminação causadas por topografia
+    \item \textbf{Calibração de Ganho e Offset}: Ajuste da resposta linear do sensor
+\end{itemize}
+
+\subsection{Correção Geométrica}
+A correção geométrica é essencial para garantir o alinhamento espacial preciso das imagens e permitir a integração com outros dados geoespaciais \cite{Shin2024}.
+
+\subsubsection{Transformação Rubber Sheet}
+A transformação rubber sheet utilizando pontos de controle terrestres tem se mostrado eficaz para correção de distorções causadas por variações na orientação do sensor e trajetória de voo. \cite{Shin2024} reporta erros RMS de 0.00 a 0.081 m na direção leste-oeste e 0.00 a 0.076 m na direção norte-sul, com erro RMS geral de 0.031 metros para 100 pontos, superando padrões industriais de precisão.
+
+\subsubsection{Mosaicagem de Imagens}
+O processo de mosaicagem combina múltiplas imagens individuais para criar uma representação abrangente da área de estudo, considerando sobreposições entre imagens e minimizando descontinuidades espectrais \cite{Shin2024}.
+
+\section{Técnicas de Redução de Dimensionalidade}\label{sec:reducao_dimensionalidade}
+
+\subsection{Análise de Componentes Principais (PCA)}
+A PCA é uma das técnicas mais utilizadas para redução de dimensionalidade em dados hiperespectrais, transformando o conjunto original de bandas correlacionadas em um novo conjunto de componentes principais não-correlacionados \cite{Lou2024}.
+
+A transformação PCA pode ser expressa matematicamente como:
+\begin{equation}
+Y = XW
+\end{equation}
+onde $X$ é a matriz de dados original, $W$ é a matriz de autovetores da matriz de covariância, e $Y$ representa os dados transformados.
+
+\subsection{t-Distributed Stochastic Neighbor Embedding (t-SNE)}
+O t-SNE é uma técnica não-linear de redução de dimensionalidade particularmente eficaz para visualização de dados de alta dimensionalidade, preservando a estrutura local dos dados no espaço de menor dimensionalidade.
+
+\subsection{Outras Técnicas}
+\begin{itemize}
+    \item \textbf{Independent Component Analysis (ICA)}: Separa sinais espectrais misturados em componentes independentes
+    \item \textbf{Linear Discriminant Analysis (LDA)}: Maximiza a separabilidade entre classes
+    \item \textbf{Minimum Noise Fraction (MNF)}: Ordena bandas por razão sinal-ruído
+\end{itemize}
+
+\section{Deep Learning para Classificação Hiperespectral}\label{sec:deep_learning}
+
+\subsection{Redes Neurais Convolucionais (CNNs)}
+As CNNs têm demonstrado desempenho superior na classificação de imagens hiperespectrais devido à sua capacidade de extrair características espaciais e espectrais automaticamente \cite{Lou2024}.
+
+\subsubsection{CNNs 2D}
+As CNNs 2D processam cada banda espectral separadamente como uma imagem 2D, sendo eficazes para extração de características espaciais. A arquitetura típica inclui:
+\begin{itemize}
+    \item Camadas convolucionais para extração de características
+    \item Camadas de pooling para redução de dimensionalidade
+    \item Camadas totalmente conectadas para classificação final
+\end{itemize}
+
+\subsubsection{CNNs 3D}
+As CNNs 3D processam o cubo hiperespectral como um todo, capturando tanto informações espaciais quanto espectrais simultaneamente. Esta abordagem é particularmente eficaz para dados hiperespectrais devido à natureza tridimensional dos dados.
+
+\subsection{Arquiteturas Transformer}
+As arquiteturas Transformer, baseadas em mecanismos de atenção, têm demonstrado excelente desempenho em tarefas de classificação hiperespectral \cite{Lou2024}. O mecanismo de self-attention permite modelar dependências de longo alcance tanto no domínio espacial quanto espectral.
+
+\subsection{Outras Arquiteturas de Deep Learning}
+\begin{itemize}
+    \item \textbf{Autoencoders}: Para aprendizado não-supervisionado de representações
+    \item \textbf{Generative Adversarial Networks (GANs)}: Para aumento de dados e geração sintética
+    \item \textbf{Graph Neural Networks (GNNs)}: Para explorar relações topológicas entre pixels
+\end{itemize}
+
+\section{Aplicações em Agricultura de Precisão}\label{sec:agricultura_precisao}
+
+\subsection{Monitoramento da Saúde das Culturas}
+O sensoriamento hiperespectral permite a detecção precoce de estresses nas culturas através da análise de mudanças sutis nas assinaturas espectrais da vegetação \cite{Shin2024}. Índices espectrais específicos podem indicar:
+\begin{itemize}
+    \item Deficiências nutricionais (nitrogênio, fósforo, potássio)
+    \item Estresse hídrico
+    \item Presença de pragas e doenças
+    \item Estado fenológico das culturas
+\end{itemize}
+
+\subsection{Mapeamento de Produtividade}
+A correlação entre características espectrais e produtividade permite a geração de mapas de produtividade preditivos, auxiliando na otimização do manejo agrícola.
+
+\subsection{Aplicação Variável de Insumos}
+Os mapas gerados a partir da classificação LULC hiperespectral podem orientar a aplicação variável de fertilizantes, pesticidas e irrigação, otimizando o uso de recursos e reduzindo impactos ambientais.
+
+\section{Trabalhos Relacionados}\label{sec:trabalhos_relacionados}
+
+\subsection{Estudos de Revisão}
+\cite{Lou2024} conduziu uma revisão abrangente sobre classificação LULC usando imagens hiperespectrais, identificando quatro abordagens principais: revisão sistemática da classificação LULC hiperespectral, compilação e análise de datasets específicos, exploração de métodos tradicionais e de deep learning, e análise de trajetórias futuras de desenvolvimento.
+
+\subsection{Implementações com Drones}
+\cite{Shin2024} apresentou um estudo focado em métodos robustos de correção radiométrica e geométrica para imageamento hiperespectral baseado em drones em aplicações agrícolas, demonstrando a eficácia do ELM e transformação rubber sheet para preprocessamento de dados.
+
+\subsection{Sistemas Embarcados}
+\cite{Lim2022} investigou a viabilidade de sistemas embarcados em tempo real para imageamento hiperespectral compressivo, analisando requisitos computacionais, uso de memória e largura de banda, e propondo otimizações para alcançar processamento em tempo real.
+
+\subsection{Lacunas Identificadas na Literatura}
+A revisão da literatura identifica várias lacunas importantes:
+
+\begin{enumerate}
+    \item \textbf{Padronização de Metodologias}: Falta de protocolos padronizados para aquisição e processamento de dados hiperespectrais de drones
+    \item \textbf{Datasets Públicos}: Escassez de datasets públicos anotados específicos para aplicações LULC com drones hiperespectrais
+    \item \textbf{Validação em Condições Reais}: Necessidade de mais estudos validando metodologias em diferentes condições ambientais e tipos de culturas
+    \item \textbf{Integração de Técnicas}: Falta de frameworks integrados que combinem eficientemente preprocessamento, redução de dimensionalidade e classificação
+    \item \textbf{Aplicabilidade Prática}: Limitado número de estudos focando na implementação prática e transferência de tecnologia para o setor produtivo
+\end{enumerate}
+
+\section{Síntese do Levantamento}\label{sec:sintese}
+
+Esta revisão da literatura estabelece o contexto científico e tecnológico para o desenvolvimento desta dissertação. Os principais pontos identificados são:
+
+\subsection{Estado da Arte}
+\begin{itemize}
+    \item O sensoriamento hiperespectral com drones representa uma tecnologia emergente com grande potencial para aplicações em agricultura de precisão
+    \item Técnicas de deep learning demonstram desempenho superior aos métodos tradicionais para classificação LULC hiperespectral
+    \item Métodos de correção radiométrica e geométrica específicos para drones são essenciais para garantir a qualidade dos dados
+\end{itemize}
+
+\subsection{Desafios Técnicos}
+\begin{itemize}
+    \item Processamento eficiente de dados de alta dimensionalidade
+    \item Desenvolvimento de pipelines integrados de processamento
+    \item Validação em condições operacionais reais
+    \item Transferência de tecnologia para aplicações práticas
+\end{itemize}
+
+\subsection{Oportunidades de Pesquisa}
+Esta dissertação visa contribuir para o preenchimento das lacunas identificadas através de:
+\begin{itemize}
+    \item Desenvolvimento de uma metodologia integrada para classificação LULC com drones hiperespectrais
+    \item Implementação e validação de técnicas avançadas de deep learning
+    \item Avaliação sistemática em diferentes condições experimentais
+    \item Estabelecimento de protocolos para aplicação prática da tecnologia
+\end{itemize}
+
+Os capítulos subsequentes detalham a metodologia desenvolvida e os resultados obtidos, contribuindo para o avanço do conhecimento nesta área de pesquisa emergente e estratégica.
