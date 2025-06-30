@@ -4,7 +4,74 @@
 % posteriormente.
 \chapter{Introdução}\label{chp:Introducao}
 
-Esse é um texto de exemplo para o modelo de teses e dissertações da Faculdade de Tecnologia (FT) da UNICAMP. Esse modelo se aplica às teses de doutorado, dissertações de mestrado e Trabalhos de Conclusão de Curso, para a graduação (dos cursos de informática da FT).
+% TODO: Expandir com contextualização sobre processamento hiperespectral
+% Contextualização do problema
+O processamento de imagens hiperespectrais representa um desafio computacional significativo devido ao volume massivo de dados e à complexidade dos algoritmos envolvidos. Cada pixel de uma imagem hiperespectral contém informações espectrais de centenas de bandas, resultando em datasets que podem exceder gigabytes de dados \cite{referencia_contextual}.
+
+% TODO: Adicionar estatísticas sobre crescimento de dados hiperespectrais
+% TODO: Citar aplicações práticas (agricultura, mineração, medicina, etc.)
+
+\section{Motivação}\label{sec:motivacao}
+
+% TODO: Expandir com justificativas técnicas e econômicas
+A escolha entre plataformas de processamento (FPGA vs GPU) para aplicações hiperespectrais é crucial, pois impacta diretamente:
+\begin{itemize}
+    \item Tempo de processamento em aplicações de tempo real
+    \item Consumo energético em sistemas embarcados
+    \item Custo de implementação e manutenção
+    \item Precisão dos resultados obtidos
+\end{itemize}
+
+% TODO: Adicionar dados quantitativos sobre diferenças de desempenho
+% TODO: Citar lacunas na literatura sobre comparações sistemáticas
+
+\section{Objetivos}\label{sec:objetivos}
+
+\subsection{Objetivo Geral}
+Realizar uma análise comparativa sistemática entre implementações FPGA e GPU para processamento de imagens hiperespectrais, quantificando trade-offs de desempenho, consumo energético e precisão.
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}
+    \item Implementar algoritmos de pré-processamento hiperespectral em VHDL para simulação FPGA
+    \item Desenvolver implementações otimizadas em CUDA para GPU
+    \item Estabelecer métricas de comparação objetivas e reproduzíveis
+    \item Quantificar diferenças de desempenho entre as plataformas
+    \item Identificar cenários ótimos para cada arquitetura
+    \item Fornecer diretrizes para seleção de plataforma
+\end{enumerate}
+
+% TODO: Refinar objetivos específicos conforme evolução do projeto
+
+\section{Contribuições Esperadas}\label{sec:contribuicoes}
+
+% TODO: Expandir com detalhes sobre originalidade e impacto
+Este trabalho contribui para o estado da arte através de:
+\begin{itemize}
+    \item Primeira comparação sistemática FPGA vs GPU para processamento hiperespectral completo
+    \item Implementações otimizadas e reproduzíveis em ambas as plataformas
+    \item Metodologia de avaliação padronizada para estudos futuros
+    \item Diretrizes práticas para seleção de arquitetura
+\end{itemize}
+
+\section{Organização do Texto}\label{sec:organizacao}
+
+% TODO: Ajustar conforme estrutura final dos capítulos
+Esta dissertação está organizada da seguinte forma:
+
+\begin{itemize}
+    \item \textbf{\Capitulo{chp:levantamento}}: Apresenta o levantamento bibliográfico sobre processamento hiperespectral, arquiteturas FPGA e GPU, e trabalhos relacionados.
+    
+    \item \textbf{\Capitulo{chp:metodologia}}: Detalha a metodologia experimental, algoritmos implementados, métricas de avaliação e configuração dos experimentos.
+    
+    \item \textbf{\Capitulo{chp:resultados}}: Apresenta os resultados experimentais obtidos em ambas as plataformas.
+    
+    \item \textbf{\Capitulo{chp:discussao}}: Analisa e discute os resultados, identificando trade-offs e cenários ótimos.
+    
+    \item \textbf{\Capitulo{chp:conclusoes}}: Sumariza as conclusões, contribuições e trabalhos futuros.
+\end{itemize}
+
+% TODO: Adicionar seção sobre limitações do escopo, se necessário
+% TODO: Incluir cronograma de execução na introdução ou metodologia
 
 A seguir, estão alguns exemplos para os elementos mais comuns em textos acadêmicos, \ie tabelas, equações e figuras. 
 

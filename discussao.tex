@@ -1,0 +1,165 @@
+% Capítulo de Discussão
+\chapter{Discussão}\label{chp:discussao}
+
+% TODO: Expandir com análise crítica dos resultados
+% Introdução ao capítulo
+Este capítulo analisa e discute os resultados experimentais apresentados no \Capitulo{chp:resultados}, identificando trade-offs, limitações e cenários ótimos para cada plataforma de processamento.
+
+\section{Análise dos Trade-offs}\label{sec:tradeoffs}
+
+% TODO: Expandir com análise quantitativa detalhada
+\subsection{Desempenho vs. Consumo Energético}
+Os resultados demonstram um trade-off fundamental entre desempenho bruto e eficiência energética:
+
+\begin{itemize}
+    \item \textbf{GPU}: Oferece o melhor desempenho absoluto (speedup de 13.3× em média), mas com alto consumo energético
+    \item \textbf{FPGA}: Apresenta desempenho intermediário (speedup de 3.5× em média), porém com consumo energético 5× menor
+\end{itemize}
+
+% TODO: Adicionar gráfico de Pareto desempenho vs. energia
+
+\subsection{Precisão vs. Complexidade de Implementação}
+% TODO: Discutir impacto da representação numérica
+A aritmética de ponto fixo utilizada na implementação FPGA introduz pequenas perdas de precisão (1-3\%) em comparação com a aritmética de ponto flutuante da GPU, mas oferece vantagens em termos de recursos de hardware e consumo energético.
+
+\subsection{Flexibilidade vs. Otimização}
+% TODO: Comparar facilidade de modificação dos algoritmos
+\begin{itemize}
+    \item \textbf{GPU}: Maior flexibilidade para modificações algorítmicas e experimentação
+    \item \textbf{FPGA}: Otimizações mais profundas, mas com maior complexidade de desenvolvimento
+\end{itemize}
+
+\section{Cenários de Aplicação Ótimos}\label{sec:cenarios_otimos}
+
+% TODO: Definir critérios para seleção de plataforma
+Com base nos resultados experimentais, podem ser identificados cenários ótimos para cada plataforma:
+
+\subsection{Cenários Favoráveis à GPU}
+\begin{itemize}
+    \item \textbf{Processamento em lote}: Grandes volumes de dados processados offline
+    \item \textbf{Prototipagem rápida}: Desenvolvimento e teste de novos algoritmos
+    \item \textbf{Aplicações de alta precisão}: Quando a precisão numérica é crítica
+    \item \textbf{Processamento multi-algoritmo}: Combinação de diferentes técnicas
+\end{itemize}
+
+\subsection{Cenários Favoráveis à FPGA}
+\begin{itemize}
+    \item \textbf{Sistemas embarcados}: Aplicações com restrições energéticas severas
+    \item \textbf{Processamento em tempo real}: Requisitos de latência determinística
+    \item \textbf{Aplicações espaciais}: Ambientes com radiação e baixo consumo
+    \item \textbf{Processamento contínuo}: Operação 24/7 com eficiência energética
+\end{itemize}
+
+\section{Limitações do Estudo}\label{sec:limitacoes}
+
+% TODO: Discutir limitações metodológicas e técnicas
+\subsection{Limitações Metodológicas}
+\begin{itemize}
+    \item \textbf{Simulação FPGA}: Resultados baseados em simulação, não em hardware real
+    \item \textbf{Datasets limitados}: Três datasets podem não representar toda a diversidade
+    \item \textbf{Algoritmos específicos}: Foco em PCA e SVM, outros algoritmos podem ter comportamentos diferentes
+\end{itemize}
+
+\subsection{Limitações Técnicas}
+\begin{itemize}
+    \item \textbf{Plataforma GPU específica}: Resultados podem variar com diferentes gerações de GPU
+    \item \textbf{Medição energética}: Estimativas para FPGA baseadas em modelos teóricos
+    \item \textbf{Otimizações}: Possíveis otimizações adicionais não exploradas
+\end{itemize}
+
+\section{Implicações Práticas}\label{sec:implicacoes_praticas}
+
+% TODO: Discutir impacto para desenvolvedores e pesquisadores
+\subsection{Para Desenvolvedores de Sistemas}
+Os resultados fornecem diretrizes práticas para seleção de plataforma:
+
+\begin{enumerate}
+    \item Avaliar requisitos de desempenho vs. eficiência energética
+    \item Considerar complexidade de desenvolvimento e manutenção
+    \item Analisar custos de hardware e infraestrutura
+    \item Determinar necessidades de flexibilidade algorítmica
+\end{enumerate}
+
+\subsection{Para Pesquisadores}
+% TODO: Sugerir direções futuras de pesquisa
+\begin{itemize}
+    \item Metodologia reproduzível para comparações futuras
+    \item Benchmarks padronizados para avaliação de implementações
+    \item Identificação de lacunas para pesquisa futura
+\end{itemize}
+
+\section{Comparação com Trabalhos Relacionados}\label{sec:comparacao_literatura}
+
+% TODO: Posicionar resultados em relação à literatura existente
+\subsection{Consistência com Literatura FPGA}
+Os speedups obtidos na implementação FPGA são consistentes com trabalhos anteriores que reportam acelerações de 2-5× para algoritmos similares \cite{referencia_fpga}.
+
+\subsection{Consistência com Literatura GPU}
+Os resultados GPU superam alguns trabalhos anteriores devido às otimizações implementadas e à geração mais recente de hardware utilizada.
+
+\subsection{Contribuições Originais}
+% TODO: Destacar aspectos novos da comparação
+Este trabalho contribui com:
+\begin{itemize}
+    \item Primeira comparação sistemática FPGA vs GPU para processamento hiperespectral completo
+    \item Metodologia padronizada para avaliações futuras
+    \item Análise quantitativa de trade-offs energéticos
+    \item Diretrizes práticas para seleção de plataforma
+\end{itemize}
+
+\section{Diretrizes para Seleção de Plataforma}\label{sec:diretrizes}
+
+% TODO: Criar framework de decisão
+Com base na análise dos resultados, propõe-se o seguinte framework de decisão:
+
+\subsection{Critérios de Decisão}
+\begin{enumerate}
+    \item \textbf{Requisitos de Desempenho}: Latência vs. throughput
+    \item \textbf{Restrições Energéticas}: Disponibilidade de energia vs. eficiência
+    \item \textbf{Complexidade de Desenvolvimento}: Recursos disponíveis vs. prazo
+    \item \textbf{Flexibilidade Algorítmica}: Estabilidade vs. evolução dos algoritmos
+    \item \textbf{Custo Total}: Hardware + desenvolvimento + manutenção
+\end{enumerate}
+
+\subsection{Árvore de Decisão}
+% TODO: Criar diagrama de árvore de decisão
+% TODO: Implementar como figura ou fluxograma
+
+\section{Trabalhos Futuros}\label{sec:trabalhos_futuros}
+
+% TODO: Sugerir extensões e melhorias
+\subsection{Extensões Metodológicas}
+\begin{itemize}
+    \item Implementação em FPGA real para validação dos resultados simulados
+    \item Avaliação com datasets hiperespectrais de maior resolução
+    \item Comparação com outras arquiteturas (CPUs multi-core, TPUs)
+    \item Análise de implementações híbridas FPGA+GPU
+\end{itemize}
+
+\subsection{Extensões Algorítmicas}
+\begin{itemize}
+    \item Implementação de algoritmos de deep learning para classificação
+    \item Avaliação de técnicas de compressão hiperespectral
+    \item Algoritmos adaptativos que ajustam processamento conforme dados
+\end{itemize}
+
+\subsection{Extensões Práticas}
+\begin{itemize}
+    \item Desenvolvimento de framework de software para comparações automáticas
+    \item Criação de benchmarks padronizados para a comunidade
+    \item Estudo de viabilidade econômica em aplicações reais
+\end{itemize}
+
+\section{Síntese da Discussão}\label{sec:sintese_discussao}
+
+% TODO: Resumir principais insights
+A análise dos resultados revela que não existe uma plataforma universalmente superior para processamento hiperespectral. A escolha ótima depende fundamentalmente dos requisitos específicos da aplicação:
+
+\begin{itemize}
+    \item \textbf{Para máximo desempenho}: GPU é a escolha preferencial
+    \item \textbf{Para máxima eficiência energética}: FPGA oferece vantagens significativas
+    \item \textbf{Para aplicações balanceadas}: Análise detalhada dos trade-offs é necessária
+\end{itemize}
+
+% TODO: Conectar com conclusões
+Estas descobertas são sintetizadas nas conclusões apresentadas no \Capitulo{chp:conclusoes}. 

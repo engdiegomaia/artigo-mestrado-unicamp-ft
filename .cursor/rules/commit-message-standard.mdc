@@ -1,0 +1,25 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Commit Message Standard
+
+## Core Principles
+- Every task/change must have a clear, descriptive commit message.
+
+## Commit Message Format
+Use one of the following formats:
+
+```
+feat: [short description]
+fix: [short description]
+docs: [short description]
+refactor: [short description]
+```
+
+### Examples:
+- feat: add user authentication
+- fix: correct typo in README
+- docs: update API documentation
+- refactor: improve error handling

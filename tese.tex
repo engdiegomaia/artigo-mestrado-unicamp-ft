@@ -60,11 +60,11 @@
 \begin{document}
 
 % Escolha entre autor ou autora:
-\autor{Nome do autor}
+\autor{Seu Nome Completo}
 %\autora{Nome da Autora}
 
 % Sempre deve haver um título em português:
-\titulo{Título da Dissertação ou Tese em Português}
+\titulo{Análise Comparativa de Processamento Hiperespectral: Implementação em FPGA versus GPU}
 
 % Se a língua for o inglês ou o espanhol defina:
 %\title{The Dissertation or Thesis Title in English or Spanish for FT}
@@ -97,7 +97,7 @@
 % Defina a data da defesa no formato {Dia}{Mês}{Ano}
 % Use apenas números! O template transformará em palavras,
 % se necessário.
-\datadadefesa{20}{5}{2025}
+\datadadefesa{15}{12}{2025}
 
 % Para a versão final defina:
 % Repita o nome do Orientador(a) no primeiro avaliador
@@ -129,19 +129,16 @@
 
 % Se houver uma dedicatória, informe no comando a seguir. 
 % A dedicatória deve ter poucas linhas.
- %\dedicatoria{A dedicatória deve ocupar poucas linhas.}
+%\dedicatoria{Aos meus pais e professores que me inspiraram na jornada científica.}
  
 % Se houver epígrafe, use o comando \epigrafe a seguir
 %   - O primeiro parâmetro é o autor dos dizeres.
 %   - O segundo parâmetro são os dizeres.
-% \epigrafe{Hippocrates}{
-% {\it
-% Vita brevis,\\
-% ars longa,\\
-% occasio praeceps,\\
-% experimentum periculosum,\\
-% iudicium difficile.}
-% }
+%\epigrafe{Richard Feynman}{
+%{\it
+%What I cannot create,\\
+%I do not understand.}
+%}
 
 % O comando condicional \ifturnitin a seguir é importante para 
 % preparar o texto para encaminhamento ao Turnitin. 
@@ -156,12 +153,16 @@
 
 % Sempre deve haver um resumo em português:
 \begin{resumo}
-O resumo deve ter no máximo 500 palavras e deve ocupar uma única página.
+Este trabalho apresenta uma análise comparativa entre implementações de processamento de imagens hiperespectrais em FPGA e GPU. O processamento de imagens hiperespectrais demanda alta capacidade computacional devido ao volume de dados e complexidade dos algoritmos envolvidos. Esta dissertação implementa e compara algoritmos de pré-processamento, redução de dimensionalidade (PCA) e classificação (SVM) em ambas as plataformas, utilizando GHDL para simulação FPGA e CUDA para implementação GPU. Os resultados experimentais demonstram os trade-offs entre desempenho, consumo de energia e precisão, fornecendo diretrizes para escolha da plataforma mais adequada conforme o cenário de aplicação.
+
+\textbf{Palavras-chave:} Processamento Hiperespectral, FPGA, GPU, CUDA, VHDL, Análise Comparativa.
 \end{resumo}
 
 % Sempre deve haver um abstract:
 \begin{abstract}
-The abstract must have at most 500 words and must fit in a single page.
+This work presents a comparative analysis between FPGA and GPU implementations for hyperspectral image processing. Hyperspectral image processing demands high computational capacity due to data volume and algorithm complexity. This dissertation implements and compares preprocessing, dimensionality reduction (PCA), and classification (SVM) algorithms on both platforms, using GHDL for FPGA simulation and CUDA for GPU implementation. Experimental results demonstrate trade-offs between performance, energy consumption, and accuracy, providing guidelines for choosing the most suitable platform according to application scenarios.
+
+\textbf{Keywords:} Hyperspectral Processing, FPGA, GPU, CUDA, VHDL, Comparative Analysis.
 \end{abstract}
 
 % Se houver um resumo em espanhol, descomente as linhas a seguir:

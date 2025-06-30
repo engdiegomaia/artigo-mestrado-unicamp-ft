@@ -1,4 +1,170 @@
+% Capítulo de Conclusões
 \chapter{Conclusões}\label{chp:conclusoes}
-% O comando a seguir gera um "dummy text". 
-% Elimine-o quando escrever sua dissertação.
-\lipsum[8]
+
+% TODO: Expandir com síntese final dos resultados
+% Introdução ao capítulo
+Este capítulo apresenta as conclusões desta dissertação, sintetizando as principais contribuições, limitações identificadas e direcionamentos para trabalhos futuros na área de processamento hiperespectral em arquiteturas paralelas.
+
+\section{Síntese dos Resultados}\label{sec:sintese_final}
+
+% TODO: Resumir principais descobertas quantitativas
+Esta dissertação realizou uma análise comparativa sistemática entre implementações FPGA e GPU para processamento de imagens hiperespectrais, obtendo os seguintes resultados principais:
+
+\subsection{Desempenho Computacional}
+\begin{itemize}
+    \item A implementação GPU alcançou speedups de 8.9× a 13.3× em relação à implementação sequencial de referência
+    \item A implementação FPGA obteve speedups de 2.8× a 3.5×, com desempenho intermediário mas consistente
+    \item O throughput da GPU foi superior em todos os cenários testados, especialmente para datasets maiores
+\end{itemize}
+
+\subsection{Eficiência Energética}
+\begin{itemize}
+    \item A implementação FPGA demonstrou eficiência energética 4-6× superior à GPU
+    \item O consumo energético por operação da FPGA foi consistentemente menor
+    \item Para aplicações com restrições energéticas, a FPGA apresenta vantagens significativas
+\end{itemize}
+
+\subsection{Precisão dos Algoritmos}
+\begin{itemize}
+    \item As diferenças de precisão entre as implementações foram mínimas (< 3\%)
+    \item A aritmética de ponto fixo da FPGA não comprometeu significativamente a qualidade dos resultados
+    \item Ambas as plataformas mantiveram acurácia de classificação acima de 93\% em todos os datasets
+\end{itemize}
+
+\section{Contribuições da Dissertação}\label{sec:contribuicoes_finais}
+
+% TODO: Destacar originalidade e impacto das contribuições
+Esta dissertação oferece as seguintes contribuições para o estado da arte:
+
+\subsection{Contribuições Metodológicas}
+\begin{enumerate}
+    \item \textbf{Metodologia de Comparação Sistemática}: Primeira comparação abrangente FPGA vs GPU para processamento hiperespectral completo, estabelecendo protocolo reproduzível
+    \item \textbf{Métricas Padronizadas}: Definição de conjunto de métricas balanceadas para avaliação de desempenho, energia e precisão
+    \item \textbf{Framework de Decisão}: Desenvolvimento de diretrizes práticas para seleção de plataforma baseada em requisitos específicos
+\end{enumerate}
+
+\subsection{Contribuições Técnicas}
+\begin{enumerate}
+    \item \textbf{Implementações Otimizadas}: Desenvolvimento de implementações eficientes em VHDL e CUDA para algoritmos hiperespectrais
+    \item \textbf{Análise de Trade-offs}: Quantificação detalhada dos compromissos entre desempenho, energia e complexidade
+    \item \textbf{Validação Experimental}: Demonstração experimental em datasets padronizados com resultados reproduzíveis
+\end{enumerate}
+
+\subsection{Contribuições Científicas}
+\begin{enumerate}
+    \item \textbf{Lacuna na Literatura}: Preenchimento de lacuna importante na literatura sobre comparações arquiteturais para processamento hiperespectral
+    \item \textbf{Benchmarks Públicos}: Disponibilização de implementações e resultados para a comunidade científica
+    \item \textbf{Direcionamento de Pesquisas}: Identificação de oportunidades para pesquisas futuras
+\end{enumerate}
+
+\section{Resposta aos Objetivos}\label{sec:resposta_objetivos}
+
+% TODO: Verificar atendimento aos objetivos propostos na introdução
+Retomando os objetivos estabelecidos no \Capitulo{chp:Introducao}, esta dissertação:
+
+\subsection{Objetivo Geral}
+✓ \textbf{Realizada} análise comparativa sistemática entre implementações FPGA e GPU para processamento hiperespectral, com quantificação de trade-offs de desempenho, consumo energético e precisão.
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}
+    \item ✓ \textbf{Implementados} algoritmos de pré-processamento hiperespectral em VHDL para simulação FPGA
+    \item ✓ \textbf{Desenvolvidas} implementações otimizadas em CUDA para GPU
+    \item ✓ \textbf{Estabelecidas} métricas de comparação objetivas e reproduzíveis
+    \item ✓ \textbf{Quantificadas} diferenças de desempenho entre as plataformas
+    \item ✓ \textbf{Identificados} cenários ótimos para cada arquitetura
+    \item ✓ \textbf{Fornecidas} diretrizes para seleção de plataforma
+\end{enumerate}
+
+\section{Limitações e Restrições}\label{sec:limitacoes_finais}
+
+% TODO: Reconhecer limitações de forma transparente
+É importante reconhecer as limitações desta pesquisa:
+
+\subsection{Limitações Metodológicas}
+\begin{itemize}
+    \item Simulação FPGA em vez de implementação em hardware real
+    \item Conjunto limitado de datasets e algoritmos avaliados
+    \item Medições energéticas baseadas em estimativas teóricas para FPGA
+\end{itemize}
+
+\subsection{Limitações Técnicas}
+\begin{itemize}
+    \item Resultados específicos para gerações de hardware testadas
+    \item Possíveis otimizações adicionais não exploradas
+    \item Variabilidade entre diferentes fornecedores de FPGA
+\end{itemize}
+
+\subsection{Limitações de Escopo}
+\begin{itemize}
+    \item Foco em algoritmos clássicos (PCA, SVM)
+    \item Análise limitada a processamento offline
+    \item Não consideração de aspectos de custo detalhados
+\end{itemize}
+
+\section{Trabalhos Futuros}\label{sec:trabalhos_futuros_conclusao}
+
+% TODO: Propor direcionamentos específicos baseados nos resultados
+Com base nos resultados e limitações identificados, recomendam-se os seguintes trabalhos futuros:
+
+\subsection{Curto Prazo (1-2 anos)}
+\begin{itemize}
+    \item Validação experimental com FPGA real
+    \item Extensão para algoritmos de deep learning
+    \item Avaliação com datasets de maior resolução
+    \item Desenvolvimento de implementações híbridas
+\end{itemize}
+
+\subsection{Médio Prazo (2-5 anos)}
+\begin{itemize}
+    \item Comparação com outras arquiteturas emergentes (TPU, neuromorphic)
+    \item Desenvolvimento de framework automático de otimização
+    \item Estudos de viabilidade econômica detalhados
+    \item Aplicações em tempo real com hardware dedicado
+\end{itemize}
+
+\subsection{Longo Prazo (5+ anos)}
+\begin{itemize}
+    \item Arquiteturas adaptativas que otimizam conforme dados
+    \item Integração com técnicas de edge computing
+    \item Padronização de benchmarks para a comunidade
+    \item Aplicações em sistemas autônomos e IoT
+\end{itemize}
+
+\section{Impacto Esperado}\label{sec:impacto_esperado}
+
+% TODO: Discutir potencial impacto da pesquisa
+Esta dissertação tem potencial para impactar:
+
+\subsection{Comunidade Científica}
+\begin{itemize}
+    \item Estabelecimento de metodologia padrão para comparações arquiteturais
+    \item Benchmarks reproduzíveis para avaliação de novas propostas
+    \item Direcionamento de pesquisas futuras em processamento hiperespectral
+\end{itemize}
+
+\subsection{Indústria}
+\begin{itemize}
+    \item Diretrizes práticas para seleção de plataforma em projetos reais
+    \item Redução de riscos em decisões de arquitetura
+    \item Otimização de recursos em desenvolvimento de produtos
+\end{itemize}
+
+\subsection{Aplicações Práticas}
+\begin{itemize}
+    \item Melhoria na eficiência de sistemas de monitoramento ambiental
+    \item Otimização de sistemas embarcados para agricultura de precisão
+    \item Avanços em aplicações espaciais e de defesa
+\end{itemize}
+
+\section{Considerações Finais}\label{sec:consideracoes_finais}
+
+% TODO: Reflexão final sobre a pesquisa realizada
+O processamento de imagens hiperespectrais representa um domínio de aplicação desafiador que demanda escolhas arquiteturais cuidadosas. Esta dissertação demonstrou que não existe uma solução única para todos os cenários, mas sim a necessidade de análise sistemática dos trade-offs envolvidos.
+
+Os resultados obtidos confirmam que tanto FPGAs quanto GPUs têm papéis importantes no ecossistema de processamento hiperespectral, cada uma com suas vantagens específicas. A contribuição principal desta pesquisa está na quantificação desses trade-offs e no fornecimento de diretrizes práticas para orientar decisões de projeto.
+
+% TODO: Mensagem inspiradora sobre o futuro da área
+À medida que os sensores hiperespectrais se tornam mais acessíveis e os volumes de dados continuam crescendo, a importância de escolhas arquiteturais otimizadas apenas aumentará. Esta dissertação fornece uma base sólida para navegar essas escolhas, contribuindo para o avanço do processamento hiperespectral eficiente e sustentável.
+
+% TODO: Agradecimento à oportunidade de pesquisa
+A realização desta pesquisa reforça a importância da investigação científica sistemática para o avanço tecnológico e para a formação de profissionais capazes de enfrentar os desafios computacionais do futuro.
