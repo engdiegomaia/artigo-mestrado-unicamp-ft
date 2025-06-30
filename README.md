@@ -1,64 +1,157 @@
-# Modelo para Teses e Dissertações na FT-UNICAMP
-[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) ![OverleafReady](https://img.shields.io/badge/Ready_for-Overleaf-success) ![Apache license](https://img.shields.io/badge/license-Apache%202.0-blue) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
+# Dissertação de Mestrado - UNICAMP FT
+## Classificação LULC usando Imagens Hiperespectrais de Drones
 
-Este é um modelo LaTeX para monografias de Trabalhos de Conclusão de Curso (TCC) na graduação, dissertações de Mestrado e Teses de doutorado da Faculdade de Tecnologia (FT) da Universidade Estadual de Campinas (UNICAMP).
+[![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) ![OverleafReady](https://img.shields.io/badge/Ready_for-Overleaf-success) ![Apache license](https://img.shields.io/badge/license-Apache%202.0-blue) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
-Esse modelo e seu respectivo arquivo de classe de documento foram adaptados do modelo de teses e dissertações do Instituto de Computação da UNICAMP.
+**Autor**: Diego Maia  
+**Email**: maia.df11@gmail.com  
+**GitHub**: [@maia-diego](https://github.com/maia-diego)  
+**Instituição**: Faculdade de Tecnologia (FT) - UNICAMP  
 
-A utilização desse modelo é livre e está de acordo com a última versão das **Normas sobre o formato das dissertações de mestrado e teses de doutorado da UNICAMP (Instrução Normativa CPG 002/2021)**.
+## 📊 Status Atual do Projeto
 
-Você também poderá utilizar esse modelo diretamente no [Overleaf](https://www.overleaf.com), um site que permite a edição de textos no LaTeX de forma bem prática.
+**Etapa Atual**: ✅ **Planejamento Concluído** - 8 etapas estruturadas criadas  
+**Última Atualização**: 2024-12-16  
+**Progresso Geral**: 15% (Planejamento e estruturação)
 
-O modelo no site Overleaf está disponível em neste [link](https://pt.overleaf.com/latex/templates/template-para-teses-e-dissertacoes-na-ft-slash-unicamp/rhznqbkjvpcr) ou procure por **Template para teses e dissertações na FT/UNICAMP**. Verifique se está na última versão (7/Junho/2025).
+### 🎯 Próximos Passos Imediatos:
+- Iniciar **Etapa 1**: Revisão e Organização da Bibliografia
+- Análise detalhada dos artigos de referência na pasta `levantamento_teorico/treinados/`
+- Criação do banco de dados bibliográfico organizado
 
-## Arquivos que você vai utilizar
-:no_entry_sign: Você **não** deve mexer no arquivo ``tese-FT.cls``. Nele estão os comandos para a devida formatação do texto.
+## 🔬 Contexto da Pesquisa
 
-Os arquivos que você deve utilizar são os seguintes:
-1. *``tese.tex``*: Arquivo com o módulo principal do seu texto. Nele você vai definir o título do texto, nome do autor, nome dos membros da banca, tipo de texto e uma série de outras informações gerais. Está tudo explicado nos comentários no arquivo (linhas que começam com %).
-2. *``bibliografia.bib``*: Arquivo com as referências bibliográficas, cuja compilação é feita com o programa `biber` ou `natbib`. O arquivo com as referências bibliográficas deve serguir um formato específico. Veja mais informações no [Guia rápido](https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX) ou detalhes específicos no [Biblatex Cheat Sheet](http://tug.ctan.org/info/biblatex-cheatsheet/biblatex-cheatsheet.pdf).
-3. Todos os arquivos .tex podem ser utilizados normalmente. Nesse modelo, cada capítulo ficou em um arquivo diferente. Isso acelera a compilação e permite uma melhor organização dos tópicos.
+### Área de Pesquisa:
+- **Sensoriamento Remoto Hiperespectral**
+- **Classificação de Uso e Cobertura da Terra (LULC)**
+- **Agricultura de Precisão com Drones/VANTs**
+- **Processamento de Imagens e Machine Learning**
 
-Observe que existe um diretório **``figuras``**. Nele você pode adicionar todas as figuras do seu texto. Para uma compilação mais rápida, sugere-se que as figuras estejam no formato `.pdf`. Mas, você pode usar `.png`, `.jpg` ou `.eps`.
+### Problema de Pesquisa:
+Como melhorar a acurácia da classificação LULC utilizando imagens hiperespectrais coletadas por drones, aplicando técnicas avançadas de processamento e algoritmos de deep learning.
 
-Se você baixar o modelo tese-FT deste repositório no GitHub, não esqueça de verificar se o LaTeX e todos os pacotes (*packages*) os quais o modelo depende estão instalados na sua máquina.
+### Hipóteses Principais:
+- **H1**: Algoritmos de deep learning superam métodos tradicionais para classificação de imagens hiperespectrais
+- **H2**: Correções radiométricas adequadas melhoram significativamente a acurácia da classificação
+- **H3**: Redução de dimensionalidade preserva informação relevante mantendo eficiência computacional
 
-## Compilação do projeto em ambiente Linux
+## 📁 Estrutura do Projeto
 
-Ao baixar esse modelo para compilação em ambientes Linux, muitos estudantes se queixaram de erros que surgiram durante o processo de compilação. Esses erros não acontecem quando se utiliza o Overleaf.
-
-As razões para as ocorrências desses erros podem ser as seguintes:
-1. Falta de pacotes para compilar alguns comandos especiais.
-2. Desconhecimento do processo de compilação completo, incluindo a adição das referências bibliográficas.
-
-Para solucionar o item 1, a sugestão é acessar o *site* do [CTAN -- https://ctan.org](https://ctan.org). Esse *site* contém todos pacotes do LaTeX. Portanto, caso um pacote não esteja instalado localmente, acesse o [CTAN](https://ctan.org) e busque o pacote necessário.
-
-Ainda no item 1, certifique-se que você instalou **toda** a distribuição Tex Live mais atual. O *site* do [TeX User Group](https://www.tug.org/texlive/acquire-netinstall.html) tem a última versão.
-
-Por sua vez, para solucionar o item 2, use o *script* ``compila.sh`` que disponibilizei neste repositório. Para executá-lo, utilize o comando a seguir:
-
-```bash
-./compila.sh tese.tex
+```
+artigo-mestrado-unicamp-ft/
+├── etapas/                     # 📋 Plano de 8 etapas detalhadas
+│   ├── 00-plano-geral.md     # Visão geral do cronograma
+│   ├── 01-revisao-bibliografia.md
+│   ├── 02-reestruturacao-teorico.md
+│   ├── 03-definicao-metodologia.md
+│   ├── 04-desenvolvimento-experimental.md
+│   ├── 05-analise-resultados.md
+│   ├── 06-redacao-capitulos.md
+│   ├── 07-conclusoes-finalizacao.md
+│   └── 08-revisao-ajustes-finais.md
+├── levantamento_teorico/       # 📚 Base teórica
+│   ├── 250526_levatamento_teorico_v3.pdf
+│   └── treinados/             # 14 artigos de referência
+├── meus_trabalhos/            # 🎓 Trabalhos anteriores (estilo de escrita)
+├── templates_unicamp/         # 📋 Templates e exemplos UNICAMP-FT
+├── .cursor/rules/             # ⚙️ Regras de desenvolvimento
+├── figuras/                   # 🖼️ Imagens e diagramas
+├── logotipos/                 # 🏛️ Logos institucionais
+└── *.tex                      # 📄 Arquivos LaTeX principais
 ```
 
-Lembrando que o arquivo ``tese.tex`` é o arquivo principal do projeto.
+## 🎯 Plano de Execução (8 Etapas)
 
-## Dúvidas e sugestões
+| Etapa | Título | Duração | Status | Entregáveis Principais |
+|-------|--------|---------|--------|----------------------|
+| **1** | Revisão e Organização da Bibliografia | 1 semana | 🔄 **Próxima** | Banco bibliográfico, gaps identificados |
+| **2** | Reestruturação do Levantamento Teórico | 1 semana | ⏳ Pendente | Capítulo teórico atualizado |
+| **3** | Definição da Metodologia | 1 semana | ⏳ Pendente | Metodologia detalhada, fluxogramas |
+| **4** | Desenvolvimento Experimental | 2 semanas | ⏳ Pendente | Código implementado, experimentos |
+| **5** | Análise dos Resultados | 1 semana | ⏳ Pendente | Análises estatísticas, validação |
+| **6** | Redação dos Capítulos Principais | 2 semanas | ⏳ Pendente | Introdução, metodologia, resultados |
+| **7** | Conclusões e Finalização | 1 semana | ⏳ Pendente | Conclusões, trabalhos futuros |
+| **8** | Revisão e Ajustes Finais | 1 semana | ⏳ Pendente | Dissertação final para submissão |
 
-Quaisquer dúvidas podem ser sanadas pelo autor no email a seguir.
+**Estimativa Total**: 10 semanas
 
-Autor: **André Leon Sampaio Gradvohl, Dr.**
+## 📚 Bibliografia Principal
 
-Email:        gradvohl@unicamp.br 
+### Documento Base:
+- `250526_levatamento_teorico_v3.pdf` - Levantamento teórico inicial (467KB, 5119 linhas)
 
-Lattes CV:    http://lattes.cnpq.br/9343261628675642
+### Artigos de Referência Prioritários:
+- **Land use land cover LULC classification using hyperspectral images a review.pdf** (8.7MB)
+- **AVIRIS_for_Dummies.pdf** (121KB, 1019 linhas)
+- **Robust Radiometric and Geometric Correction Methods for Drone-Based Hyperspectral Imaging.pdf** (6.3MB)
+- **remotesensing-12-03338-v2.pdf** (3.6MB)
+- **remotesensing-14-04579-v2.pdf** (5.4MB)
+- **sensors-22-09793-v3.pdf** (583KB, 5678 linhas)
 
-ORCID: [0000-0002-6520-9740](https://orcid.org/0000-0002-6520-9740)
+### Trabalhos de Referência de Estilo:
+- `admin,+BJD+115+Dezembro.pdf` - Publicação acadêmica
+- `projeto_final.pdf` - Projeto final (944KB, 7317 linhas)
+- `plano-de-gerenciamento-de-config.pdf` - Documentação técnica
+- `instrumentovirtualecgwavelet.pdf` - Implementação técnica
 
-Última versão: 7/Junho/2025
+## ⚙️ Configuração e Desenvolvimento
 
-Esse software está em um repositório indexado pelo Zenodo e pode ser acessado com o DOI a seguir 
+### Template Base:
+Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de mestrado, seguindo as normas institucionais (Instrução Normativa CPG 002/2021).
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.842220.svg)](https://doi.org/10.5281/zenodo.842220)
+### Regras de Desenvolvimento Ativas:
+- **Gestão de README**: Leitura obrigatória antes de tarefas + atualização após conclusão
+- **Estilo de Escrita**: Baseado nos trabalhos anteriores do autor (`meus_trabalhos/`)
+- **Padrões UNICAMP-FT**: Formatação e estrutura institucional (`templates_unicamp/`)
+- **Commits**: Padrão conventional (feat, fix, docs, refactor)
+- **Contexto Contínuo**: Preservação da memória do projeto entre sessões
 
-:handshake: Se você acredita que esse modelo o ajudou na escrita da sua tese ou dissertação, considere enviar um email de agradecimento para o autor ou cite-o nas redes sociais [Twitter](https://twitter.com/AGradvohl), [LinkedIn](https://www.linkedin.com/in/andregradvohl) ou [Facebook](https://www.facebook.com/andre.gradvohl). 
+### Compilação:
+```bash
+# Compilação completa (incluindo bibliografia)
+./compila.sh tese.tex
+
+# Ambiente recomendado: TeXLive completo + Python 3.8+
+```
+
+## 📈 Histórico de Mudanças Recentes
+
+### 2024-12-16:
+- ✅ **Criado plano detalhado de 8 etapas** para escrita da dissertação
+- ✅ **Configurado .gitignore** para pastas de referência (`templates_unicamp/`, `levantamento_teorico/`, `meus_trabalhos/`)
+- ✅ **Estabelecidas regras de estilo** baseadas em trabalhos anteriores
+- ✅ **Definidos padrões UNICAMP-FT** para formatação
+- ✅ **Repositório enviado para GitHub** com sucesso
+- ✅ **README atualizado** com contexto específico do projeto
+- ✅ **Criada regra de gestão de README** para manutenção contínua do contexto
+
+### Configurações Implementadas:
+- **Regra de Gestão de README**: Atualização automática do contexto a cada tarefa
+- **Regras Cursor**: Manutenção de contexto e estilo de escrita
+- **Estrutura de etapas**: Pasta `etapas/` com 8 etapas detalhadas
+- **Bibliografia organizada**: Artigos categorizados por temática
+- **Templates de referência**: Padrões UNICAMP-FT e exemplos institucionais
+
+## 🎯 Objetivos e Metas
+
+### Objetivo Geral:
+Desenvolver e validar uma metodologia para classificação de uso e cobertura da terra (LULC) utilizando imagens hiperespectrais coletadas por drones, com foco em aplicações de agricultura de precisão.
+
+### Objetivos Específicos:
+1. Avaliar diferentes algoritmos de classificação (tradicionais vs. deep learning)
+2. Otimizar pipeline de pré-processamento para imagens hiperespectrais de drones
+3. Comparar eficácia de técnicas de redução de dimensionalidade
+4. Validar metodologia em cenário real de agricultura
+5. Contribuir para estado da arte em sensoriamento remoto hiperespectral
+
+## 🔗 Links Úteis
+
+- **Template Overleaf**: [Template UNICAMP-FT](https://pt.overleaf.com/latex/templates/template-para-teses-e-dissertacoes-na-ft-slash-unicamp/rhznqbkjvpcr)
+- **Repositório GitHub**: [artigo-mestrado-unicamp-ft](https://github.com/maia-diego/artigo-mestrado-unicamp-ft)
+- **CTAN (pacotes LaTeX)**: https://ctan.org
+- **Normas UNICAMP**: Instrução Normativa CPG 002/2021
+
+---
+
+**Última atualização**: 2024-12-16  
+**Próxima revisão prevista**: Ao completar Etapa 1 (Revisão Bibliografia)

@@ -1,0 +1,52 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# UNICAMP-FT Thesis Standards and Templates
+
+## Official Template Repository
+
+The official thesis template is located in the `tese-ft-master` directory and should be used as the structural foundation:
+
+- [tese.tex](mdc:templates_unicamp/tese-ft-master/tese.tex) - Main thesis document structure
+- [tese-FT.cls](mdc:templates_unicamp/tese-ft-master/tese-FT.cls) - Official UNICAMP-FT LaTeX class file
+- [compila.sh](mdc:templates_unicamp/tese-ft-master/compila.sh) - Compilation script for thesis
+- [introducao.tex](mdc:templates_unicamp/tese-ft-master/introducao.tex) - Introduction template structure
+- [desenvolvimento.tex](mdc:templates_unicamp/tese-ft-master/desenvolvimento.tex) - Development section template
+- [conclusoes.tex](mdc:templates_unicamp/tese-ft-master/conclusoes.tex) - Conclusions template
+- [bibliografia.bib](mdc:templates_unicamp/tese-ft-master/bibliografia.bib) - Bibliography format examples
+- [DicasUteisTextosAcademicos.md](mdc:templates_unicamp/tese-ft-master/DicasUteisTextosAcademicos.md) - Academic writing tips
+
+## Approved Thesis Examples
+
+These are real, approved dissertations from UNICAMP-FT that demonstrate proper formatting and academic standards:
+
+- [almeida_carloscaetanode_m.pdf](mdc:templates_unicamp/almeida_carloscaetanode_m.pdf) - Approved thesis example for formatting reference
+- [metzker_leonardofadel__m.pdf](mdc:templates_unicamp/metzker_leonardofadel__m.pdf) - Approved thesis example for structure reference  
+- [carvalho_tiagojosede_m.pdf](mdc:templates_unicamp/carvalho_tiagojosede_m.pdf) - Approved thesis example for academic standards
+
+## Institutional Standards Compliance
+
+1. **Document Structure**: Follow the exact structure defined in the official template
+2. **Class File Usage**: Always use the `tese-FT.cls` class file for proper formatting
+3. **Academic Standards**: Reference approved examples for proper academic tone and presentation
+4. **Bibliography Format**: Use the bibliography standards shown in the template examples
+5. **Formatting Rules**: Adhere to UNICAMP-FT specific formatting requirements
+
+## Template Integration Guidelines
+
+- **Primary Reference**: Use `tese-ft-master` as the structural foundation
+- **Formatting Validation**: Compare with approved thesis examples for consistency
+- **Academic Style**: Match the academic writing patterns found in approved examples
+- **Institutional Requirements**: Ensure compliance with all UNICAMP-FT specific standards
+- **LaTeX Standards**: Follow the LaTeX patterns established in the official template
+
+## Usage Priority
+
+1. **Structure**: Follow `tese-ft-master` template structure exactly
+2. **Formatting**: Validate against approved thesis examples
+3. **Content Standards**: Maintain academic rigor shown in example dissertations
+4. **Institutional Compliance**: Ensure all UNICAMP-FT requirements are met
+
+These templates and examples represent the official standards for UNICAMP-FT dissertations and must be strictly followed for institutional approval.
