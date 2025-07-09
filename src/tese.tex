@@ -76,17 +76,17 @@
 \begin{document}
 
 % Escolha entre autor ou autora:
-\autor{Seu Nome Completo}
+\autor{Diego de Freitas Maia}
 %\autora{Nome da Autora}
 
 % Sempre deve haver um título em português:
-\titulo{Classificação de Uso e Cobertura da Terra usando Imagens Hiperespectrais de Drones: Uma Abordagem Baseada em Deep Learning para Agricultura de Precisão}
+\titulo{Processamento Hiperespectral em Tempo Real: Validação Experimental e Análise Comparativa de Arquiteturas Computacionais para Aplicações Agrícolas e Ambientais}
 
 % Se a língua for o inglês ou o espanhol defina:
-\title{Land Use and Land Cover Classification using Drone-based Hyperspectral Images: A Deep Learning Approach for Precision Agriculture}
+\title{Real-Time Hyperspectral Processing: Experimental Validation and Comparative Analysis of Computing Architectures for Agricultural and Environmental Applications}
 
 % Escolha entre orientador ou orientadora e inclua os títulos:
-\orientador{Prof. Dr. Nome do Orientador}
+\orientador{Prof. Dr. Leandro Ronchini Ximenes}
 %\orientadora{Profa. Dra. Nome da Orientadora}
 
 % Escolha entre coorientador ou coorientadora, se houver, 
@@ -117,7 +117,7 @@
 
 % Para a versão final defina:
 % Repita o nome do Orientador(a) no primeiro avaliador
-\avaliadorA{Prof. Dr. Nome do Orientador}{FT/UNICAMP}
+\avaliadorA{Prof. Dr. Leandro Ronchini Ximenes}{FT/UNICAMP}
 \avaliadorB{Profa. Dra. Segunda Avaliadora}{Instituição da segunda avaliadora}
 \avaliadorC{Dr. Terceiro Avaliador}{Instituição do terceiro avaliador}
 % \avaliadorD{Prof. Dr. Quarto Avaliador}{Instituição do quarto avaliador}
@@ -169,16 +169,16 @@
 
 % Sempre deve haver um resumo em português:
 \begin{resumo}
-Este trabalho apresenta uma metodologia para classificação de uso e cobertura da terra (LULC) utilizando imagens hiperespectrais coletadas por drones, com foco em aplicações de agricultura de precisão. A pesquisa aborda os desafios inerentes ao processamento de dados hiperespectrais de alta dimensionalidade, incluindo correções radiométricas e geométricas, redução de dimensionalidade e classificação automatizada. Implementa-se um pipeline completo de processamento que integra o Método de Linha Empírica (ELM) para correção radiométrica, algoritmos de redução de dimensionalidade (PCA e t-SNE) e técnicas de deep learning (CNN e Transformer) para classificação de diferentes classes de uso da terra. A metodologia é validada através de experimentos com dados reais coletados por sensores hiperespectrais embarcados em drones, demonstrando melhorias significativas na acurácia de classificação em comparação com métodos tradicionais, alcançando precisão superior a 90\% para as principais classes de cobertura vegetal.
+Este trabalho apresenta uma análise comparativa abrangente de diferentes arquiteturas computacionais (CPU, GPU, FPGA e híbridas) para processamento de imagens hiperespectrais em tempo real, com foco em aplicações agrícolas e monitoramento ambiental. A pesquisa aborda os desafios computacionais do processamento hiperespectral através de uma metodologia experimental rigorosa que avalia desempenho, eficiência energética e precisão em diferentes cenários de aplicação. São implementados e comparados algoritmos otimizados para cada arquitetura, incluindo pré-processamento, correção radiométrica, redução de dimensionalidade (PCA) e classificação avançada. A validação experimental utiliza datasets públicos (Indian Pines, Pavia University) e dados agrícolas reais, estabelecendo métricas objetivas para comparação de desempenho computacional, eficiência energética e precisão de classificação entre as diferentes arquiteturas. Os resultados fornecem diretrizes práticas para seleção de arquiteturas computacionais em aplicações hiperespectrais específicas.
 
-\textbf{Palavras-chave:} Classificação LULC, Imagens Hiperespectrais, Drones, Deep Learning, Agricultura de Precisão, Correção Radiométrica.
+\textbf{Palavras-chave:} Processamento Hiperespectral, Arquiteturas Computacionais, Análise Comparativa, Tempo Real, Validação Experimental, Agricultura de Precisão, Monitoramento Ambiental.
 \end{resumo}
 
 % Sempre deve haver um abstract:
 \begin{abstract}
-This work presents a methodology for Land Use and Land Cover (LULC) classification using hyperspectral images collected by drones, focusing on precision agriculture applications. The research addresses inherent challenges in processing high-dimensional hyperspectral data, including radiometric and geometric corrections, dimensionality reduction, and automated classification. A complete processing pipeline is implemented integrating the Empirical Line Method (ELM) for radiometric correction, dimensionality reduction algorithms (PCA and t-SNE), and deep learning techniques (CNN and Transformer) for classifying different land use classes. The methodology is validated through experiments with real data collected by hyperspectral sensors mounted on drones, demonstrating significant improvements in classification accuracy compared to traditional methods, achieving precision higher than 90\% for the main vegetation cover classes.
+This work presents a comprehensive comparative analysis of different computing architectures (CPU, GPU, FPGA, and hybrid approaches) for real-time hyperspectral image processing, focusing on agricultural and environmental monitoring applications. The research addresses computational challenges in hyperspectral processing through a rigorous experimental methodology that evaluates performance, energy efficiency, and accuracy across different application scenarios. Optimized algorithms are implemented and compared for each architecture, including preprocessing, radiometric correction, dimensionality reduction (PCA), and advanced classification. Experimental validation uses public datasets (Indian Pines, Pavia University) and real agricultural data, establishing objective metrics for comparing computational performance, energy efficiency, and classification accuracy among different architectures. The results provide practical guidelines for selecting computing architectures in specific hyperspectral applications.
 
-\textbf{Keywords:} LULC Classification, Hyperspectral Images, Drones, Deep Learning, Precision Agriculture, Radiometric Correction.
+\textbf{Keywords:} Hyperspectral Processing, Computing Architectures, Comparative Analysis, Real-Time, Experimental Validation, Precision Agriculture, Environmental Monitoring.
 \end{abstract}
 
 % Se houver um resumo em espanhol, descomente as linhas a seguir:
@@ -189,24 +189,11 @@ This work presents a methodology for Land Use and Land Cover (LULC) classificati
 % A lista de figuras:
 \listoffigures
 
-% A lista de tabelas:
-\listoftables
+% A lista de tabelas (temporariamente comentada):
+%\listoftables
 
-% A lista de símbolos é opcional. Não confunda a lista de símbolos 
-% matemáticos com a lista de abreviaturas (que vem depois).
-\input{listaSimbolos}
-
-% A lista de abreviações e siglas vem a seguir.
-% Dê uma olhada no pacote nomencl para ver os comandos para 
-% adicionar abreviações e siglas no texto.
-% Foram adicionados os comandos \Sigla{Sigla por extenso}{abrev} e 
-% \SiglaHifen{Sigla por extenso}{abrev} para adicionar as siglas 
-% diretamente no texto e criar a lisa de abreviaturas 
-% automaticamente
-\printnomenclature[3cm]
-
-% O sumário vem aqui:
-\tableofcontents
+% O sumário (temporariamente comentado):
+%\tableofcontents
 
 %% O comando \fi a seguir é obrigatório para o controle 
 %% da opção "turnitin". Não o remova!!
@@ -231,6 +218,16 @@ This work presents a methodology for Land Use and Land Cover (LULC) classificati
 % que contém o capítulo de desenvolvimento. 
 % Detalhe: não precisa incluir a extensão .tex
 \include{desenvolvimento}
+
+% O comando a seguir inclui o arquivo implementacao.tex
+% que contém o capítulo de implementações. 
+% Detalhe: não precisa incluir a extensão .tex
+\include{implementacao}
+
+% O comando a seguir inclui o arquivo resultados.tex
+% que contém o capítulo de resultados e análise. 
+% Detalhe: não precisa incluir a extensão .tex
+\include{resultados}
 
 % O comando a seguir inclui o arquivo conclusoes.tex
 % que contém o capítulo de conclusoes. 

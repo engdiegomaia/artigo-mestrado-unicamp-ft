@@ -1,184 +1,28 @@
-% Capítulo de Resultados Experimentais
-\chapter{Resultados Experimentais}\label{chp:resultados}
+% Capítulo de Resultados e Análise
+\chapter{Resultados e Análise}\label{chp:resultados}
 
-% TODO: Expandir com dados experimentais reais
-% Introdução ao capítulo
-Este capítulo apresenta os resultados experimentais obtidos através da implementação e comparação dos algoritmos de processamento hiperespectral nas plataformas FPGA e GPU, seguindo a metodologia descrita no \Capitulo{chp:metodologia}.
+Este capítulo apresentará os resultados experimentais e análises comparativas das diferentes arquiteturas computacionais avaliadas. O conteúdo detalhado será desenvolvido posteriormente.
 
-\section{Validação Funcional}\label{sec:validacao_funcional}
+\section{Métricas de Avaliação}\label{sec:metricas_avaliacao}
 
-% TODO: Apresentar resultados de validação
-\subsection{Verificação de Precisão}
-Antes da análise de desempenho, foi realizada a validação funcional das implementações para garantir a correção dos algoritmos.
+[Conteúdo a ser desenvolvido]
 
-% TODO: Adicionar tabela de comparação de precisão
-\begin{table}[!htp]
-\caption{Comparação de precisão entre implementações}
-\label{tab:precisao_validacao}
-\begin{center}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Algoritmo} & \textbf{Referência} & \textbf{FPGA} & \textbf{GPU} \\
-\midrule
-Pré-processamento & 100\% & 99.8\% & 100\% \\
-PCA & 100\% & 98.5\% & 99.9\% \\
-SVM & 100\% & 97.2\% & 99.8\% \\
-\bottomrule
-\end{tabular}
-\end{center}
-\end{table}
+\section{Resultados CPU}\label{sec:resultados_cpu}
 
-% TODO: Discutir diferenças de precisão entre ponto fixo e flutuante
+[Conteúdo a ser desenvolvido]
 
-\subsection{Análise de Erro Numérico}
-% TODO: Apresentar análise detalhada dos erros
-A implementação FPGA, utilizando aritmética de ponto fixo, apresenta pequenas diferenças em relação às implementações de referência devido à quantização numérica.
+\section{Resultados GPU}\label{sec:resultados_gpu}
 
-\section{Resultados de Desempenho}\label{sec:desempenho}
+[Conteúdo a ser desenvolvido]
 
-% TODO: Apresentar gráficos e tabelas de desempenho
-\subsection{Tempo de Processamento}
+\section{Resultados FPGA}\label{sec:resultados_fpga}
 
-% TODO: Adicionar gráfico de barras comparativo
-\begin{figure}[!htb]
-\centering
-% TODO: Gerar gráfico real com dados experimentais
-\includegraphics[width=0.8\textwidth]{tempo_processamento.pdf}
-\caption{Comparação de tempo de processamento por dataset}
-\label{fig:tempo_processamento}
-\end{figure}
+[Conteúdo a ser desenvolvido]
 
-% TODO: Adicionar tabela detalhada de tempos
-\begin{table}[!htp]
-\caption{Tempo de processamento (segundos) por dataset}
-\label{tab:tempo_processamento}
-\begin{center}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Dataset} & \textbf{CPU (ref.)} & \textbf{FPGA} & \textbf{GPU} \\
-\midrule
-Indian Pines & 45.2 & 12.8 & 3.4 \\
-Pavia University & 180.7 & 51.3 & 8.9 \\
-Salinas & 98.4 & 28.1 & 6.2 \\
-\bottomrule
-\end{tabular}
-\end{center}
-\end{table}
+\section{Análise Comparativa}\label{sec:analise_comparativa}
 
-\subsection{Throughput}
-% TODO: Apresentar análise de throughput em pixels/segundo
+[Conteúdo a ser desenvolvido]
 
-\subsection{Speedup}
-% TODO: Calcular e apresentar speedups relativos à CPU
-O speedup obtido pelas implementações paralelas em relação à implementação sequencial de referência demonstra a eficácia das otimizações propostas.
+\section{Considerações sobre Arquiteturas Híbridas}\label{sec:analise_hibridas}
 
-\section{Utilização de Recursos}\label{sec:recursos}
-
-% TODO: Apresentar utilização de recursos de hardware
-\subsection{Recursos FPGA}
-% TODO: Adicionar tabela de utilização de recursos FPGA
-\begin{table}[!htp]
-\caption{Utilização de recursos FPGA}
-\label{tab:recursos_fpga}
-\begin{center}
-\begin{tabular}{lcc}
-\toprule
-\textbf{Recurso} & \textbf{Utilizado} & \textbf{Disponível} \\
-\midrule
-LUTs & 15,420 & 53,200 \\
-Flip-Flops & 8,760 & 106,400 \\
-BRAMs & 28 & 140 \\
-DSPs & 45 & 220 \\
-\bottomrule
-\end{tabular}
-\end{center}
-\end{table}
-
-\subsection{Recursos GPU}
-% TODO: Apresentar métricas de ocupação e uso de memória GPU
-\begin{itemize}
-    \item \textbf{Ocupação Média}: 85\%
-    \item \textbf{Uso de Memória}: 3.2 GB / 8.0 GB
-    \item \textbf{Bandwidth Utilizado}: 420 GB/s / 448 GB/s
-\end{itemize}
-
-\section{Análise Energética}\label{sec:energia}
-
-% TODO: Apresentar resultados de consumo energético
-\subsection{Consumo de Potência}
-% TODO: Adicionar gráfico de consumo energético
-\begin{figure}[!htb]
-\centering
-% TODO: Gerar gráfico real com dados de potência
-\includegraphics[width=0.8\textwidth]{consumo_energia.pdf}
-\caption{Consumo de potência durante processamento}
-\label{fig:consumo_energia}
-\end{figure}
-
-\subsection{Eficiência Energética}
-% TODO: Calcular operações por Joule para cada plataforma
-A eficiência energética, medida em operações por Joule, demonstra as vantagens da implementação FPGA para aplicações com restrições energéticas.
-
-\section{Precisão da Classificação}\label{sec:precisao_classificacao}
-
-% TODO: Apresentar resultados de acurácia de classificação
-\subsection{Acurácia Global}
-% TODO: Adicionar tabela de acurácia por dataset e método
-\begin{table}[!htp]
-\caption{Acurácia de classificação (\%)}
-\label{tab:acuracia_classificacao}
-\begin{center}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Dataset} & \textbf{CPU (ref.)} & \textbf{FPGA} & \textbf{GPU} \\
-\midrule
-Indian Pines & 94.2 & 93.8 & 94.1 \\
-Pavia University & 96.7 & 96.1 & 96.6 \\
-Salinas & 95.4 & 94.9 & 95.3 \\
-\bottomrule
-\end{tabular}
-\end{center}
-\end{table}
-
-\subsection{Matriz de Confusão}
-% TODO: Apresentar matrizes de confusão detalhadas
-% TODO: Análise por classe de cada dataset
-
-\subsection{Métricas Estatísticas}
-% TODO: Apresentar Kappa coefficient, F1-score, etc.
-
-\section{Análise de Escalabilidade}\label{sec:escalabilidade}
-
-% TODO: Estudar comportamento com diferentes tamanhos de imagem
-\subsection{Variação do Tamanho da Imagem}
-% TODO: Gráfico mostrando como o desempenho varia com o tamanho
-
-\subsection{Variação do Número de Bandas}
-% TODO: Análise do impacto do número de bandas espectrais
-
-\section{Comparação Custo-Benefício}\label{sec:custo_beneficio}
-
-% TODO: Análise considerando custo de hardware e desenvolvimento
-\subsection{Custo de Hardware}
-% TODO: Comparar custos relativos das plataformas
-
-\subsection{Tempo de Desenvolvimento}
-% TODO: Estimar tempo de desenvolvimento para cada plataforma
-
-\subsection{Manutenibilidade}
-% TODO: Discutir facilidade de manutenção e atualização
-
-\section{Síntese dos Resultados}\label{sec:sintese_resultados}
-
-% TODO: Resumir principais descobertas
-Os resultados experimentais demonstram trade-offs claros entre as plataformas:
-
-\begin{itemize}
-    \item \textbf{GPU}: Melhor desempenho absoluto e facilidade de desenvolvimento
-    \item \textbf{FPGA}: Melhor eficiência energética e determinismo temporal
-    \item \textbf{Precisão}: Diferenças mínimas entre implementações
-    \item \textbf{Escalabilidade}: Comportamentos distintos conforme tamanho dos dados
-\end{itemize}
-
-% TODO: Preparar para discussão no próximo capítulo
-Estes resultados serão analisados em detalhes no \Capitulo{chp:discussao}, onde serão identificados os cenários ótimos para cada arquitetura. 
+[Conteúdo a ser desenvolvido] 
