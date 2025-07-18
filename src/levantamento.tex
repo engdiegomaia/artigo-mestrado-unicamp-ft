@@ -1,250 +1,212 @@
 % Capítulo de Levantamento Bibliográfico / Trabalhos Relacionados
 \chapter{Levantamento Bibliográfico}\label{chp:levantamento}
 
-Este capítulo apresenta uma revisão sistemática da literatura sobre classificação de uso e cobertura da terra (LULC) utilizando imagens hiperespectrais, com foco especial em aplicações com drones/VANTs. A revisão abrange desde os conceitos fundamentais do sensoriamento remoto hiperespectral até as técnicas mais avançadas de processamento e classificação baseadas em deep learning.
+Este capítulo apresenta uma revisão sistemática da literatura sobre processamento hiperespectral embarcado com foco em estratégias para redução de consumo energético e latência. A revisão abrange desde os conceitos fundamentais do processamento hiperespectral em sistemas embarcados até as técnicas mais avançadas de otimização para aplicações práticas em agricultura de precisão, monitoramento ambiental e sistemas de vigilância.
 
-\section{Sensoriamento Remoto Hiperespectral}\label{sec:hiperespectral}
+\section{Processamento Hiperespectral Embarcado}\label{sec:hiperespectral_embarcado}
 
 \subsection{Conceitos Fundamentais}
-O sensoriamento remoto hiperespectral representa uma evolução significativa em relação às técnicas multiespectrais tradicionais. Enquanto imagens multiespectrais capturam informações em poucas bandas espectrais discretas (tipicamente 3-10 bandas), as imagens hiperespectrais adquirem dados em centenas de bandas espectrais contíguas e estreitas, geralmente variando de 5 a 20 nanômetros de largura \cite{Lou2024}.
+O processamento hiperespectral embarcado representa uma evolução necessária das técnicas tradicionais de sensoriamento remoto para atender demandas de aplicações de campo em tempo real. Diferentemente dos sistemas computacionais convencionais, as plataformas embarcadas operam sob restrições severas de energia, memória e capacidade de processamento, exigindo abordagens especializadas para o tratamento de dados hiperespectrais.
 
-Esta rica informação espectral permite uma caracterização muito mais precisa dos materiais e coberturas terrestres, possibilitando a distinção entre objetos que apresentam assinaturas espectrais similares nas poucas bandas de sensores multiespectrais convencionais. O resultado é uma estrutura de dados tridimensional chamada "cubo hiperespectral" ou "cubo de dados", onde as duas primeiras dimensões representam informações espaciais e a terceira dimensão contém informações espectrais \cite{Lou2024}.
+Cada pixel hiperespectral contém informações de centenas de bandas espectrais, resultando em volumes de dados que tradicionalmente requerem processamento em nuvem ou estações de trabalho. No contexto embarcado, esta característica fundamental cria desafios únicos para implementação de algoritmos eficientes que mantenham precisão adequada enquanto operam dentro das limitações de hardware \cite{Lou2024}.
 
-\subsection{Evolução Tecnológica}
-O desenvolvimento da tecnologia de imageamento hiperespectral teve início com espectrômetros imageadores aerotransportados, evoluindo para sistemas como o Advanced Visible and Infrared Imaging Spectrometer (AVIRIS), que se tornou uma referência na geração de datasets hiperespectrais acadêmicos \cite{Lou2024}. 
+\subsection{Arquiteturas de Hardware Embarcado}
+O desenvolvimento de hardware especializado para processamento hiperespectral tem evoluído rapidamente, com várias arquiteturas emergindo como candidatas viáveis para implementações embarcadas:
 
-Nos últimos anos, a miniaturização dos sensores hiperespectrais e o desenvolvimento de plataformas não tripuladas revolucionaram o campo, tornando essa tecnologia mais acessível e permitindo aplicações em escalas locais e regionais com alta resolução temporal e espacial.
+\subsubsection{FPGAs (Field-Programmable Gate Arrays)}
+FPGAs oferecem vantagens únicas para processamento hiperespectral embarcado devido à sua capacidade de customização e eficiência energética. A programabilidade do hardware permite otimizações específicas para operações hiperespectrais, incluindo pipelines customizados, paralelização fina e precisão aritmética adaptativa.
 
-\subsection{Aplicações em Monitoramento Terrestre}
-As imagens hiperespectrais têm encontrado aplicações em diversos campos científicos e comerciais:
+\subsubsection{VPUs (Vision Processing Units)}
+Unidades de processamento especializado como Intel Movidius representam uma nova categoria de hardware otimizado para visão computacional embarcada. Estas unidades oferecem alto desempenho em operações de convoluções e outras operações comuns em processamento de imagens, com consumo energético significativamente reduzido comparado a GPUs tradicionais.
 
-\begin{itemize}
-    \item \textbf{Agricultura de Precisão}: Monitoramento da saúde das culturas, detecção precoce de estresses hídricos e nutricionais, identificação de pragas e doenças \cite{Shin2024}
-    \item \textbf{Monitoramento Florestal}: Classificação de espécies vegetais, avaliação de biomassa, detecção de mudanças na cobertura vegetal
-    \item \textbf{Geologia}: Identificação e mapeamento de minerais, prospecção mineral, estudos geológicos estruturais
-    \item \textbf{Recursos Hídricos}: Monitoramento da qualidade da água, detecção de poluição aquática, mapeamento de corpos d'água
-    \item \textbf{Monitoramento Ambiental}: Avaliação de impactos ambientais, detecção de mudanças no uso da terra, conservação da biodiversidade
-\end{itemize}
+\subsubsection{GPUs Embarcadas}
+Plataformas como NVIDIA Jetson series trazem capacidades de processamento paralelo massivo para ambientes embarcados, mantendo perfis de consumo apropriados para aplicações de campo. A programabilidade via CUDA permite implementações eficientes de algoritmos hiperespectrais complexos.
 
-\section{Classificação LULC com Imagens Hiperespectrais}\label{sec:classificacao_lulc}
+\section{Estratégias de Redução de Consumo Energético}\label{sec:reducao_consumo}
 
-\subsection{Definição e Importância da Classificação LULC}
-A classificação de uso e cobertura da terra (Land Use/Land Cover - LULC) constitui uma das aplicações mais importantes do sensoriamento remoto hiperespectral. Segundo \cite{Lou2024}, LULC pode ser categorizada em dois domínios principais:
+\subsection{Otimizações Algorítmicas}
+A redução do consumo energético em processamento hiperespectral pode ser abordada através de múltiplas estratégias algorítmicas que mantêm a qualidade dos resultados:
 
-\begin{itemize}
-    \item \textbf{Cobertura da Terra (Land Cover)}: Refere-se aos fatores naturais e antrópicos existentes na superfície terrestre, incluindo florestas, pastagens, terras agrícolas, solo exposto, corpos d'água e áreas construídas.
-    \item \textbf{Uso da Terra (Land Use)}: Representa o processo de transformação do ecossistema natural em sistemas artificiais, influenciado por fatores naturais, econômicos e sociais, incluindo áreas residenciais, comerciais, industriais e destinadas ao transporte.
-\end{itemize}
+\subsubsection{Compressão Adaptativa}
+Técnicas de compressão específicas para dados hiperespectrais permitem redução significativa na quantidade de dados processados, resultando em menor consumo energético. Algoritmos adaptativos que ajustam parâmetros de compressão baseados nas características espectrais locais demonstram eficácia particular em cenários embarcados.
 
-A classificação precisa de LULC é fundamental para o planejamento territorial, gestão de recursos naturais, monitoramento de mudanças ambientais e formulação de políticas públicas de desenvolvimento sustentável.
+\subsubsection{Redução de Dimensionalidade Otimizada}
+Implementações eficientes de PCA (Principal Component Analysis) e outras técnicas de redução dimensional específicas para hardware embarcado podem reduzir drasticamente a carga computacional. Abordagens que combinam redução espectral e espacial mostram-se promissoras para aplicações em tempo real.
 
-\subsection{Desafios na Classificação LULC Hiperespectral}
-O processamento de imagens hiperespectrais para classificação LULC apresenta desafios únicos devido às características intrínsecas dos dados:
+\subsubsection{Processamento Hierárquico}
+Estratégias que implementam processamento em múltiplas resoluções, começando com análises grosseiras e refinando apenas regiões de interesse, podem resultar em economias substanciais de energia mantendo precisão adequada para a aplicação.
 
-\subsubsection{Maldição da Dimensionalidade}
-A alta dimensionalidade dos dados hiperespectrais (centenas de bandas espectrais) pode levar ao fenômeno conhecido como "maldição da dimensionalidade" (curse of dimensionality), onde o desempenho dos algoritmos de classificação pode degradar devido à escassez relativa de amostras de treinamento em espaços de alta dimensionalidade \cite{Lou2024}.
+\subsection{Otimizações de Hardware}
+A eficiência energética também pode ser melhorada através de otimizações específicas ao nível de hardware:
 
-\subsubsection{Redundância Espectral}
-Muitas bandas espectrais adjacentes apresentam alta correlação, introduzindo redundância nos dados que pode afetar negativamente o desempenho dos classificadores e aumentar o custo computacional \cite{Lou2024}.
+\subsubsection{Gerenciamento Dinâmico de Energia}
+Técnicas que ajustam dinamicamente frequências de operação e voltagens baseadas na carga computacional atual permitem redução significativa no consumo total. Clock gating e power gating seletivos podem ser aplicados a componentes não utilizados momentaneamente.
 
-\subsubsection{Variabilidade Espectral}
-A mesma classe de cobertura pode apresentar variações espectrais significativas devido a fatores como estado fenológico da vegetação, condições de iluminação, propriedades do solo e efeitos atmosféricos \cite{Lou2024}.
+\subsubsection{Precisão Aritmética Adaptativa}
+A utilização de representações numéricas de precisão reduzida (fixed-point, half-precision) para operações que não requerem alta precisão pode resultar em economias substanciais de energia sem comprometer significativamente a qualidade dos resultados.
 
-\subsection{Evolução dos Métodos de Classificação}
-A literatura apresenta uma evolução clara nos métodos de classificação LULC hiperespectral, que podem ser organizados em três gerações principais \cite{Lou2024}:
+\section{Técnicas de Redução de Latência}\label{sec:reducao_latencia}
 
-\subsubsection{Primeira Geração: Métodos Estatísticos Tradicionais}
-Os primeiros métodos incluíam classificadores como:
-\begin{itemize}
-    \item \textbf{Máxima Verossimilhança (Maximum Likelihood)}: Baseado na assumptiva de distribuições gaussianas para as classes
-    \item \textbf{Distância Mínima}: Classificação baseada na distância euclidiana até centroides das classes
-    \item \textbf{Paralelepípedo}: Definição de limites espectrais para cada banda
-\end{itemize}
+\subsection{Paralelização Eficiente}
+A natureza dos dados hiperespectrais oferece múltiplas oportunidades para paralelização que podem ser exploradas para redução de latência:
 
-\subsubsection{Segunda Geração: Métodos de Machine Learning}
-O desenvolvimento de técnicas de aprendizado de máquina trouxe melhorias significativas:
-\begin{itemize}
-    \item \textbf{Support Vector Machine (SVM)}: Demonstrou excelente desempenho em dados de alta dimensionalidade, tornando-se um dos métodos mais utilizados \cite{Lou2024}
-    \item \textbf{Random Forest}: Método ensemble que combina múltiplas árvores de decisão, eficaz para grandes datasets \cite{Lou2024}
-    \item \textbf{k-Nearest Neighbors (k-NN)}: Método não-paramétrico baseado na proximidade no espaço de características
-\end{itemize}
+\subsubsection{Paralelização Espectral}
+Processamento simultâneo de múltiplas bandas espectrais permite aproveitamento da estrutura natural dos dados hiperespectrais. Implementações que dividem o cubo espectral em sub-blocos processados em paralelo mostram eficácia particular em FPGAs.
 
-\subsubsection{Terceira Geração: Deep Learning}
-A emergência do deep learning revolucionou a classificação de imagens hiperespectrais:
-\begin{itemize}
-    \item \textbf{Redes Neurais Convolucionais (CNNs)}: Capazes de extrair características espaciais e espectrais automaticamente
-    \item \textbf{Redes Neurais Recorrentes (RNNs)}: Eficazes para modelar dependências sequenciais nas bandas espectrais
-    \item \textbf{Autoencoders}: Utilizados para redução de dimensionalidade e extração de características não-supervisionada
-    \item \textbf{Transformers}: Arquiteturas baseadas em atenção que demonstram excelente desempenho em tarefas de classificação \cite{Lou2024}
-\end{itemize}
+\subsubsection{Paralelização Espacial}
+Divisão da imagem em tiles processados simultaneamente permite escalabilidade com o número de unidades de processamento disponíveis. Técnicas de overlapping inteligente entre tiles minimizam artefatos de borda sem impacto significativo na latência.
 
-\section{Tecnologia de Drones para Sensoriamento Hiperespectral}\label{sec:drones_hiperespectral}
+\subsubsection{Pipeline de Processamento}
+Implementação de pipelines que permitem processamento simultâneo de diferentes estágios algorítmicos pode reduzir drasticamente a latência total. Balanceamento cuidadoso das etapas do pipeline é crítico para maximizar throughput.
 
-\subsection{Vantagens dos Sistemas Hiperespectrais Embarcados em Drones}
-A integração de sensores hiperespectrais em plataformas de drones oferece vantagens significativas em comparação com plataformas tradicionais \cite{Shin2024}:
+\subsection{Otimizações de Memória}
+O gerenciamento eficiente de memória é crucial para redução de latência em sistemas embarcados:
 
-\subsubsection{Flexibilidade Operacional}
-Os drones proporcionam alta flexibilidade para aquisição de dados em diferentes condições temporais e espaciais, permitindo monitoramento adaptado às necessidades específicas de cada aplicação.
+\subsubsection{Hierarquia de Cache Otimizada}
+Implementação de caches especializados que exploram padrões de acesso específicos de algoritmos hiperespectrais pode reduzir significativamente latências de acesso à memória. Cache blocking adaptativo mostra-se particularmente eficaz.
 
-\subsubsection{Resolução Espacial Superior}
-A capacidade de voo em baixas altitudes permite a aquisição de imagens com resolução espacial muito superior à obtida por satélites, chegando a centímetros por pixel.
+\subsubsection{Streaming de Dados}
+Técnicas que permitem processamento de dados conforme são adquiridos, sem necessidade de armazenamento completo do cubo hiperespectral, são essenciais para aplicações de ultra-baixa latência.
 
-\subsubsection{Minimização de Interferências Atmosféricas}
-O voo em baixas altitudes reduz significativamente os efeitos de dispersão atmosférica e absorção, resultando em dados espectrais de maior qualidade \cite{Shin2024}.
+\section{Aplicações Práticas Embarcadas}\label{sec:aplicacoes_praticas}
 
-\subsubsection{Custo-Benefício}
-Comparado a plataformas aerotransportadas tripuladas, os drones oferecem uma solução muito mais econômica para aquisição de dados hiperespectrais em áreas relativamente pequenas.
+\subsection{Agricultura de Precisão}
+O processamento hiperespectral embarcado tem encontrado aplicações crescentes em agricultura de precisão, onde a necessidade de respostas em tempo real é crítica:
 
-\subsection{Desafios Técnicos}
-Apesar das vantagens, os sistemas hiperespectrais em drones apresentam desafios únicos \cite{Shin2024}:
+\subsubsection{Detecção de Estresse em Culturas}
+Sistemas embarcados em drones agrícolas permitem detecção imediata de estresses nutricionais, hídricos ou patológicos. Algoritmos otimizados para hardware embarcado conseguem identificar assinaturas espectrais características de diferentes tipos de estresse, permitindo intervenções precisas e oportunas \cite{Shin2024}.
 
-\subsubsection{Estabilidade de Plataforma}
-As instabilidades inerentes aos drones podem introduzir distorções geométricas que requerem correções específicas durante o pré-processamento.
+\subsubsection{Monitoramento de Crescimento}
+Análise contínua do desenvolvimento das culturas através de índices espectrais calculados em tempo real permite otimização do manejo agrícola. Implementações embarcadas permitem coleta de dados de alta frequência temporal sem dependência de conectividade externa.
 
-\subsubsection{Limitações de Payload}
-O peso e consumo energético dos sensores hiperespectrais impõem restrições no tempo de voo e na escolha da plataforma aérea.
+\subsubsection{Aplicação Variável de Insumos}
+Sistemas que combinam aquisição hiperespectral embarcada com aplicação automatizada de fertilizantes ou pesticidas representam a fronteira atual da agricultura de precisão. A latência ultra-baixa é crítica para sincronização entre detecção e aplicação.
 
-\subsubsection{Calibração e Correção}
-A necessidade de correções radiométricas e geométricas específicas para dados adquiridos por drones requer protocolos de calibração adaptados.
+\subsection{Monitoramento Ambiental}
+Aplicações ambientais embarcadas requerem operação autônoma em condições adversas por períodos prolongados:
 
-\section{Pré-processamento de Imagens Hiperespectrais de Drones}\label{sec:preprocessamento}
+\subsubsection{Detecção Precoce de Queimadas}
+Sistemas embarcados para detecção automática de focos de incêndio utilizam assinaturas espectrais específicas de combustão inicial. A redução de latência é crítica para permitir respostas rápidas a emergências. Implementações que combinam processamento hiperespectral com análise térmica mostram eficácia particular.
 
-\subsection{Correção Radiométrica}
-A correção radiométrica é fundamental para converter os valores digitais capturados pelo sensor em valores de reflectância de superfície, removendo efeitos indesejados de iluminação e resposta do sensor \cite{Shin2024}.
+\subsubsection{Monitoramento de Qualidade da Água}
+Sensores hiperespectrais embarcados para monitoramento contínuo de corpos d'água requerem operação de baixo consumo por longos períodos. Algoritmos adaptativos que ajustam frequência de amostragem baseados na qualidade detectada podem otimizar autonomia energética.
 
-\subsubsection{Método de Linha Empírica (Empirical Line Method - ELM)}
-O ELM é uma das técnicas mais utilizadas para correção radiométrica em dados hiperespectrais de drones. O método utiliza alvos de referência com reflectância conhecida, coletados simultaneamente à aquisição das imagens, para estabelecer uma relação linear entre os valores digitais do sensor e a reflectância real \cite{Shin2024}.
+\subsubsection{Detecção de Mudanças na Cobertura Vegetal}
+Sistemas embarcados para monitoramento de desmatamento ou degradação ambiental operam tipicamente em locais remotos com energia limitada. Técnicas de change detection otimizadas para processamento embarcado permitem detecção automática de alterações significativas na paisagem.
 
-Segundo \cite{Shin2024}, a aplicação do ELM demonstrou melhorias de 5-55\% na precisão da reflectância para painéis de referência, resultando em perfis espectrais mais uniformes ao longo das diferentes bandas, com correlações de 0.97-0.99 entre valores medidos e corrigidos.
+\subsection{Sistemas de Vigilância e Segurança}
+Aplicações de segurança demandam combinação de baixa latência com operação discreta:
 
-\subsubsection{Outras Técnicas de Correção}
-\begin{itemize}
-    \item \textbf{Correção Atmosférica}: Modelagem dos efeitos de dispersão e absorção atmosférica
-    \item \textbf{Correção de Sombreamento}: Compensação de variações de iluminação causadas por topografia
-    \item \textbf{Calibração de Ganho e Offset}: Ajuste da resposta linear do sensor
-\end{itemize}
+\subsubsection{Reconhecimento de Materiais}
+Identificação automática de substâncias específicas através de assinaturas espectrais únicas requer algoritmos embarcados capazes de operar com libraries espectrais extensas. Técnicas de compressão e indexação otimizadas são essenciais para viabilidade prática.
 
-\subsection{Correção Geométrica}
-A correção geométrica é essencial para garantir o alinhamento espacial preciso das imagens e permitir a integração com outros dados geoespaciais \cite{Shin2024}.
+\subsubsection{Detecção de Objetos Ocultos}
+Sistemas hiperespectrais embarcados podem identificar materiais camuflados ou ocultos explorando diferenças espectrais não visíveis ao olho humano. A combinação de processamento espectral e espacial em hardware embarcado permite detecção em tempo real.
 
-\subsubsection{Transformação Rubber Sheet}
-A transformação rubber sheet utilizando pontos de controle terrestres tem se mostrado eficaz para correção de distorções causadas por variações na orientação do sensor e trajetória de voo. \cite{Shin2024} reporta erros RMS de 0.00 a 0.081 m na direção leste-oeste e 0.00 a 0.076 m na direção norte-sul, com erro RMS geral de 0.031 metros para 100 pontos, superando padrões industriais de precisão.
+\subsubsection{Monitoramento Perimetral}
+Sistemas de vigilância embarcados para grandes áreas requerem operação autônoma com resposta imediata a intrusões. Algoritmos que combinam detecção de movimento com análise espectral para classificação de alvos mostram eficácia em reduzir falsos positivos.
 
-\subsubsection{Mosaicagem de Imagens}
-O processo de mosaicagem combina múltiplas imagens individuais para criar uma representação abrangente da área de estudo, considerando sobreposições entre imagens e minimizando descontinuidades espectrais \cite{Shin2024}.
+\section{Caracterização e Seleção de Datasets}\label{sec:datasets}
 
-\section{Técnicas de Redução de Dimensionalidade}\label{sec:reducao_dimensionalidade}
+\subsection{Metodologias de Caracterização}
+A validação efetiva de sistemas hiperespectrais embarcados requer datasets que representem fielmente as condições operacionais reais:
 
-\subsection{Análise de Componentes Principais (PCA)}
-A PCA é uma das técnicas mais utilizadas para redução de dimensionalidade em dados hiperespectrais, transformando o conjunto original de bandas correlacionadas em um novo conjunto de componentes principais não-correlacionados \cite{Lou2024}.
+\subsubsection{Critérios de Representatividade}
+Datasets devem ser avaliados quanto à correspondência com cenários de aplicação específicos, incluindo condições ambientais, características dos alvos e variabilidade temporal. Métricas quantitativas de representatividade permitem seleção objetiva de dados de teste apropriados.
 
-A transformação PCA pode ser expressa matematicamente como:
-\begin{equation}
-Y = XW
-\end{equation}
-onde $X$ é a matriz de dados original, $W$ é a matriz de autovetores da matriz de covariância, e $Y$ representa os dados transformados.
+\subsubsection{Diversidade de Condições}
+Cobertura adequada de diferentes condições operacionais é essencial para validação robusta. Datasets devem incluir variações de iluminação, condições atmosféricas, sazonalidade e características dos alvos para garantir generalização dos algoritmos desenvolvidos.
 
-\subsection{t-Distributed Stochastic Neighbor Embedding (t-SNE)}
-O t-SNE é uma técnica não-linear de redução de dimensionalidade particularmente eficaz para visualização de dados de alta dimensionalidade, preservando a estrutura local dos dados no espaço de menor dimensionalidade.
+\subsubsection{Metadados Auxiliares}
+Informações complementares sobre condições de aquisição, calibração de sensores e verdade terrestre são críticas para interpretação correta dos resultados. Protocolos padronizados para documentação de metadados facilitam comparação entre estudos.
 
-\subsection{Outras Técnicas}
-\begin{itemize}
-    \item \textbf{Independent Component Analysis (ICA)}: Separa sinais espectrais misturados em componentes independentes
-    \item \textbf{Linear Discriminant Analysis (LDA)}: Maximiza a separabilidade entre classes
-    \item \textbf{Minimum Noise Fraction (MNF)}: Ordena bandas por razão sinal-ruído
-\end{itemize}
+\subsection{Preparação para Simulação de Operações Reais}
+Adaptação de datasets existentes para simular condições operacionais embarcadas requer técnicas específicas:
 
-\section{Deep Learning para Classificação Hiperespectral}\label{sec:deep_learning}
+\subsubsection{Simulação de Aquisição Streaming}
+Conversão de datasets tradicionais para formato de streaming que simule aquisição em tempo real permite validação de algoritmos embarcados sob condições realísticas de processamento contínuo.
 
-\subsection{Redes Neurais Convolucionais (CNNs)}
-As CNNs têm demonstrado desempenho superior na classificação de imagens hiperespectrais devido à sua capacidade de extrair características espaciais e espectrais automaticamente \cite{Lou2024}.
+\subsubsection{Inserção de Ruídos e Artefatos}
+Adição controlada de ruídos, variações de calibração e artefatos típicos de sistemas embarcados permite validação da robustez dos algoritmos sob condições não-ideais.
 
-\subsubsection{CNNs 2D}
-As CNNs 2D processam cada banda espectral separadamente como uma imagem 2D, sendo eficazes para extração de características espaciais. A arquitetura típica inclui:
-\begin{itemize}
-    \item Camadas convolucionais para extração de características
-    \item Camadas de pooling para redução de dimensionalidade
-    \item Camadas totalmente conectadas para classificação final
-\end{itemize}
+\subsubsection{Variação de Resolução}
+Simulação de diferentes resoluções espectrais e espaciais permite avaliação da degradação graceful dos algoritmos quando operando com sensores de menor capacidade típicos de sistemas embarcados.
 
-\subsubsection{CNNs 3D}
-As CNNs 3D processam o cubo hiperespectral como um todo, capturando tanto informações espaciais quanto espectrais simultaneamente. Esta abordagem é particularmente eficaz para dados hiperespectrais devido à natureza tridimensional dos dados.
+\section{Tecnologias de Simulação e Validação}\label{sec:simulacao_validacao}
 
-\subsection{Arquiteturas Transformer}
-As arquiteturas Transformer, baseadas em mecanismos de atenção, têm demonstrado excelente desempenho em tarefas de classificação hiperespectral \cite{Lou2024}. O mecanismo de self-attention permite modelar dependências de longo alcance tanto no domínio espacial quanto espectral.
+\subsection{GHDL para Simulação de FPGAs}
+O GHDL (VHDL simulator and analyzer) representa uma ferramenta fundamental para desenvolvimento e validação de implementações em FPGA:
 
-\subsection{Outras Arquiteturas de Deep Learning}
-\begin{itemize}
-    \item \textbf{Autoencoders}: Para aprendizado não-supervisionado de representações
-    \item \textbf{Generative Adversarial Networks (GANs)}: Para aumento de dados e geração sintética
-    \item \textbf{Graph Neural Networks (GNNs)}: Para explorar relações topológicas entre pixels
-\end{itemize}
+\subsubsection{Modelagem de Precisão}
+GHDL permite modelagem precisa do comportamento temporal e energético de designs VHDL, facilitando otimização antes da síntese em hardware real. Simulações detalhadas podem identificar gargalos e oportunidades de otimização.
 
-\section{Aplicações em Agricultura de Precisão}\label{sec:agricultura_precisao}
+\subsubsection{Validação Funcional}
+Verificação completa da correção funcional de implementações VHDL através de testbenches abrangentes reduz riscos de erros em hardware final. Técnicas de verificação formal podem garantir correção de propriedades críticas.
 
-\subsection{Monitoramento da Saúde das Culturas}
-O sensoriamento hiperespectral permite a detecção precoce de estresses nas culturas através da análise de mudanças sutis nas assinaturas espectrais da vegetação \cite{Shin2024}. Índices espectrais específicos podem indicar:
-\begin{itemize}
-    \item Deficiências nutricionais (nitrogênio, fósforo, potássio)
-    \item Estresse hídrico
-    \item Presença de pragas e doenças
-    \item Estado fenológico das culturas
-\end{itemize}
+\subsubsection{Estimativa de Recursos}
+Análise detalhada de utilização de recursos (LUTs, DSPs, memória) permite otimização de designs para plataformas específicas antes da síntese física.
 
-\subsection{Mapeamento de Produtividade}
-A correlação entre características espectrais e produtividade permite a geração de mapas de produtividade preditivos, auxiliando na otimização do manejo agrícola.
+\subsection{Ferramentas de Análise Energética}
+Medição precisa de consumo energético é essencial para validação de estratégias de otimização:
 
-\subsection{Aplicação Variável de Insumos}
-Os mapas gerados a partir da classificação LULC hiperespectral podem orientar a aplicação variável de fertilizantes, pesticidas e irrigação, otimizando o uso de recursos e reduzindo impactos ambientais.
+\subsubsection{Profiling Energético}
+Ferramentas especializadas permitem medição detalhada do consumo energético de diferentes componentes e operações, facilitando identificação de oportunidades de otimização.
+
+\subsubsection{Modelagem de Consumo}
+Modelos analíticos de consumo baseados em características dos algoritmos e hardware permitem estimativa rápida sem necessidade de implementação física completa.
 
 \section{Trabalhos Relacionados}\label{sec:trabalhos_relacionados}
 
-\subsection{Estudos de Revisão}
-\cite{Lou2024} conduziu uma revisão abrangente sobre classificação LULC usando imagens hiperespectrais, identificando quatro abordagens principais: revisão sistemática da classificação LULC hiperespectral, compilação e análise de datasets específicos, exploração de métodos tradicionais e de deep learning, e análise de trajetórias futuras de desenvolvimento.
+\subsection{Processamento Hiperespectral Embarcado}
+\cite{Lim2022} investigou a viabilidade de sistemas embarcados em tempo real para imageamento hiperespectral compressivo, analisando requisitos computacionais, uso de memória e largura de banda. O trabalho propôs otimizações específicas para alcançar processamento em tempo real, focando em técnicas de compressive sensing adaptadas para hardware embarcado.
 
-\subsection{Implementações com Drones}
-\cite{Shin2024} apresentou um estudo focado em métodos robustos de correção radiométrica e geométrica para imageamento hiperespectral baseado em drones em aplicações agrícolas, demonstrando a eficácia do ELM e transformação rubber sheet para preprocessamento de dados.
+\subsection{Otimizações para Agricultura de Precisão}
+\cite{Shin2024} apresentou um estudo focado em métodos robustos de correção radiométrica e geométrica para imageamento hiperespectral baseado em drones em aplicações agrícolas. O trabalho demonstrou a importância de técnicas de pré-processamento otimizadas para sistemas embarcados operando em condições de campo.
 
-\subsection{Sistemas Embarcados}
-\cite{Lim2022} investigou a viabilidade de sistemas embarcados em tempo real para imageamento hiperespectral compressivo, analisando requisitos computacionais, uso de memória e largura de banda, e propondo otimizações para alcançar processamento em tempo real.
+\subsection{Eficiência Energética em Visão Computacional}
+Estudos recentes em visão computacional embarcada têm explorado técnicas de quantização, pruning e destilação de conhecimento para redução de consumo energético. Estas técnicas mostram-se promissoras para adaptação ao processamento hiperespectral embarcado.
+
+\subsection{Arquiteturas Especializadas}
+O desenvolvimento de processadores especializados para visão computacional, incluindo TPUs (Tensor Processing Units) e NPUs (Neural Processing Units), oferece oportunidades para aceleração eficiente de algoritmos hiperespectrais específicos.
 
 \subsection{Lacunas Identificadas na Literatura}
-A revisão da literatura identifica várias lacunas importantes:
+A revisão da literatura identifica várias lacunas importantes para processamento hiperespectral embarcado:
 
 \begin{enumerate}
-    \item \textbf{Padronização de Metodologias}: Falta de protocolos padronizados para aquisição e processamento de dados hiperespectrais de drones
-    \item \textbf{Datasets Públicos}: Escassez de datasets públicos anotados específicos para aplicações LULC com drones hiperespectrais
-    \item \textbf{Validação em Condições Reais}: Necessidade de mais estudos validando metodologias em diferentes condições ambientais e tipos de culturas
-    \item \textbf{Integração de Técnicas}: Falta de frameworks integrados que combinem eficientemente preprocessamento, redução de dimensionalidade e classificação
-    \item \textbf{Aplicabilidade Prática}: Limitado número de estudos focando na implementação prática e transferência de tecnologia para o setor produtivo
+    \item \textbf{Metodologias de Caracterização de Datasets}: Falta de protocolos padronizados para caracterização de datasets que simulem fielmente operações embarcadas reais
+    \item \textbf{Métricas de Eficiência Embarcada}: Necessidade de métricas específicas que considerem simultaneamente precisão, consumo energético e latência em aplicações práticas
+    \item \textbf{Validação em Condições Reais}: Escassez de estudos validando metodologias em condições operacionais reais de campo por períodos prolongados
+    \item \textbf{Frameworks Integrados}: Ausência de frameworks que integrem eficientemente caracterização de dados, otimização algorítmica e implementação embarcada
+    \item \textbf{Transferência de Tecnologia}: Limitado número de estudos focando na implementação prática e transferência para produtos comerciais viáveis
 \end{enumerate}
 
 \section{Síntese do Levantamento}\label{sec:sintese}
 
-Esta revisão da literatura estabelece o contexto científico e tecnológico para o desenvolvimento desta dissertação. Os principais pontos identificados são:
+Esta revisão da literatura estabelece o contexto científico e tecnológico para o desenvolvimento desta dissertação focada em estratégias para redução de consumo e latência no processamento hiperespectral embarcado:
 
 \subsection{Estado da Arte}
 \begin{itemize}
-    \item O sensoriamento hiperespectral com drones representa uma tecnologia emergente com grande potencial para aplicações em agricultura de precisão
-    \item Técnicas de deep learning demonstram desempenho superior aos métodos tradicionais para classificação LULC hiperespectral
-    \item Métodos de correção radiométrica e geométrica específicos para drones são essenciais para garantir a qualidade dos dados
+    \item O processamento hiperespectral embarcado representa uma área emergente com grande potencial para aplicações práticas críticas
+    \item Técnicas de otimização energética e redução de latência específicas para dados hiperespectrais demonstram viabilidade técnica
+    \item Metodologias de caracterização de datasets para simulação de operações reais são fundamentais para validação efetiva
+    \item GHDL e outras ferramentas de simulação permitem desenvolvimento e validação de implementações embarcadas antes da síntese física
 \end{itemize}
 
 \subsection{Desafios Técnicos}
 \begin{itemize}
-    \item Processamento eficiente de dados de alta dimensionalidade
-    \item Desenvolvimento de pipelines integrados de processamento
-    \item Validação em condições operacionais reais
-    \item Transferência de tecnologia para aplicações práticas
+    \item Balanceamento entre precisão, consumo energético e latência em aplicações críticas
+    \item Desenvolvimento de algoritmos robustos para operação em condições adversas de campo
+    \item Validação adequada de sistemas embarcados em cenários operacionais reais
+    \item Integração eficiente de múltiplas técnicas de otimização sem comprometer funcionalidade
 \end{itemize}
 
 \subsection{Oportunidades de Pesquisa}
 Esta dissertação visa contribuir para o preenchimento das lacunas identificadas através de:
 \begin{itemize}
-    \item Desenvolvimento de uma metodologia integrada para classificação LULC com drones hiperespectrais
-    \item Implementação e validação de técnicas avançadas de deep learning
-    \item Avaliação sistemática em diferentes condições experimentais
-    \item Estabelecimento de protocolos para aplicação prática da tecnologia
+    \item Desenvolvimento de metodologia integrada para caracterização de datasets e validação embarcada
+    \item Implementação e validação de estratégias de otimização específicas para aplicações práticas
+    \item Estabelecimento de diretrizes para deployment de sistemas hiperespectrais embarcados
+    \item Demonstração de viabilidade através de protótipos funcionais validados em condições reais
 \end{itemize}
 
-Os capítulos subsequentes detalham a metodologia desenvolvida e os resultados obtidos, contribuindo para o avanço do conhecimento nesta área de pesquisa emergente e estratégica.
+Os capítulos subsequentes detalham a metodologia desenvolvida e os resultados obtidos, contribuindo para o avanço do conhecimento nesta área estratégica para múltiplas aplicações práticas.

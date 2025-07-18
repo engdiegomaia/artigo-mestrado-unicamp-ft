@@ -5,226 +5,238 @@
 \chapter{Introdução}\label{chp:Introducao}
 
 % Contextualização do problema baseada na nova proposta
-O processamento de dados hiperespectrais representa um desafio computacional significativo, especialmente em aplicações de tempo real que demandam alta precisão e eficiência energética. Com o crescimento exponencial da utilização de sensores hiperespectrais em aplicações agrícolas e ambientais, a necessidade por arquiteturas computacionais otimizadas que possam processar grandes volumes de dados espectrais em tempo real tornou-se crítica para viabilizar aplicações práticas efetivas.
+O uso de imagens hiperespectrais em campo tem revolucionado áreas como agricultura de precisão, monitoramento ambiental e sistemas de vigilância, permitindo a identificação detalhada de materiais e condições ambientais em tempo real. No entanto, a aplicação prática desse potencial é frequentemente limitada pelos requisitos computacionais elevados e pelas restrições energéticas dos sistemas embarcados, especialmente em cenários de operação autônoma ou remota.
 
-O processamento hiperespectral pode ser realizado em diferentes arquiteturas computacionais, cada uma com suas características e trade-offs específicos. Processadores de propósito geral (CPUs) oferecem flexibilidade e facilidade de programação, unidades de processamento gráfico (GPUs) proporcionam paralelismo massivo, e FPGAs (Field-Programmable Gate Arrays) permitem customização de hardware com alta eficiência energética. A escolha da arquitetura mais adequada para uma aplicação específica requer uma análise aprofundada das características e requisitos do processamento hiperespectral em tempo real.
+O processamento de dados hiperespectrais em plataformas embarcadas apresenta desafios únicos que vão além da simples análise de desempenho computacional. A necessidade de operar com baixo consumo energético, latência reduzida e em condições ambientais adversas exige estratégias específicas de otimização que considerem tanto aspectos algorítmicos quanto arquiteturais. Sistemas embarcados, incluindo FPGAs, VPUs (Vision Processing Units) e GPUs de baixo consumo, oferecem oportunidades para implementações eficientes, mas requerem abordagens de desenvolvimento especializadas.
 
-Adicionalmente, a possibilidade de combinar diferentes tecnologias em arquiteturas híbridas emerge como uma alternativa para potencialmente superar limitações individuais de cada processador. A integração estratégica de diferentes arquiteturas pode oferecer oportunidades para otimização de desempenho em cenários específicos, embora também introduza desafios adicionais de complexidade e gerenciamento de recursos.
+A integração de técnicas de paralelização, deployment adaptativo e otimizações específicas para hardware restrito emerge como fundamental para viabilizar aplicações práticas efetivas. Além disso, a caracterização adequada de datasets que simulem operações reais torna-se crítica para validar as estratégias propostas em cenários que reflitam fielmente as condições de campo.
 
 \section{Motivação}\label{sec:motivacao}
 
-A motivação para esta pesquisa deriva de múltiplos fatores convergentes que destacam a importância de uma análise sistemática e comparativa das diferentes arquiteturas de processamento para aplicações hiperespectrais em tempo real:
+A motivação para esta pesquisa deriva da crescente demanda por sistemas hiperespectrais embarcados capazes de operar autonomamente em aplicações críticas do mundo real:
 
-\subsection{Desafios Computacionais do Processamento Hiperespectral}
-O processamento de dados hiperespectrais apresenta características únicas que demandam soluções computacionais especializadas. Cada pixel hiperespectral contém informações de centenas de bandas espectrais, resultando em volumes de dados que podem exceder terabytes em aplicações típicas. O processamento dessas informações envolve operações computacionalmente intensivas, incluindo correções atmosféricas, redução de dimensionalidade, classificação e análise de padrões espectrais.
-
-Os algoritmos de processamento hiperespectral apresentam diferentes características computacionais que podem se beneficiar de diferentes arquiteturas de processamento. A natureza das operações varia desde cálculos simples e altamente paralelizáveis até algoritmos complexos com dependências de dados significativas, criando um cenário desafiador para a seleção da arquitetura mais apropriada.
-
-\subsection{Características das Arquiteturas de Processamento}
-Cada arquitetura de processamento apresenta características distintas que podem ser mais ou menos adequadas para diferentes aspectos do processamento hiperespectral:
+\subsection{Desafios dos Sistemas Embarcados Hiperespectrais}
+O processamento hiperespectral embarcado enfrenta limitações fundamentais que diferem significativamente dos ambientes computacionais tradicionais:
 
 \begin{itemize}
-    \item \textbf{CPU (Processadores de Propósito Geral)}:
-    \begin{itemize}
-        \item Flexibilidade e facilidade de programação
-        \item Bom desempenho em operações sequenciais
-        \item Suporte a instruções vetoriais avançadas
-        \item Limitações em paralelismo massivo
-    \end{itemize}
-    
-    \item \textbf{GPU (Unidades de Processamento Gráfico)}:
-    \begin{itemize}
-        \item Excelente para paralelismo massivo
-        \item Alto throughput em operações de ponto flutuante
-        \item Otimizado para processamento de dados regulares
-        \item Consumo energético significativo
-    \end{itemize}
-    
-    \item \textbf{FPGA (Field-Programmable Gate Arrays)}:
-    \begin{itemize}
-        \item Alta eficiência energética
-        \item Customização de hardware para operações específicas
-        \item Excelente para operações de baixa latência
-        \item Complexidade de desenvolvimento maior
-    \end{itemize}
+    \item \textbf{Restrições Energéticas}: Operação com bateria limitada em aplicações de campo
+    \item \textbf{Limitações de Memória}: Capacidade de armazenamento e RAM reduzidas
+    \item \textbf{Processamento em Tempo Real}: Necessidade de respostas imediatas para tomada de decisão
+    \item \textbf{Condições Ambientais}: Operação em temperaturas extremas, umidade e vibração
+    \item \textbf{Conectividade Limitada}: Processamento local sem dependência de comunicação externa
 \end{itemize}
 
-\subsection{Necessidade de Análise Comparativa}
-A diversidade de arquiteturas disponíveis e a complexidade das aplicações hiperespectrais criam uma necessidade crítica por:
+\subsection{Aplicações Práticas Críticas}
+As aplicações alvo desta pesquisa apresentam requisitos específicos que justificam o desenvolvimento de soluções otimizadas:
+
+\subsubsection{Agricultura de Precisão}
+\begin{itemize}
+    \item \textbf{Detecção de Estresse em Culturas}: Identificação precoce de deficiências nutricionais, hídricas ou patógenos
+    \item \textbf{Monitoramento Autônomo}: Sistemas embarcados em drones ou robôs agrícolas
+    \item \textbf{Decisões em Tempo Real}: Aplicação variável de insumos baseada em análise imediata
+\end{itemize}
+
+\subsubsection{Monitoramento Ambiental}
+\begin{itemize}
+    \item \textbf{Detecção de Queimadas}: Identificação precoce de focos de incêndio em áreas remotas
+    \item \textbf{Qualidade da Água}: Monitoramento contínuo de corpos d'água
+    \item \textbf{Mudanças na Cobertura Vegetal}: Acompanhamento de desmatamento ou degradação
+\end{itemize}
+
+\subsubsection{Sistemas de Vigilância}
+\begin{itemize}
+    \item \textbf{Reconhecimento de Materiais}: Identificação de substâncias específicas
+    \item \textbf{Detecção de Camuflagem}: Identificação de objetos ocultos
+    \item \textbf{Monitoramento de Fronteiras}: Sistemas autônomos de vigilância
+\end{itemize}
+
+\subsection{Necessidade de Caracterização de Datasets}
+A validação efetiva de estratégias de processamento embarcado requer datasets que reflitam fielmente as condições operacionais reais:
 
 \begin{itemize}
-    \item Avaliação sistemática de desempenho em diferentes cenários
-    \item Análise objetiva de trade-offs entre arquiteturas
-    \item Compreensão dos impactos em eficiência energética
-    \item Identificação de casos de uso ideais para cada arquitetura
+    \item \textbf{Variabilidade de Condições}: Diferentes iluminações, clima e características ambientais
+    \item \textbf{Representatividade}: Correspondência com cenários de aplicação específicos
+    \item \textbf{Diversidade}: Cobertura de diferentes materiais e situações
+    \item \textbf{Metadados Completos}: Informações auxiliares para validação
 \end{itemize}
 
 \section{Objetivos}\label{sec:objetivos}
 
 \subsection{Objetivo Geral}
-Realizar uma análise comparativa abrangente de diferentes arquiteturas computacionais (CPU, GPU e FPGA) para processamento de imagens hiperespectrais em tempo real, com foco em aplicações agrícolas e monitoramento ambiental, estabelecendo métricas objetivas de desempenho, eficiência energética e precisão para cada arquitetura em diferentes cenários de aplicação, incluindo uma investigação adicional sobre o potencial de arquiteturas híbridas.
+Investigar, propor e validar estratégias para a redução do consumo energético e da latência no processamento de dados hiperespectrais em plataformas embarcadas, desenvolvendo arquiteturas e fluxos de processamento otimizados para aplicações práticas em agricultura de precisão, monitoramento ambiental e sistemas de vigilância, com validação através de simulações e experimentos em protótipos embarcados.
 
 \subsection{Objetivos Específicos}
 \begin{enumerate}
-    \item \textbf{Caracterizar operações}: Analisar e classificar operações de processamento hiperespectral:
+    \item \textbf{Desenvolver estratégias de otimização energética}:
     \begin{itemize}
-        \item Complexidade computacional
-        \item Requisitos de paralelismo
-        \item Padrões de acesso à memória
-        \item Dependências de dados
+        \item Técnicas de redução de consumo em algoritmos hiperespectrais
+        \item Otimizações específicas para FPGAs, VPUs e GPUs de baixo consumo
+        \item Estratégias de deployment adaptativo baseado em recursos disponíveis
+        \item Técnicas de compressão e redução de dimensionalidade eficientes
     \end{itemize}
     
-    \item \textbf{Implementar algoritmos otimizados}: Desenvolver implementações específicas para cada arquitetura:
+    \item \textbf{Implementar arquiteturas de baixa latência}:
     \begin{itemize}
-        \item CPU: Otimizações vetoriais e multi-thread
-        \item GPU: Implementações CUDA otimizadas
-        \item FPGA: Designs VHDL customizados
+        \item Designs VHDL customizados para operações críticas
+        \item Técnicas de paralelização para processamento em tempo real
+        \item Otimização de fluxos de dados e gerenciamento de memória
+        \item Integração de técnicas de pré-processamento embarcado
     \end{itemize}
     
-    \item \textbf{Desenvolver framework de simulação}: Criar ambiente controlado para:
+    \item \textbf{Estabelecer metodologia de caracterização de datasets}:
     \begin{itemize}
-        \item Geração de dados de teste
-        \item Medição de métricas
-        \item Validação de resultados
-        \item Análise comparativa
+        \item Processo detalhado de seleção de datasets representativos
+        \item Critérios de avaliação para correspondência com operações reais
+        \item Técnicas de preparação e adaptação de dados
+        \item Validação de fidelidade operacional
     \end{itemize}
     
-    \item \textbf{Realizar análise comparativa}: Avaliar cada arquitetura em termos de:
+    \item \textbf{Desenvolver framework de simulação embarcada}:
     \begin{itemize}
-        \item Desempenho computacional
-        \item Eficiência energética
-        \item Precisão dos resultados
-        \item Complexidade de implementação
+        \item Ambiente de simulação via GHDL para FPGAs
+        \item Ferramentas de medição de consumo e latência
+        \item Simulação de condições operacionais reais
+        \item Validação de protótipos embarcados
     \end{itemize}
     
-    \item \textbf{Investigar arquiteturas híbridas}: Analisar potenciais benefícios de:
+    \item \textbf{Validar em aplicações práticas específicas}:
     \begin{itemize}
-        \item Combinações de processadores
-        \item Estratégias de particionamento
-        \item Trade-offs de integração
-        \item Cenários de aplicação específicos
+        \item Detecção de estresse em lavouras
+        \item Monitoramento de queimadas em tempo real
+        \item Reconhecimento de alvos em sistemas de segurança
+        \item Avaliação de desempenho em condições operacionais
     \end{itemize}
     
-    \item \textbf{Validar em aplicações reais}: Testar em cenários práticos:
+    \item \textbf{Estabelecer diretrizes para deployment embarcado}:
     \begin{itemize}
-        \item Datasets hiperespectrais padrão
-        \item Aplicações agrícolas específicas
-        \item Monitoramento ambiental em tempo real
-    \end{itemize}
-    
-    \item \textbf{Desenvolver diretrizes de seleção}: Estabelecer critérios para:
-    \begin{itemize}
-        \item Escolha de arquitetura apropriada
-        \item Otimizações específicas por cenário
-        \item Considerações de implementação
-        \item Análise de custo-benefício
+        \item Critérios de seleção de hardware apropriado
+        \item Estratégias de otimização por aplicação
+        \item Trade-offs entre precisão, consumo e latência
+        \item Protocolos de implementação e validação
     \end{itemize}
 \end{enumerate}
 
 \section{Contribuições Esperadas}\label{sec:contribuicoes}
 
-Esta pesquisa visa contribuir para o avanço do estado da arte em processamento hiperespectral através de:
+Esta pesquisa visa contribuir para o avanço do estado da arte em processamento hiperespectral embarcado através de:
 
 \subsection{Contribuições Metodológicas}
 \begin{enumerate}
-    \item \textbf{Framework de avaliação}: Metodologia sistemática para:
+    \item \textbf{Metodologia de caracterização de datasets}: Processo sistemático para:
     \begin{itemize}
-        \item Caracterização de operações
-        \item Análise de arquiteturas
-        \item Medição de desempenho
-        \item Comparação objetiva
+        \item Seleção de datasets representativos
+        \item Validação de fidelidade operacional
+        \item Preparação para simulação de condições reais
+        \item Critérios de adequação por aplicação
     \end{itemize}
     
-    \item \textbf{Métricas de comparação}: Definição de indicadores para:
+    \item \textbf{Framework de avaliação embarcada}: Metodologia para:
     \begin{itemize}
-        \item Desempenho computacional
-        \item Eficiência energética
-        \item Qualidade de resultados
-        \item Complexidade de implementação
+        \item Medição de consumo energético
+        \item Análise de latência em tempo real
+        \item Validação de qualidade de resultados
+        \item Avaliação de trade-offs sistêmicos
     \end{itemize}
 \end{enumerate}
 
 \subsection{Contribuições Técnicas}
 \begin{enumerate}
-    \item \textbf{Implementações otimizadas}: Desenvolvimento de:
+    \item \textbf{Estratégias de otimização energética}: Desenvolvimento de:
     \begin{itemize}
-        \item Algoritmos CPU vetorizados
-        \item Kernels GPU eficientes
-        \item Designs FPGA customizados
-        \item Integrações híbridas
+        \item Algoritmos de baixo consumo para processamento hiperespectral
+        \item Técnicas de deployment adaptativo
+        \item Otimizações específicas para hardware embarcado
+        \item Técnicas de compressão eficientes
     \end{itemize}
     
-    \item \textbf{Framework de simulação}: Ferramentas para:
+    \item \textbf{Arquiteturas de baixa latência}: Implementação de:
     \begin{itemize}
-        \item Geração de dados
-        \item Medição de métricas
-        \item Validação de resultados
-        \item Análise comparativa
+        \item Designs VHDL otimizados via GHDL
+        \item Fluxos de processamento paralelos
+        \item Gerenciamento eficiente de memória
+        \item Técnicas de pré-processamento embarcado
+    \end{itemize}
+    
+    \item \textbf{Protótipos validados}: Demonstração de:
+    \begin{itemize}
+        \item Sistemas embarcados funcionais
+        \item Validação em aplicações reais
+        \item Métricas comparativas de desempenho
+        \item Protocolos de implementação
     \end{itemize}
 \end{enumerate}
 
 \subsection{Contribuições Práticas}
 \begin{enumerate}
-    \item \textbf{Guia de seleção}: Diretrizes para escolha de:
+    \item \textbf{Diretrizes de implementação}: Estabelecimento de:
     \begin{itemize}
-        \item Arquitetura apropriada
-        \item Otimizações específicas
-        \item Estratégias de implementação
-        \item Considerações de custo
+        \item Critérios de seleção de hardware
+        \item Estratégias de otimização por aplicação
+        \item Trade-offs entre precisão, consumo e latência
+        \item Protocolos de validação e deployment
     \end{itemize}
     
-    \item \textbf{Análise de viabilidade}: Avaliação de:
+    \item \textbf{Viabilização de aplicações práticas}: Contribuição para:
     \begin{itemize}
-        \item Custo-benefício
-        \item Complexidade de desenvolvimento
-        \item Requisitos de recursos
-        \item Potencial de escalabilidade
+        \item Adoção mais ampla de sistemas hiperespectrais embarcados
+        \item Redução de barreiras técnicas e econômicas
+        \item Transferência de tecnologia para o setor produtivo
+        \item Desenvolvimento de produtos comerciais viáveis
     \end{itemize}
 \end{enumerate}
 
 \section{Organização do Texto}\label{sec:organizacao}
 
-Esta dissertação está estruturada em sete capítulos:
+Esta dissertação está estruturada em sete capítulos, seguindo o cronograma de agosto/2025 a agosto/2026:
 
 \begin{itemize}
-    \item \textbf{Capítulo 2 - Levantamento Bibliográfico}: Apresenta revisão da literatura sobre processamento hiperespectral, arquiteturas de processamento, técnicas de otimização e aplicações em tempo real.
+    \item \textbf{Capítulo 2 - Levantamento Bibliográfico}: Revisão da literatura sobre processamento hiperespectral embarcado, eficiência energética, sistemas de baixa latência e aplicações práticas.
     
-    \item \textbf{Capítulo 3 - Metodologia}: Detalha a metodologia de avaliação, incluindo caracterização de operações, framework de simulação, métricas de avaliação e protocolos experimentais.
+    \item \textbf{Capítulo 3 - Metodologia e Caracterização de Datasets}: Detalha a metodologia de caracterização de datasets para simular operações reais, incluindo critérios de seleção, preparação e validação de dados.
     
-    \item \textbf{Capítulo 4 - Implementações}: Descreve as implementações otimizadas para cada arquitetura (CPU, GPU, FPGA) e considerações sobre integrações híbridas.
+    \item \textbf{Capítulo 4 - Estratégias de Otimização}: Apresenta as estratégias desenvolvidas para redução de consumo energético e latência, incluindo algoritmos otimizados e técnicas de deployment adaptativo.
     
-    \item \textbf{Capítulo 5 - Resultados}: Apresenta resultados experimentais comparativos, incluindo análises de desempenho, eficiência energética e qualidade.
+    \item \textbf{Capítulo 5 - Implementação e Simulação}: Descreve as implementações em hardware embarcado, simulações via GHDL e desenvolvimento de protótipos.
     
-    \item \textbf{Capítulo 6 - Discussão}: Analisa os resultados obtidos, discute trade-offs identificados e propõe diretrizes de seleção de arquitetura.
+    \item \textbf{Capítulo 6 - Resultados e Validação}: Apresenta resultados experimentais em aplicações práticas, incluindo métricas de consumo, latência e precisão.
     
-    \item \textbf{Capítulo 7 - Conclusões}: Sumariza as contribuições, limitações e recomendações para trabalhos futuros.
+    \item \textbf{Capítulo 7 - Conclusões e Diretrizes}: Sumariza as contribuições, apresenta diretrizes para deployment embarcado e recomendações para trabalhos futuros.
 \end{itemize}
 
 \section{Infraestrutura Experimental}\label{sec:infraestrutura}
 
 A validação experimental será realizada utilizando:
 
-\subsection{Plataformas de Desenvolvimento}
+\subsection{Plataformas Embarcadas}
 \begin{itemize}
-    \item \textbf{CPU}: Processador multi-core com suporte AVX-512
-    \item \textbf{GPU}: NVIDIA GPU com suporte CUDA
-    \item \textbf{FPGA}: Simulação via GHDL e síntese em hardware quando disponível
-    \item \textbf{Ambiente}: Linux com ferramentas de desenvolvimento e análise
+    \item \textbf{FPGA}: Simulação via GHDL e síntese em hardware (Xilinx/Intel)
+    \item \textbf{VPU}: Intel Movidius/Neural Compute Stick
+    \item \textbf{GPU Embarcada}: NVIDIA Jetson Series
+    \item \textbf{SoC}: ARM-based com aceleradores específicos
 \end{itemize}
 
-\subsection{Datasets de Validação}
+\subsection{Datasets Caracterizados}
 \begin{itemize}
-    \item \textbf{Sintéticos}: Datasets gerados para testes controlados
-    \item \textbf{Benchmark}: Indian Pines, Pavia University
-    \item \textbf{Reais}: Datasets agrícolas e ambientais específicos
+    \item \textbf{Agricultura}: Indian Pines, Salinas, Pavia University (adaptados)
+    \item \textbf{Ambiental}: Datasets AVIRIS, ROSIS (processados)
+    \item \textbf{Personalizados}: Coletas específicas para validação prática
+    \item \textbf{Sintéticos}: Dados gerados para testes controlados
 \end{itemize}
 
-\subsection{Métricas de Avaliação}
+\subsection{Métricas de Avaliação Embarcada}
 \begin{itemize}
-    \item \textbf{Desempenho}: Throughput, latência, utilização de recursos
-    \item \textbf{Energia}: Consumo, eficiência, perfil térmico
-    \item \textbf{Qualidade}: Precisão, SNR, estabilidade
-    \item \textbf{Desenvolvimento}: Complexidade, tempo, manutenibilidade
+    \item \textbf{Consumo}: Potência instantânea, energia total, eficiência (GOPS/W)
+    \item \textbf{Latência}: Tempo de resposta, throughput, jitter
+    \item \textbf{Qualidade}: Precisão, robustez, estabilidade temporal
+    \item \textbf{Viabilidade}: Custo, complexidade, escalabilidade
 \end{itemize}
 
-A próxima seção estabelece a fundamentação teórica necessária para compreensão das tecnologias envolvidas e do estado da arte em processamento hiperespectral em tempo real.
+\subsection{Aplicações de Validação}
+\begin{itemize}
+    \item \textbf{Estresse em Culturas}: Detecção de deficiências nutricionais e hídricas
+    \item \textbf{Monitoramento de Queimadas}: Identificação precoce de focos de incêndio
+    \item \textbf{Reconhecimento de Alvos}: Sistemas de vigilância e segurança
+    \item \textbf{Qualidade Ambiental}: Monitoramento de poluição e mudanças
+\end{itemize}
+
+A próxima seção estabelece a fundamentação teórica necessária para compreensão das tecnologias embarcadas envolvidas e do estado da arte em processamento hiperespectral de baixo consumo e latência.

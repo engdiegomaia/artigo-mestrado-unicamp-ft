@@ -1,5 +1,5 @@
 # Dissertação de Mestrado - UNICAMP FT
-## Classificação LULC usando Imagens Hiperespectrais de Drones
+## Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado com Foco em Aplicações Práticas
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) ![Organized](https://img.shields.io/badge/Structure-Organized-brightgreen) ![Apache license](https://img.shields.io/badge/license-Apache%202.0-blue) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
 
@@ -10,31 +10,31 @@
 
 ## 📊 Status Atual do Projeto
 
-**Etapa Atual**: ✅ **Projeto Completamente Reorganizado**  
-**Última Atualização**: 2024-12-19  
-**Progresso Geral**: 70% (Estrutura principal completa + Projeto organizado)
+**Etapa Atual**: ✅ **Projeto Completamente Reestruturado**  
+**Última Atualização**: 2024-03-19  
+**Progresso Geral**: 75% (Estrutura principal completa + Implementação em andamento)
 
 ### 🎯 Próximos Passos Imediatos:
-- Testar compilação com nova estrutura
-- Finalizar capítulos de **Resultados** e **Discussão**
-- Implementar experimentos práticos com dados reais
-- Validação da metodologia proposta
+- Finalizar implementação dos algoritmos de otimização
+- Completar simulações GHDL para FPGA
+- Validar estratégias em aplicações práticas
+- Análise comparativa de consumo energético
 
 ## 🔬 Contexto da Pesquisa
 
 ### Área de Pesquisa:
-- **Sensoriamento Remoto Hiperespectral**
-- **Classificação de Uso e Cobertura da Terra (LULC)**
-- **Agricultura de Precisão com Drones/VANTs**
-- **Processamento de Imagens e Machine Learning**
+- **Processamento Hiperespectral Embarcado**
+- **Otimização de Consumo Energético**
+- **Redução de Latência em Sistemas Embarcados**
+- **Aplicações Práticas: Agricultura, Monitoramento Ambiental, Vigilância**
 
 ### Problema de Pesquisa:
-Como melhorar a acurácia da classificação LULC utilizando imagens hiperespectrais coletadas por drones, aplicando técnicas avançadas de processamento e algoritmos de deep learning.
+Como otimizar o processamento de dados hiperespectrais em sistemas embarcados, reduzindo consumo energético e latência, mantendo a qualidade necessária para aplicações práticas.
 
 ### Hipóteses Principais:
-- **H1**: Algoritmos de deep learning superam métodos tradicionais para classificação de imagens hiperespectrais
-- **H2**: Correções radiométricas adequadas melhoram significativamente a acurácia da classificação
-- **H3**: Redução de dimensionalidade preserva informação relevante mantendo eficiência computacional
+- **H1**: Estratégias adaptativas de processamento podem reduzir significativamente o consumo energético
+- **H2**: Técnicas de processamento hierárquico podem diminuir a latência sem comprometer a qualidade
+- **H3**: Implementações em FPGA oferecem melhor eficiência energética para operações específicas
 
 ## 📁 Nova Estrutura Organizacional do Projeto
 
@@ -200,6 +200,16 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 ```
 
 ## 📈 Histórico de Mudanças Recentes
+
+### 2024-03-19:
+- ✅ **Reestruturação completa da dissertação** - Novo foco em processamento hiperespectral embarcado
+- ✅ **Título atualizado** - "Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado"
+- ✅ **Introdução reescrita** - Contextualização sobre sistemas embarcados e otimização energética
+- ✅ **Implementação expandida** - Códigos VHDL, CUDA e VPU para processamento hiperespectral
+- ✅ **Metodologia reformulada** - Foco em caracterização de datasets e simulação GHDL
+- ✅ **Simulação adicionada** - Novo capítulo com implementações FPGA, VPU e GPU
+- ✅ **Resultados atualizados** - Métricas de consumo energético e latência
+- ✅ **PDF compilado com sucesso** - Correções de codificação e formatação LaTeX
 
 ### 2024-12-19: 
 - ✅ **Reestruturação completa da dissertação** - Reescrita focada no tema correto

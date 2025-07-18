@@ -80,10 +80,10 @@
 %\autora{Nome da Autora}
 
 % Sempre deve haver um título em português:
-\titulo{Processamento Hiperespectral em Tempo Real: Validação Experimental e Análise Comparativa de Arquiteturas Computacionais para Aplicações Agrícolas e Ambientais}
+\titulo{Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado com Foco em Aplicações Práticas}
 
 % Se a língua for o inglês ou o espanhol defina:
-\title{Real-Time Hyperspectral Processing: Experimental Validation and Comparative Analysis of Computing Architectures for Agricultural and Environmental Applications}
+\title{Strategies for Power Consumption and Latency Reduction in Embedded Hyperspectral Processing with Focus on Practical Applications}
 
 % Escolha entre orientador ou orientadora e inclua os títulos:
 \orientador{Prof. Dr. Leandro Ronchini Ximenes}
@@ -169,16 +169,16 @@
 
 % Sempre deve haver um resumo em português:
 \begin{resumo}
-Este trabalho apresenta uma análise comparativa abrangente de diferentes arquiteturas computacionais (CPU, GPU, FPGA e híbridas) para processamento de imagens hiperespectrais em tempo real, com foco em aplicações agrícolas e monitoramento ambiental. A pesquisa aborda os desafios computacionais do processamento hiperespectral através de uma metodologia experimental rigorosa que avalia desempenho, eficiência energética e precisão em diferentes cenários de aplicação. São implementados e comparados algoritmos otimizados para cada arquitetura, incluindo pré-processamento, correção radiométrica, redução de dimensionalidade (PCA) e classificação avançada. A validação experimental utiliza datasets públicos (Indian Pines, Pavia University) e dados agrícolas reais, estabelecendo métricas objetivas para comparação de desempenho computacional, eficiência energética e precisão de classificação entre as diferentes arquiteturas. Os resultados fornecem diretrizes práticas para seleção de arquiteturas computacionais em aplicações hiperespectrais específicas.
+Este trabalho investiga estratégias para redução do consumo energético e da latência no processamento de dados hiperespectrais em plataformas embarcadas, com foco em aplicações práticas como agricultura de precisão, monitoramento ambiental e sistemas de vigilância. A pesquisa aborda os desafios computacionais do processamento hiperespectral através do desenvolvimento de arquiteturas e fluxos de processamento otimizados, seleção e teste de algoritmos de pré-processamento, compressão, redução de dimensionalidade e classificação, bem como a integração de técnicas de paralelização e deployment adaptativo sobre hardware restrito (FPGAs, VPUs, GPUs de baixo consumo). A metodologia inclui um processo detalhado de caracterização e seleção de datasets para simular operações reais, utilizando simulações via GHDL e experimentos em protótipos embarcados para avaliar o impacto das técnicas propostas. São priorizados sistemas capazes de operar autonomamente, com baixo consumo e respostas em tempo real, validando as estratégias em cenários práticos como detecção de estresse em lavouras, monitoramento de queimadas e reconhecimento de alvos em segurança. Os resultados fornecem diretrizes práticas, protótipos validados e métricas comparativas que contribuem para a adoção mais ampla e eficiente do processamento hiperespectral embarcado em problemas do mundo real.
 
-\textbf{Palavras-chave:} Processamento Hiperespectral, Arquiteturas Computacionais, Análise Comparativa, Tempo Real, Validação Experimental, Agricultura de Precisão, Monitoramento Ambiental.
+\textbf{Palavras-chave:} Processamento Hiperespectral Embarcado, Eficiência Energética, Latência, Sistemas Embarcados, FPGA, Aplicações Práticas, Agricultura de Precisão, Monitoramento Ambiental.
 \end{resumo}
 
 % Sempre deve haver um abstract:
 \begin{abstract}
-This work presents a comprehensive comparative analysis of different computing architectures (CPU, GPU, FPGA, and hybrid approaches) for real-time hyperspectral image processing, focusing on agricultural and environmental monitoring applications. The research addresses computational challenges in hyperspectral processing through a rigorous experimental methodology that evaluates performance, energy efficiency, and accuracy across different application scenarios. Optimized algorithms are implemented and compared for each architecture, including preprocessing, radiometric correction, dimensionality reduction (PCA), and advanced classification. Experimental validation uses public datasets (Indian Pines, Pavia University) and real agricultural data, establishing objective metrics for comparing computational performance, energy efficiency, and classification accuracy among different architectures. The results provide practical guidelines for selecting computing architectures in specific hyperspectral applications.
+This work investigates strategies for reducing energy consumption and latency in hyperspectral data processing on embedded platforms, focusing on practical applications such as precision agriculture, environmental monitoring, and surveillance systems. The research addresses computational challenges in hyperspectral processing through the development of optimized architectures and processing flows, selection and testing of preprocessing, compression, dimensionality reduction, and classification algorithms, as well as the integration of parallelization techniques and adaptive deployment on constrained hardware (FPGAs, VPUs, low-power GPUs). The methodology includes a detailed process for characterizing and selecting datasets to simulate real operations, using GHDL simulations and experiments on embedded prototypes to evaluate the impact of proposed techniques. Systems capable of autonomous operation with low power consumption and real-time responses are prioritized, validating strategies in practical scenarios such as crop stress detection, fire monitoring, and target recognition in security applications. The results provide practical guidelines, validated prototypes, and comparative metrics that contribute to broader and more efficient adoption of embedded hyperspectral processing in real-world problems.
 
-\textbf{Keywords:} Hyperspectral Processing, Computing Architectures, Comparative Analysis, Real-Time, Experimental Validation, Precision Agriculture, Environmental Monitoring.
+\textbf{Keywords:} Embedded Hyperspectral Processing, Energy Efficiency, Latency, Embedded Systems, FPGA, Practical Applications, Precision Agriculture, Environmental Monitoring.
 \end{abstract}
 
 % Se houver um resumo em espanhol, descomente as linhas a seguir:
@@ -220,9 +220,14 @@ This work presents a comprehensive comparative analysis of different computing a
 \include{desenvolvimento}
 
 % O comando a seguir inclui o arquivo implementacao.tex
-% que contém o capítulo de implementações. 
+% que contém o capítulo de estratégias de otimização. 
 % Detalhe: não precisa incluir a extensão .tex
 \include{implementacao}
+
+% O comando a seguir inclui o arquivo simulacao.tex
+% que contém o capítulo de implementação e simulação. 
+% Detalhe: não precisa incluir a extensão .tex
+\include{simulacao}
 
 % O comando a seguir inclui o arquivo resultados.tex
 % que contém o capítulo de resultados e análise. 
