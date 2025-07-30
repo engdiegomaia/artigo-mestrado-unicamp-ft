@@ -4,6 +4,17 @@ levantamento_teorico/
 meus_trabalhos/ 
 dissertacao-versoes/
 
+# Artigos e documentos convertidos
+documentos/artigos/
+documentos/artigos_texto/
+
+# Scripts Python gerados
+pdf_to_text_converter.py
+converter_artigos_projeto.py
+compila_python.py
+compila_simples.py
+compilar.py
+
 # Arquivos de compilação LaTeX
 compilacao/
 dist/*.pdf
