@@ -1,242 +1,122 @@
-% Aqui começa o capítulo de Introdução.
-% Use o comando \label para definir um rótulo, 
-% caso seja necessário referenciar esse capítulo
-% posteriormente.
-\chapter{Introdução}\label{chp:Introducao}
+%% Capítulo 1: Introdução
+%% Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado
 
-% Contextualização do problema baseada na nova proposta
-O uso de imagens hiperespectrais em campo tem revolucionado áreas como agricultura de precisão, monitoramento ambiental e sistemas de vigilância, permitindo a identificação detalhada de materiais e condições ambientais em tempo real. No entanto, a aplicação prática desse potencial é frequentemente limitada pelos requisitos computacionais elevados e pelas restrições energéticas dos sistemas embarcados, especialmente em cenários de operação autônoma ou remota.
+\section{Contextualização}
 
-O processamento de dados hiperespectrais em plataformas embarcadas apresenta desafios únicos que vão além da simples análise de desempenho computacional. A necessidade de operar com baixo consumo energético, latência reduzida e em condições ambientais adversas exige estratégias específicas de otimização que considerem tanto aspectos algorítmicos quanto arquiteturais. Sistemas embarcados, incluindo FPGAs, VPUs (Vision Processing Units) e GPUs de baixo consumo, oferecem oportunidades para implementações eficientes, mas requerem abordagens de desenvolvimento especializadas.
+O processamento de imagens hiperespectrais representa uma das fronteiras mais desafiadoras na área de sensoriamento remoto e visão computacional. Estas imagens, compostas por centenas de bandas espectrais contínuas que capturam informações detalhadas sobre a reflectância dos materiais, oferecem capacidades de análise sem precedentes para aplicações em agricultura de precisão, monitoramento ambiental, vigilância e exploração mineral \cite{lou2024}. No entanto, a riqueza espectral destas imagens vem acompanhada de desafios computacionais significativos, especialmente quando o processamento deve ser realizado em sistemas embarcados com restrições de energia, memória e capacidade de processamento.
 
-A integração de técnicas de paralelização, deployment adaptativo e otimizações específicas para hardware restrito emerge como fundamental para viabilizar aplicações práticas efetivas. Além disso, a caracterização adequada de datasets que simulem operações reais torna-se crítica para validar as estratégias propostas em cenários que reflitam fielmente as condições de campo.
+A demanda por processamento hiperespectral em tempo real tem crescido exponencialmente devido ao avanço de plataformas móveis como UAVs (Unmanned Aerial Vehicles) e satélites CubeSat \cite{uav_review_2024}. Estas aplicações exigem que algoritmos tradicionalmente executados em servidores de alto desempenho sejam adaptados para ambientes com severas limitações de recursos. O paradigma de edge computing se torna, portanto, essencial para viabilizar aplicações práticas onde a latência de comunicação com centros de processamento remotos é proibitiva ou onde a autonomia energética é crítica.
 
-\section{Motivação}\label{sec:motivacao}
+\section{Caracterização do Problema}
 
-A motivação para esta pesquisa deriva da crescente demanda por sistemas hiperespectrais embarcados capazes de operar autonomamente em aplicações críticas do mundo real:
+O processamento de imagens hiperespectrais em sistemas embarcados enfrenta três desafios fundamentais interconectados:
 
-\subsection{Desafios dos Sistemas Embarcados Hiperespectrais}
-O processamento hiperespectral embarcado enfrenta limitações fundamentais que diferem significativamente dos ambientes computacionais tradicionais:
+\subsection{Volume de Dados Excessivo}
 
-\begin{itemize}
-    \item \textbf{Restrições Energéticas}: Operação com bateria limitada em aplicações de campo
-    \item \textbf{Limitações de Memória}: Capacidade de armazenamento e RAM reduzidas
-    \item \textbf{Processamento em Tempo Real}: Necessidade de respostas imediatas para tomada de decisão
-    \item \textbf{Condições Ambientais}: Operação em temperaturas extremas, umidade e vibração
-    \item \textbf{Conectividade Limitada}: Processamento local sem dependência de comunicação externa
-\end{itemize}
+Uma única imagem hiperespectral típica do sensor AVIRIS contém 614×512×224 pixels/bandas, resultando em aproximadamente 69 milhões de valores espectrais por frame \cite{aviris_2020}. Para aplicações em tempo real que exigem processamento de 25-30 fps, isto representa um throughput de dados brutos superior a 2 GB/s, excedendo significativamente a capacidade de processamento e bandwidth de memória de sistemas embarcados típicos.
 
-\subsection{Aplicações Práticas Críticas}
-As aplicações alvo desta pesquisa apresentam requisitos específicos que justificam o desenvolvimento de soluções otimizadas:
+\subsection{Complexidade Computacional}
 
-\subsubsection{Agricultura de Precisão}
-\begin{itemize}
-    \item \textbf{Detecção de Estresse em Culturas}: Identificação precoce de deficiências nutricionais, hídricas ou patógenos
-    \item \textbf{Monitoramento Autônomo}: Sistemas embarcados em drones ou robôs agrícolas
-    \item \textbf{Decisões em Tempo Real}: Aplicação variável de insumos baseada em análise imediata
-\end{itemize}
+Os algoritmos de processamento hiperespectral apresentam complexidades computacionais elevadas. Técnicas de classificação baseadas em machine learning tradicionais possuem complexidade O(n²) a O(n³), onde n representa o número de bandas espectrais \cite{lim2022}. Para métodos de compressive sensing, amplamente utilizados para redução de dados, o algoritmo CGNE (Conjugate Gradient for Normal Equation) apresenta complexidade O(n³) nas operações matriciais, tornando-se computacionalmente proibitivo para implementações embarcadas diretas.
 
-\subsubsection{Monitoramento Ambiental}
-\begin{itemize}
-    \item \textbf{Detecção de Queimadas}: Identificação precoce de focos de incêndio em áreas remotas
-    \item \textbf{Qualidade da Água}: Monitoramento contínuo de corpos d'água
-    \item \textbf{Mudanças na Cobertura Vegetal}: Acompanhamento de desmatamento ou degradação
-\end{itemize}
+\subsection{Restrições Energéticas}
 
-\subsubsection{Sistemas de Vigilância}
-\begin{itemize}
-    \item \textbf{Reconhecimento de Materiais}: Identificação de substâncias específicas
-    \item \textbf{Detecção de Camuflagem}: Identificação de objetos ocultos
-    \item \textbf{Monitoramento de Fronteiras}: Sistemas autônomos de vigilância
-\end{itemize}
+Sistemas embarcados típicos operam com orçamentos energéticos de 5-20W, contrastando drasticamente com os 200-1000W consumidos por servidores de alto desempenho tradicionalmente utilizados para processamento hiperespectral \cite{hwang2011}. Esta limitação torna-se crítica em aplicações UAV onde a autonomia de voo é diretamente afetada pelo consumo energético dos sistemas de processamento.
 
-\subsection{Necessidade de Caracterização de Datasets}
-A validação efetiva de estratégias de processamento embarcado requer datasets que reflitam fielmente as condições operacionais reais:
+\section{Lacunas na Literatura}
 
-\begin{itemize}
-    \item \textbf{Variabilidade de Condições}: Diferentes iluminações, clima e características ambientais
-    \item \textbf{Representatividade}: Correspondência com cenários de aplicação específicos
-    \item \textbf{Diversidade}: Cobertura de diferentes materiais e situações
-    \item \textbf{Metadados Completos}: Informações auxiliares para validação
-\end{itemize}
+A análise sistemática de 20 artigos científicos recentes revelou quatro lacunas principais na literatura atual \cite{lou2024, uav_review_2024}:
 
-\section{Objetivos}\label{sec:objetivos}
+\begin{enumerate}
+\item \textbf{Ausência de Frameworks Integrados}: Embora existam soluções pontuais para otimização específica (GPU, FPGA, ou algoritmos isolados), não há frameworks que integrem sistematicamente múltiplas técnicas de otimização em sistemas heterogêneos.
+
+\item \textbf{Falta de Validação Prática}: A maioria dos trabalhos limita-se a validações em datasets sintéticos ou de laboratório, sem demonstração em aplicações práticas com restrições reais de tempo e energia.
+
+\item \textbf{Trade-offs Não Quantificados}: As relações entre precisão, consumo energético e latência não são adequadamente caracterizadas, dificultando a seleção de técnicas apropriadas para aplicações específicas.
+
+\item \textbf{Metodologias de Codesign Limitadas}: Embora o codesign HW/SW seja reconhecido como fundamental \cite{hwang2011}, faltam metodologias sistemáticas para particionamento otimizado entre CPU, GPU e FPGA em aplicações hiperespectrais.
+\end{enumerate}
+
+\section{Objetivos da Pesquisa}
 
 \subsection{Objetivo Geral}
-Investigar, propor e validar estratégias para a redução do consumo energético e da latência no processamento de dados hiperespectrais em plataformas embarcadas, desenvolvendo arquiteturas e fluxos de processamento otimizados para aplicações práticas em agricultura de precisão, monitoramento ambiental e sistemas de vigilância, com validação através de simulações e experimentos em protótipos embarcados.
+
+Desenvolver uma arquitetura de sistema heterogêneo integrado (CPU+GPU+FPGA) para redução simultânea de consumo energético e latência no processamento hiperespectral embarcado, mantendo a qualidade necessária para aplicações práticas.
 
 \subsection{Objetivos Específicos}
+
 \begin{enumerate}
-    \item \textbf{Desenvolver estratégias de otimização energética}:
-    \begin{itemize}
-        \item Técnicas de redução de consumo em algoritmos hiperespectrais
-        \item Otimizações específicas para FPGAs, VPUs e GPUs de baixo consumo
-        \item Estratégias de deployment adaptativo baseado em recursos disponíveis
-        \item Técnicas de compressão e redução de dimensionalidade eficientes
-    \end{itemize}
-    
-    \item \textbf{Implementar arquiteturas de baixa latência}:
-    \begin{itemize}
-        \item Designs VHDL customizados para operações críticas
-        \item Técnicas de paralelização para processamento em tempo real
-        \item Otimização de fluxos de dados e gerenciamento de memória
-        \item Integração de técnicas de pré-processamento embarcado
-    \end{itemize}
-    
-    \item \textbf{Estabelecer metodologia de caracterização de datasets}:
-    \begin{itemize}
-        \item Processo detalhado de seleção de datasets representativos
-        \item Critérios de avaliação para correspondência com operações reais
-        \item Técnicas de preparação e adaptação de dados
-        \item Validação de fidelidade operacional
-    \end{itemize}
-    
-    \item \textbf{Desenvolver framework de simulação embarcada}:
-    \begin{itemize}
-        \item Ambiente de simulação via GHDL para FPGAs
-        \item Ferramentas de medição de consumo e latência
-        \item Simulação de condições operacionais reais
-        \item Validação de protótipos embarcados
-    \end{itemize}
-    
-    \item \textbf{Validar em aplicações práticas específicas}:
-    \begin{itemize}
-        \item Detecção de estresse em lavouras
-        \item Monitoramento de queimadas em tempo real
-        \item Reconhecimento de alvos em sistemas de segurança
-        \item Avaliação de desempenho em condições operacionais
-    \end{itemize}
-    
-    \item \textbf{Estabelecer diretrizes para deployment embarcado}:
-    \begin{itemize}
-        \item Critérios de seleção de hardware apropriado
-        \item Estratégias de otimização por aplicação
-        \item Trade-offs entre precisão, consumo e latência
-        \item Protocolos de implementação e validação
-    \end{itemize}
+\item \textbf{Caracterizar quantitativamente} os trade-offs entre precisão, consumo energético e latência em algoritmos de processamento hiperespectral embarcado.
+
+\item \textbf{Implementar e otimizar} técnicas comprovadas de redução de dados: compressive sensing, seleção inteligente de bandas EMCR, e precisão reduzida FP16.
+
+\item \textbf{Desenvolver uma metodologia de codesign} sistemática para particionamento otimizado HW/SW baseada em profiling detalhado e análise de gargalos computacionais.
+
+\item \textbf{Integrar as técnicas otimizadas} em um pipeline heterogêneo com módulos especializados: FPGA para pré-processamento, GPU para reconstrução/extração de características, e CPU para classificação/controle.
+
+\item \textbf{Validar experimentalmente} o sistema proposto em aplicações práticas de agricultura de precisão com UAVs, comparando com o estado da arte em termos de performance, consumo e precisão.
 \end{enumerate}
 
-\section{Contribuições Esperadas}\label{sec:contribuicoes}
+\section{Hipóteses de Pesquisa}
 
-Esta pesquisa visa contribuir para o avanço do estado da arte em processamento hiperespectral embarcado através de:
+Com base na análise bibliográfica sistemática, três hipóteses principais orientam esta pesquisa:
 
-\subsection{Contribuições Metodológicas}
-\begin{enumerate}
-    \item \textbf{Metodologia de caracterização de datasets}: Processo sistemático para:
-    \begin{itemize}
-        \item Seleção de datasets representativos
-        \item Validação de fidelidade operacional
-        \item Preparação para simulação de condições reais
-        \item Critérios de adequação por aplicação
-    \end{itemize}
-    
-    \item \textbf{Framework de avaliação embarcada}: Metodologia para:
-    \begin{itemize}
-        \item Medição de consumo energético
-        \item Análise de latência em tempo real
-        \item Validação de qualidade de resultados
-        \item Avaliação de trade-offs sistêmicos
-    \end{itemize}
-\end{enumerate}
+\textbf{H1}: A integração sistemática de técnicas de compressive sensing (redução 50-70\% dos dados) \cite{lim2022}, seleção inteligente de bandas EMCR (redução 80\% do processamento) \cite{martins2019}, e implementações heterogêneas otimizadas pode reduzir o consumo energético em pelo menos 20x comparado a implementações CPU convencionais.
+
+\textbf{H2}: Um pipeline heterogêneo com módulos especializados (FPGA para pré-processamento, GPU para reconstrução, CPU para classificação) pode atingir latências inferiores a 50ms/frame mantendo precisão superior a 95\%, viabilizando aplicações em tempo real.
+
+\textbf{H3}: A metodologia de codesign baseada em profiling sistemático e particionamento orientado por gargalos computacionais pode identificar automaticamente a configuração otimizada para diferentes cenários de aplicação.
+
+\section{Contribuições Esperadas}
+
+Esta pesquisa visa contribuir para o estado da arte em processamento hiperespectral embarcado através de:
 
 \subsection{Contribuições Técnicas}
-\begin{enumerate}
-    \item \textbf{Estratégias de otimização energética}: Desenvolvimento de:
-    \begin{itemize}
-        \item Algoritmos de baixo consumo para processamento hiperespectral
-        \item Técnicas de deployment adaptativo
-        \item Otimizações específicas para hardware embarcado
-        \item Técnicas de compressão eficientes
-    \end{itemize}
-    
-    \item \textbf{Arquiteturas de baixa latência}: Implementação de:
-    \begin{itemize}
-        \item Designs VHDL otimizados via GHDL
-        \item Fluxos de processamento paralelos
-        \item Gerenciamento eficiente de memória
-        \item Técnicas de pré-processamento embarcado
-    \end{itemize}
-    
-    \item \textbf{Protótipos validados}: Demonstração de:
-    \begin{itemize}
-        \item Sistemas embarcados funcionais
-        \item Validação em aplicações reais
-        \item Métricas comparativas de desempenho
-        \item Protocolos de implementação
-    \end{itemize}
-\end{enumerate}
-
-\subsection{Contribuições Práticas}
-\begin{enumerate}
-    \item \textbf{Diretrizes de implementação}: Estabelecimento de:
-    \begin{itemize}
-        \item Critérios de seleção de hardware
-        \item Estratégias de otimização por aplicação
-        \item Trade-offs entre precisão, consumo e latência
-        \item Protocolos de validação e deployment
-    \end{itemize}
-    
-    \item \textbf{Viabilização de aplicações práticas}: Contribuição para:
-    \begin{itemize}
-        \item Adoção mais ampla de sistemas hiperespectrais embarcados
-        \item Redução de barreiras técnicas e econômicas
-        \item Transferência de tecnologia para o setor produtivo
-        \item Desenvolvimento de produtos comerciais viáveis
-    \end{itemize}
-\end{enumerate}
-
-\section{Organização do Texto}\label{sec:organizacao}
-
-Esta dissertação está estruturada em sete capítulos, seguindo o cronograma de agosto/2025 a agosto/2026:
 
 \begin{itemize}
-    \item \textbf{Capítulo 2 - Levantamento Bibliográfico}: Revisão da literatura sobre processamento hiperespectral embarcado, eficiência energética, sistemas de baixa latência e aplicações práticas.
-    
-    \item \textbf{Capítulo 3 - Metodologia e Caracterização de Datasets}: Detalha a metodologia de caracterização de datasets para simular operações reais, incluindo critérios de seleção, preparação e validação de dados.
-    
-    \item \textbf{Capítulo 4 - Estratégias de Otimização}: Apresenta as estratégias desenvolvidas para redução de consumo energético e latência, incluindo algoritmos otimizados e técnicas de deployment adaptativo.
-    
-    \item \textbf{Capítulo 5 - Implementação e Simulação}: Descreve as implementações em hardware embarcado, simulações via GHDL e desenvolvimento de protótipos.
-    
-    \item \textbf{Capítulo 6 - Resultados e Validação}: Apresenta resultados experimentais em aplicações práticas, incluindo métricas de consumo, latência e precisão.
-    
-    \item \textbf{Capítulo 7 - Conclusões e Diretrizes}: Sumariza as contribuições, apresenta diretrizes para deployment embarcado e recomendações para trabalhos futuros.
+\item \textbf{Framework Integrado de Otimização}: Primeira abordagem sistemática que combina compressive sensing, seleção de bandas, codesign HW/SW e implementações heterogêneas em um sistema unificado.
+
+\item \textbf{Algoritmos Adaptativos}: Desenvolvimento de algoritmos que ajustam dinamicamente a qualidade vs recursos conforme a disponibilidade energética e requisitos de latência.
+
+\item \textbf{Metodologia de Codesign}: Framework sistemático para particionamento HW/SW baseado em análise quantitativa de gargalos e profiling detalhado.
 \end{itemize}
 
-\section{Infraestrutura Experimental}\label{sec:infraestrutura}
+\subsection{Contribuições Experimentais}
 
-A validação experimental será realizada utilizando:
-
-\subsection{Plataformas Embarcadas}
 \begin{itemize}
-    \item \textbf{FPGA}: Simulação via GHDL e síntese em hardware (Xilinx/Intel)
-    \item \textbf{VPU}: Intel Movidius/Neural Compute Stick
-    \item \textbf{GPU Embarcada}: NVIDIA Jetson Series
-    \item \textbf{SoC}: ARM-based com aceleradores específicos
+\item \textbf{Validação Prática}: Primeira demonstração de processamento hiperespectral em tempo real (>25 fps) em plataforma embarcada com consumo <20W.
+
+\item \textbf{Benchmarks Quantitativos}: Caracterização detalhada dos trade-offs precisão vs consumo vs latência usando datasets padrão (AVIRIS, Indian Pines, Pavia University).
+
+\item \textbf{Aplicação Agrícola}: Validação em cenário real de agricultura de precisão com UAV, demonstrando viabilidade operacional.
 \end{itemize}
 
-\subsection{Datasets Caracterizados}
-\begin{itemize}
-    \item \textbf{Agricultura}: Indian Pines, Salinas, Pavia University (adaptados)
-    \item \textbf{Ambiental}: Datasets AVIRIS, ROSIS (processados)
-    \item \textbf{Personalizados}: Coletas específicas para validação prática
-    \item \textbf{Sintéticos}: Dados gerados para testes controlados
-\end{itemize}
+\section{Metodologia Geral}
 
-\subsection{Métricas de Avaliação Embarcada}
-\begin{itemize}
-    \item \textbf{Consumo}: Potência instantânea, energia total, eficiência (GOPS/W)
-    \item \textbf{Latência}: Tempo de resposta, throughput, jitter
-    \item \textbf{Qualidade}: Precisão, robustez, estabilidade temporal
-    \item \textbf{Viabilidade}: Custo, complexidade, escalabilidade
-\end{itemize}
+A pesquisa seguirá uma abordagem experimental estruturada em quatro fases principais:
 
-\subsection{Aplicações de Validação}
-\begin{itemize}
-    \item \textbf{Estresse em Culturas}: Detecção de deficiências nutricionais e hídricas
-    \item \textbf{Monitoramento de Queimadas}: Identificação precoce de focos de incêndio
-    \item \textbf{Reconhecimento de Alvos}: Sistemas de vigilância e segurança
-    \item \textbf{Qualidade Ambiental}: Monitoramento de poluição e mudanças
-\end{itemize}
+\textbf{Fase 1 - Análise e Baseline} (2 meses): Profiling sistemático de algoritmos hiperespectrais em plataformas embarcadas, identificação de gargalos computacionais e estabelecimento de baselines de performance.
 
-A próxima seção estabelece a fundamentação teórica necessária para compreensão das tecnologias embarcadas envolvidas e do estado da arte em processamento hiperespectral de baixo consumo e latência.
+\textbf{Fase 2 - Implementação de Módulos Core} (4 meses): Desenvolvimento dos módulos especializados FPGA (pré-processamento), GPU (reconstrução/extração), e CPU (classificação/controle) com otimizações específicas.
+
+\textbf{Fase 3 - Integração e Otimização} (3 meses): Integração dos módulos em pipeline heterogêneo, implementação de balanceamento de carga dinâmico e gestão inteligente de energia.
+
+\textbf{Fase 4 - Validação e Refinamento} (2 meses): Validação experimental em aplicações práticas, comparação com estado da arte e refinamento dos algoritmos adaptativos.
+
+\section{Estrutura da Dissertação}
+
+Esta dissertação está organizada em sete capítulos:
+
+\textbf{Capítulo 2} apresenta a revisão bibliográfica detalhada baseada na análise de 20 artigos científicos, caracterizando o estado da arte em processamento hiperespectral embarcado e identificando as principais técnicas de otimização.
+
+\textbf{Capítulo 3} detalha a metodologia proposta, incluindo a arquitetura do sistema heterogêneo, técnicas de otimização implementadas e protocolo experimental.
+
+\textbf{Capítulo 4} descreve a implementação dos módulos especializados, otimizações específicas para cada plataforma (FPGA/GPU/CPU) e integração do sistema.
+
+\textbf{Capítulo 5} apresenta os resultados experimentais, incluindo análises de performance, consumo energético, latência e precisão comparados ao estado da arte.
+
+\textbf{Capítulo 6} discute os resultados obtidos, validação das hipóteses de pesquisa e implicações para aplicações práticas.
+
+\textbf{Capítulo 7} apresenta as conclusões principais, contribuições da pesquisa e direcionamentos para trabalhos futuros.
+
+Esta estrutura garante uma apresentação lógica e sistemática dos conceitos, metodologia, implementação e resultados, permitindo a reprodutibilidade da pesquisa e facilitando futuras extensões do trabalho.

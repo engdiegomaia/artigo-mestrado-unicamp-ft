@@ -1,449 +1,62 @@
-% Capitulo de Estrategias de Otimizacao
-\chapter{Estrategias de Otimizacao}\label{chp:estrategias}
-
-Este capitulo apresenta as estrategias desenvolvidas para reducao de consumo energetico e latencia no processamento hiperespectral embarcado. As estrategias sao organizadas em tecnicas algoritmicas, otimizacoes de hardware e estrategias de deployment adaptativo, com foco nas aplicacoes praticas identificadas na metodologia.
-
-\section{Estrategias de Reducao de Consumo Energetico}\label{sec:reducao_consumo_estrategias}
-
-A reducao do consumo energetico e abordada atraves de multiplas frentes que trabalham em sinergia para maximizar a eficiencia sem comprometer significativamente a qualidade dos resultados.
-
-\subsection{Otimizacoes Algoritmicas}
-
-\subsubsection{Compressao Adaptativa Espectral}
-Desenvolvimento de algoritmos de compressao especificos para dados hiperespectrais que adaptam parametros baseados nas caracteristicas locais:
-
-\paragraph{Compressao Baseada em Correlacao Espectral}
-Exploracao da alta correlacao entre bandas adjacentes para reducao de dados processados:
-\begin{itemize}
-    \item Analise de correlacao em tempo real
-    \item Selecao dinamica de bandas representativas
-    \item Interpolacao eficiente para reconstrucao
-    \item Threshold adaptativo baseado na aplicacao
-\end{itemize}
-
-Algoritmo de selecao adaptativa:
-\begin{lstlisting}[language=Python]
-def adaptive_band_selection(hypercube, correlation_threshold=0.95):
-    selected_bands = [0]  # Sempre incluir primeira banda
-    for i in range(1, hypercube.shape[2]):
-        max_correlation = 0
-        for selected in selected_bands:
-            corr = correlate_bands(hypercube[:,:,i], 
-                                 hypercube[:,:,selected])
-            max_correlation = max(max_correlation, corr)
-        
-        if max_correlation < correlation_threshold:
-            selected_bands.append(i)
-    
-    return selected_bands
-\end{lstlisting}
-
-\paragraph{Quantizacao Inteligente}
-Implementacao de quantizacao adaptativa que preserva informacoes criticas:
-\begin{itemize}
-    \item Analise de distribuicao de intensidades por banda
-    \item Quantizacao nao-uniforme baseada em histogramas
-    \item Preservacao de bordas espectrais criticas
-    \item Otimizacao para hardware de precisao limitada
-\end{itemize}
-
-\subsubsection{Reducao de Dimensionalidade Energeticamente Eficiente}
-Implementacoes otimizadas de tecnicas de reducao dimensional para hardware embarcado:
-
-\paragraph{PCA Incremental para Streaming}
-Versao otimizada de PCA que opera em dados streaming com baixo consumo:
-\begin{itemize}
-    \item Atualizacao incremental de matrizes de covariancia
-    \item Aproximacoes numericamente estaveis
-    \item Decomposicao singular truncada
-    \item Caching inteligente de componentes principais
-\end{itemize}
-
-Implementacao incremental:
-\begin{lstlisting}[language=Python]
-class IncrementalPCA:
-    def __init__(self, n_components, batch_size=100):
-        self.n_components = n_components
-        self.batch_size = batch_size
-        self.mean_ = None
-        self.components_ = None
-        self.n_samples_seen_ = 0
-    
-    def partial_fit(self, X):
-        # Atualizacao incremental eficiente
-        if self.mean_ is None:
-            self.mean_ = np.mean(X, axis=0)
-            self.components_ = self._initial_pca(X)
-        else:
-            self._update_pca(X)
-        
-        self.n_samples_seen_ += X.shape[0]
-    
-    def _update_pca(self, X):
-        # Algoritmo de atualizacao O(d^2) ao inves de O(nd^2)
-        pass
-\end{lstlisting}
-
-\paragraph{Feature Selection Baseada em Entropia}
-Selecao de caracteristicas espectrais baseada em criterios de informacao:
-\begin{itemize}
-    \item Calculo eficiente de entropia espectral
-    \item Selecao gulosa de bandas informativas
-    \item Balanceamento entre informacao e custo computacional
-    \item Adaptacao dinamica aos tipos de alvos
-\end{itemize}
-
-\subsubsection{Processamento Hierarquico Adaptativo}
-Implementacao de estrategias de processamento em multiplas resolucoes:
-
-\paragraph{Piramide de Processamento}
-Arquitetura hierarquica que processa dados em diferentes niveis de detalhe:
-\begin{enumerate}
-    \item \textbf{Nivel Grosseiro}: Analise rapida de toda a cena
-    \item \textbf{Nivel Medio}: Processamento de regioes de interesse
-    \item \textbf{Nivel Fino}: Analise detalhada de alvos especificos
-\end{enumerate}
-
-\paragraph{Trigger Inteligente}
-Sistema de decisao que determina quais regioes necessitam processamento detalhado:
-\begin{itemize}
-    \item Deteccao de anomalias espectrais
-    \item Analise de variancia local
-    \item Classificacao preliminar rapida
-    \item Threshold adaptativos por aplicacao
-\end{itemize}
-
-\subsection{Otimizacoes de Hardware}
-
-\subsubsection{Gerenciamento Dinamico de Energia}
-Implementacao de tecnicas que ajustam dinamicamente o consumo baseado na carga:
-
-\paragraph{DVFS (Dynamic Voltage and Frequency Scaling)}
-Controle adaptativo de frequencia e voltagem:
-\begin{itemize}
-    \item Monitoramento continuo de carga computacional
-    \item Predicao de demanda baseada em historico
-    \item Ajuste automatico de parametros de clock
-    \item Minimizacao de overhead de transicao
-\end{itemize}
-
-\paragraph{Power Gating Seletivo}
-Desligamento seletivo de componentes nao utilizados:
-\begin{itemize}
-    \item Analise de dependencias entre modulos
-    \item Cronograma de ativacao otimizado
-    \item Minimizacao de latencia de wake-up
-    \item Balanceamento entre economia e disponibilidade
-\end{itemize}
-
-\subsubsection{Precisao Aritmetica Adaptativa}
-Otimizacao da representacao numerica baseada nos requisitos de precisao:
-
-\paragraph{Mixed-Precision Computing}
-Uso de diferentes precisoes para diferentes operacoes:
-\begin{itemize}
-    \item Analise de sensibilidade por operacao
-    \item FP16 para operacoes intermediarias
-    \item INT8 para operacoes de baixa sensibilidade
-    \item FP32 apenas para calculos criticos
-\end{itemize}
-
-\paragraph{Aproximacao Controlada}
-Implementacao de aproximacoes matematicas com erro controlado:
-\begin{itemize}
-    \item Tabelas de lookup para funcoes transcendentais
-    \item Aproximacoes polinomiais eficientes
-    \item Controle adaptativo de erro
-    \item Validacao continua de qualidade
-\end{itemize}
-
-\section{Estrategias de Reducao de Latencia}\label{sec:reducao_latencia_estrategias}
-
-A reducao de latencia e crucial para aplicacoes em tempo real e e abordada atraves de paralelizacao eficiente e otimizacoes de pipeline.
-
-\subsection{Paralelizacao Hierarquica}
-
-\subsubsection{Paralelizacao Espectral}
-Exploracao do paralelismo natural dos dados hiperespectrais:
-
-\paragraph{Processamento de Bandas Independentes}
-Algoritmos que permitem processamento simultaneo de multiplas bandas:
-\begin{itemize}
-    \item Identificacao de dependencias minimas
-    \item Particionamento otimizado do espectro
-    \item Sincronizacao eficiente entre threads
-    \item Balanceamento de carga dinamico
-\end{itemize}
-
-\paragraph{Pipeline Espectral}
-Implementacao de pipeline que processa bandas em estagios sobrepostos:
-\begin{itemize}
-    \item Analise de dependencias temporais
-    \item Buffers de sincronizacao otimizados
-    \item Predicao de stalls de pipeline
-    \item Maximizacao de throughput
-\end{itemize}
-
-\subsubsection{Paralelizacao Espacial}
-Divisao eficiente do processamento por regioes espaciais:
-
-\paragraph{Tiling Adaptativo}
-Divisao inteligente da imagem em tiles para processamento paralelo:
-\begin{itemize}
-    \item Analise de complexidade local
-    \item Tamanho de tile adaptativo
-    \item Overlapping otimizado para evitar artefatos
-    \item Load balancing baseado em complexidade
-\end{itemize}
-
-Implementacao de tiling adaptativo:
-\begin{lstlisting}[language=Python]
-def adaptive_tiling(image, complexity_map, max_tile_size=256):
-    tiles = []
-    current_complexity = 0
-    current_tile_size = max_tile_size
-    
-    for region in image_regions:
-        local_complexity = complexity_map[region]
-        
-        # Ajustar tamanho do tile baseado na complexidade
-        if local_complexity > threshold_high:
-            current_tile_size = max_tile_size // 2
-        elif local_complexity < threshold_low:
-            current_tile_size = max_tile_size
-        
-        tiles.append(create_tile(region, current_tile_size))
-    
-    return tiles
-\end{lstlisting}
-
-\paragraph{Streaming Spatial}
-Processamento continuo de dados espaciais conforme sao adquiridos:
-\begin{itemize}
-    \item Buffer circular para dados de entrada
-    \item Processamento overlap entre aquisicao e analise
-    \item Predicao de proximas regioes de interesse
-    \item Minimizacao de latencia sensor-to-output
-\end{itemize}
-
-\subsection{Otimizacao de Pipeline}
-
-\subsubsection{Pipeline Assincrono}
-Implementacao de pipeline que permite processamento nao-bloqueante:
-
-\paragraph{Multi-Stage Pipeline}
-Divisao do processamento em estagios independentes:
-\begin{enumerate}
-    \item \textbf{Estagio 1}: Aquisicao e pre-processamento basico
-    \item \textbf{Estagio 2}: Correcao radiometrica e calibracao
-    \item \textbf{Estagio 3}: Reducao de dimensionalidade
-    \item \textbf{Estagio 4}: Classificacao e pos-processamento
-    \item \textbf{Estagio 5}: Geracao de saida e comunicacao
-\end{enumerate}
-
-\paragraph{Balanceamento de Pipeline}
-Otimizacao da carga computacional entre estagios:
-\begin{itemize}
-    \item Analise de gargalos por estagio
-    \item Redistribuicao de operacoes
-    \item Buffering adaptativo entre estagios
-    \item Monitoramento continuo de desempenho
-\end{itemize}
-
-\subsubsection{Predicao e Prefetching}
-Tecnicas que antecipam necessidades futuras de processamento:
-
-\paragraph{Predicao de Padroes}
-Analise de padroes historicos para antecipacao:
-\begin{itemize}
-    \item Analise temporal de regioes processadas
-    \item Predicao de movimentacao de alvos
-    \item Antecipacao de mudancas espectrais
-    \item Cache inteligente de resultados
-\end{itemize}
-
-\paragraph{Prefetching Adaptativo}
-Carregamento antecipado de dados baseado em predicoes:
-\begin{itemize}
-    \item Analise de padroes de acesso
-    \item Predicao de proximas requisicoes
-    \item Gerenciamento inteligente de cache
-    \item Minimizacao de cache misses
-\end{itemize}
-
-\section{Deployment Adaptativo}\label{sec:deployment_adaptativo}
-
-O deployment adaptativo permite que o sistema ajuste automaticamente suas estrategias baseado nos recursos disponiveis e requisitos da aplicacao.
-
-\subsection{Configuracao Dinamica}
-
-\subsubsection{Resource-Aware Configuration}
-Sistema que ajusta configuracoes baseado nos recursos disponiveis:
-
-\paragraph{Profiling Automatico}
-Analise automatica da plataforma de execucao:
-\begin{itemize}
-    \item Deteccao de tipo de hardware (FPGA, VPU, GPU)
-    \item Analise de recursos disponiveis (memoria, computacao)
-    \item Medicao de baseline de desempenho
-    \item Caracterizacao termica e energetica
-\end{itemize}
-
-\paragraph{Configuration Templates}
-Templates pre-configurados para diferentes cenarios:
-\begin{itemize}
-    \item Configuracao para alta precisao
-    \item Configuracao para baixo consumo
-    \item Configuracao para baixa latencia
-    \item Configuracao balanceada
-\end{itemize}
-
-\subsubsection{Adaptive Quality Scaling}
-Ajuste automatico da qualidade baseado em restricoes:
-
-\paragraph{Quality-Energy Trade-off}
-Sistema que balanceava qualidade e consumo:
-\begin{itemize}
-    \item Monitoramento continuo de energia disponivel
-    \item Ajuste dinamico de parametros de qualidade
-    \item Feedback loop para otimizacao continua
-    \item Garantia de requisitos minimos de qualidade
-\end{itemize}
-
-\paragraph{Graceful Degradation}
-Estrategias para manter funcionalidade com recursos limitados:
-\begin{itemize}
-    \item Reducao gradual de complexidade
-    \item Fallback para algoritmos mais simples
-    \item Processamento seletivo de regioes
-    \item Manutencao de funcionalidade critica
-\end{itemize}
-
-\subsection{Otimizacao Multi-Objetivo}
-
-\subsubsection{Pareto Optimization}
-Encontrar solucoes otimas no espaco multi-dimensional:
-
-\paragraph{Objective Functions}
-Definicao de funcoes objetivo balanceadas:
-\begin{equation}
-F(x) = w_1 \cdot Accuracy(x) - w_2 \cdot Energy(x) - w_3 \cdot Latency(x)
-\end{equation}
-onde $w_i$ sao pesos adaptativos baseados na aplicacao.
-
-\paragraph{Dynamic Weight Adjustment}
-Ajuste dinamico de pesos baseado em condicoes operacionais:
-\begin{itemize}
-    \item Priorizacao baseada em contexto
-    \item Adaptacao a mudancas de requisitos
-    \item Learning de preferencias do usuario
-    \item Otimizacao continua
-\end{itemize}
-
-\subsubsection{Reinforcement Learning para Otimizacao}
-Uso de aprendizado por reforco para otimizacao continua:
-
-\paragraph{Q-Learning para Resource Management}
-Sistema que aprende politicas otimas de gerenciamento:
-\begin{itemize}
-    \item Estado: recursos disponiveis, carga atual, requisitos
-    \item Acoes: configuracoes de sistema disponiveis
-    \item Recompensa: funcao multi-objetivo balanceada
-    \item Politica: estrategia otima aprendida
-\end{itemize}
-
-\paragraph{Online Learning}
-Adaptacao continua baseada em experiencia operacional:
-\begin{itemize}
-    \item Coleta continua de metricas de desempenho
-    \item Atualizacao de modelos em tempo real
-    \item Adaptacao a mudancas de ambiente
-    \item Melhoria continua de eficiencia
-\end{itemize}
-
-\section{Implementacao Especifica por Aplicacao}\label{sec:implementacao_aplicacao}
-
-As estrategias sao adaptadas as caracteristicas especificas de cada aplicacao alvo.
-
-\subsection{Agricultura de Precisao}
-
-\subsubsection{Deteccao de Estresse em Culturas}
-Otimizacoes especificas para identificacao de problemas agricolas:
-
-\paragraph{Bandas Espectrais Criticas}
-Foco em faixas espectrais mais informativas:
-\begin{itemize}
-    \item Red-edge (700-750nm) para estado fotossintetico
-    \item NIR (750-900nm) para estrutura foliar
-    \item SWIR (1200-1600nm) para conteudo de agua
-    \item Indices espectrais especializados (NDVI, GNDVI, MCARI)
-\end{itemize}
-
-\paragraph{Classificacao Hierarquica}
-Sistema de classificacao em multiplos niveis:
-\begin{enumerate}
-    \item Deteccao de vegetacao vs. solo
-    \item Classificacao de tipos de cultura
-    \item Identificacao de condicoes de estresse
-    \item Quantificacao de severidade
-\end{enumerate}
-
-\subsubsection{Monitoramento Temporal}
-Otimizacoes para acompanhamento ao longo do tempo:
-
-\paragraph{Change Detection Eficiente}
-Algoritmos otimizados para deteccao de mudancas:
-\begin{itemize}
-    \item Comparacao com baseline historico
-    \item Filtros temporais para reducao de ruido
-    \item Deteccao de tendencias espectrais
-    \item Alerta automatico para anomalias
-\end{itemize}
-
-\subsection{Monitoramento Ambiental}
-
-\subsubsection{Deteccao de Queimadas}
-Estrategias especificas para identificacao de focos de incendio:
-
-\paragraph{Multi-spectral Fire Detection}
-Combinacao otimizada de bandas para deteccao:
-\begin{itemize}
-    \item Thermal infrared (8-14 um) para temperatura
-    \item SWIR (1.6-2.4 um) para gases de combustao
-    \item Visible (0.4-0.7 um) para fumaca
-    \item Algoritmos de fusao multi-espectral
-\end{itemize}
-
-\paragraph{Real-time Alert System}
-Sistema de alerta com latencia ultra-baixa:
-\begin{itemize}
-    \item Processamento prioritario de regioes criticas
-    \item Algoritmos de deteccao simplificados
-    \item Sistema de comunicacao de emergencia
-    \item Validacao cruzada automatica
-\end{itemize}
-
-\subsection{Sistemas de Vigilancia}
-
-\subsubsection{Reconhecimento de Alvos}
-Otimizacoes para identificacao e classificacao:
-
-\paragraph{Target vs. Background Separation}
-Algoritmos otimizados para distincao alvo-fundo:
-\begin{itemize}
-    \item Analise de assinaturas espectrais unicas
-    \item Deteccao de anomalias espectrais
-    \item Classificacao supervisionada adaptativa
-    \item Fusao com informacoes contextuais
-\end{itemize}
-
-\paragraph{Stealth Detection}
-Tecnicas para identificacao de objetos camuflados:
-\begin{itemize}
-    \item Analise de inconsistencias espectrais
-    \item Deteccao de bordas espectrais anomalas
-    \item Comparacao com modelos naturais
-    \item Fusao temporal para deteccao de movimento
-\end{itemize}
-
-O proximo capitulo apresenta a implementacao pratica dessas estrategias em hardware embarcado e os resultados de simulacao via GHDL. 
+%% Capítulo 4: Implementação e Simulação
+%% A ser desenvolvido conforme o progresso da pesquisa
+
+\section{Implementação dos Módulos Especializados}
+
+% Este capítulo será desenvolvido durante a fase de implementação
+% Conterá detalhes específicos da implementação de cada módulo
+
+\subsection{Módulo FPGA - Pré-processamento}
+
+% Implementação dos algoritmos FPGA
+% Correção radiométrica ELM
+% Seleção de bandas EMCR  
+% Compressive sensing encoder
+
+\subsection{Módulo GPU - Reconstrução e Extração}
+
+% Implementação CUDA otimizada
+% Algoritmos de reconstrução CGNE
+% CNNs 3D para extração de características
+
+\subsection{Módulo CPU - Classificação e Controle}
+
+% Implementação do classificador SVM
+% Controle adaptativo do sistema
+% Gerenciamento de recursos
+
+\section{Integração do Sistema Heterogêneo}
+
+% Pipeline de comunicação entre módulos
+% Sincronização e balanceamento de carga
+% Otimizações de sistema
+
+\subsection{Comunicação Inter-módulos}
+
+% Protocolos de comunicação
+% Transferência de dados otimizada
+% Sincronização temporal
+
+\subsection{Balanceamento Dinâmico}
+
+% Algoritmos de distribuição de carga
+% Adaptação baseada em recursos disponíveis
+% Otimização contínua
+
+\section{Simulação e Validação Inicial}
+
+% Simulações preliminares
+% Validação de conceitos
+% Análise de viabilidade técnica
+
+\subsection{Ambiente de Simulação}
+
+% Ferramentas utilizadas
+% Configuração do ambiente
+% Datasets de teste
+
+\subsection{Testes Preliminares}
+
+% Resultados de simulação
+% Validação de algoritmos individuais
+% Análise de integração
