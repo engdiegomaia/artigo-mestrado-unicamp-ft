@@ -120,7 +120,7 @@ Implementação do método EMCR conforme Martins et al. \cite{martins2019}:
 entity emcr_band_selection is
     generic (
         INPUT_BANDS  : natural := 224;
-        OUTPUT_BANDS : natural := 45  -- Redução de 80%
+        OUTPUT_BANDS : natural := 45  -- 80% reduction
     );
     port (
         clk            : in  std_logic;
@@ -142,7 +142,7 @@ Implementação de encoder CS baseada em Lim et al. \cite{lim2022}:
 entity cs_encoder is
     generic (
         INPUT_SIZE      : natural := 45;
-        COMPRESSED_SIZE : natural := 23  -- 50% compressão
+        COMPRESSED_SIZE : natural := 23  -- 50% compression
     );
     port (
         clk                  : in  std_logic;
@@ -170,23 +170,23 @@ O módulo GPU implementa duas funções principais usando CUDA otimizado:
 
 Implementação CGNE baseada em Lim et al. \cite{lim2022}:
 
-\begin{lstlisting}[language=cuda, caption=CGNE Solver em CUDA]
+\begin{lstlisting}[language=c, caption=CGNE Solver em CUDA]
 __global__ void cgne_reconstruction_kernel(
-    const float* compressed_data,     // Dados comprimidos do FPGA
-    const float* sensing_matrix,      // Matriz de sensing
-    float* reconstructed_image,       // Imagem reconstruída
+    const float* compressed_data,     // Compressed data from FPGA
+    const float* sensing_matrix,      // Sensing matrix
+    float* reconstructed_image,       // Reconstructed image
     const int compressed_size,
     const int original_size,
     const int max_iterations
 ) {
     int tid = blockIdx.x * blockDim.x + threadIdx.x;
     
-    // Implementação CGNE com exploração de sparsity
-    // Otimizada para arquitetura Pascal/Ampere
+    // CGNE implementation with sparsity exploration
+    // Optimized for Pascal/Ampere architecture
     if (tid < original_size) {
-        // Algoritmo CGNE paralelizado
-        // Exploração de sparsity da matriz
-        // Convergência adaptativa
+        // Parallelized CGNE algorithm
+        // Matrix sparsity exploration
+        // Adaptive convergence
     }
 }
 \end{lstlisting}
@@ -195,11 +195,11 @@ __global__ void cgne_reconstruction_kernel(
 
 Implementação baseada em TakuNet \cite{takunet2025} e UAV Review \cite{uav_review_2024}:
 
-\begin{lstlisting}[language=cuda, caption=CNN 3D Otimizada]
+\begin{lstlisting}[language=c, caption=CNN 3D Otimizada]
 __global__ void depthwise_conv3d_kernel(
-    const float* input_data,          // Dados reconstruídos
-    const float* weights,             // Pesos depth-wise
-    float* output_features,           // Características extraídas
+    const float* input_data,          // Reconstructed data
+    const float* weights,             // Depth-wise weights
+    float* output_features,           // Extracted features
     const int bands, 
     const int height, 
     const int width,
@@ -207,9 +207,9 @@ __global__ void depthwise_conv3d_kernel(
 ) {
     int tid = blockIdx.x * blockDim.x + threadIdx.x;
     
-    // Implementação depth-wise convolution 3D
-    // Otimizada para dados hiperespectrais
-    // FP16 precision para eficiência
+    // Depth-wise convolution 3D implementation
+    // Optimized for hyperspectral data
+    // FP16 precision for efficiency
 }
 \end{lstlisting}
 
@@ -229,7 +229,7 @@ O módulo CPU implementa classificação final e controle do sistema:
 
 Baseado em Martins et al. \cite{martins2019}:
 
-\begin{lstlisting}[language=cpp, caption=SVM com Distância de Hamming]
+\begin{lstlisting}[language=c++, caption=SVM com Distância de Hamming]
 class OptimizedSVM {
 private:
     std::vector<float> support_vectors;
@@ -240,11 +240,11 @@ public:
         const std::vector<float>& features,
         std::vector<uint8_t>& classification
     ) {
-        // Conversão para representação binária
+        // Convert to binary representation
         auto binary_features = convert_to_binary(features);
         
-        // Classificação usando distância de Hamming
-        // Otimizada para instruções SIMD ARM NEON
+        // Classification using Hamming distance
+        // Optimized for ARM NEON SIMD instructions
         for (size_t i = 0; i < features.size(); ++i) {
             classification[i] = hamming_classify(binary_features[i]);
         }
@@ -254,7 +254,7 @@ public:
 
 \subsubsection{Controle Adaptativo de Qualidade}
 
-\begin{lstlisting}[language=cpp, caption=Controle Adaptativo]
+\begin{lstlisting}[language=c++, caption=Controle Adaptativo]
 class AdaptiveQualityController {
 private:
     float current_power_budget;
@@ -263,7 +263,7 @@ private:
     
 public:
     void adjust_system_parameters() {
-        // Ajuste dinâmico baseado em feedback
+        // Dynamic adjustment based on feedback
         if (current_metrics.latency > target_latency) {
             reduce_quality_settings();
         }
@@ -272,7 +272,7 @@ public:
             enable_power_saving_mode();
         }
         
-        // Balanceamento automático qualidade vs recursos
+        // Automatic quality vs resources balancing
         optimize_tradeoffs();
     }
 };
@@ -284,14 +284,14 @@ public:
 
 A integração dos módulos segue arquitetura de pipeline com overlap de processamento:
 
-\begin{lstlisting}[language=cpp, caption=Pipeline Heterogêneo]
+\begin{lstlisting}[language=c++, caption=Pipeline Heterogêneo]
 class HeterogeneousPipeline {
 private:
     FPGAProcessor fpga_module;
     GPUProcessor gpu_module;
     CPUClassifier cpu_module;
     
-    // Filas lock-free para comunicação
+    // Lock-free queues for communication
     LockFreeQueue<PreprocessedData> fpga_to_gpu;
     LockFreeQueue<FeatureData> gpu_to_cpu;
     
@@ -306,7 +306,7 @@ public:
         // Stage 3: CPU classification (overlap)
         auto results = cpu_module.classify_async(features);
         
-        // Feedback loop para otimização contínua
+        // Feedback loop for continuous optimization
         update_system_parameters(results.quality_metrics);
     }
 };
@@ -324,7 +324,7 @@ public:
 
 \subsection{Balanceamento de Carga Dinâmico}
 
-\begin{lstlisting}[language=cpp, caption=Balanceamento Dinâmico]
+\begin{lstlisting}[language=c++, caption=Balanceamento Dinâmico]
 class LoadBalancer {
 private:
     SystemMetrics current_metrics;

@@ -4,38 +4,17 @@
 %% Orientador: Prof. Dr. [Nome do Orientador]
 %% Data: Julho de 2025
 
-\documentclass[12pt,oneside,a4paper,english,brazilian]{report}
+% Uso da classe oficial UNICAMP-FT
+\documentclass[12pt,Final,Portugues]{tese-FT}
 
-% Configuração básica
-\usepackage[utf8]{inputenc}
-\usepackage[brazilian]{babel}
-\usepackage[T1]{fontenc}
-\usepackage{times}
-\usepackage{indentfirst}
-\usepackage{graphicx}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{booktabs}
-\usepackage{tabularx}
-\usepackage{multirow}
-\usepackage{longtable}
+% Bibliografia
+\addbibresource{bibliografia.bib}
+
+% Configurações adicionais específicas
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{subfig}
-\usepackage[backend=biber,style=abnt,backref]{biblatex}
-
-% Configuração de margens
-\usepackage[top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
-
-% Configuração de espaçamento
-\usepackage{setspace}
-\onehalfspacing
-
-% Configuração de links
-\usepackage[colorlinks=true,linkcolor=black,citecolor=blue,urlcolor=blue]{hyperref}
-
-% Bibliografia
-\addbibresource{bibliografia.bib}
 
 % Configuração de código
 \lstset{
@@ -49,127 +28,79 @@
     stringstyle=\color{red}
 }
 
-%% Informações do documento
-\title{Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado}
-\author{Diego Maia}
-\date{Julho de 2025}
+%% Informações obrigatórias da classe UNICAMP-FT
+\autor{Diego Maia}
+\titulo{Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado}
+\mestrado % Define grau como mestrado
+\orientador{Prof. Dr. [Nome do Orientador]}
+\datadadefesa{[dia]}{[mês]}{2025}
 
 \begin{document}
 
-%% Capa
-\begin{titlepage}
-\centering
-{\large UNIVERSIDADE ESTADUAL DE CAMPINAS\\
-FACULDADE DE TECNOLOGIA\\
-PROGRAMA DE PÓS-GRADUAÇÃO EM TECNOLOGIA}
+% Capa usando o padrão da classe UNICAMP-FT
+\titlepage
 
-\vspace{3cm}
+% Folha de aprovação usando o padrão da classe UNICAMP-FT
+\approvalpage
 
-{\Large\bf DIEGO MAIA}
-
-\vspace{2cm}
-
-{\Large\bf ESTRATÉGIAS PARA REDUÇÃO DE CONSUMO E LATÊNCIA NO PROCESSAMENTO HIPERESPECTRAL EMBARCADO}
-
-\vspace{2cm}
-
-Dissertação apresentada ao Programa de\\
-Pós-Graduação em Tecnologia da Faculdade\\
-de Tecnologia da Universidade Estadual de\\
-Campinas como parte dos requisitos exigidos\\
-para a obtenção do título de Mestre em\\
-Tecnologia.
-
-\vspace{1cm}
-
-Orientador: Prof. Dr. [Nome do Orientador]
-
-\vspace{2cm}
-
-{\large LIMEIRA\\
-2025}
-\end{titlepage}
-
-%% Folha de aprovação (página em branco para posterior preenchimento)
-\newpage
-\thispagestyle{empty}
-\mbox{}
-
-%% Agradecimentos
-\newpage
-\chapter*{Agradecimentos}
-\addcontentsline{toc}{chapter}{Agradecimentos}
+% Agradecimentos usando comando da classe
+\prefacesection{Agradecimentos}
 \input{agradecimentos}
 
-%% Resumo
-\newpage
-\chapter*{Resumo}
-\addcontentsline{toc}{chapter}{Resumo}
+% Resumo usando environment da classe
+\begin{resumo}
 
 O processamento de imagens hiperespectrais em sistemas embarcados apresenta desafios significativos relacionados ao alto consumo energético e latência excessiva, limitando sua aplicação em cenários práticos como agricultura de precisão, monitoramento ambiental e vigilância. Esta pesquisa propõe uma arquitetura de sistema heterogêneo (CPU+GPU+FPGA) otimizada especificamente para reduzir o consumo energético e a latência no processamento hiperespectral embarcado. A metodologia baseia-se na análise sistemática de 20 artigos científicos que identificaram técnicas comprovadas: compressive sensing (redução de 50-70\% dos dados), seleção inteligente de bandas EMCR (redução de 80\% do processamento), codesign HW/SW (melhoria energética de 43.5x) e implementações GPU otimizadas (330 fps em Jetson TX2). O sistema proposto integra estas técnicas em um pipeline heterogêneo onde o módulo FPGA realiza pré-processamento especializado (correção radiométrica ELM, seleção de bandas, compressive sensing), o módulo GPU executa reconstrução CGNE e extração de características com CNNs 3D otimizadas, e o módulo CPU implementa classificação SVM com distância de Hamming (0.1ms/pixel). As metas estabelecidas incluem redução de 3x no consumo energético, 4x na latência, aumento de 6.7x no throughput mantendo precisão >95\%. A validação experimental será realizada em aplicações práticas de agricultura de precisão com UAVs, utilizando datasets AVIRIS, Indian Pines e Pavia University como benchmarks. Esta pesquisa contribui com um framework integrado de otimização, algoritmos adaptativos de qualidade vs recursos e metodologia de codesign sistemática para processamento hiperespectral embarcado.
 
 \textbf{Palavras-chave:} Processamento Hiperespectral, Sistemas Embarcados, Codesign HW/SW, Compressive Sensing, Redução de Consumo Energético, Otimização de Latência.
+\end{resumo}
 
-%% Abstract
-\newpage
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
+% Abstract usando environment da classe
+\begin{abstract}
 
 Hyperspectral image processing in embedded systems presents significant challenges related to high energy consumption and excessive latency, limiting their application in practical scenarios such as precision agriculture, environmental monitoring, and surveillance. This research proposes a heterogeneous system architecture (CPU+GPU+FPGA) specifically optimized to reduce energy consumption and latency in embedded hyperspectral processing. The methodology is based on systematic analysis of 20 scientific articles that identified proven techniques: compressive sensing (50-70\% data reduction), EMCR intelligent band selection (80\% processing reduction), HW/SW codesign (43.5x energy improvement), and optimized GPU implementations (330 fps on Jetson TX2). The proposed system integrates these techniques in a heterogeneous pipeline where the FPGA module performs specialized preprocessing (ELM radiometric correction, band selection, compressive sensing), the GPU module executes CGNE reconstruction and feature extraction with optimized 3D CNNs, and the CPU module implements SVM classification with Hamming distance (0.1ms/pixel). Established targets include 3x reduction in energy consumption, 4x in latency, 6.7x increase in throughput while maintaining >95\% accuracy. Experimental validation will be performed in practical precision agriculture applications with UAVs, using AVIRIS, Indian Pines, and Pavia University datasets as benchmarks. This research contributes with an integrated optimization framework, adaptive quality vs resources algorithms, and systematic codesign methodology for embedded hyperspectral processing.
 
 \textbf{Keywords:} Hyperspectral Processing, Embedded Systems, HW/SW Codesign, Compressive Sensing, Energy Consumption Reduction, Latency Optimization.
+\end{abstract}
 
-%% Sumário
-\newpage
+% Sumário usando comando padrão
 \tableofcontents
 
-%% Lista de Figuras
-\newpage
+% Listas usando comandos padrão  
 \listoffigures
-
-%% Lista de Tabelas
-\newpage
 \listoftables
 
-%% Lista de Símbolos
-\newpage
+% Lista de símbolos
+\printnomenclature
 \input{listaSimbolos}
 
-%% Capítulos
-\newpage
+% Início dos capítulos (numeração padrão)
+
 \chapter{Introdução}
 \input{introducao}
 
-\newpage
 \chapter{Revisão Bibliográfica e Estado da Arte}
 \input{levantamento}
 
-\newpage
 \chapter{Metodologia}
 \input{desenvolvimento}
 
-\newpage
 \chapter{Implementação e Simulação}
 \input{implementacao}
 
-\newpage
 \chapter{Resultados e Análise}
 \input{resultados}
 
-\newpage
 \chapter{Discussão}
 \input{discussao}
 
-\newpage
 \chapter{Conclusões e Trabalhos Futuros}
 \input{conclusoes}
 
-%% Bibliografia
-\newpage
+% Bibliografia usando biblatex (configurado pela classe)
 \printbibliography[title=Referências Bibliográficas]
 
-%% Apêndices
-\newpage
+% Apêndices usando comando padrão
 \appendix
 \input{apendices}
 
