@@ -1,212 +1,187 @@
-% Capítulo de Levantamento Bibliográfico / Trabalhos Relacionados
-\chapter{Levantamento Bibliográfico}\label{chp:levantamento}
+%% Capítulo 2: Revisão Bibliográfica e Estado da Arte
+%% Baseado na análise sistemática de 20 artigos científicos
 
-Este capítulo apresenta uma revisão sistemática da literatura sobre processamento hiperespectral embarcado com foco em estratégias para redução de consumo energético e latência. A revisão abrange desde os conceitos fundamentais do processamento hiperespectral em sistemas embarcados até as técnicas mais avançadas de otimização para aplicações práticas em agricultura de precisão, monitoramento ambiental e sistemas de vigilância.
+\section{Visão Geral do Estado da Arte}
 
-\section{Processamento Hiperespectral Embarcado}\label{sec:hiperespectral_embarcado}
+Esta revisão bibliográfica baseia-se na análise sistemática de 20 artigos científicos selecionados por sua relevância para processamento hiperespectral embarcado, organizados por nível de contribuição direta ao problema de pesquisa. A metodologia de seleção priorizou trabalhos publicados entre 2019-2024 que demonstram técnicas comprovadas de otimização energética e redução de latência em sistemas embarcados.
 
-\subsection{Conceitos Fundamentais}
-O processamento hiperespectral embarcado representa uma evolução necessária das técnicas tradicionais de sensoriamento remoto para atender demandas de aplicações de campo em tempo real. Diferentemente dos sistemas computacionais convencionais, as plataformas embarcadas operam sob restrições severas de energia, memória e capacidade de processamento, exigindo abordagens especializadas para o tratamento de dados hiperespectrais.
+\subsection{Categorização dos Trabalhos Analisados}
 
-Cada pixel hiperespectral contém informações de centenas de bandas espectrais, resultando em volumes de dados que tradicionalmente requerem processamento em nuvem ou estações de trabalho. No contexto embarcado, esta característica fundamental cria desafios únicos para implementação de algoritmos eficientes que mantenham precisão adequada enquanto operam dentro das limitações de hardware \cite{Lou2024}.
+Os artigos foram classificados em três categorias principais:
 
-\subsection{Arquiteturas de Hardware Embarcado}
-O desenvolvimento de hardware especializado para processamento hiperespectral tem evoluído rapidamente, com várias arquiteturas emergindo como candidatas viáveis para implementações embarcadas:
+\textbf{Muito Alta Relevância (⭐⭐⭐⭐⭐)}: 4 artigos que demonstram implementações práticas de otimização em sistemas embarcados com métricas quantitativas de performance.
 
-\subsubsection{FPGAs (Field-Programmable Gate Arrays)}
-FPGAs oferecem vantagens únicas para processamento hiperespectral embarcado devido à sua capacidade de customização e eficiência energética. A programabilidade do hardware permite otimizações específicas para operações hiperespectrais, incluindo pipelines customizados, paralelização fina e precisão aritmética adaptativa.
+\textbf{Alta Relevância (⭐⭐⭐⭐)}: 4 artigos que fornecem revisões sistemáticas abrangentes ou técnicas específicas aplicáveis ao problema.
 
-\subsubsection{VPUs (Vision Processing Units)}
-Unidades de processamento especializado como Intel Movidius representam uma nova categoria de hardware otimizado para visão computacional embarcada. Estas unidades oferecem alto desempenho em operações de convoluções e outras operações comuns em processamento de imagens, com consumo energético significativamente reduzido comparado a GPUs tradicionais.
+\textbf{Relevância Média (⭐⭐⭐)}: 12 artigos que contribuem com técnicas complementares, fundamentos teóricos ou validações específicas.
 
-\subsubsection{GPUs Embarcadas}
-Plataformas como NVIDIA Jetson series trazem capacidades de processamento paralelo massivo para ambientes embarcados, mantendo perfis de consumo apropriados para aplicações de campo. A programabilidade via CUDA permite implementações eficientes de algoritmos hiperespectrais complexos.
+\section{Trabalhos de Muito Alta Relevância}
 
-\section{Estratégias de Redução de Consumo Energético}\label{sec:reducao_consumo}
+\subsection{Compressive Sensing Hiperespectral Embarcado}
 
-\subsection{Otimizações Algorítmicas}
-A redução do consumo energético em processamento hiperespectral pode ser abordada através de múltiplas estratégias algorítmicas que mantêm a qualidade dos resultados:
+Lim et al. \cite{lim2022} apresentam o primeiro estudo sistemático sobre viabilidade de compressive sensing (CS) hiperespectral em sistemas embarcados para aplicações em tempo real. O trabalho foca no algoritmo CGNE (Conjugate Gradient for Normal Equation) implementado em sistema DDCASSI, estabelecendo uma metodologia de análise que se tornou referência na área.
 
-\subsubsection{Compressão Adaptativa}
-Técnicas de compressão específicas para dados hiperespectrais permitem redução significativa na quantidade de dados processados, resultando em menor consumo energético. Algoritmos adaptativos que ajustam parâmetros de compressão baseados nas características espectrais locais demonstram eficácia particular em cenários embarcados.
+\textbf{Contribuições Principais}:
+\begin{itemize}
+\item Análise teórica de complexidade O(n³) do CGNE com caracterização detalhada de requisitos de memória e bandwidth
+\item Demonstração de redução de 50-70\% no volume de dados sem perda significativa de qualidade
+\item Identificação da sparsity da matriz do sistema como fator fundamental para redução computacional
+\item Estabelecimento de latência <10ms como viável para reconstrução de imagens pequenas
+\item Confirmação de que GPUs/FPGAs são necessárias para atingir performance de tempo real (25 fps)
+\end{itemize}
 
-\subsubsection{Redução de Dimensionalidade Otimizada}
-Implementações eficientes de PCA (Principal Component Analysis) e outras técnicas de redução dimensional específicas para hardware embarcado podem reduzir drasticamente a carga computacional. Abordagens que combinam redução espectral e espacial mostram-se promissoras para aplicações em tempo real.
+\textbf{Relevância para a Pesquisa}: O framework de análise proposto pelos autores fornece a base metodológica para avaliar viabilidade de algoritmos embarcados, enquanto as técnicas de exploração de sparsity são diretamente aplicáveis ao módulo GPU do sistema proposto.
 
-\subsubsection{Processamento Hierárquico}
-Estratégias que implementam processamento em múltiplas resoluções, começando com análises grosseiras e refinando apenas regiões de interesse, podem resultar em economias substanciais de energia mantendo precisão adequada para a aplicação.
+\subsection{Codesign HW/SW para Compressão Lossless}
 
-\subsection{Otimizações de Hardware}
-A eficiência energética também pode ser melhorada através de otimizações específicas ao nível de hardware:
+Hwang et al. \cite{hwang2011} demonstram uma implementação exemplar de codesign HW/SW para compressão lossless hiperespectral, estabelecendo metodologia sistemática que resultou em melhorias de eficiência energética de 43.5x comparado a servidores convencionais.
 
-\subsubsection{Gerenciamento Dinâmico de Energia}
-Técnicas que ajustam dinamicamente frequências de operação e voltagens baseadas na carga computacional atual permitem redução significativa no consumo total. Clock gating e power gating seletivos podem ser aplicados a componentes não utilizados momentaneamente.
+\textbf{Metodologia e Resultados}:
+\begin{itemize}
+\item Profiling sistemático identificou predição inter-banda como responsável por 91\% do tempo computacional
+\item Particionamento inteligente HW/SW baseado em análise quantitativa de gargalos
+\item Implementação FPGA Spartan3 XC3S4000 atingiu throughput de 16.5 M pixels/s
+\item Speedup de 21x comparado à implementação puramente software
+\item Otimizações sistemáticas: memória hierárquica, DMA, e opções de compiler específicas
+\end{itemize}
 
-\subsubsection{Precisão Aritmética Adaptativa}
-A utilização de representações numéricas de precisão reduzida (fixed-point, half-precision) para operações que não requerem alta precisão pode resultar em economias substanciais de energia sem comprometer significativamente a qualidade dos resultados.
+\textbf{Relevância para a Pesquisa}: A metodologia de profiling e particionamento HW/SW proposta é diretamente aplicável ao desenvolvimento do sistema heterogêneo, fornecendo tanto o framework de análise quanto as técnicas específicas de otimização.
 
-\section{Técnicas de Redução de Latência}\label{sec:reducao_latencia}
+\subsection{Compressão Real-Time em GPUs Embarcadas}
 
-\subsection{Paralelização Eficiente}
-A natureza dos dados hiperespectrais oferece múltiplas oportunidades para paralelização que podem ser exploradas para redução de latência:
+Díaz et al. \cite{diaz2019} implementaram o algoritmo HyperLCA em GPUs embarcadas NVIDIA Jetson, demonstrando pela primeira vez compressão lossy hiperespectral em tempo real em plataformas embarcadas com validação em aplicação real de agricultura.
 
-\subsubsection{Paralelização Espectral}
-Processamento simultâneo de múltiplas bandas espectrais permite aproveitamento da estrutura natural dos dados hiperespectrais. Implementações que dividem o cubo espectral em sub-blocos processados em paralelo mostram eficácia particular em FPGAs.
+\textbf{Implementação e Performance}:
+\begin{itemize}
+\item Análise detalhada revelou que HyperLCA Transform consome >95\% do processamento total
+\item Implementação CUDA com 7 kernels especializados para arquiteturas Kepler (TK1) e Pascal (TX2)
+\item Performance de 330 fps para dados de 144.375 MB/s com taxa de compressão >20:1
+\item Speedup de 21x sobre implementação CPU com eficiência energética 4.1x superior
+\item Validação prática: câmera 224 bandas, 1024 pixels, aplicação agricultura UAV
+\end{itemize}
 
-\subsubsection{Paralelização Espacial}
-Divisão da imagem em tiles processados simultaneamente permite escalabilidade com o número de unidades de processamento disponíveis. Técnicas de overlapping inteligente entre tiles minimizam artefatos de borda sem impacto significativo na latência.
+\textbf{Relevância para a Pesquisa}: As técnicas de implementação CUDA e a metodologia de análise de FLOPs são diretamente aplicáveis ao módulo GPU, enquanto a validação em agricultura UAV fornece benchmarks práticos para comparação.
 
-\subsubsection{Pipeline de Processamento}
-Implementação de pipelines que permitem processamento simultâneo de diferentes estágios algorítmicos pode reduzir drasticamente a latência total. Balanceamento cuidadoso das etapas do pipeline é crítico para maximizar throughput.
+\subsection{Acelerador SVM Hardware para Classificação}
 
-\subsection{Otimizações de Memória}
-O gerenciamento eficiente de memória é crucial para redução de latência em sistemas embarcados:
+Martins et al. \cite{martins2019} desenvolveram um acelerador hardware SVM especializado para classificação onboard, demonstrando tempo de classificação de 0.1ms/pixel com 99.7\% de precisão usando técnicas de seleção inteligente de bandas.
 
-\subsubsection{Hierarquia de Cache Otimizada}
-Implementação de caches especializados que exploram padrões de acesso específicos de algoritmos hiperespectrais pode reduzir significativamente latências de acesso à memória. Cache blocking adaptativo mostra-se particularmente eficaz.
+\textbf{Técnicas e Resultados}:
+\begin{itemize}
+\item Implementação do método EMCR (Entropy Multiple Correlation Ratio) para seleção de bandas, reduzindo 80\% do processamento
+\item Classificador SVM com distância de Hamming para decisão ultrarrápida em hardware
+\item Duas arquiteturas FPGA: single-core (17\% DSPs) e hexa-core (100\% DSPs)
+\item Speedup de 13x comparado à implementação MATLAB
+\item Processamento de dataset AVIRIS completo em tempo real
+\end{itemize}
 
-\subsubsection{Streaming de Dados}
-Técnicas que permitem processamento de dados conforme são adquiridos, sem necessidade de armazenamento completo do cubo hiperespectral, são essenciais para aplicações de ultra-baixa latência.
+\textbf{Relevância para a Pesquisa}: O método EMCR é fundamental para o módulo FPGA proposto, enquanto a implementação SVM otimizada fornece a base para o módulo CPU de classificação.
 
-\section{Aplicações Práticas Embarcadas}\label{sec:aplicacoes_praticas}
+\section{Trabalhos de Alta Relevância}
 
-\subsection{Agricultura de Precisão}
-O processamento hiperespectral embarcado tem encontrado aplicações crescentes em agricultura de precisão, onde a necessidade de respostas em tempo real é crítica:
+\subsection{Revisões Sistemáticas e Estado da Arte}
 
-\subsubsection{Detecção de Estresse em Culturas}
-Sistemas embarcados em drones agrícolas permitem detecção imediata de estresses nutricionais, hídricos ou patológicos. Algoritmos otimizados para hardware embarcado conseguem identificar assinaturas espectrais características de diferentes tipos de estresse, permitindo intervenções precisas e oportunas \cite{Shin2024}.
+Lou et al. \cite{lou2024} conduziram uma revisão sistemática de 200+ artigos sobre classificação LULC usando imagens hiperespectrais, identificando três gerações de métodos e estabelecendo que deep learning representa o estado da arte atual. A revisão identifica que arquiteturas híbridas (CNN+Transformer) mostram resultados promissores, enquanto o processamento em tempo real permanece como desafio técnico significativo.
 
-\subsubsection{Monitoramento de Crescimento}
-Análise contínua do desenvolvimento das culturas através de índices espectrais calculados em tempo real permite otimização do manejo agrícola. Implementações embarcadas permitem coleta de dados de alta frequência temporal sem dependência de conectividade externa.
+O trabalho de Zhang et al. \cite{uav_review_2024} foca especificamente em classificação hiperespectral para UAV, identificando desafios únicos como ruído dinâmico, pixels mistos e variabilidade temporal. Os autores demonstram que CNNs 3D são superiores para dados hiperespectrais UAV quando combinadas com mecanismos de atenção.
 
-\subsubsection{Aplicação Variável de Insumos}
-Sistemas que combinam aquisição hiperespectral embarcada com aplicação automatizada de fertilizantes ou pesticidas representam a fronteira atual da agricultura de precisão. A latência ultra-baixa é crítica para sincronização entre detecção e aplicação.
+\subsection{Arquiteturas Ultra-Eficientes}
 
-\subsection{Monitoramento Ambiental}
-Aplicações ambientais embarcadas requerem operação autônoma em condições adversas por períodos prolongados:
+O TakuNet \cite{takunet2025} representa um avanço significativo em eficiência computacional, apresentando arquitetura CNN com apenas 37.685 parâmetros (redução de 99\%) que mantém F1-score de 0.943. A arquitetura utiliza depth-wise convolutions e early downsampling, atingindo >650 fps no Jetson Orin Nano com 21x redução no consumo energético.
 
-\subsubsection{Detecção Precoce de Queimadas}
-Sistemas embarcados para detecção automática de focos de incêndio utilizam assinaturas espectrais específicas de combustão inicial. A redução de latência é crítica para permitir respostas rápidas a emergências. Implementações que combinam processamento hiperespectral com análise térmica mostram eficácia particular.
+\textbf{Técnicas Aplicáveis}:
+\begin{itemize}
+\item Depth-wise convolutions para redução drástica de parâmetros
+\item Early downsampling para redução computacional inicial
+\item Treinamento FP16 para otimização em aceleradores embarcados
+\item Conexões densas para convergência rápida
+\end{itemize}
 
-\subsubsection{Monitoramento de Qualidade da Água}
-Sensores hiperespectrais embarcados para monitoramento contínuo de corpos d'água requerem operação de baixo consumo por longos períodos. Algoritmos adaptativos que ajustam frequência de amostragem baseados na qualidade detectada podem otimizar autonomia energética.
+\subsection{Benchmarks em Plataformas Embarcadas}
 
-\subsubsection{Detecção de Mudanças na Cobertura Vegetal}
-Sistemas embarcados para monitoramento de desmatamento ou degradação ambiental operam tipicamente em locais remotos com energia limitada. Técnicas de change detection otimizadas para processamento embarcado permitem detecção automática de alterações significativas na paisagem.
+Ullah et al. \cite{ullah2020} fornecem benchmark sistemático de plataformas NVIDIA Jetson (Nano, TX1, Xavier) para deep learning, demonstrando que o Xavier oferece melhor performance geral e que TensorFlow-GPU utiliza recursos mais eficientemente que implementações CPU.
 
-\subsection{Sistemas de Vigilância e Segurança}
-Aplicações de segurança demandam combinação de baixa latência com operação discreta:
+\section{Técnicas de Otimização Identificadas}
 
-\subsubsection{Reconhecimento de Materiais}
-Identificação automática de substâncias específicas através de assinaturas espectrais únicas requer algoritmos embarcados capazes de operar com libraries espectrais extensas. Técnicas de compressão e indexação otimizadas são essenciais para viabilidade prática.
+\subsection{Estratégias de Redução de Consumo Energético}
 
-\subsubsection{Detecção de Objetos Ocultos}
-Sistemas hiperespectrais embarcados podem identificar materiais camuflados ou ocultos explorando diferenças espectrais não visíveis ao olho humano. A combinação de processamento espectral e espacial em hardware embarcado permite detecção em tempo real.
-
-\subsubsection{Monitoramento Perimetral}
-Sistemas de vigilância embarcados para grandes áreas requerem operação autônoma com resposta imediata a intrusões. Algoritmos que combinam detecção de movimento com análise espectral para classificação de alvos mostram eficácia em reduzir falsos positivos.
-
-\section{Caracterização e Seleção de Datasets}\label{sec:datasets}
-
-\subsection{Metodologias de Caracterização}
-A validação efetiva de sistemas hiperespectrais embarcados requer datasets que representem fielmente as condições operacionais reais:
-
-\subsubsection{Critérios de Representatividade}
-Datasets devem ser avaliados quanto à correspondência com cenários de aplicação específicos, incluindo condições ambientais, características dos alvos e variabilidade temporal. Métricas quantitativas de representatividade permitem seleção objetiva de dados de teste apropriados.
-
-\subsubsection{Diversidade de Condições}
-Cobertura adequada de diferentes condições operacionais é essencial para validação robusta. Datasets devem incluir variações de iluminação, condições atmosféricas, sazonalidade e características dos alvos para garantir generalização dos algoritmos desenvolvidos.
-
-\subsubsection{Metadados Auxiliares}
-Informações complementares sobre condições de aquisição, calibração de sensores e verdade terrestre são críticas para interpretação correta dos resultados. Protocolos padronizados para documentação de metadados facilitam comparação entre estudos.
-
-\subsection{Preparação para Simulação de Operações Reais}
-Adaptação de datasets existentes para simular condições operacionais embarcadas requer técnicas específicas:
-
-\subsubsection{Simulação de Aquisição Streaming}
-Conversão de datasets tradicionais para formato de streaming que simule aquisição em tempo real permite validação de algoritmos embarcados sob condições realísticas de processamento contínuo.
-
-\subsubsection{Inserção de Ruídos e Artefatos}
-Adição controlada de ruídos, variações de calibração e artefatos típicos de sistemas embarcados permite validação da robustez dos algoritmos sob condições não-ideais.
-
-\subsubsection{Variação de Resolução}
-Simulação de diferentes resoluções espectrais e espaciais permite avaliação da degradação graceful dos algoritmos quando operando com sensores de menor capacidade típicos de sistemas embarcados.
-
-\section{Tecnologias de Simulação e Validação}\label{sec:simulacao_validacao}
-
-\subsection{GHDL para Simulação de FPGAs}
-O GHDL (VHDL simulator and analyzer) representa uma ferramenta fundamental para desenvolvimento e validação de implementações em FPGA:
-
-\subsubsection{Modelagem de Precisão}
-GHDL permite modelagem precisa do comportamento temporal e energético de designs VHDL, facilitando otimização antes da síntese em hardware real. Simulações detalhadas podem identificar gargalos e oportunidades de otimização.
-
-\subsubsection{Validação Funcional}
-Verificação completa da correção funcional de implementações VHDL através de testbenches abrangentes reduz riscos de erros em hardware final. Técnicas de verificação formal podem garantir correção de propriedades críticas.
-
-\subsubsection{Estimativa de Recursos}
-Análise detalhada de utilização de recursos (LUTs, DSPs, memória) permite otimização de designs para plataformas específicas antes da síntese física.
-
-\subsection{Ferramentas de Análise Energética}
-Medição precisa de consumo energético é essencial para validação de estratégias de otimização:
-
-\subsubsection{Profiling Energético}
-Ferramentas especializadas permitem medição detalhada do consumo energético de diferentes componentes e operações, facilitando identificação de oportunidades de otimização.
-
-\subsubsection{Modelagem de Consumo}
-Modelos analíticos de consumo baseados em características dos algoritmos e hardware permitem estimativa rápida sem necessidade de implementação física completa.
-
-\section{Trabalhos Relacionados}\label{sec:trabalhos_relacionados}
-
-\subsection{Processamento Hiperespectral Embarcado}
-\cite{Lim2022} investigou a viabilidade de sistemas embarcados em tempo real para imageamento hiperespectral compressivo, analisando requisitos computacionais, uso de memória e largura de banda. O trabalho propôs otimizações específicas para alcançar processamento em tempo real, focando em técnicas de compressive sensing adaptadas para hardware embarcado.
-
-\subsection{Otimizações para Agricultura de Precisão}
-\cite{Shin2024} apresentou um estudo focado em métodos robustos de correção radiométrica e geométrica para imageamento hiperespectral baseado em drones em aplicações agrícolas. O trabalho demonstrou a importância de técnicas de pré-processamento otimizadas para sistemas embarcados operando em condições de campo.
-
-\subsection{Eficiência Energética em Visão Computacional}
-Estudos recentes em visão computacional embarcada têm explorado técnicas de quantização, pruning e destilação de conhecimento para redução de consumo energético. Estas técnicas mostram-se promissoras para adaptação ao processamento hiperespectral embarcado.
-
-\subsection{Arquiteturas Especializadas}
-O desenvolvimento de processadores especializados para visão computacional, incluindo TPUs (Tensor Processing Units) e NPUs (Neural Processing Units), oferece oportunidades para aceleração eficiente de algoritmos hiperespectrais específicos.
-
-\subsection{Lacunas Identificadas na Literatura}
-A revisão da literatura identifica várias lacunas importantes para processamento hiperespectral embarcado:
+A análise sistemática identificou quatro estratégias principais comprovadas:
 
 \begin{enumerate}
-    \item \textbf{Metodologias de Caracterização de Datasets}: Falta de protocolos padronizados para caracterização de datasets que simulem fielmente operações embarcadas reais
-    \item \textbf{Métricas de Eficiência Embarcada}: Necessidade de métricas específicas que considerem simultaneamente precisão, consumo energético e latência em aplicações práticas
-    \item \textbf{Validação em Condições Reais}: Escassez de estudos validando metodologias em condições operacionais reais de campo por períodos prolongados
-    \item \textbf{Frameworks Integrados}: Ausência de frameworks que integrem eficientemente caracterização de dados, otimização algorítmica e implementação embarcada
-    \item \textbf{Transferência de Tecnologia}: Limitado número de estudos focando na implementação prática e transferência para produtos comerciais viáveis
+\item \textbf{Codesign HW/SW}: Hwang et al. demonstraram melhoria de 43.5x na eficiência energética através de particionamento sistemático e implementação FPGA de módulos críticos.
+
+\item \textbf{Seleção Inteligente de Bandas}: O método EMCR de Martins et al. reduz 80\% do processamento mantendo 99.7\% de precisão.
+
+\item \textbf{Precisão Reduzida}: Múltiplos trabalhos confirmam que FP16 oferece redução de 50\% no uso de memória com perda <1\% na precisão.
+
+\item \textbf{Compressive Sensing}: Lim et al. demonstraram redução de 50-70\% no volume de dados com reconstrução viável em <10ms.
 \end{enumerate}
 
-\section{Síntese do Levantamento}\label{sec:sintese}
+\subsection{Estratégias de Redução de Latência}
 
-Esta revisão da literatura estabelece o contexto científico e tecnológico para o desenvolvimento desta dissertação focada em estratégias para redução de consumo e latência no processamento hiperespectral embarcado:
+Três abordagens principais foram identificadas:
 
-\subsection{Estado da Arte}
+\begin{enumerate}
+\item \textbf{Paralelização Massiva}: Díaz et al. atingiram 330 fps através de implementação CUDA otimizada com múltiplos níveis de paralelismo.
+
+\item \textbf{Aceleradores Especializados}: Martins et al. demonstraram 0.1ms/pixel usando FPGA especializada para classificação SVM.
+
+\item \textbf{Algoritmos Otimizados}: CGNE para compressive sensing e HyperLCA para compressão demonstraram ser adequados para implementação embarcada.
+\end{enumerate}
+
+\section{Gaps e Oportunidades na Literatura}
+
+\subsection{Ausência de Frameworks Integrados}
+
+Embora existam soluções pontuais eficazes (GPU \cite{diaz2019}, FPGA \cite{hwang2011}, algoritmos específicos \cite{lim2022}), não há frameworks que integrem sistematicamente múltiplas técnicas de otimização. Esta lacuna representa a principal oportunidade para contribuição original.
+
+\subsection{Limitações em Validação Prática}
+
+A maioria dos trabalhos limita-se a validações em datasets sintéticos. Apenas Díaz et al. \cite{diaz2019} e Shin et al. \cite{shin2024} demonstram aplicações práticas, indicando necessidade de mais validações em cenários reais.
+
+\subsection{Trade-offs Não Quantificados}
+
+As relações precisão vs consumo vs latência são raramente caracterizadas quantitativamente. Hwang et al. \cite{hwang2011} e Martins et al. \cite{martins2019} fornecem análises parciais, mas falta uma caracterização sistemática.
+
+\subsection{Metodologias de Codesign Limitadas}
+
+Embora Hwang et al. \cite{hwang2011} demonstrem metodologia eficaz, ela é específica para compressão lossless. Faltam metodologias generalizáveis para outros algoritmos hiperespectrais.
+
+\section{Benchmarks e Métricas de Referência}
+
+\subsection{Performance Estabelecida}
+
+Com base na literatura analisada, os seguintes benchmarks representam o estado da arte:
+
 \begin{itemize}
-    \item O processamento hiperespectral embarcado representa uma área emergente com grande potencial para aplicações práticas críticas
-    \item Técnicas de otimização energética e redução de latência específicas para dados hiperespectrais demonstram viabilidade técnica
-    \item Metodologias de caracterização de datasets para simulação de operações reais são fundamentais para validação efetiva
-    \item GHDL e outras ferramentas de simulação permitem desenvolvimento e validação de implementações embarcadas antes da síntese física
+\item \textbf{Throughput}: 330 fps (Díaz et al., Jetson TX2) para compressão
+\item \textbf{Latência}: 0.1ms/pixel (Martins et al., FPGA) para classificação
+\item \textbf{Precisão}: 99.7\% (Martins et al.) com recursos limitados
+\item \textbf{Eficiência Energética}: 43.5x melhoria (Hwang et al.) via codesign
+\item \textbf{Redução de Dados}: 50-70\% (Lim et al.) via compressive sensing
 \end{itemize}
 
-\subsection{Desafios Técnicos}
+\subsection{Datasets de Validação}
+
+Os trabalhos analisados utilizam consistentemente três datasets principais:
+
 \begin{itemize}
-    \item Balanceamento entre precisão, consumo energético e latência em aplicações críticas
-    \item Desenvolvimento de algoritmos robustos para operação em condições adversas de campo
-    \item Validação adequada de sistemas embarcados em cenários operacionais reais
-    \item Integração eficiente de múltiplas técnicas de otimização sem comprometer funcionalidade
+\item \textbf{AVIRIS Indian Pines}: Dataset padrão para classificação (614×512×224)
+\item \textbf{Pavia University}: Validação em ambiente urbano
+\item \textbf{Salinas Valley}: Aplicações agrícolas
 \end{itemize}
 
-\subsection{Oportunidades de Pesquisa}
-Esta dissertação visa contribuir para o preenchimento das lacunas identificadas através de:
+\section{Síntese e Direcionamentos}
+
+A análise sistemática da literatura revela que existe base técnica sólida para desenvolver sistemas hiperespectrais embarcados otimizados, mas as soluções existentes são fragmentadas. As técnicas individuais demonstram eficácia comprovada:
+
 \begin{itemize}
-    \item Desenvolvimento de metodologia integrada para caracterização de datasets e validação embarcada
-    \item Implementação e validação de estratégias de otimização específicas para aplicações práticas
-    \item Estabelecimento de diretrizes para deployment de sistemas hiperespectrais embarcados
-    \item Demonstração de viabilidade através de protótipos funcionais validados em condições reais
+\item Compressive sensing reduz dados em 50-70\% \cite{lim2022}
+\item Seleção EMCR reduz processamento em 80\% \cite{martins2019}
+\item Codesign HW/SW melhora eficiência em 43.5x \cite{hwang2011}
+\item Implementações GPU embarcadas atingem 330 fps \cite{diaz2019}
 \end{itemize}
 
-Os capítulos subsequentes detalham a metodologia desenvolvida e os resultados obtidos, contribuindo para o avanço do conhecimento nesta área estratégica para múltiplas aplicações práticas.
+A principal lacuna identificada é a ausência de um framework que integre sistematicamente estas técnicas em um sistema heterogêneo otimizado. Esta lacuna representa a oportunidade central para contribuição original desta pesquisa.
+
+O próximo capítulo apresenta a metodologia proposta para desenvolver tal framework integrado, baseando-se nas técnicas comprovadas identificadas nesta revisão e endereçando especificamente as lacunas identificadas na literatura atual.

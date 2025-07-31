@@ -1,276 +1,176 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% The following comments were written in Portuguese, because this 
-% template applies only for School of Technology at University 
-% of Campinas, Brazil.
-%
-% Este é um modelo Latex para monografias de Trabalhos de Conclusão 
-% de Curso (TCC) na graduação, monografias de Mestrado e Teses de 
-% doutorado da Faculdade de Tecnologia (FT) da Universidade 
-% Estadual de Campinas (UNICAMP).
-%
-% Esse modelo e seu respectivo arquivo de classe de documento 
-% foram adaptados do modelo de teses e dissertações do 
-% Instituto de Computação da UNICAMP e estão de acordo com a 
-% Instrução Normativa CPG 002/2021.
-%
-% Autor: André Leon Sampaio Gradvohl, Dr.
-% Email:     gradvohl@unicamp.br
-% Lattes CV: http://lattes.cnpq.br/9343261628675642
-% ORCID:     0000-0002-6520-9740
-% 
-% Última versão: 7/junho/2025.
-%
-% Adições/Alterações nesta última versão:
-% - Ajustes na folha de aprovação.
-%   - Remoção da área de concentração quando for curso de 
-%     graduação na folha de aprovação.
-%   - Adaptação do texto na folha de aprovação quando se 
-%     referir a graduação, mestrado ou a doutorado.
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Escolha: Portugues ou Ingles ou Espanhol.
-% Para a versão final do texto, acrescente a palavra "Final".
-\documentclass[Portugues,Final]{tese-FT}
-%\documentclass[Ingles,Final]{tese-FT}
-%\documentclass[Espanhol,Final]{tese-FT}
-%
-% Para uma compilação mais rápida, utilize a opção "Draft", em
-% letras maiúsculas como a seguir. 
-%\documentclass[Portugues,Draft]{tese-FT}
-%
-% Caso necessário, adicione também a opção "noFig". Essa opção 
-% deixa de mostrar as figuras e, portanto, acelera mais ainda
-% a compilação.
-%\documentclass[Portugues,Draft,noFig]{tese-FT}
-%
-% Caso queira gerar uma versão para avaliação pelo Turnitin,
-% (software utilizado pela Unicamp para emissão do relatório
-% de originalidade), adicione a opção Turnitin conforme o 
-% exemplo da linha a seguir:
-%\documentclass[Portugues,Final,Turnitin]{tese-FT}
+%% Dissertação de Mestrado - UNICAMP FT
+%% Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado
+%% Autor: Diego Maia
+%% Orientador: Prof. Dr. [Nome do Orientador]
+%% Data: Julho de 2025
 
-%Adicione seu arquivo com as referências bibliográficas
-\addbibresource{bibliografia.bib}
+\documentclass[12pt,oneside,a4paper,english,brazilian]{report}
 
-%O pacote a seguir gera um "dummy text". Elimine a linha quando
-% for editar seu texto.
-\usepackage{lipsum}
+% Configuração básica
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}
 \usepackage{listings}
 \usepackage{xcolor}
-\usepackage{amssymb}
+\usepackage{float}
+\usepackage{subfig}
+\usepackage[backend=biber,style=abnt,backref]{biblatex}
 
-% Configuração do pacote listings para código
+% Configuração de margens
+\usepackage[top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+
+% Configuração de espaçamento
+\usepackage{setspace}
+\onehalfspacing
+
+% Configuração de links
+\usepackage[colorlinks=true,linkcolor=black,citecolor=blue,urlcolor=blue]{hyperref}
+
+% Bibliografia
+\addbibresource{bibliografia.bib}
+
+% Configuração de código
 \lstset{
     basicstyle=\ttfamily\footnotesize,
-    backgroundcolor=\color{gray!5},
-    frame=single,
     breaklines=true,
+    frame=single,
     numbers=left,
     numberstyle=\tiny,
-    captionpos=b,
-    showstringspaces=false,
-    tabsize=2
+    commentstyle=\color{green!50!black},
+    keywordstyle=\color{blue},
+    stringstyle=\color{red}
 }
+
+%% Informações do documento
+\title{Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado}
+\author{Diego Maia}
+\date{Julho de 2025}
 
 \begin{document}
 
-% Escolha entre autor ou autora:
-\autor{Diego de Freitas Maia}
-%\autora{Nome da Autora}
+%% Capa
+\begin{titlepage}
+\centering
+{\large UNIVERSIDADE ESTADUAL DE CAMPINAS\\
+FACULDADE DE TECNOLOGIA\\
+PROGRAMA DE PÓS-GRADUAÇÃO EM TECNOLOGIA}
 
-% Sempre deve haver um título em português:
-\titulo{Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado com Foco em Aplicações Práticas}
+\vspace{3cm}
 
-% Se a língua for o inglês ou o espanhol defina:
-\title{Strategies for Power Consumption and Latency Reduction in Embedded Hyperspectral Processing with Focus on Practical Applications}
+{\Large\bf DIEGO MAIA}
 
-% Escolha entre orientador ou orientadora e inclua os títulos:
-\orientador{Prof. Dr. Leandro Ronchini Ximenes}
-%\orientadora{Profa. Dra. Nome da Orientadora}
+\vspace{2cm}
 
-% Escolha entre coorientador ou coorientadora, se houver, 
-% e inclua os títulos:
-%\coorientador{Prof. Dr. Eng. Lic. Nome do Co-Orientador}
-%\coorientadora{Prof. Dra. Eng. Lic. Nome da Co-Orientadora}
+{\Large\bf ESTRATÉGIAS PARA REDUÇÃO DE CONSUMO E LATÊNCIA NO PROCESSAMENTO HIPERESPECTRAL EMBARCADO}
 
-% Escolha entre uma das seis opções a seguir (comente as demais):
-%\bsi         % para Trabalho de Conclusão de Curso em BSI
-%\tads        % para Trabalho de Conclusão de Curso em TADS
-%\qualificacaoMestrado  % Para textos de qualificação de mestrado.
-%\qualificacaoDoutorado % Para textos de qualificação de doutorado.
-\mestrado   % para Dissertação de Mestrado em Tecnologia
-%\doutorado  % para Tese de Doutorado em Tecnologia
+\vspace{2cm}
 
-%Defina a área de concentração. Se for TCC, deixe comentado.
-\areaConcentracao{Sistemas de Informação e Comunicação}
-%\areaConcentracao{Ambiente}
-%\areaConcentracao{Ciência dos Materiais}
+Dissertação apresentada ao Programa de\\
+Pós-Graduação em Tecnologia da Faculdade\\
+de Tecnologia da Universidade Estadual de\\
+Campinas como parte dos requisitos exigidos\\
+para a obtenção do título de Mestre em\\
+Tecnologia.
 
-% Se houve cotutela, defina:
-%\cotutela{Universidade Nova de Plutão}
+\vspace{1cm}
 
-% Defina a data da defesa no formato {Dia}{Mês}{Ano}
-% Use apenas números! O template transformará em palavras,
-% se necessário.
-\datadadefesa{15}{12}{2025}
+Orientador: Prof. Dr. [Nome do Orientador]
 
-% Para a versão final defina:
-% Repita o nome do Orientador(a) no primeiro avaliador
-\avaliadorA{Prof. Dr. Leandro Ronchini Ximenes}{FT/UNICAMP}
-\avaliadorB{Profa. Dra. Segunda Avaliadora}{Instituição da segunda avaliadora}
-\avaliadorC{Dr. Terceiro Avaliador}{Instituição do terceiro avaliador}
-% \avaliadorD{Prof. Dr. Quarto Avaliador}{Instituição do quarto avaliador}
-% \avaliadorE{Prof. Dr. Quinto Avaliador}{Instituição do quinto avaliador}
-% \avaliadorF{Prof. Dr. Sexto Avaliador}{Instituição do sexto avaliador}
-% \avaliadorG{Prof. Dr. Sétimo Avaliador}{Instituição do sétimo avaliador}
-% \avaliadorH{Prof. Dr. Oitavo Avaliador}{Instituição do oitavo avaliador}
+\vspace{2cm}
 
-% Para incluir a ficha catalográfica em PDF na versão final, 
-% copie o arquivo PDF para o projeto no Overleaf, descomente 
-% e informe o nome do arquivo no comando a seguir.
-%\fichacatalografica{SeuArquivo.pdf}
-% OBSERVAÇÂO: O comando para a ficha catalográfica só é válido 
-% versoes finais de TCC, teses e dissertações (não é válido para qualificação 
-% ou TCCs que não serão disponibilizados na biblioteca).
-%
-% Para deixar uma página em branco no lugar da ficha 
-% catalográfica, descomente uma das três linhas a seguir:
-%\fichacatalografica{branco.pdf} % Português
-%\fichacatalografica{white.pdf}  % Inglês
-%\fichacatalografica{blanco.pdf} % Espanhol
+{\large LIMEIRA\\
+2025}
+\end{titlepage}
 
-% Este comando deve ficar aqui:
-\paginasiniciais
+%% Folha de aprovação (página em branco para posterior preenchimento)
+\newpage
+\thispagestyle{empty}
+\mbox{}
 
-% Se houver uma dedicatória, informe no comando a seguir. 
-% A dedicatória deve ter poucas linhas.
-%\dedicatoria{Aos meus pais e professores que me inspiraram na jornada científica.}
- 
-% Se houver epígrafe, use o comando \epigrafe a seguir
-%   - O primeiro parâmetro é o autor dos dizeres.
-%   - O segundo parâmetro são os dizeres.
-%\epigrafe{Richard Feynman}{
-%{\it
-%What I cannot create,\\
-%I do not understand.}
-%}
-
-% O comando condicional \ifturnitin a seguir é importante para 
-% preparar o texto para encaminhamento ao Turnitin. 
-% NÃO REMOVA!!
-% O \fi correspondente está após o comando \tableofcontents
-\ifturnitin
-   \relax 
-\else
-% Adicione no arquivo "agradecimentos.tex" os seus agradecimentos
-% Caso prefira omitir os agradecimentos, comente a linha a seguir.
+%% Agradecimentos
+\newpage
+\chapter*{Agradecimentos}
+\addcontentsline{toc}{chapter}{Agradecimentos}
 \input{agradecimentos}
 
-% Sempre deve haver um resumo em português:
-\begin{resumo}
-Este trabalho investiga estratégias para redução do consumo energético e da latência no processamento de dados hiperespectrais em plataformas embarcadas, com foco em aplicações práticas como agricultura de precisão, monitoramento ambiental e sistemas de vigilância. A pesquisa aborda os desafios computacionais do processamento hiperespectral através do desenvolvimento de arquiteturas e fluxos de processamento otimizados, seleção e teste de algoritmos de pré-processamento, compressão, redução de dimensionalidade e classificação, bem como a integração de técnicas de paralelização e deployment adaptativo sobre hardware restrito (FPGAs, VPUs, GPUs de baixo consumo). A metodologia inclui um processo detalhado de caracterização e seleção de datasets para simular operações reais, utilizando simulações via GHDL e experimentos em protótipos embarcados para avaliar o impacto das técnicas propostas. São priorizados sistemas capazes de operar autonomamente, com baixo consumo e respostas em tempo real, validando as estratégias em cenários práticos como detecção de estresse em lavouras, monitoramento de queimadas e reconhecimento de alvos em segurança. Os resultados fornecem diretrizes práticas, protótipos validados e métricas comparativas que contribuem para a adoção mais ampla e eficiente do processamento hiperespectral embarcado em problemas do mundo real.
+%% Resumo
+\newpage
+\chapter*{Resumo}
+\addcontentsline{toc}{chapter}{Resumo}
 
-\textbf{Palavras-chave:} Processamento Hiperespectral Embarcado, Eficiência Energética, Latência, Sistemas Embarcados, FPGA, Aplicações Práticas, Agricultura de Precisão, Monitoramento Ambiental.
-\end{resumo}
+O processamento de imagens hiperespectrais em sistemas embarcados apresenta desafios significativos relacionados ao alto consumo energético e latência excessiva, limitando sua aplicação em cenários práticos como agricultura de precisão, monitoramento ambiental e vigilância. Esta pesquisa propõe uma arquitetura de sistema heterogêneo (CPU+GPU+FPGA) otimizada especificamente para reduzir o consumo energético e a latência no processamento hiperespectral embarcado. A metodologia baseia-se na análise sistemática de 20 artigos científicos que identificaram técnicas comprovadas: compressive sensing (redução de 50-70\% dos dados), seleção inteligente de bandas EMCR (redução de 80\% do processamento), codesign HW/SW (melhoria energética de 43.5x) e implementações GPU otimizadas (330 fps em Jetson TX2). O sistema proposto integra estas técnicas em um pipeline heterogêneo onde o módulo FPGA realiza pré-processamento especializado (correção radiométrica ELM, seleção de bandas, compressive sensing), o módulo GPU executa reconstrução CGNE e extração de características com CNNs 3D otimizadas, e o módulo CPU implementa classificação SVM com distância de Hamming (0.1ms/pixel). As metas estabelecidas incluem redução de 3x no consumo energético, 4x na latência, aumento de 6.7x no throughput mantendo precisão >95\%. A validação experimental será realizada em aplicações práticas de agricultura de precisão com UAVs, utilizando datasets AVIRIS, Indian Pines e Pavia University como benchmarks. Esta pesquisa contribui com um framework integrado de otimização, algoritmos adaptativos de qualidade vs recursos e metodologia de codesign sistemática para processamento hiperespectral embarcado.
 
-% Sempre deve haver um abstract:
-\begin{abstract}
-This work investigates strategies for reducing energy consumption and latency in hyperspectral data processing on embedded platforms, focusing on practical applications such as precision agriculture, environmental monitoring, and surveillance systems. The research addresses computational challenges in hyperspectral processing through the development of optimized architectures and processing flows, selection and testing of preprocessing, compression, dimensionality reduction, and classification algorithms, as well as the integration of parallelization techniques and adaptive deployment on constrained hardware (FPGAs, VPUs, low-power GPUs). The methodology includes a detailed process for characterizing and selecting datasets to simulate real operations, using GHDL simulations and experiments on embedded prototypes to evaluate the impact of proposed techniques. Systems capable of autonomous operation with low power consumption and real-time responses are prioritized, validating strategies in practical scenarios such as crop stress detection, fire monitoring, and target recognition in security applications. The results provide practical guidelines, validated prototypes, and comparative metrics that contribute to broader and more efficient adoption of embedded hyperspectral processing in real-world problems.
+\textbf{Palavras-chave:} Processamento Hiperespectral, Sistemas Embarcados, Codesign HW/SW, Compressive Sensing, Redução de Consumo Energético, Otimização de Latência.
 
-\textbf{Keywords:} Embedded Hyperspectral Processing, Energy Efficiency, Latency, Embedded Systems, FPGA, Practical Applications, Precision Agriculture, Environmental Monitoring.
-\end{abstract}
+%% Abstract
+\newpage
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
 
-% Se houver um resumo em espanhol, descomente as linhas a seguir:
-%\begin{resumen}
-% A mesma regra aplica-se.
-%\end{resumen}
+Hyperspectral image processing in embedded systems presents significant challenges related to high energy consumption and excessive latency, limiting their application in practical scenarios such as precision agriculture, environmental monitoring, and surveillance. This research proposes a heterogeneous system architecture (CPU+GPU+FPGA) specifically optimized to reduce energy consumption and latency in embedded hyperspectral processing. The methodology is based on systematic analysis of 20 scientific articles that identified proven techniques: compressive sensing (50-70\% data reduction), EMCR intelligent band selection (80\% processing reduction), HW/SW codesign (43.5x energy improvement), and optimized GPU implementations (330 fps on Jetson TX2). The proposed system integrates these techniques in a heterogeneous pipeline where the FPGA module performs specialized preprocessing (ELM radiometric correction, band selection, compressive sensing), the GPU module executes CGNE reconstruction and feature extraction with optimized 3D CNNs, and the CPU module implements SVM classification with Hamming distance (0.1ms/pixel). Established targets include 3x reduction in energy consumption, 4x in latency, 6.7x increase in throughput while maintaining >95\% accuracy. Experimental validation will be performed in practical precision agriculture applications with UAVs, using AVIRIS, Indian Pines, and Pavia University datasets as benchmarks. This research contributes with an integrated optimization framework, adaptive quality vs resources algorithms, and systematic codesign methodology for embedded hyperspectral processing.
 
-% A lista de figuras:
+\textbf{Keywords:} Hyperspectral Processing, Embedded Systems, HW/SW Codesign, Compressive Sensing, Energy Consumption Reduction, Latency Optimization.
+
+%% Sumário
+\newpage
+\tableofcontents
+
+%% Lista de Figuras
+\newpage
 \listoffigures
 
-% A lista de tabelas (temporariamente comentada):
-%\listoftables
+%% Lista de Tabelas
+\newpage
+\listoftables
 
-% O sumário (temporariamente comentado):
-%\tableofcontents
+%% Lista de Símbolos
+\newpage
+\input{listaSimbolos}
 
-%% O comando \fi a seguir é obrigatório para o controle 
-%% da opção "turnitin". Não o remova!!
-\fi
+%% Capítulos
+\newpage
+\chapter{Introdução}
+\input{introducao}
 
-% E a linha a seguir deve ficar bem aqui. Não mude.
-\fimdaspaginasiniciais
+\newpage
+\chapter{Revisão Bibliográfica e Estado da Arte}
+\input{levantamento}
 
-% O corpo da dissertação ou tese começa aqui:
-%
-% O comando a seguir inclui o arquivo introducao.tex
-% que contém o capítulo de Introdução. 
-% Detalhe: não precisa incluir a extensão .tex
-\include{introducao}
+\newpage
+\chapter{Metodologia}
+\input{desenvolvimento}
 
-% O comando a seguir inclui o arquivo levantamento.tex
-% que contém o capítulo de levantamento bibliográfico. 
-% Detalhe: não precisa incluir a extensão .tex
-\include{levantamento}
+\newpage
+\chapter{Implementação e Simulação}
+\input{implementacao}
 
-% O comando a seguir inclui o arquivo desenvolvimento.tex
-% que contém o capítulo de desenvolvimento. 
-% Detalhe: não precisa incluir a extensão .tex
-\include{desenvolvimento}
+\newpage
+\chapter{Resultados e Análise}
+\input{resultados}
 
-% O comando a seguir inclui o arquivo implementacao.tex
-% que contém o capítulo de estratégias de otimização. 
-% Detalhe: não precisa incluir a extensão .tex
-\include{implementacao}
+\newpage
+\chapter{Discussão}
+\input{discussao}
 
-% O comando a seguir inclui o arquivo simulacao.tex
-% que contém o capítulo de implementação e simulação. 
-% Detalhe: não precisa incluir a extensão .tex
-\include{simulacao}
+\newpage
+\chapter{Conclusões e Trabalhos Futuros}
+\input{conclusoes}
 
-% O comando a seguir inclui o arquivo resultados.tex
-% que contém o capítulo de resultados e análise. 
-% Detalhe: não precisa incluir a extensão .tex
-\include{resultados}
+%% Bibliografia
+\newpage
+\printbibliography[title=Referências Bibliográficas]
 
-% O comando a seguir inclui o arquivo conclusoes.tex
-% que contém o capítulo de conclusoes. 
-% Detalhe: não precisa incluir a extensão .tex
-\include{conclusoes}
-
-% O comando condicional \ifturnitin a seguir é importante para 
-% preparar o texto para encaminhamento ao Turnitin. 
-% NÃO REMOVA!!
-% O \fi correspondente está antes do \end{document}
-\ifturnitin
-    \relax
-\else 
-% Comandos para incluir as referências bibliográficas
-% Define espaçamento simples em cada referência
-\begin{singlespacing}
-
-% Adiciona uma linha em branco entre duas referências
-\setlength\bibitemsep{10pt}   
-%
-% Adiciona as referências bibliográficas.
-% Mude o título (title), caso o texto seja em inglês 
-% ou espanhol.
-\printbibliography[heading=bibintoc, % Adiciona no sumário
-                   title={Referências bibliográficas} % Nome do Capítulo
-                  ]
-\end{singlespacing}
-
-% Os anexos, se houver, vêm depois das referências:
+%% Apêndices
+\newpage
 \appendix
+\input{apendices}
 
-% O comando a seguir inclui o arquivo apendices.tex
-% que contém os apêndices. Observe o comando \appendix
-% na linha anterior
-% Detalhe: não precisa incluir a extensão .tex
-\include{apendices}
-%
-%% O comando \fi a seguir é obrigatório para o controle 
-%% da opção "turnitin". Não o remova!!
-\fi
 \end{document}

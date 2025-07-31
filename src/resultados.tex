@@ -1,505 +1,58 @@
-% Capitulo de Resultados e Validacao
-\chapter{Resultados e Validacao}\label{chp:resultados}
+%% Capítulo 5: Resultados e Análise
+%% A ser desenvolvido após a implementação e experimentação
 
-Este capitulo apresenta os resultados experimentais obtidos atraves da validacao das estrategias de otimizacao energetica e reducao de latencia em sistemas hiperespectrais embarcados. Os experimentos foram conduzidos utilizando os datasets caracterizados e as metricas embarcadas definidas na metodologia, com foco nas aplicacoes praticas de agricultura de precisao, monitoramento ambiental e sistemas de vigilancia.
+\section{Resultados Experimentais}
 
-\section{Configuracao Experimental}\label{sec:configuracao_experimental}
+% Resultados serão apresentados após a implementação
+% e execução dos experimentos planejados
 
-Os experimentos foram realizados em multiplas plataformas embarcadas para validar a generalizacao das estrategias propostas.
+\subsection{Performance do Sistema}
 
-\subsection{Plataformas de Teste}
+% Análise de throughput e latência
+% Comparação com baselines
+% Métricas de tempo real
 
-\subsubsection{FPGA - Simulacao via GHDL}
-\begin{itemize}
-    \item \textbf{Ambiente}: GHDL 3.0.0 com GTKWave
-    \item \textbf{Target FPGA}: Xilinx Zynq-7000 (simulado)
-    \item \textbf{Frequencia}: 100 MHz base, 200 MHz processamento
-    \item \textbf{Recursos}: 53,200 LUTs, 106,400 FF, 220 DSP slices
-    \item \textbf{Memoria}: 630 KB BRAM simulado
-\end{itemize}
+\subsection{Eficiência Energética}
 
-\subsubsection{VPU - Intel Movidius}
-\begin{itemize}
-    \item \textbf{Hardware}: Neural Compute Stick 2
-    \item \textbf{Processador}: Intel Movidius Myriad X VPU
-    \item \textbf{Consumo}: 1W nominal
-    \item \textbf{Throughput}: 4 TOPS (INT8)
-    \item \textbf{Memoria}: 512 MB LPDDR4
-\end{itemize}
+% Medições de consumo energético
+% Comparação entre módulos
+% Análise de trade-offs
 
-\subsubsection{GPU Embarcada - NVIDIA Jetson}
-\begin{itemize}
-    \item \textbf{Hardware}: Jetson Nano Developer Kit
-    \item \textbf{GPU}: 128-core Maxwell
-    \item \textbf{CPU}: Quad-core ARM A57 @ 1.43 GHz
-    \item \textbf{Consumo}: 5-10W operacional
-    \item \textbf{Memoria}: 4 GB LPDDR4 compartilhada
-\end{itemize}
+\subsection{Precisão de Classificação}
 
-\subsection{Datasets de Validacao}
+% Resultados de acurácia
+% Matrizes de confusão
+% Comparação com estado da arte
 
-Conforme a metodologia de caracterizacao, foram selecionados e adaptados os seguintes datasets:
+\section{Análise Comparativa}
 
-\subsubsection{Agricultura - Indian Pines Adaptado}
-\begin{itemize}
-    \item \textbf{Dimensoes}: 145×145×220 bandas
-    \item \textbf{Resolucao Espectral}: 10nm (400-2500nm)
-    \item \textbf{Classes}: 16 tipos de culturas
-    \item \textbf{Adaptacoes}: Simulacao de streaming, insercao de ruidos de sensor
-    \item \textbf{Cenario}: Deteccao de estresse em soja e milho
-\end{itemize}
+% Comparação sistemática com trabalhos relacionados
+% Validação das hipóteses de pesquisa
 
-\subsubsection{Ambiental - AVIRIS Fire Detection}
-\begin{itemize}
-    \item \textbf{Dimensoes}: 512×614×224 bandas
-    \item \textbf{Resolucao Espacial}: 3.7m/pixel
-    \item \textbf{Foco}: Areas de queimada e vegetacao saudavel
-    \item \textbf{Adaptacoes}: Simulacao de condicoes de fumaca, variacao termica
-    \item \textbf{Cenario}: Deteccao precoce de focos de incendio
-\end{itemize}
+\subsection{Comparação com Literatura}
 
-\subsubsection{Vigilancia - Pavia University Modificado}
-\begin{itemize}
-    \item \textbf{Dimensoes}: 610×340×103 bandas
-    \item \textbf{Resolucao Espacial}: 1.3m/pixel
-    \item \textbf{Classes}: 9 tipos de materiais urbanos
-    \item \textbf{Adaptacoes}: Insercao de alvos sinteticos, camuflagem artificial
-    \item \textbf{Cenario}: Reconhecimento de veiculos e materiais especificos
-\end{itemize}
+% Benchmarking contra trabalhos de referência
+% Análise de melhorias obtidas
+% Posicionamento no estado da arte
 
-\section{Metricas de Avaliacao Embarcada}\label{sec:metricas_avaliacao}
+\subsection{Validação das Hipóteses}
 
-As metricas foram organizadas para capturar os aspectos especificos de sistemas embarcados conforme definido na metodologia.
+% Teste das três hipóteses principais
+% Análise estatística dos resultados
+% Discussão dos achados
 
-\subsection{Eficiencia Energetica}
+\section{Aplicações Práticas}
 
-\subsubsection{Consumo por Operacao}
-Medicao detalhada do consumo energetico para diferentes operacoes:
+% Resultados em cenários reais de aplicação
 
-\begin{table}[!htp]
-\caption[Consumo Energetico por Operacao]{Consumo energetico por operacao em diferentes plataformas (mJ).}
-\label{tab:consumo_operacao}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Operacao} & \textbf{FPGA} & \textbf{VPU} & \textbf{GPU} \\
-\hline
-Correcao Radiometrica & 0.12 & 0.08 & 0.45 \\
-\hline
-PCA Incremental & 0.89 & 0.65 & 2.1 \\
-\hline
-Classificacao SVM & 1.2 & 0.95 & 3.2 \\
-\hline
-Deteccao de Anomalias & 0.67 & 0.52 & 1.8 \\
-\hline
-Total por Pixel & 2.88 & 2.20 & 7.55 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
+\subsection{Agricultura de Precisão}
 
-\subsubsection{Eficiencia GOPS/W}
-Comparacao da eficiencia computacional normalizada:
-
-\begin{table}[!htp]
-\caption[Eficiencia Computacional]{Eficiencia computacional por plataforma (GOPS/W).}
-\label{tab:eficiencia_gops}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Aplicacao} & \textbf{FPGA} & \textbf{VPU} & \textbf{GPU} \\
-\hline
-Agricultura & 15.6 & 22.1 & 8.7 \\
-\hline
-Queimadas & 18.2 & 19.8 & 9.2 \\
-\hline
-Vigilancia & 12.4 & 18.5 & 7.1 \\
-\hline
-Media & 15.4 & 20.1 & 8.3 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\subsection{Metricas de Latencia}
-
-\subsubsection{Latencia End-to-End}
-Medicao da latencia total do sistema sensor-to-output:
-
-\begin{table}[!htp]
-\caption[Latencia por Aplicacao]{Latencia total por aplicacao (ms).}
-\label{tab:latencia_aplicacao}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Aplicacao} & \textbf{FPGA} & \textbf{VPU} & \textbf{GPU} & \textbf{Requisito} \\
-\hline
-Agricultura & 45 & 62 & 78 & <100 \\
-\hline
-Queimadas & 12 & 18 & 25 & <30 \\
-\hline
-Vigilancia & 28 & 35 & 42 & <50 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\subsubsection{Jitter Temporal}
-Analise da variabilidade na latencia:
-
-\begin{figure}[!htb]
-\centering
-% Figura sera incluida posteriormente
-% \includegraphics[width=0.8\textwidth]{jitter_analysis.png}
-\caption[Analise de Jitter]{Distribuicao de jitter temporal por plataforma (simulado).}
-\label{fig:jitter_analysis}
-\end{figure}
-
-\section{Resultados por Estrategia de Otimizacao}\label{sec:resultados_estrategias}
-
-Esta secao apresenta os resultados especificos para cada estrategia de otimizacao implementada.
-
-\subsection{Compressao Adaptativa Espectral}
-
-\subsubsection{Reducao de Dados}
-Analise da eficacia da compressao baseada em correlacao espectral:
-
-\begin{table}[!htp]
-\caption[Resultados de Compressao]{Resultados da compressao adaptativa espectral.}
-\label{tab:compressao_resultados}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Dataset} & \textbf{Bandas Orig.} & \textbf{Bandas Selec.} & \textbf{Taxa Compr.} & \textbf{Precisao} \\
-\hline
-Indian Pines & 220 & 45 & 4.9:1 & 94.2\% \\
-\hline
-AVIRIS Fire & 224 & 38 & 5.9:1 & 96.1\% \\
-\hline
-Pavia Univ. & 103 & 25 & 4.1:1 & 92.8\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\subsubsection{Impacto Energetico}
-Reducao no consumo energetico devido a compressao:
-
-\begin{itemize}
-    \item \textbf{FPGA}: 78\% reducao no consumo total
-    \item \textbf{VPU}: 71\% reducao no consumo total  
-    \item \textbf{GPU}: 65\% reducao no consumo total
-    \item \textbf{Trade-off}: 3-8\% reducao na precisao media
-\end{itemize}
-
-\subsection{PCA Incremental Otimizado}
-
-\subsubsection{Eficiencia Computacional}
-Comparacao entre PCA tradicional e incremental:
-
-\begin{table}[!htp]
-\caption[Comparacao PCA]{Comparacao entre PCA tradicional e incremental.}
-\label{tab:pca_comparacao}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Metrica} & \textbf{PCA Trad.} & \textbf{PCA Increm.} & \textbf{Melhoria} \\
-\hline
-Tempo (ms) & 125 & 34 & 3.7× \\
-\hline
-Memoria (MB) & 89 & 23 & 3.9× \\
-\hline
-Energia (mJ) & 156 & 48 & 3.3× \\
-\hline
-Precisao (\%) & 96.2 & 94.8 & -1.4\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\subsubsection{Adaptacao ao Streaming}
-Analise da capacidade de processar dados em tempo real:
-
-\begin{itemize}
-    \item \textbf{Throughput}: 15-30 fps dependendo da plataforma
-    \item \textbf{Atualizacao}: Componentes principais atualizados a cada 100 pixels
-    \item \textbf{Estabilidade}: Convergencia mantida com deriva <2\%
-    \item \textbf{Memoria}: Footprint constante independente do volume de dados
-\end{itemize}
-
-\subsection{Processamento Hierarquico}
-
-\subsubsection{Eficiencia da Piramide}
-Analise da estrategia de processamento em multiplas resolucoes:
-
-\begin{table}[!htp]
-\caption[Processamento Hierarquico]{Resultados do processamento hierarquico.}
-\label{tab:hierarquico_resultados}
-\begin{center}
-\begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Nivel} & \textbf{Resolucao} & \textbf{Energia} & \textbf{Latencia} & \textbf{Precisao} \\
-\hline
-Grosseiro & 25\% & 100\% & 100\% & 78\% \\
-\hline
-Medio & 50\% & 45\% & 65\% & 89\% \\
-\hline
-Fino & 100\% & 15\% & 35\% & 96\% \\
-\hline
-Hibrido & Adaptativo & 32\% & 48\% & 94\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\subsubsection{Trigger Inteligente}
-Eficacia do sistema de decisao para processamento detalhado:
-
-\begin{itemize}
-    \item \textbf{Sensibilidade}: 94\% de deteccao de regioes criticas
-    \item \textbf{Especificidade}: 89\% de rejeicao de regioes nao-relevantes
-    \item \textbf{Economia}: 68\% reducao na carga computacional media
-    \item \textbf{Overhead}: <5\% da latencia total
-\end{itemize}
-
-\section{Validacao em Aplicacoes Praticas}\label{sec:validacao_aplicacoes}
-
-Esta secao apresenta os resultados da validacao em cenarios praticos especificos.
-
-\subsection{Agricultura de Precisao}
-
-\subsubsection{Deteccao de Estresse em Soja}
-Validacao em cenario de deteccao de deficiencia nutricional:
-
-\paragraph{Configuracao do Experimento}
-\begin{itemize}
-    \item \textbf{Dataset}: Indian Pines adaptado com simulacao de estresse N/P/K
-    \item \textbf{Plataforma}: VPU (otimizada para campo)
-    \item \textbf{Algoritmo}: PCA Incremental + SVM otimizado
-    \item \textbf{Metricas}: Precisao, consumo, latencia operacional
-\end{itemize}
-
-\paragraph{Resultados Obtidos}
-\begin{table}[!htp]
-\caption[Deteccao de Estresse]{Resultados da deteccao de estresse em soja.}
-\label{tab:estresse_soja}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Tipo de Estresse} & \textbf{Precisao} & \textbf{Sensibilidade} & \textbf{Especificidade} \\
-\hline
-Deficiencia N & 92.1\% & 89.4\% & 94.2\% \\
-\hline
-Deficiencia P & 88.7\% & 85.2\% & 91.8\% \\
-\hline
-Deficiencia K & 85.3\% & 82.1\% & 88.9\% \\
-\hline
-Estresse Hidrico & 94.6\% & 92.8\% & 96.1\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\paragraph{Desempenho Operacional}
-\begin{itemize}
-    \item \textbf{Latencia de Decisao}: 58ms (requisito: <100ms) (OK)
-    \item \textbf{Consumo por Hectare}: 2.1 Wh (autonomia 8h) (OK)
-    \item \textbf{Taxa de Processamento}: 25 fps em resolucao de campo
-    \item \textbf{Confiabilidade}: 99.2\% uptime em testes de 72h
-\end{itemize}
-
-\subsubsection{Monitoramento de Crescimento}
-Validacao em cenario de acompanhamento temporal:
-
-\paragraph{Metodologia}
-\begin{itemize}
-    \item \textbf{Periodo}: Simulacao de safra completa (120 dias)
-    \item \textbf{Frequencia}: Monitoramento semanal automatizado
-    \item \textbf{Metricas}: NDVI, LAI, biomassa estimada
-    \item \textbf{Validacao}: Comparacao com medicoes terrestres
-\end{itemize}
-
-\paragraph{Resultados Temporais}
-\begin{itemize}
-    \item \textbf{Correlacao NDVI}: $R^2$ = 0.94 com medicoes terrestres
-    \item \textbf{Deteccao de Mudancas}: 87\% de eventos criticos identificados
-    \item \textbf{Falsos Positivos}: <8\% (principalmente por variacoes climaticas)
-    \item \textbf{Consumo Sazonal}: 45\% reducao vs. monitoramento continuo
-\end{itemize}
+% Resultados em UAV agrícola
+% Performance em campo
+% Validação prática
 
 \subsection{Monitoramento Ambiental}
 
-\subsubsection{Deteccao Precoce de Queimadas}
-Validacao em cenario critico de resposta emergencial:
-
-\paragraph{Configuracao}
-\begin{itemize}
-    \item \textbf{Dataset}: AVIRIS com focos sinteticos inseridos
-    \item \textbf{Plataforma}: FPGA (otimizada para baixa latencia)
-    \item \textbf{Algoritmo}: Deteccao multi-espectral + trigger hierarquico
-    \item \textbf{Requisitos}: Latencia <30s, operacao 24/7
-\end{itemize}
-
-\paragraph{Performance de Deteccao}
-\begin{table}[!htp]
-\caption[Deteccao de Queimadas]{Performance na deteccao de queimadas.}
-\label{tab:deteccao_queimadas}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Tamanho do Foco} & \textbf{Deteccao} & \textbf{Latencia} & \textbf{Falsos +} \\
-\hline
->100$m^2$ & 98.7\% & 8.2s & 2.1\% \\
-\hline
-50-100$m^2$ & 94.3\% & 12.5s & 3.8\% \\
-\hline
-10-50$m^2$ & 87.1\% & 18.9s & 5.2\% \\
-\hline
-<10$m^2$ & 71.4\% & 25.1s & 8.7\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\paragraph{Robustez Operacional}
-\begin{itemize}
-    \item \textbf{Operacao Continua}: 99.6\% uptime em 30 dias de teste
-    \item \textbf{Condicoes Adversas}: Mantem 85\% precisao com fumaca densa
-    \item \textbf{Consumo 24/7}: 1.2W medio (viavel com energia solar)
-    \item \textbf{Comunicacao}: Alerta automatico via satelital <60s
-\end{itemize}
-
-\subsection{Sistemas de Vigilancia}
-
-\subsubsection{Reconhecimento de Veiculos}
-Validacao em cenario de monitoramento perimetral:
-
-\paragraph{Setup Experimental}
-\begin{itemize}
-    \item \textbf{Dataset}: Pavia University com veiculos sinteticos
-    \item \textbf{Cenario}: Identificacao de tipos especificos de veiculos
-    \item \textbf{Desafios}: Camuflagem, condicoes noturnas, movimento
-    \item \textbf{Metricas}: Precisao de classificacao, tempo de resposta
-\end{itemize}
-
-\paragraph{Resultados de Classificacao}
-\begin{table}[!htp]
-\caption[Reconhecimento de Veiculos]{Resultados do reconhecimento de veiculos.}
-\label{tab:reconhecimento_veiculos}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Tipo de Veiculo} & \textbf{Precisao} & \textbf{Recall} & \textbf{F1-Score} \\
-\hline
-Carros Civis & 91.3\% & 88.7\% & 90.0\% \\
-\hline
-Veiculos Militares & 94.8\% & 92.1\% & 93.4\% \\
-\hline
-Caminhoes & 89.2\% & 86.4\% & 87.8\% \\
-\hline
-Motos & 84.7\% & 81.2\% & 82.9\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\paragraph{Performance Operacional}
-\begin{itemize}
-    \item \textbf{Tempo de Resposta}: 32ms (requisito: <50ms) (OK)
-    \item \textbf{Taxa de Deteccao}: 15-20 veiculos/minuto
-    \item \textbf{Falsos Alarmes}: <5\% em condicoes normais
-    \item \textbf{Operacao Discreta}: <0.8W consumo medio
-\end{itemize}
-
-\section{Analise Comparativa de Plataformas}\label{sec:analise_comparativa}
-
-Esta secao apresenta uma analise comparativa consolidada das tres plataformas embarcadas testadas.
-
-\subsection{Trade-offs Identificados}
-
-\subsubsection{Energia vs. Precisao}
-\begin{figure}[!htb]
-\centering
-% Figura sera incluida posteriormente
-% \includegraphics[width=0.8\textwidth]{energia_vs_precisao.png}
-\caption[Energy-Accuracy Trade-off]{Trade-off entre consumo energetico e precisao por plataforma.}
-\label{fig:energia_precisao}
-\end{figure}
-
-\subsubsection{Latencia vs. Complexidade}
-\begin{figure}[!htb]
-\centering
-% Figura sera incluida posteriormente
-% \includegraphics[width=0.8\textwidth]{latencia_vs_complexidade.png}
-\caption[Latency-Complexity Trade-off]{Relacao entre latencia e complexidade algoritmica.}
-\label{fig:latencia_complexidade}
-\end{figure}
-
-\subsection{Diretrizes de Selecao}
-
-Com base nos resultados experimentais, estabelecemos as seguintes diretrizes:
-
-\subsubsection{FPGA - Recomendado para:}
-\begin{itemize}
-    \item Aplicacoes criticas de ultra-baixa latencia (<20ms)
-    \item Operacao 24/7 com energia limitada
-    \item Algoritmos bem definidos e estaveis
-    \item Requisitos de determinismo temporal
-\end{itemize}
-
-\subsubsection{VPU - Recomendado para:}
-\begin{itemize}
-    \item Melhor balanco energia/precisao/facilidade
-    \item Aplicacoes com algoritmos adaptativos
-    \item Deployment rapido e flexivel
-    \item Constraints moderados de todos os aspectos
-\end{itemize}
-
-\subsubsection{GPU Embarcada - Recomendado para:}
-\begin{itemize}
-    \item Maxima precisao com energia disponivel
-    \item Algoritmos complexos de deep learning
-    \item Prototipagem rapida e desenvolvimento
-    \item Aplicacoes com energia menos restritiva
-\end{itemize}
-
-\section{Validacao das Estrategias Adaptativas}\label{sec:validacao_adaptativas}
-
-Esta secao valida a eficacia das estrategias de deployment adaptativo.
-
-\subsection{Configuracao Dinamica}
-
-\subsubsection{Resource-Aware Configuration}
-Teste da capacidade de adaptacao automatica:
-
-\begin{itemize}
-    \item \textbf{Deteccao de Hardware}: 100\% acuracia na identificacao de plataforma
-    \item \textbf{Profiling Automatico}: <2s para caracterizacao completa
-    \item \textbf{Selecao de Template}: 94\% de escolhas otimas automaticamente
-    \item \textbf{Overhead}: <3\% da latencia total
-\end{itemize}
-
-\subsubsection{Quality Scaling}
-Validacao do ajuste automatico de qualidade:
-
-\begin{table}[!htp]
-\caption[Quality Scaling]{Resultados do quality scaling adaptativo.}
-\label{tab:quality_scaling}
-\begin{center}
-\begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
-\hline
-\textbf{Energia Disp.} & \textbf{Config. Auto} & \textbf{Precisao} & \textbf{Latencia} & \textbf{Satisfacao} \\
-\hline
-100\% & Alta Qualidade & 96.2\% & 85ms & 98\% \\
-\hline
-60\% & Balanceada & 92.8\% & 58ms & 94\% \\
-\hline
-30\% & Baixo Consumo & 87.1\% & 42ms & 89\% \\
-\hline
-10\% & Emergencia & 78.4\% & 28ms & 82\% \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-Os resultados demonstram a eficacia das estrategias propostas em cenarios praticos, com trade-offs bem caracterizados e diretrizes claras para deployment. O proximo capitulo apresenta as conclusoes e diretrizes finais para implementacao. 
+% Aplicação em monitoramento
+% Robustez do sistema
+% Casos de uso específicos

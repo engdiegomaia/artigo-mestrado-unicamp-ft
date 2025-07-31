@@ -1,0 +1,390 @@
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {brazil}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {brazil}{}\relax 
+\contentsline {chapter}{\numberline {1}Introdução}{14}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Problema de Pesquisa}{15}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Desafios Identificados}{15}{subsection.1.1.1}%
+\contentsline {subsubsection}{Gargalos Computacionais}{15}{section*.7}%
+\contentsline {subsubsection}{Restrições Energéticas}{15}{section*.8}%
+\contentsline {subsubsection}{Requisitos de Tempo Real}{15}{section*.9}%
+\contentsline {subsection}{\numberline {1.1.2}Questões de Pesquisa}{15}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Justificativa}{16}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Relevância Científica}{16}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Relevância Tecnológica}{16}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Relevância Prática}{16}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}Objetivos}{17}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Objetivo Geral}{17}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Objetivos Específicos}{17}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Metodologia de Pesquisa}{18}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Fase 1: Análise e Baseline (2 meses)}{18}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Fase 2: Implementação de Módulos (4 meses)}{18}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Fase 3: Integração Heterogênea (3 meses)}{18}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Fase 4: Validação Experimental (2 meses)}{18}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Delimitação do Escopo}{19}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Escopo Incluído}{19}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Escopo Excluído}{19}{subsection.1.5.2}%
+\contentsline {section}{\numberline {1.6}Contribuições Esperadas}{19}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Contribuições Técnicas}{19}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Contribuições Científicas}{20}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}Estrutura do Trabalho}{20}{section.1.7}%
+\contentsline {chapter}{\numberline {2}Levantamento Bibliográfico}{21}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Processamento Hiperespectral Embarcado}{21}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Conceitos Fundamentais}{21}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Arquiteturas de Hardware Embarcado}{22}{subsection.2.1.2}%
+\contentsline {subsubsection}{FPGAs (Field-Programmable Gate Arrays)}{22}{section*.10}%
+\contentsline {subsubsection}{VPUs (Vision Processing Units)}{22}{section*.11}%
+\contentsline {subsubsection}{GPUs Embarcadas}{22}{section*.12}%
+\contentsline {section}{\numberline {2.2}Estratégias de Redução de Consumo Energético}{23}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Otimizações Algorítmicas}{23}{subsection.2.2.1}%
+\contentsline {subsubsection}{Compressão Adaptativa}{23}{section*.13}%
+\contentsline {subsubsection}{Redução de Dimensionalidade Otimizada}{23}{section*.14}%
+\contentsline {subsubsection}{Processamento Hierárquico}{23}{section*.15}%
+\contentsline {subsection}{\numberline {2.2.2}Otimizações de Hardware}{23}{subsection.2.2.2}%
+\contentsline {subsubsection}{Gerenciamento Dinâmico de Energia}{23}{section*.16}%
+\contentsline {subsubsection}{Precisão Aritmética Adaptativa}{24}{section*.17}%
+\contentsline {section}{\numberline {2.3}Técnicas de Redução de Latência}{24}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Paralelização Eficiente}{24}{subsection.2.3.1}%
+\contentsline {subsubsection}{Paralelização Espectral}{24}{section*.18}%
+\contentsline {subsubsection}{Paralelização Espacial}{24}{section*.19}%
+\contentsline {subsubsection}{Pipeline de Processamento}{24}{section*.20}%
+\contentsline {subsection}{\numberline {2.3.2}Otimizações de Memória}{24}{subsection.2.3.2}%
+\contentsline {subsubsection}{Hierarquia de Cache Otimizada}{25}{section*.21}%
+\contentsline {subsubsection}{Streaming de Dados}{25}{section*.22}%
+\contentsline {section}{\numberline {2.4}Aplicações Práticas Embarcadas}{25}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Agricultura de Precisão}{25}{subsection.2.4.1}%
+\contentsline {subsubsection}{Detecção de Estresse em Culturas}{25}{section*.23}%
+\contentsline {subsubsection}{Monitoramento de Crescimento}{25}{section*.24}%
+\contentsline {subsubsection}{Aplicação Variável de Insumos}{25}{section*.25}%
+\contentsline {subsection}{\numberline {2.4.2}Monitoramento Ambiental}{26}{subsection.2.4.2}%
+\contentsline {subsubsection}{Detecção Precoce de Queimadas}{26}{section*.26}%
+\contentsline {subsubsection}{Monitoramento de Qualidade da Água}{26}{section*.27}%
+\contentsline {subsubsection}{Detecção de Mudanças na Cobertura Vegetal}{26}{section*.28}%
+\contentsline {subsection}{\numberline {2.4.3}Sistemas de Vigilância e Segurança}{26}{subsection.2.4.3}%
+\contentsline {subsubsection}{Reconhecimento de Materiais}{26}{section*.29}%
+\contentsline {subsubsection}{Detecção de Objetos Ocultos}{27}{section*.30}%
+\contentsline {subsubsection}{Monitoramento Perimetral}{27}{section*.31}%
+\contentsline {section}{\numberline {2.5}Caracterização e Seleção de Datasets}{27}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Metodologias de Caracterização}{27}{subsection.2.5.1}%
+\contentsline {subsubsection}{Critérios de Representatividade}{27}{section*.32}%
+\contentsline {subsubsection}{Diversidade de Condições}{27}{section*.33}%
+\contentsline {subsubsection}{Metadados Auxiliares}{27}{section*.34}%
+\contentsline {subsection}{\numberline {2.5.2}Preparação para Simulação de Operações Reais}{28}{subsection.2.5.2}%
+\contentsline {subsubsection}{Simulação de Aquisição Streaming}{28}{section*.35}%
+\contentsline {subsubsection}{Inserção de Ruídos e Artefatos}{28}{section*.36}%
+\contentsline {subsubsection}{Variação de Resolução}{28}{section*.37}%
+\contentsline {section}{\numberline {2.6}Tecnologias de Simulação e Validação}{28}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}GHDL para Simulação de FPGAs}{28}{subsection.2.6.1}%
+\contentsline {subsubsection}{Modelagem de Precisão}{28}{section*.38}%
+\contentsline {subsubsection}{Validação Funcional}{29}{section*.39}%
+\contentsline {subsubsection}{Estimativa de Recursos}{29}{section*.40}%
+\contentsline {subsection}{\numberline {2.6.2}Ferramentas de Análise Energética}{29}{subsection.2.6.2}%
+\contentsline {subsubsection}{Profiling Energético}{29}{section*.41}%
+\contentsline {subsubsection}{Modelagem de Consumo}{29}{section*.42}%
+\contentsline {section}{\numberline {2.7}Revisão de Trabalhos de Muito Alta Relevância}{29}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Compressive Sensing Hiperespectral Embarcado}{29}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Codesign Hardware/Software para Compressão Hiperespectral}{30}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Compressão Hiperespectral em GPUs Embarcadas}{30}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}Acelerador SVM para Classificação Hiperespectral Onboard}{31}{subsection.2.7.4}%
+\contentsline {section}{\numberline {2.8}Revisão de Trabalhos de Alta Relevância}{31}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Classificação LULC com Imagens Hiperespectrais}{31}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Correções Radiométricas e Geométricas para UAV Hiperespectral}{32}{subsection.2.8.2}%
+\contentsline {subsection}{\numberline {2.8.3}Classificação UAV Hiperespectral: Revisão Sistemática}{32}{subsection.2.8.3}%
+\contentsline {subsection}{\numberline {2.8.4}Deep Learning para Classificação Hiperespectral}{32}{subsection.2.8.4}%
+\contentsline {section}{\numberline {2.9}Análise de Trabalhos de Relevância Complementar}{33}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}Arquiteturas Ultra-Eficientes para UAV}{33}{subsection.2.9.1}%
+\contentsline {subsection}{\numberline {2.9.2}Análise de Lacunas Computacionais}{33}{subsection.2.9.2}%
+\contentsline {subsection}{\numberline {2.9.3}Fundamentos Técnicos AVIRIS}{33}{subsection.2.9.3}%
+\contentsline {section}{\numberline {2.10}Síntese de Técnicas e Contribuições Identificadas}{33}{section.2.10}%
+\contentsline {subsection}{\numberline {2.10.1}Estratégias de Redução de Consumo Energético}{33}{subsection.2.10.1}%
+\contentsline {subsection}{\numberline {2.10.2}Estratégias de Redução de Latência}{34}{subsection.2.10.2}%
+\contentsline {subsection}{\numberline {2.10.3}Lacunas Identificadas na Literatura}{34}{subsection.2.10.3}%
+\contentsline {section}{\numberline {2.11}Síntese do Levantamento}{35}{section.2.11}%
+\contentsline {subsection}{\numberline {2.11.1}Estado da Arte}{35}{subsection.2.11.1}%
+\contentsline {subsection}{\numberline {2.11.2}Desafios Técnicos}{35}{subsection.2.11.2}%
+\contentsline {subsection}{\numberline {2.11.3}Oportunidades de Pesquisa}{36}{subsection.2.11.3}%
+\contentsline {chapter}{\numberline {3}Arquitetura e Metodologia do Sistema Heterogêneo}{37}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Arquitetura de Sistema Heterogêneo Proposta}{37}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Visão Sistêmica}{37}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Módulo FPGA de Pré-processamento}{38}{subsection.3.1.2}%
+\contentsline {subsubsection}{Correção Radiométrica ELM}{38}{section*.43}%
+\contentsline {subsubsection}{Seleção de Bandas EMCR}{39}{section*.44}%
+\contentsline {subsubsection}{Compressive Sensing Encoder}{39}{section*.45}%
+\contentsline {subsection}{\numberline {3.1.3}Módulo GPU de Processamento}{39}{subsection.3.1.3}%
+\contentsline {subsubsection}{Reconstrução CGNE Otimizada}{40}{section*.46}%
+\contentsline {subsubsection}{CNN 3D Ultra-Eficiente}{40}{section*.47}%
+\contentsline {subsubsection}{Pipeline de Fusão Espacial-Espectral}{40}{section*.48}%
+\contentsline {subsection}{\numberline {3.1.4}Módulo CPU de Controle}{41}{subsection.3.1.4}%
+\contentsline {subsubsection}{Classificador SVM com Distância de Hamming}{41}{section*.49}%
+\contentsline {subsubsection}{Controle Adaptativo de Qualidade}{41}{section*.50}%
+\contentsline {subsubsection}{Gerenciamento Inteligente de Energia}{41}{section*.51}%
+\contentsline {subsection}{\numberline {3.1.5}Pipeline Integrado e Comunicação}{42}{subsection.3.1.5}%
+\contentsline {subsubsection}{Arquitetura de Comunicação}{42}{section*.52}%
+\contentsline {subsubsection}{Balanceamento de Carga Dinâmico}{42}{section*.53}%
+\contentsline {subsection}{\numberline {3.1.6}Métricas de Performance Alvo}{42}{subsection.3.1.6}%
+\contentsline {section}{\numberline {3.2}Metodologia de Desenvolvimento e Validação}{42}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Definição de Cenários e Aplicações-alvo}{43}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Agricultura de Precisão}{43}{subsection.3.3.1}%
+\contentsline {subsubsection}{Detecção de Estresse em Lavouras}{43}{section*.54}%
+\contentsline {subsubsection}{Monitoramento de Crescimento}{44}{section*.55}%
+\contentsline {subsection}{\numberline {3.3.2}Monitoramento Ambiental}{44}{subsection.3.3.2}%
+\contentsline {subsubsection}{Detecção de Queimadas}{44}{section*.56}%
+\contentsline {subsubsection}{Qualidade da Água}{45}{section*.57}%
+\contentsline {subsection}{\numberline {3.3.3}Sistemas de Vigilância}{45}{subsection.3.3.3}%
+\contentsline {subsubsection}{Reconhecimento de Alvos}{45}{section*.58}%
+\contentsline {section}{\numberline {3.4}Processo Detalhado de Seleção de Datasets}{46}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Pesquisa e Levantamento de Datasets Existentes}{46}{subsection.3.4.1}%
+\contentsline {subsubsection}{Repositórios Consultados}{46}{section*.59}%
+\contentsline {subsubsection}{Critérios de Avaliação Inicial}{47}{section*.60}%
+\contentsline {subsection}{\numberline {3.4.2}Critérios de Seleção Detalhados}{47}{subsection.3.4.2}%
+\contentsline {subsubsection}{Correspondência com Cenário Real (Peso: 30\%)}{47}{section*.61}%
+\contentsline {subsubsection}{Diversidade de Condições (Peso: 25\%)}{48}{section*.62}%
+\contentsline {subsubsection}{Completeness e Qualidade (Peso: 20\%)}{48}{section*.63}%
+\contentsline {subsubsection}{Volume e Representatividade Estatística (Peso: 15\%)}{48}{section*.64}%
+\contentsline {subsubsection}{Acessibilidade e Usabilidade (Peso: 10\%)}{48}{section*.65}%
+\contentsline {subsection}{\numberline {3.4.3}Matriz de Decisão}{49}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Preparação e Adaptação dos Datasets}{49}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Pré-processamento para Operação Embarcada}{49}{subsection.3.5.1}%
+\contentsline {subsubsection}{Correção Radiométrica Simplificada}{49}{section*.66}%
+\contentsline {subsubsection}{Formato de Streaming}{49}{section*.67}%
+\contentsline {subsubsection}{Simulação de Limitações de Hardware}{50}{section*.68}%
+\contentsline {subsection}{\numberline {3.5.2}Inserção de Artefatos Realísticos}{50}{subsection.3.5.2}%
+\contentsline {subsubsection}{Ruídos de Sensor}{50}{section*.69}%
+\contentsline {subsubsection}{Variações Ambientais}{50}{section*.70}%
+\contentsline {subsubsection}{Limitações de Conectividade}{51}{section*.71}%
+\contentsline {section}{\numberline {3.6}Framework de Simulação Embarcada}{51}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Simulação via GHDL}{51}{subsection.3.6.1}%
+\contentsline {subsubsection}{Modelagem de Arquiteturas FPGA}{51}{section*.72}%
+\contentsline {subsubsection}{Testbenches Abrangentes}{52}{section*.73}%
+\contentsline {subsubsection}{Análise de Timing e Power}{52}{section*.74}%
+\contentsline {subsection}{\numberline {3.6.2}Simulação de Plataformas Embarcadas}{52}{subsection.3.6.2}%
+\contentsline {subsubsection}{Modelos de VPU}{52}{section*.75}%
+\contentsline {subsubsection}{Modelos de GPU Embarcada}{53}{section*.76}%
+\contentsline {section}{\numberline {3.7}Métricas de Avaliação Embarcada}{53}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Métricas de Eficiência Energética}{53}{subsection.3.7.1}%
+\contentsline {subsubsection}{Consumo Instantâneo}{53}{section*.77}%
+\contentsline {subsubsection}{Energia Total por Operação}{53}{section*.78}%
+\contentsline {subsection}{\numberline {3.7.2}Métricas de Latência}{54}{subsection.3.7.2}%
+\contentsline {subsubsection}{Latência de Pipeline}{54}{section*.79}%
+\contentsline {subsubsection}{Jitter e Variabilidade}{54}{section*.80}%
+\contentsline {subsection}{\numberline {3.7.3}Métricas de Qualidade}{54}{subsection.3.7.3}%
+\contentsline {subsubsection}{Precisão Sob Restrições}{54}{section*.81}%
+\contentsline {subsubsection}{Graceful Degradation}{54}{section*.82}%
+\contentsline {section}{\numberline {3.8}Protocolo de Validação}{54}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Configuração de Ambiente}{55}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Procedimentos de Teste}{55}{subsection.3.8.2}%
+\contentsline {chapter}{\numberline {4}Estrategias de Otimizacao}{56}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Estrategias de Reducao de Consumo Energetico}{56}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Otimizacoes Algoritmicas}{56}{subsection.4.1.1}%
+\contentsline {subsubsection}{Compressao Adaptativa Espectral}{56}{section*.83}%
+\contentsline {paragraph}{Compressao Baseada em Correlacao Espectral}{56}{section*.84}%
+\contentsline {paragraph}{Quantizacao Inteligente}{57}{section*.85}%
+\contentsline {subsubsection}{Reducao de Dimensionalidade Energeticamente Eficiente}{57}{section*.86}%
+\contentsline {paragraph}{PCA Incremental para Streaming}{57}{section*.87}%
+\contentsline {paragraph}{Feature Selection Baseada em Entropia}{58}{section*.88}%
+\contentsline {subsubsection}{Processamento Hierarquico Adaptativo}{58}{section*.89}%
+\contentsline {paragraph}{Piramide de Processamento}{59}{section*.90}%
+\contentsline {paragraph}{Trigger Inteligente}{59}{section*.91}%
+\contentsline {subsection}{\numberline {4.1.2}Otimizacoes de Hardware}{59}{subsection.4.1.2}%
+\contentsline {subsubsection}{Gerenciamento Dinamico de Energia}{59}{section*.92}%
+\contentsline {paragraph}{DVFS (Dynamic Voltage and Frequency Scaling)}{59}{section*.93}%
+\contentsline {paragraph}{Power Gating Seletivo}{60}{section*.94}%
+\contentsline {subsubsection}{Precisao Aritmetica Adaptativa}{60}{section*.95}%
+\contentsline {paragraph}{Mixed-Precision Computing}{60}{section*.96}%
+\contentsline {paragraph}{Aproximacao Controlada}{60}{section*.97}%
+\contentsline {section}{\numberline {4.2}Estrategias de Reducao de Latencia}{60}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Paralelizacao Hierarquica}{61}{subsection.4.2.1}%
+\contentsline {subsubsection}{Paralelizacao Espectral}{61}{section*.98}%
+\contentsline {paragraph}{Processamento de Bandas Independentes}{61}{section*.99}%
+\contentsline {paragraph}{Pipeline Espectral}{61}{section*.100}%
+\contentsline {subsubsection}{Paralelizacao Espacial}{61}{section*.101}%
+\contentsline {paragraph}{Tiling Adaptativo}{61}{section*.102}%
+\contentsline {paragraph}{Streaming Spatial}{62}{section*.103}%
+\contentsline {subsection}{\numberline {4.2.2}Otimizacao de Pipeline}{62}{subsection.4.2.2}%
+\contentsline {subsubsection}{Pipeline Assincrono}{62}{section*.104}%
+\contentsline {paragraph}{Multi-Stage Pipeline}{62}{section*.105}%
+\contentsline {paragraph}{Balanceamento de Pipeline}{63}{section*.106}%
+\contentsline {subsubsection}{Predicao e Prefetching}{63}{section*.107}%
+\contentsline {paragraph}{Predicao de Padroes}{63}{section*.108}%
+\contentsline {paragraph}{Prefetching Adaptativo}{63}{section*.109}%
+\contentsline {section}{\numberline {4.3}Deployment Adaptativo}{64}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Configuracao Dinamica}{64}{subsection.4.3.1}%
+\contentsline {subsubsection}{Resource-Aware Configuration}{64}{section*.110}%
+\contentsline {paragraph}{Profiling Automatico}{64}{section*.111}%
+\contentsline {paragraph}{Configuration Templates}{64}{section*.112}%
+\contentsline {subsubsection}{Adaptive Quality Scaling}{64}{section*.113}%
+\contentsline {paragraph}{Quality-Energy Trade-off}{64}{section*.114}%
+\contentsline {paragraph}{Graceful Degradation}{65}{section*.115}%
+\contentsline {subsection}{\numberline {4.3.2}Otimizacao Multi-Objetivo}{65}{subsection.4.3.2}%
+\contentsline {subsubsection}{Pareto Optimization}{65}{section*.116}%
+\contentsline {paragraph}{Objective Functions}{65}{section*.117}%
+\contentsline {paragraph}{Dynamic Weight Adjustment}{65}{section*.118}%
+\contentsline {subsubsection}{Reinforcement Learning para Otimizacao}{65}{section*.119}%
+\contentsline {paragraph}{Q-Learning para Resource Management}{66}{section*.120}%
+\contentsline {paragraph}{Online Learning}{66}{section*.121}%
+\contentsline {section}{\numberline {4.4}Implementacao Especifica por Aplicacao}{66}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Agricultura de Precisao}{66}{subsection.4.4.1}%
+\contentsline {subsubsection}{Deteccao de Estresse em Culturas}{66}{section*.122}%
+\contentsline {paragraph}{Bandas Espectrais Criticas}{66}{section*.123}%
+\contentsline {paragraph}{Classificacao Hierarquica}{67}{section*.124}%
+\contentsline {subsubsection}{Monitoramento Temporal}{67}{section*.125}%
+\contentsline {paragraph}{Change Detection Eficiente}{67}{section*.126}%
+\contentsline {subsection}{\numberline {4.4.2}Monitoramento Ambiental}{67}{subsection.4.4.2}%
+\contentsline {subsubsection}{Deteccao de Queimadas}{67}{section*.127}%
+\contentsline {paragraph}{Multi-spectral Fire Detection}{67}{section*.128}%
+\contentsline {paragraph}{Real-time Alert System}{68}{section*.129}%
+\contentsline {subsection}{\numberline {4.4.3}Sistemas de Vigilancia}{68}{subsection.4.4.3}%
+\contentsline {subsubsection}{Reconhecimento de Alvos}{68}{section*.130}%
+\contentsline {paragraph}{Target vs. Background Separation}{68}{section*.131}%
+\contentsline {paragraph}{Stealth Detection}{68}{section*.132}%
+\contentsline {chapter}{\numberline {5}Implementacao e Simulacao}{69}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Implementacao em FPGA via GHDL}{69}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Arquitetura do Sistema}{69}{subsection.5.1.1}%
+\contentsline {subsubsection}{Visao Geral da Arquitetura}{69}{section*.133}%
+\contentsline {subsubsection}{Estrategia de Pipeline}{70}{section*.134}%
+\contentsline {subsection}{\numberline {5.1.2}Modulos Especializados}{70}{subsection.5.1.2}%
+\contentsline {subsubsection}{Engine de Compressao Adaptativa}{70}{section*.135}%
+\contentsline {subsubsection}{Engine PCA Incremental}{72}{section*.136}%
+\contentsline {subsubsection}{Unidade de Classificacao Otimizada}{75}{section*.137}%
+\contentsline {subsection}{\numberline {5.1.3}Simulacao e Validacao via GHDL}{77}{subsection.5.1.3}%
+\contentsline {subsubsection}{Ambiente de Simulacao}{77}{section*.138}%
+\contentsline {subsubsection}{Analise de Timing}{80}{section*.139}%
+\contentsline {subsubsection}{Analise de Consumo Energetico}{81}{section*.140}%
+\contentsline {section}{\numberline {5.2}Implementacao em VPU}{82}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Arquitetura de Software}{82}{subsection.5.2.1}%
+\contentsline {subsubsection}{Pipeline de Processamento}{82}{section*.141}%
+\contentsline {subsection}{\numberline {5.2.2}Otimizacoes Especificas para VPU}{89}{subsection.5.2.2}%
+\contentsline {subsubsection}{Quantizacao e Optimizacao de Modelo}{89}{section*.142}%
+\contentsline {section}{\numberline {5.3}Implementacao em GPU Embarcada}{91}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Kernels CUDA Otimizados}{91}{subsection.5.3.1}%
+\contentsline {subsubsection}{Kernel de Compressao Espectral}{91}{section*.143}%
+\contentsline {section}{\numberline {5.4}Desenvolvimento de Prototipos}{99}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Prototipo Agricola}{99}{subsection.5.4.1}%
+\contentsline {subsubsection}{Sistema Embarcado para Drone}{99}{section*.144}%
+\contentsline {chapter}{\numberline {6}Resultados e Validacao}{111}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Configuracao Experimental}{111}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Plataformas de Teste}{111}{subsection.6.1.1}%
+\contentsline {subsubsection}{FPGA - Simulacao via GHDL}{111}{section*.145}%
+\contentsline {subsubsection}{VPU - Intel Movidius}{112}{section*.146}%
+\contentsline {subsubsection}{GPU Embarcada - NVIDIA Jetson}{112}{section*.147}%
+\contentsline {subsection}{\numberline {6.1.2}Datasets de Validacao}{112}{subsection.6.1.2}%
+\contentsline {subsubsection}{Agricultura - Indian Pines Adaptado}{112}{section*.148}%
+\contentsline {subsubsection}{Ambiental - AVIRIS Fire Detection}{113}{section*.149}%
+\contentsline {subsubsection}{Vigilancia - Pavia University Modificado}{113}{section*.150}%
+\contentsline {section}{\numberline {6.2}Metricas de Avaliacao Embarcada}{113}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Eficiencia Energetica}{113}{subsection.6.2.1}%
+\contentsline {subsubsection}{Consumo por Operacao}{113}{section*.151}%
+\contentsline {subsubsection}{Eficiencia GOPS/W}{113}{section*.152}%
+\contentsline {subsection}{\numberline {6.2.2}Metricas de Latencia}{114}{subsection.6.2.2}%
+\contentsline {subsubsection}{Latencia End-to-End}{114}{section*.153}%
+\contentsline {subsubsection}{Jitter Temporal}{114}{section*.154}%
+\contentsline {section}{\numberline {6.3}Resultados por Estrategia de Otimizacao}{115}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Compressao Adaptativa Espectral}{115}{subsection.6.3.1}%
+\contentsline {subsubsection}{Reducao de Dados}{115}{section*.155}%
+\contentsline {subsubsection}{Impacto Energetico}{115}{section*.156}%
+\contentsline {subsection}{\numberline {6.3.2}PCA Incremental Otimizado}{115}{subsection.6.3.2}%
+\contentsline {subsubsection}{Eficiencia Computacional}{115}{section*.157}%
+\contentsline {subsubsection}{Adaptacao ao Streaming}{116}{section*.158}%
+\contentsline {subsection}{\numberline {6.3.3}Processamento Hierarquico}{116}{subsection.6.3.3}%
+\contentsline {subsubsection}{Eficiencia da Piramide}{116}{section*.159}%
+\contentsline {subsubsection}{Trigger Inteligente}{116}{section*.160}%
+\contentsline {section}{\numberline {6.4}Validacao em Aplicacoes Praticas}{117}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Agricultura de Precisao}{117}{subsection.6.4.1}%
+\contentsline {subsubsection}{Deteccao de Estresse em Soja}{117}{section*.161}%
+\contentsline {paragraph}{Configuracao do Experimento}{117}{section*.162}%
+\contentsline {paragraph}{Resultados Obtidos}{117}{table.6.7}%
+\contentsline {paragraph}{Desempenho Operacional}{118}{section*.164}%
+\contentsline {subsubsection}{Monitoramento de Crescimento}{118}{section*.165}%
+\contentsline {paragraph}{Metodologia}{118}{section*.166}%
+\contentsline {paragraph}{Resultados Temporais}{118}{section*.167}%
+\contentsline {subsection}{\numberline {6.4.2}Monitoramento Ambiental}{118}{subsection.6.4.2}%
+\contentsline {subsubsection}{Deteccao Precoce de Queimadas}{118}{section*.168}%
+\contentsline {paragraph}{Configuracao}{119}{section*.169}%
+\contentsline {paragraph}{Performance de Deteccao}{119}{table.6.8}%
+\contentsline {paragraph}{Robustez Operacional}{119}{section*.171}%
+\contentsline {subsection}{\numberline {6.4.3}Sistemas de Vigilancia}{119}{subsection.6.4.3}%
+\contentsline {subsubsection}{Reconhecimento de Veiculos}{119}{section*.172}%
+\contentsline {paragraph}{Setup Experimental}{120}{section*.173}%
+\contentsline {paragraph}{Resultados de Classificacao}{120}{table.6.9}%
+\contentsline {paragraph}{Performance Operacional}{120}{section*.175}%
+\contentsline {section}{\numberline {6.5}Analise Comparativa de Plataformas}{120}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Trade-offs Identificados}{121}{subsection.6.5.1}%
+\contentsline {subsubsection}{Energia vs. Precisao}{121}{section*.176}%
+\contentsline {subsubsection}{Latencia vs. Complexidade}{121}{section*.177}%
+\contentsline {subsection}{\numberline {6.5.2}Diretrizes de Selecao}{121}{subsection.6.5.2}%
+\contentsline {subsubsection}{FPGA - Recomendado para:}{121}{section*.178}%
+\contentsline {subsubsection}{VPU - Recomendado para:}{121}{section*.179}%
+\contentsline {subsubsection}{GPU Embarcada - Recomendado para:}{121}{section*.180}%
+\contentsline {section}{\numberline {6.6}Validacao das Estrategias Adaptativas}{122}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Configuracao Dinamica}{122}{subsection.6.6.1}%
+\contentsline {subsubsection}{Resource-Aware Configuration}{122}{section*.181}%
+\contentsline {subsubsection}{Quality Scaling}{122}{section*.182}%
+\contentsline {chapter}{\numberline {7}Conclusoes e Diretrizes}{123}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Sintese dos Resultados}{123}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Principais Achados}{123}{subsection.7.1.1}%
+\contentsline {subsubsection}{Metodologia de Caracterizacao de Datasets}{123}{section*.183}%
+\contentsline {subsubsection}{Eficacia das Estrategias de Otimizacao}{124}{section*.184}%
+\contentsline {paragraph}{Reducao de Consumo Energetico}{124}{section*.185}%
+\contentsline {paragraph}{Reducao de Latencia}{124}{section*.186}%
+\contentsline {subsubsection}{Validacao em Aplicacoes Praticas}{124}{section*.187}%
+\contentsline {paragraph}{Agricultura de Precisao}{125}{section*.188}%
+\contentsline {paragraph}{Monitoramento Ambiental}{125}{section*.189}%
+\contentsline {paragraph}{Sistemas de Vigilancia}{125}{section*.190}%
+\contentsline {subsection}{\numberline {7.1.2}Analise Comparativa de Plataformas}{125}{subsection.7.1.2}%
+\contentsline {subsubsection}{FPGA (via GHDL)}{125}{section*.191}%
+\contentsline {subsubsection}{VPU (Intel Movidius)}{126}{section*.192}%
+\contentsline {subsubsection}{GPU Embarcada (NVIDIA Jetson)}{126}{section*.193}%
+\contentsline {section}{\numberline {7.2}Contribuicoes}{126}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Contribuicoes Metodologicas}{126}{subsection.7.2.1}%
+\contentsline {subsubsection}{Framework de Caracterizacao de Datasets}{126}{section*.194}%
+\contentsline {subsubsection}{Metodologia de Avaliacao Embarcada}{126}{section*.195}%
+\contentsline {subsection}{\numberline {7.2.2}Contribuicoes Tecnicas}{127}{subsection.7.2.2}%
+\contentsline {subsubsection}{Algoritmos Otimizados}{127}{section*.196}%
+\contentsline {subsubsection}{Estrategias de Deployment}{127}{section*.197}%
+\contentsline {subsubsection}{Implementacoes Validadas}{127}{section*.198}%
+\contentsline {subsection}{\numberline {7.2.3}Contribuicoes Praticas}{127}{subsection.7.2.3}%
+\contentsline {subsubsection}{Diretrizes de Implementacao}{127}{section*.199}%
+\contentsline {subsubsection}{Demonstracao de Viabilidade}{128}{section*.200}%
+\contentsline {section}{\numberline {7.3}Limitacoes}{128}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Limitacoes Metodologicas}{128}{subsection.7.3.1}%
+\contentsline {subsubsection}{Datasets Disponiveis}{128}{section*.201}%
+\contentsline {subsubsection}{Simulacao vs. Realidade}{128}{section*.202}%
+\contentsline {subsection}{\numberline {7.3.2}Limitacoes Tecnicas}{129}{subsection.7.3.2}%
+\contentsline {subsubsection}{Alcance dos Algoritmos}{129}{section*.203}%
+\contentsline {subsubsection}{Restricoes de Hardware}{129}{section*.204}%
+\contentsline {subsection}{\numberline {7.3.3}Limitacoes Praticas}{129}{subsection.7.3.3}%
+\contentsline {subsubsection}{Validacao de Campo}{129}{section*.205}%
+\contentsline {section}{\numberline {7.4}Diretrizes para Deployment Embarcado}{129}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Processo de Selecao de Plataforma}{130}{subsection.7.4.1}%
+\contentsline {subsubsection}{Matriz de Decisao}{130}{section*.206}%
+\contentsline {subsubsection}{Algoritmo de Selecao}{130}{section*.207}%
+\contentsline {subsection}{\numberline {7.4.2}Protocolo de Otimizacao}{131}{subsection.7.4.2}%
+\contentsline {subsubsection}{Fase de Caracterizacao}{131}{section*.208}%
+\contentsline {subsubsection}{Fase de Implementacao}{131}{section*.209}%
+\contentsline {subsubsection}{Fase de Validacao}{132}{section*.210}%
+\contentsline {subsection}{\numberline {7.4.3}Boas Praticas de Implementacao}{132}{subsection.7.4.3}%
+\contentsline {subsubsection}{Design para Eficiencia}{132}{section*.211}%
+\contentsline {subsubsection}{Monitoramento e Adaptacao}{132}{section*.212}%
+\contentsline {section}{\numberline {7.5}Trabalhos Futuros}{133}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Extensoes Metodologicas}{133}{subsection.7.5.1}%
+\contentsline {subsubsection}{Datasets Sinteticos Inteligentes}{133}{section*.213}%
+\contentsline {subsubsection}{Metricas Avancadas}{133}{section*.214}%
+\contentsline {subsection}{\numberline {7.5.2}Avancos Tecnicos}{133}{subsection.7.5.2}%
+\contentsline {subsubsection}{Algoritmos de Proxima Geracao}{133}{section*.215}%
+\contentsline {subsubsection}{Hardware Emergente}{134}{section*.216}%
+\contentsline {subsection}{\numberline {7.5.3}Aplicacoes Avancadas}{134}{subsection.7.5.3}%
+\contentsline {subsubsection}{Novos Dominios}{134}{section*.217}%
+\contentsline {subsubsection}{Integracao Sistemica}{134}{section*.218}%
+\contentsline {subsection}{\numberline {7.5.4}Transferencia de Tecnologia}{134}{subsection.7.5.4}%
+\contentsline {subsubsection}{Comercializacao}{134}{section*.219}%
+\contentsline {subsubsection}{Padronizacao}{135}{section*.220}%
+\contentsline {section}{\numberline {7.6}Consideracoes Finais}{135}{section.7.6}%
+\contentsline {chapter}{Referências bibliográficas}{136}{chapter*.221}%
+\contentsline {chapter}{\numberline {A}Primeiro Apêndice}{137}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Segundo Apêndice}{138}{appendix.B}%

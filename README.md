@@ -1,5 +1,5 @@
 # Dissertação de Mestrado - UNICAMP FT
-## Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado com Foco em Aplicações Práticas
+## Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) ![Organized](https://img.shields.io/badge/Structure-Organized-brightgreen) ![Apache license](https://img.shields.io/badge/license-Apache%202.0-blue) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
 
@@ -10,31 +10,31 @@
 
 ## 📊 Status Atual do Projeto
 
-**Etapa Atual**: ✅ **Projeto Completamente Reestruturado**  
-**Última Atualização**: 2024-03-19  
-**Progresso Geral**: 75% (Estrutura principal completa + Implementação em andamento)
+**Etapa Atual**: ✅ **Projeto Reconstruído do Zero - Base Teórica Completa**  
+**Última Atualização**: 2024-12-20  
+**Progresso Geral**: 40% (Estrutura teórica completa + Metodologia definida)
 
 ### 🎯 Próximos Passos Imediatos:
-- Finalizar implementação dos algoritmos de otimização
-- Completar simulações GHDL para FPGA
-- Validar estratégias em aplicações práticas
-- Análise comparativa de consumo energético
+- Iniciar implementação dos módulos especializados (FPGA/GPU/CPU)
+- Configurar ambiente de desenvolvimento heterogêneo
+- Implementar profiling sistemático para baseline
+- Desenvolver módulo FPGA de pré-processamento
 
 ## 🔬 Contexto da Pesquisa
 
 ### Área de Pesquisa:
 - **Processamento Hiperespectral Embarcado**
-- **Otimização de Consumo Energético**
-- **Redução de Latência em Sistemas Embarcados**
-- **Aplicações Práticas: Agricultura, Monitoramento Ambiental, Vigilância**
+- **Sistemas Heterogêneos (CPU+GPU+FPGA)**
+- **Codesign Hardware/Software para Otimização Energética**
+- **Aplicações em Tempo Real: Agricultura de Precisão, UAVs, Monitoramento**
 
 ### Problema de Pesquisa:
-Como otimizar o processamento de dados hiperespectrais em sistemas embarcados, reduzindo consumo energético e latência, mantendo a qualidade necessária para aplicações práticas.
+Como desenvolver uma arquitetura de sistema heterogêneo integrado que reduza simultaneamente o consumo energético e a latência no processamento hiperespectral embarcado, mantendo a precisão necessária para aplicações práticas.
 
 ### Hipóteses Principais:
-- **H1**: Estratégias adaptativas de processamento podem reduzir significativamente o consumo energético
-- **H2**: Técnicas de processamento hierárquico podem diminuir a latência sem comprometer a qualidade
-- **H3**: Implementações em FPGA oferecem melhor eficiência energética para operações específicas
+- **H1**: A integração sistemática de compressive sensing (50-70% redução dados), seleção EMCR (80% redução processamento) e codesign HW/SW pode reduzir consumo energético em 20x+ comparado a implementações CPU convencionais
+- **H2**: Um pipeline heterogêneo especializado (FPGA pré-processamento + GPU reconstrução + CPU classificação) pode atingir latências <50ms/frame mantendo precisão >95%
+- **H3**: Metodologia de codesign baseada em profiling sistemático pode identificar automaticamente configurações otimizadas para diferentes cenários de aplicação
 
 ## 📁 Nova Estrutura Organizacional do Projeto
 
@@ -112,38 +112,38 @@ artigo-mestrado-unicamp-ft/
     └── 08-revisao-ajustes-finais.md
 ```
 
-## 🎓 Dissertação v1.0 - Primeira Versão Completa
+## 🎓 Dissertação v2.0 - Reconstrução Completa
 
-**Localização**: `dissertacao-versoes/v1.0-etapa1/`  
-**Status**: ✅ **Compilada com sucesso** (16 páginas, 188KB)  
-**Data**: 2024-12-17  
+**Localização**: `src/`  
+**Status**: ✅ **Base Teórica Completa** - Pronta para implementação  
+**Data**: 2024-12-20  
 
-### 📄 Conteúdo da Dissertação
-- **Título**: Classificação de Uso e Cobertura da Terra (LULC) usando Imagens Hiperespectrais de Drones
-- **Subtítulo**: Uma Abordagem Baseada em Deep Learning para Agricultura de Precisão
-- **Páginas**: 16 (capa + 6 capítulos + bibliografia + apêndices)
-- **Bibliografia**: 14 referências organizadas e catalogadas
+### 📄 Conteúdo da Nova Dissertação
+- **Título**: Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado
+- **Foco**: Sistema Heterogêneo CPU+GPU+FPGA com Pipeline Especializado
+- **Estrutura**: 7 capítulos + bibliografia com 20 referências da revisão sistemática
+- **Base Teórica**: Análise de 20 artigos científicos com técnicas comprovadas
 
-### 🔍 Principais Contribuições desta Versão
-1. **Estrutura acadêmica completa** seguindo padrões UNICAMP-FT
-2. **Fundamentação teórica sólida** baseada na Etapa 1
-3. **3 hipóteses claramente formuladas** com base na literatura
-4. **Lacunas científicas identificadas** e justificativa robusta
-5. **Pipeline metodológico** integrado (aquisição → classificação)
-6. **Resumo/Abstract** bilíngue profissional
+### 🔍 Principais Contribuições da Nova Versão
+1. **Arquitetura heterogênea completa** integrando CPU+GPU+FPGA
+2. **Framework de codesign sistemático** baseado em profiling detalhado
+3. **Integração de técnicas comprovadas**: Compressive sensing, EMCR, ELM, CNNs 3D
+4. **Metodologia experimental robusta** com validação em aplicações práticas
+5. **Metas quantitativas definidas**: 3x redução consumo, 4x redução latência, 6.7x aumento throughput
+6. **Base bibliográfica sólida** com 20 artigos sistematicamente analisados
 
-### 📊 Descobertas da Revisão Bibliográfica Incorporadas
-- **3 gerações** de métodos LULC identificadas
-- **Deep learning supera** métodos tradicionais em cenários complexos  
-- **Empirical Line Method** com 5-55% melhoria na reflectância
-- **4 lacunas principais** na literatura atual
-- **Correlações 0.97-0.99** alcançadas em estudos de validação
+### 📊 Técnicas Integradas da Revisão Bibliográfica
+- **Compressive Sensing** (Lim et al.): 50-70% redução de dados
+- **Seleção EMCR** (Martins et al.): 80% redução processamento, 99.7% precisão
+- **Codesign HW/SW** (Hwang et al.): 43.5x melhoria energética
+- **GPU Embarcadas** (Díaz et al.): 330 fps em Jetson TX2
+- **CNNs Ultra-eficientes** (TakuNet): 37.685 parâmetros, >650 fps
 
-### 🎯 Próxima Evolução (v2.0 - Etapa 2)
-- Expansão do capítulo teórico (20-25 páginas)
-- Integração completa dos 14 artigos analisados
-- Reestruturação em 6 seções conforme esboço criado
-- Incorporação de template UNICAMP-FT oficial
+### 🎯 Próximos Passos (Implementação)
+- Configuração ambiente heterogêneo (FPGA + GPU + CPU)
+- Implementação módulo FPGA (ELM + EMCR + CS encoder)
+- Desenvolvimento pipeline GPU (CGNE + CNNs 3D)
+- Integração sistema completo com balanceamento dinâmico
 
 ## 🎯 Plano de Execução (8 Etapas)
 
@@ -201,15 +201,15 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 
 ## 📈 Histórico de Mudanças Recentes
 
-### 2024-03-19:
-- ✅ **Reestruturação completa da dissertação** - Novo foco em processamento hiperespectral embarcado
-- ✅ **Título atualizado** - "Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado"
-- ✅ **Introdução reescrita** - Contextualização sobre sistemas embarcados e otimização energética
-- ✅ **Implementação expandida** - Códigos VHDL, CUDA e VPU para processamento hiperespectral
-- ✅ **Metodologia reformulada** - Foco em caracterização de datasets e simulação GHDL
-- ✅ **Simulação adicionada** - Novo capítulo com implementações FPGA, VPU e GPU
-- ✅ **Resultados atualizados** - Métricas de consumo energético e latência
-- ✅ **PDF compilado com sucesso** - Correções de codificação e formatação LaTeX
+### 2024-12-20:
+- ✅ **Reconstrução completa do projeto do zero** - Nova base teórica baseada na revisão de 20 artigos
+- ✅ **Arquitetura heterogênea definida** - Sistema CPU+GPU+FPGA com pipeline especializado
+- ✅ **Introdução reescrita** - Contextualização sobre sistemas heterogêneos e codesign HW/SW
+- ✅ **Levantamento bibliográfico completo** - Análise sistemática de 20 artigos com categorização por relevância
+- ✅ **Metodologia detalhada** - 4 fases de desenvolvimento com implementações específicas
+- ✅ **Bibliografia atualizada** - 20 referências organizadas por relevância com notas técnicas
+- ✅ **Estrutura LaTeX completa** - 7 capítulos com seções preparadas para implementação
+- ✅ **Metas quantitativas estabelecidas** - Targets específicos de performance, consumo e latência
 
 ### 2024-12-19: 
 - ✅ **Reestruturação completa da dissertação** - Reescrita focada no tema correto
@@ -253,14 +253,20 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 ## 🎯 Objetivos e Metas
 
 ### Objetivo Geral:
-Desenvolver e validar uma metodologia para classificação de uso e cobertura da terra (LULC) utilizando imagens hiperespectrais coletadas por drones, com foco em aplicações de agricultura de precisão.
+Desenvolver uma arquitetura de sistema heterogêneo integrado (CPU+GPU+FPGA) para redução simultânea de consumo energético e latência no processamento hiperespectral embarcado, mantendo a precisão necessária para aplicações práticas.
 
 ### Objetivos Específicos:
-1. Avaliar diferentes algoritmos de classificação (tradicionais vs. deep learning)
-2. Otimizar pipeline de pré-processamento para imagens hiperespectrais de drones
-3. Comparar eficácia de técnicas de redução de dimensionalidade
-4. Validar metodologia em cenário real de agricultura
-5. Contribuir para estado da arte em sensoriamento remoto hiperespectral
+1. **Caracterizar quantitativamente** os trade-offs entre precisão, consumo energético e latência em algoritmos hiperespectrais embarcados
+2. **Implementar e otimizar** técnicas comprovadas: compressive sensing, seleção EMCR, precisão FP16, codesign HW/SW
+3. **Desenvolver metodologia de codesign** sistemática para particionamento HW/SW baseada em profiling detalhado
+4. **Integrar técnicas em pipeline heterogêneo** com módulos especializados FPGA/GPU/CPU
+5. **Validar experimentalmente** em aplicações práticas (agricultura UAV) comparando com estado da arte
+
+### Metas Quantitativas:
+- **Consumo Energético**: Redução de 3x (meta: 15W vs 45W baseline)
+- **Latência**: Redução de 4x (meta: <50ms vs 200ms baseline)  
+- **Throughput**: Aumento de 6.7x (meta: 100 fps vs 15 fps baseline)
+- **Precisão**: Manutenção >95% (vs 92% baseline)
 
 ## 🔗 Links Úteis
 
