@@ -339,13 +339,6 @@
   \let\ps@mystyle\ps@plain
   \let\ps@plain\ps@empty
   
-  % Adicao automatica de Propriedades no arquivo PDF.
-  \hypersetup{
-    pdfcreator   = {Criado com o modelo para teses e dissertações da FT, elaborado pelo prof. André Leon S. Gradvohl, Dr.},
-    pdftitle     = {\@titulo},
-    pdfauthor    = {\if\@autora\relax\@autor\else\@autora\fi},
-    pdfsubject   = {\@monopt\xspace apresentada à Faculdade de Tecnologia da Universidade Estadual de Campinas como parte dos requisitos para a obtenção do título de \@degnamept\xspace.}
-  }
   
   \makeatother
   \ifturnitin
@@ -410,101 +403,6 @@
     \vfill
     \large
     \@CIDADE\\\@ano
-  \end{center}
-}
-
-
-\def\titlepage{
-  \large\bf
-  \vfill
-  \begin{center}
-    \if\@autora\relax\@autor\else\@autora\fi
-    \vfill
-    \ifcase\@thesislanguage
-      \@title
-      \vskip 8mm
-    \or
-      \@title
-      \vskip 8mm
-    \fi
-    \@titulo
-  \end{center}
-  \vfill
-  \normalfont
-  \normalsize
-  \hfill\begin{minipage}[t]{0.54\textwidth}
-    \supresshyphen
-    \@monopt\xspace apresentada à Faculdade de Tecnologia da Universidade Estadual de Campinas como parte dos requisitos para a obtenção do título de \@degnamept\xspace \ifx\@areaConcentracao\relax\else, na área de  \@areaConcentracao\fi \ifx\@cotutela\relax\else\xspace, no âmbito do acordo de Cotutela firmado entre a Unicamp e a \@cotutela\fi.
-  \end{minipage}
-  \ifcase\@thesislanguage
-    \vskip 8mm
-    \hfill\begin{minipage}[t]{0.54\textwidth}
-      \supresshyphen
-      \@monoen\xspace presented to the School of Technology of the
-      University of Campinas in partial fulfillment of the requirements for
-      the degree of \@degnameen\xspace in Computer
-      Science\ifx\@areaConcentracao\relax\else, in the area of 
-      \IfStrEqCase{\@areaConcentracao}{{Sistemas de Informação e Comunicação}{Computing and Communication Systems}%
-                                       {Ambiente}{Environment}%
-                                       {Ciência dos Materiais}{Materials Science}%
-                                      }%
-      \fi\ifx\@cotutela\relax\else\xspace 
-      under the double-diploma agreement between Unicamp and \@cotutela\fi.
-    \end{minipage}
-  \or
-    \vskip 8mm
-    \hfill\begin{minipage}[t]{0.54\textwidth}
-      \supresshyphen
-      \@monoes\xspace presentada a Faculdad de Tecnologia de la
-      Universidad de Campinas para obtener el título de
-      \@degnamees\xspace en Tecnologia\ifx\@areaConcentracao\relax\else, en la area de  %\@areaConcentracao
-      \IfStrEqCase{\@areaConcentracao}{{Sistemas de Informação e Comunicação}{Sistemas de Computación y Comunicación}%
-                                       {Ambiente}{Ambiente}%
-                                       {Ciência dos Materiais}{Ciencias de los Materiales}%
-                                      }%
-      \fi\ifx\@cotutela\relax\else\xspace 
-      en el ámbito del acuerdo de Cotutela firmando entre la Universidad Estatal de Campinas y la \@cotutela\fi.
-    \end{minipage}
-  \fi
-  \vfill
-  \ifcase\@thesislanguage
-    {\bf Supervisor/}\hspace{-0.9ex}
-  \or
-    \if\@orientadora\relax {\bf Director/}\else {\bf Directora/}\fi\hspace{-0.9ex}
-  \fi
-  \if\@orientadora\relax {\bf Orientador: \@orientador}
-  \else {\bf Orientadora: \@orientadora}
-  \fi
-  \ifnum\@advisors=2
-    \\
-    \ifcase\@thesislanguage
-      {\bf Co-supervisor/}\hspace{-0.7ex}
-    \or
-      \if\@coorientadora\relax {\bf Co-director/}\else {\bf Co-directora/}\fi\hspace{-0.7ex}
-    \fi
-    \if\@coorientadora\relax {\bf Coorientador: \@coorientador}
-    \else {\bf Coorientadora: \@coorientadora}
-    \fi
-  \fi
-  \vfill
-  \iffinalversion
-    \begin{minipage}[t]{0.5\textwidth}
-      \supresshyphen
-      Este trabalho corresponde à versão final da \@monopt\xspace defendida por
-      \if\@autora\relax\@autor\else\@autora\fi\xspace e orientada
-      \if\@orientadora\relax pelo \@orientador\else pela \@orientadora\fi.
-    \end{minipage}
-  \else
-    \begin{minipage}[t]{0.5\textwidth}
-      \supresshyphen
-      Este exemplar corresponde à versão da \@monopt\xspace entregue
-      à banca antes da defesa.
-    \end{minipage}
-  \fi
-  \vfill
-  \begin{center}
-    \large
-    \@CIDADE\\ \@ano
   \end{center}
 }
 

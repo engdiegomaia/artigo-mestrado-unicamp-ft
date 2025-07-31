@@ -1,5 +1,5 @@
 # Dissertação de Mestrado - UNICAMP FT
-## Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado
+## Estudo sobre estratégias para Otimização computacional visando eficiência energética e Latência no Processamento Hiperespectral Embarcado
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) ![Organized](https://img.shields.io/badge/Structure-Organized-brightgreen) ![Apache license](https://img.shields.io/badge/license-Apache%202.0-blue) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
 
@@ -11,7 +11,7 @@
 ## 📊 Status Atual do Projeto
 
 **Etapa Atual**: ✅ **Projeto Reconstruído do Zero - Base Teórica Completa**  
-**Última Atualização**: 2024-12-20  
+**Última Atualização**: 2025-01-03  
 **Progresso Geral**: 40% (Estrutura teórica completa + Metodologia definida)
 
 ### 🎯 Próximos Passos Imediatos:
@@ -116,10 +116,10 @@ artigo-mestrado-unicamp-ft/
 
 **Localização**: `src/`  
 **Status**: ✅ **Base Teórica Completa** - Pronta para implementação  
-**Data**: 2024-12-20  
+**Data**: 2025-01-03  
 
 ### 📄 Conteúdo da Nova Dissertação
-- **Título**: Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado
+- **Título**: Estudo sobre estratégias para Otimização computacional visando eficiência energética e Latência no Processamento Hiperespectral Embarcado
 - **Foco**: Sistema Heterogêneo CPU+GPU+FPGA com Pipeline Especializado
 - **Estrutura**: 7 capítulos + bibliografia com 20 referências da revisão sistemática
 - **Base Teórica**: Análise de 20 artigos científicos com técnicas comprovadas
@@ -201,7 +201,7 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 
 ## 📈 Histórico de Mudanças Recentes
 
-### 2024-12-20:
+### 2025-01-03:
 - ✅ **Reconstrução completa do projeto do zero** - Nova base teórica baseada na revisão de 20 artigos
 - ✅ **Arquitetura heterogênea definida** - Sistema CPU+GPU+FPGA com pipeline especializado
 - ✅ **Introdução reescrita** - Contextualização sobre sistemas heterogêneos e codesign HW/SW
@@ -306,5 +306,5 @@ Desenvolver uma arquitetura de sistema heterogêneo integrado (CPU+GPU+FPGA) par
 
 ---
 
-**Última atualização**: 2024-12-17  
+**Última atualização**: 2025-01-03  
 **Próxima revisão prevista**: Ao completar Etapa 2 (Reestruturação Teórica)
