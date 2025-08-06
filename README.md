@@ -28,13 +28,19 @@
 - **Codesign Hardware/Software para Otimização Energética**
 - **Aplicações em Tempo Real: Agricultura de Precisão, UAVs, Monitoramento**
 
-### Problema de Pesquisa:
-Como desenvolver uma arquitetura de sistema heterogêneo integrado que reduza simultaneamente o consumo energético e a latência no processamento hiperespectral embarcado, mantendo a precisão necessária para aplicações práticas.
+### Estruturação da Pesquisa em Duas Etapas:
 
-### Hipóteses Principais:
-- **H1**: A integração sistemática de compressive sensing (50-70% redução dados), seleção EMCR (80% redução processamento) e codesign HW/SW pode reduzir consumo energético em 20x+ comparado a implementações CPU convencionais
-- **H2**: Um pipeline heterogêneo especializado (FPGA pré-processamento + GPU reconstrução + CPU classificação) pode atingir latências <50ms/frame mantendo precisão >95%
-- **H3**: Metodologia de codesign baseada em profiling sistemático pode identificar automaticamente configurações otimizadas para diferentes cenários de aplicação
+**Etapa 1 - Mestrado (2025)**: Validação de metodologias de integração de sistemas heterogêneos, focando na análise do estado da arte, caracterização de trade-offs e desenvolvimento de framework conceitual.
+
+**Etapa 2 - Doutorado (2026-2029)**: Proposição e implementação de arquitetura otimizada integrada, baseada nas validações e diretrizes estabelecidas na Etapa 1.
+
+### Problema de Pesquisa da Etapa 1:
+Como validar e quantificar o potencial de integração de técnicas comprovadas de otimização em sistemas heterogêneos para processamento hiperespectral embarcado, estabelecendo metodologias e frameworks conceituais para orientar futuras implementações práticas.
+
+### Hipóteses Principais da Etapa 1:
+- **H1**: A análise sistemática de técnicas comprovadas pode demonstrar, através de simulações e protótipos conceituais, o potencial teórico de redução energética superior a 20x em sistemas hiperespectrais embarcados
+- **H2**: É possível estabelecer, através de modelagem e validação conceitual, que um framework arquitetural heterogêneo pode teoricamente atingir metas de latência <50ms/frame mantendo precisão >95%
+- **H3**: Uma metodologia sistemática de avaliação pode identificar e quantificar os trade-offs fundamentais entre precisão, consumo e latência, estabelecendo um framework de decisão para a Etapa 2
 
 ## 📁 Nova Estrutura Organizacional do Projeto
 
@@ -253,23 +259,30 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 - **Bibliografia organizada**: Artigos categorizados por temática
 - **Templates de referência**: Padrões UNICAMP-FT e exemplos institucionais
 
-## 🎯 Objetivos e Metas
+## 🎯 Objetivos e Metas da Etapa 1 (Mestrado)
 
-### Objetivo Geral:
-Desenvolver uma arquitetura de sistema heterogêneo integrado (CPU+GPU+FPGA) para redução simultânea de consumo energético e latência no processamento hiperespectral embarcado, mantendo a precisão necessária para aplicações práticas.
+### Objetivo Geral da Etapa 1:
+Validar e quantificar o potencial de integração de técnicas comprovadas de otimização em sistemas heterogêneos para processamento hiperespectral embarcado, gerando análises detalhadas do estado da arte e estabelecendo metodologias de avaliação para orientar futuras implementações.
 
-### Objetivos Específicos:
-1. **Caracterizar quantitativamente** os trade-offs entre precisão, consumo energético e latência em algoritmos hiperespectrais embarcados
-2. **Implementar e otimizar** técnicas comprovadas: compressive sensing, seleção EMCR, precisão FP16, codesign HW/SW
-3. **Desenvolver metodologia de codesign** sistemática para particionamento HW/SW baseada em profiling detalhado
-4. **Integrar técnicas em pipeline heterogêneo** com módulos especializados FPGA/GPU/CPU
-5. **Validar experimentalmente** em aplicações práticas (agricultura UAV) comparando com estado da arte
+### Objetivos Específicos da Etapa 1:
+1. **Realizar análise sistemática** do estado da arte em processamento hiperespectral embarcado, catalogando técnicas comprovadas
+2. **Caracterizar quantitativamente** os trade-offs através de simulações e protótipos conceituais
+3. **Desenvolver metodologia de avaliação** para sistemas heterogêneos, estabelecendo métricas e benchmarks
+4. **Validar conceitos fundamentais** através de implementações de prova de conceito das técnicas mais promissoras
+5. **Propor framework arquitetural** para integração sistemática, definindo especificações para a Etapa 2
+6. **Estabelecer baseline experimental** para quantificar potencial de melhoria e orientar desenvolvimento futuro
 
-### Metas Quantitativas:
-- **Consumo Energético**: Redução de 3x (meta: 15W vs 45W baseline)
-- **Latência**: Redução de 4x (meta: <50ms vs 200ms baseline)  
-- **Throughput**: Aumento de 6.7x (meta: 100 fps vs 15 fps baseline)
-- **Precisão**: Manutenção >95% (vs 92% baseline)
+### Metas da Etapa 1:
+- **Validação Conceitual**: Demonstrar potencial teórico de redução energética >20x através de modelagem
+- **Framework Metodológico**: Estabelecer protocolos de avaliação para sistemas heterogêneos
+- **Diretrizes Técnicas**: Definir especificações arquiteturais para implementação na Etapa 2
+- **Baseline Quantitativo**: Caracterizar trade-offs precisão vs consumo vs latência com datasets padrão
+
+### Objetivos da Etapa 2 (Doutorado - 2026-2029):
+- **Implementação Prática**: Desenvolver arquitetura heterogênea completa CPU+GPU+FPGA
+- **Otimização Avançada**: Algoritmos adaptativos de qualidade vs recursos com gestão inteligente de energia
+- **Validação Real**: Aplicações práticas em agricultura de precisão, monitoramento ambiental e industrial
+- **Metas Quantitativas**: Performance >30 fps, consumo <15W, latência <40ms, precisão >95%
 
 ## 🔗 Links Úteis
 
