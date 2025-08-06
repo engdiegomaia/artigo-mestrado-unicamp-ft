@@ -10,15 +10,15 @@
 
 ## 📊 Status Atual do Projeto
 
-**Etapa Atual**: ✅ **Estrutura Simplificada e Objetiva - Focada na Validação Metodológica**  
+**Etapa Atual**: ✅ **Etapa 1: Fundamentação Teórica e Estado da Arte**  
 **Última Atualização**: 2025-08-05  
-**Progresso Geral**: 45% (Estrutura otimizada para validação conceitual)
+**Progresso Geral**: 25% (Cronograma detalhado implementado)
 
 ### 🎯 Próximos Passos Imediatos (Etapa 1):
-- Completar análise sistemática da literatura (20+ artigos)
-- Desenvolver simulações conceituais das técnicas identificadas
-- Implementar protótipos de prova de conceito
-- Estabelecer framework arquitetural para a Etapa 2
+- Completar revisão sistemática da literatura (80% concluída)
+- Finalizar análise de técnicas de otimização (40% concluída)
+- Desenvolver caracterização de sistemas heterogêneos (20% concluída)
+- Estabelecer framework conceitual e metodologia (0% concluída)
 
 ## 🔬 Contexto da Pesquisa
 
@@ -79,8 +79,15 @@ artigo-mestrado-unicamp-ft/
 │   └── tese.pdf                    # PDF final da dissertação
 │
 ├── 📁 assets/                      # 🖼️ RECURSOS VISUAIS
-│   ├── figuras/                    # Figuras e diagramas
-│   └── logotipos/                  # Logos institucionais
+│   ├── figuras/                    # Figuras e diagramas (legado)
+│   ├── logotipos/                  # Logos institucionais
+│   └── imagens_artigo/             # 🎨 IMAGENS ORGANIZADAS DO ARTIGO
+│       ├── cronogramas/            # Gráficos de cronograma
+│       ├── diagramas_arquitetura/  # Diagramas do sistema
+│       ├── graficos_performance/   # Gráficos de performance
+│       ├── resultados_experimentais/ # Resultados experimentais
+│       ├── imagens_hiperespectrais/ # Dados hiperespectrais
+│       └── logos_institucionais/   # Logos organizados
 │
 ├── 📁 documentos/                  # 📚 DOCUMENTAÇÃO E RELATÓRIOS
 │   ├── README.md                   # Documentação principal (cópia)
@@ -151,20 +158,40 @@ artigo-mestrado-unicamp-ft/
 - Desenvolvimento pipeline GPU (CGNE + CNNs 3D)
 - Integração sistema completo com balanceamento dinâmico
 
-## 🎯 Plano de Execução (8 Etapas)
+## 🎯 Plano de Execução (4 Etapas Principais)
 
 | Etapa | Título | Duração | Status | Entregáveis Principais |
 |-------|--------|---------|--------|----------------------|
-| **1** | Revisão e Organização da Bibliografia | 1 semana | ✅ **Concluída** | Banco bibliográfico, fichamento, gaps identificados |
-| **2** | Reestruturação do Levantamento Teórico | 1 semana | 🔄 **Próxima** | Capítulo teórico atualizado |
-| **3** | Definição da Metodologia | 1 semana | ⏳ Pendente | Metodologia detalhada, fluxogramas |
-| **4** | Desenvolvimento Experimental | 2 semanas | ⏳ Pendente | Código implementado, experimentos |
-| **5** | Análise dos Resultados | 1 semana | ⏳ Pendente | Análises estatísticas, validação |
-| **6** | Redação dos Capítulos Principais | 2 semanas | ⏳ Pendente | Introdução, metodologia, resultados |
-| **7** | Conclusões e Finalização | 1 semana | ⏳ Pendente | Conclusões, trabalhos futuros |
-| **8** | Revisão e Ajustes Finais | 1 semana | ⏳ Pendente | Dissertação final para submissão |
+| **1** | Fundamentação Teórica e Estado da Arte | 5 meses | 🔄 **Em Andamento** | Framework conceitual, metodologia de validação |
+| **2** | Desenvolvimento Experimental e Validação | 5 meses | ⏳ Pendente | Protótipos implementados, dados experimentais |
+| **3** | Análise de Resultados e Redação | 4 meses | ⏳ Pendente | Capítulos da dissertação, análise estatística |
+| **4** | Finalização e Preparação para Defesa | 1.5 meses | ⏳ Pendente | Dissertação final, apresentação de defesa |
 
-**Estimativa Total**: 10 semanas
+**Duração Total**: 14 meses (Agosto 2025 - Setembro 2026)
+
+### 📊 Progresso Detalhado da Etapa 1:
+- **1.1 Revisão Sistemática da Literatura**: 80% concluída
+- **1.2 Análise de Técnicas de Otimização**: 40% concluída  
+- **1.3 Caracterização de Sistemas Heterogêneos**: 20% concluída
+- **1.4 Framework Conceitual e Metodologia**: 0% concluída
+
+## 📅 Cronograma Detalhado
+
+### 🎯 Milestones Principais:
+- **M1: Framework Conceitual Completo** (Janeiro 2026): Conclusão da fundamentação teórica
+- **M2: Protótipos Validados** (Maio 2026): Validação experimental das técnicas
+- **M3: Dissertação Completa** (Agosto 2026): Documento final redigido
+- **M4: Defesa** (Setembro 2026): Apresentação e defesa da dissertação
+
+### 📈 Visualização do Cronograma:
+- **Arquivo HTML**: `cronograma_mestrado_gantt.html` - Visualização interativa com D3.js
+- **Seção na Dissertação**: Capítulo 3 (Metodologia) - Seção "Cronograma de Execução"
+- **Controle**: Monitoramento semanal com orientador e revisões mensais
+
+### 🔄 Sistema de Controle:
+- **Reuniões Semanais**: Acompanhamento do progresso das tarefas
+- **Revisões Mensais**: Avaliação geral e ajustes no cronograma
+- **Contingências**: Buffer de 2 semanas por etapa para imprevistos
 
 ## 📚 Bibliografia Principal
 
@@ -206,6 +233,18 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 ```
 
 ## 📈 Histórico de Mudanças Recentes
+
+### 2025-08-05:
+- ✅ **Cronograma detalhado atualizado** - Gantt Chart com 14 meses (Agosto 2025 - Setembro 2026)
+- ✅ **4 etapas principais definidas** - Fundamentação Teórica, Desenvolvimento Experimental, Análise/Redação, Finalização
+- ✅ **12 tarefas detalhadas** - Cronograma granular com dependências e milestones
+- ✅ **Seção de cronograma na dissertação** - Adicionada ao capítulo de metodologia
+- ✅ **Visualização interativa** - Gráfico Gantt HTML com progresso em tempo real
+- ✅ **Milestones críticos** - 4 pontos de verificação importantes (M1-M4)
+- ✅ **Controle e acompanhamento** - Sistema de monitoramento semanal e mensal
+- ✅ **Estrutura de imagens organizada** - Nova organização em `assets/imagens_artigo/` com 6 categorias
+- ✅ **Script de Gantt atualizado** - Versão 2.2 com fontes maiores e novo caminho de saída
+- ✅ **Integração com compilação** - Script de compilação atualizado para copiar imagens organizadas
 
 ### 2025-01-03:
 - ✅ **Reconstrução completa do projeto do zero** - Nova base teórica baseada na revisão de 20 artigos

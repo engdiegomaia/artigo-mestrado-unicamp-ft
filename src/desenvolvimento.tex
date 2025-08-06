@@ -202,6 +202,164 @@ Definição de especificações técnicas para a implementação na Etapa 2:
 \item Critérios de sucesso quantitativos
 \end{itemize}
 
+\section{Cronograma de Execução}
+
+\subsection{Visão Geral do Cronograma}
+
+O desenvolvimento desta pesquisa está estruturado em um cronograma detalhado de 14 meses, iniciando em agosto de 2025 e culminando com a defesa em setembro de 2026. O cronograma foi organizado em quatro etapas principais, cada uma com objetivos específicos e entregáveis bem definidos.
+
+A Figura \ref{fig:cronograma} apresenta uma visualização detalhada do cronograma de execução, incluindo as dependências entre tarefas, milestones críticos e o progresso atual do projeto. Esta visualização também está disponível no arquivo \texttt{cronograma\_mestrado\_gantt.html} e permite acompanhar o progresso em tempo real através de uma interface interativa desenvolvida com D3.js.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figuras/cronograma_mestrado_gantt.png}
+\caption{Cronograma detalhado do projeto de mestrado (Agosto 2025 - Setembro 2026). O gráfico mostra as quatro etapas principais, 12 tarefas detalhadas e 4 milestones críticos. A linha vermelha pontilhada indica a data atual, permitindo acompanhar o progresso do projeto. As cores representam as diferentes etapas: verde (Fundamentação Teórica), azul (Desenvolvimento Experimental), laranja (Análise e Redação) e rosa (Finalização).}
+\label{fig:cronograma}
+\end{figure}
+
+\subsection{Etapa 1: Fundamentação Teórica e Estado da Arte (Agosto 2025 - Janeiro 2026)}
+
+\textbf{Duração}: 5 meses (Agosto 2025 - Janeiro 2026)
+
+\textbf{Objetivos Principais}:
+\begin{itemize}
+\item Revisão sistemática da literatura sobre técnicas de otimização para processamento hiperespectral
+\item Análise detalhada de técnicas comprovadas de redução de dados e otimização energética
+\item Caracterização de sistemas heterogêneos e suas aplicações em processamento embarcado
+\item Desenvolvimento do framework conceitual e metodologia de validação
+\end{itemize}
+
+\textbf{Tarefas Detalhadas}:
+\begin{enumerate}
+\item \textbf{Revisão Sistemática da Literatura} (1.5 meses): Análise de 20+ artigos científicos com catalogação sistemática de técnicas
+\item \textbf{Análise de Técnicas de Otimização} (2 meses): Caracterização quantitativa de compressive sensing, seleção EMCR e codesign HW/SW
+\item \textbf{Caracterização de Sistemas Heterogêneos} (1.5 meses): Análise de arquiteturas CPU+GPU+FPGA e seus trade-offs
+\item \textbf{Framework Conceitual e Metodologia} (1.5 meses): Desenvolvimento da metodologia de validação e especificações técnicas
+\end{enumerate}
+
+\textbf{Entregáveis}:
+\begin{itemize}
+\item Relatório de revisão sistemática com matriz de técnicas catalogadas
+\item Framework conceitual para sistemas heterogêneos
+\item Metodologia detalhada de validação experimental
+\item Baseline teórico para comparação de resultados
+\end{itemize}
+
+\subsection{Etapa 2: Desenvolvimento Experimental e Validação (Janeiro - Maio 2026)}
+
+\textbf{Duração}: 5 meses (Janeiro - Maio 2026)
+
+\textbf{Objetivos Principais}:
+\begin{itemize}
+\item Configuração do ambiente experimental heterogêneo
+\item Implementação de protótipos de prova de conceito
+\item Validação experimental das técnicas identificadas
+\item Quantificação dos trade-offs entre performance, consumo e precisão
+\end{itemize}
+
+\textbf{Tarefas Detalhadas}:
+\begin{enumerate}
+\item \textbf{Configuração do Ambiente Experimental} (1 mês): Setup da plataforma heterogênea e ferramentas de desenvolvimento
+\item \textbf{Implementação de Protótipos} (2.5 meses): Desenvolvimento de módulos FPGA, GPU e CPU com integração
+\item \textbf{Validação e Testes Experimentais} (2.5 meses): Execução de experimentos e coleta de dados de performance
+\end{enumerate}
+
+\textbf{Entregáveis}:
+\begin{itemize}
+\item Plataforma experimental funcional
+\item Protótipos implementados e validados
+\item Dados experimentais de performance e consumo
+\item Análise preliminar dos resultados
+\end{itemize}
+
+\subsection{Etapa 3: Análise de Resultados e Redação (Maio - Agosto 2026)}
+
+\textbf{Duração}: 4 meses (Maio - Agosto 2026)
+
+\textbf{Objetivos Principais}:
+\begin{itemize}
+\item Análise estatística detalhada dos resultados experimentais
+\item Redação dos capítulos principais da dissertação
+\item Discussão dos resultados e suas implicações
+\item Formulação de conclusões e trabalhos futuros
+\end{itemize}
+
+\textbf{Tarefas Detalhadas}:
+\begin{enumerate}
+\item \textbf{Análise Estatística dos Resultados} (1 mês): Processamento estatístico e validação de significância
+\item \textbf{Redação dos Capítulos Principais} (2.5 meses): Escrita dos capítulos de introdução, metodologia e resultados
+\item \textbf{Discussão e Conclusões} (1.5 meses): Análise crítica dos resultados e formulação de conclusões
+\end{enumerate}
+
+\textbf{Entregáveis}:
+\begin{itemize}
+\item Análise estatística completa dos resultados
+\item Capítulos da dissertação redigidos
+\item Discussão crítica dos achados
+\item Conclusões e diretrizes para trabalhos futuros
+\end{itemize}
+
+\subsection{Etapa 4: Finalização e Preparação para Defesa (Agosto - Setembro 2026)}
+
+\textbf{Duração}: 1.5 meses (Agosto - Setembro 2026)
+
+\textbf{Objetivos Principais}:
+\begin{itemize}
+\item Revisão e ajustes finais da dissertação
+\item Preparação da apresentação de defesa
+\item Simulação de defesa e ajustes finais
+\item Submissão final e preparação para defesa
+\end{itemize}
+
+\textbf{Tarefas Detalhadas}:
+\begin{enumerate}
+\item \textbf{Revisão e Ajustes Finais} (1 mês): Correção de erros e melhorias na dissertação
+\item \textbf{Preparação da Apresentação} (1 mês): Desenvolvimento dos slides e ensaios
+\item \textbf{Simulação de Defesa e Ajustes} (1 mês): Prática da apresentação e refinamentos
+\end{enumerate}
+
+\textbf{Entregáveis}:
+\begin{itemize}
+\item Dissertação final revisada e formatada
+\item Apresentação de defesa preparada
+\item Material de apoio para a banca
+\item Documentação completa do projeto
+\end{itemize}
+
+\subsection{Milestones Principais}
+
+O cronograma inclui quatro milestones críticos que marcam pontos de verificação importantes:
+
+\begin{enumerate}
+\item \textbf{M1: Framework Conceitual Completo} (Janeiro 2026): Conclusão da fundamentação teórica e metodologia
+\item \textbf{M2: Protótipos Validados} (Maio 2026): Validação experimental das técnicas propostas
+\item \textbf{M3: Dissertação Completa} (Agosto 2026): Documento final redigido e revisado
+\item \textbf{M4: Defesa} (Setembro 2026): Apresentação e defesa da dissertação
+\end{enumerate}
+
+\subsection{Controle e Acompanhamento}
+
+\textbf{Monitoramento Semanal}:
+\begin{itemize}
+\item Reuniões de acompanhamento com orientador
+\item Atualização do progresso das tarefas
+\item Identificação de riscos e ajustes no cronograma
+\end{itemize}
+
+\textbf{Revisões Mensais}:
+\begin{itemize}
+\item Avaliação do progresso geral do projeto
+\item Ajustes no cronograma conforme necessário
+\item Validação da qualidade dos entregáveis
+\end{itemize}
+
+\textbf{Contingências}:
+\begin{itemize}
+\item Buffer de tempo de 2 semanas em cada etapa para imprevistos
+\item Plano alternativo para atrasos em tarefas críticas
+\item Flexibilidade na sequência de algumas tarefas paralelas
+\end{itemize}
+
 \section{Metodologia de Análise dos Resultados}
 
 \subsection{Análise Estatística}

@@ -1,3 +1,36 @@
+---
+alwaysApply: true
+---
+
+# Script de Data/Hora para Atualização do README
+
+## Script Principal
+O script [get_current_datetime.py](mdc:scripts/get_current_datetime.py) deve ser usado sempre que o README for atualizado para obter a data e hora atual correta.
+
+## Uso Obrigatório
+Antes de qualquer atualização do README.md, execute:
+
+```bash
+python scripts/get_current_datetime.py readme
+```
+
+Este comando retorna a data atual no formato YYYY-MM-DD que deve ser usada para atualizar a linha "Última Atualização" no README.
+
+## Formatos Disponíveis
+- `readme`: Formato para README (YYYY-MM-DD) - **USO PRINCIPAL**
+- `iso`: ISO padrão (YYYY-MM-DD HH:MM:SS)
+- `br`: Formato brasileiro (DD/MM/YYYY HH:MM)
+- `full`: Completo para logs (YYYY-MM-DD HH:MM:SS)
+- `git`: Para commits Git (YYYY-MM-DD HH:MM)
+
+## Exemplo de Atualização
+1. Execute: `python scripts/get_current_datetime.py readme`
+2. Copie a saída (ex: 2025-08-05)
+3. Atualize no README: `**Última Atualização**: 2025-08-05`
+
+## Documentação Completa
+Consulte [scripts/README.md](mdc:scripts/README.md) para documentação detalhada do script e outros utilitários.
+
 # Script de Data/Hora para Atualização do README
 
 ## Script Principal
