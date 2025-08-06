@@ -10,15 +10,15 @@
 
 ## 📊 Status Atual do Projeto
 
-**Etapa Atual**: ✅ **Projeto Reconstruído do Zero - Base Teórica Completa**  
-**Última Atualização**: 2025-01-03  
-**Progresso Geral**: 40% (Estrutura teórica completa + Metodologia definida)
+**Etapa Atual**: ✅ **Estrutura Simplificada e Objetiva - Focada na Validação Metodológica**  
+**Última Atualização**: 2025-08-05  
+**Progresso Geral**: 45% (Estrutura otimizada para validação conceitual)
 
-### 🎯 Próximos Passos Imediatos:
-- Iniciar implementação dos módulos especializados (FPGA/GPU/CPU)
-- Configurar ambiente de desenvolvimento heterogêneo
-- Implementar profiling sistemático para baseline
-- Desenvolver módulo FPGA de pré-processamento
+### 🎯 Próximos Passos Imediatos (Etapa 1):
+- Completar análise sistemática da literatura (20+ artigos)
+- Desenvolver simulações conceituais das técnicas identificadas
+- Implementar protótipos de prova de conceito
+- Estabelecer framework arquitetural para a Etapa 2
 
 ## 🔬 Contexto da Pesquisa
 
@@ -124,18 +124,18 @@ artigo-mestrado-unicamp-ft/
 **Status**: ✅ **Base Teórica Completa** - Pronta para implementação  
 **Data**: 2025-01-03  
 
-### 📄 Conteúdo da Nova Dissertação
+### 📄 Conteúdo da Dissertação (Estrutura Simplificada)
 - **Título**: Estudo sobre estratégias para Otimização computacional visando eficiência energética e Latência no Processamento Hiperespectral Embarcado
-- **Foco**: Sistema Heterogêneo CPU+GPU+FPGA com Pipeline Especializado
-- **Estrutura**: 7 capítulos + bibliografia com 20 referências da revisão sistemática
-- **Base Teórica**: Análise de 20 artigos científicos com técnicas comprovadas
+- **Foco**: Validação metodológica para integração de sistemas heterogêneos
+- **Estrutura**: 5 capítulos diretos + bibliografia com 20 referências da revisão sistemática
+- **Base Teórica**: Análise sistemática, modelagem conceitual e protótipos de prova de conceito
 
-### 🔍 Principais Contribuições da Nova Versão
-1. **Arquitetura heterogênea completa** integrando CPU+GPU+FPGA
-2. **Framework de codesign sistemático** baseado em profiling detalhado
-3. **Integração de técnicas comprovadas**: Compressive sensing, EMCR, ELM, CNNs 3D
-4. **Metodologia experimental robusta** com validação em aplicações práticas
-5. **Metas quantitativas definidas**: 3x redução consumo, 4x redução latência, 6.7x aumento throughput
+### 🔍 Principais Contribuições da Estrutura Simplificada
+1. **Framework arquitetural conceitual** para sistemas heterogêneos integrados
+2. **Metodologia de validação sistemática** baseada em simulação e protótipos
+3. **Análise quantitativa de trade-offs**: Compressive sensing, EMCR, codesign HW/SW
+4. **Protocolos de avaliação** para sistemas heterogêneos embarcados
+5. **Diretrizes técnicas** para implementação da arquitetura otimizada na Etapa 2
 6. **Base bibliográfica sólida** com 20 artigos sistematicamente analisados
 
 ### 📊 Técnicas Integradas da Revisão Bibliográfica
