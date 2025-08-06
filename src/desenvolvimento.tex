@@ -1,69 +1,59 @@
-%% Capítulo 3: Metodologia
-%% Baseado na Arquitetura de Sistema Heterogêneo Proposta
+%% Capítulo 3: Metodologia de Validação
+%% Focado na Validação Conceitual e Metodológica da Etapa 1
 
-\section{Visão Geral da Metodologia}
+\section{Visão Geral da Metodologia de Validação}
 
-Esta pesquisa propõe uma metodologia estruturada em quatro fases para desenvolvimento de um sistema heterogêneo otimizado para processamento hiperespectral embarcado. A abordagem integra técnicas comprovadas de otimização (identificadas na revisão bibliográfica) em uma arquitetura CPU+GPU+FPGA com pipeline especializado para redução simultânea de consumo energético e latência.
+Esta pesquisa adota uma metodologia de \textbf{validação conceitual} estruturada em quatro fases para avaliar o potencial de integração de técnicas comprovadas em sistemas heterogêneos para processamento hiperespectral embarcado. O objetivo é estabelecer bases metodológicas sólidas através de análise sistemática, modelagem teórica e protótipos de prova de conceito.
 
-A metodologia baseia-se em três pilares fundamentais: \textbf{(1)} profiling sistemático para identificação de gargalos computacionais, \textbf{(2)} implementação de módulos especializados com técnicas de otimização comprovadas, e \textbf{(3)} integração heterogênea com balanceamento dinâmico de carga e gestão inteligente de energia.
+A metodologia de validação baseia-se em três pilares fundamentais: \textbf{(1)} análise sistemática da literatura para catalogação de técnicas comprovadas, \textbf{(2)} modelagem e simulação para quantificação de trade-offs, e \textbf{(3)} protótipos conceituais para validação experimental dos conceitos mais promissores.
 
-\section{Arquitetura do Sistema Proposto}
+\section{Framework Arquitetural Conceitual}
 
-\subsection{Visão Sistêmica}
+\subsection{Modelo de Sistema Heterogêneo}
 
-O sistema heterogêneo proposto implementa um pipeline de três estágios especializados:
+Para fins de validação conceitual, define-se um modelo de sistema heterogêneo com pipeline de três estágios especializados que servirá como base para simulações e análises:
 
 \begin{enumerate}
-\item \textbf{Módulo FPGA}: Pré-processamento especializado incluindo correção radiométrica ELM, seleção de bandas EMCR, e encoding compressive sensing
-\item \textbf{Módulo GPU}: Reconstrução CGNE, extração de características com CNNs 3D otimizadas, e fusão espacial-espectral
-\item \textbf{Módulo CPU}: Classificação SVM com distância de Hamming, controle adaptativo de qualidade, e coordenação do sistema
+\item \textbf{Estágio de Pré-processamento (FPGA)}: Correção radiométrica, seleção de bandas e compressive sensing
+\item \textbf{Estágio de Processamento (GPU)}: Reconstrução de dados e extração de características
+\item \textbf{Estágio de Classificação (CPU)}: Algoritmos de classificação e controle do sistema
 \end{enumerate}
 
-\subsection{Plataforma Hardware}
+\subsection{Plataforma de Referência para Modelagem}
 
-A plataforma base selecionada combina:
+A modelagem teórica baseia-se em uma plataforma de referência representativa do estado da arte em sistemas embarcados:
 \begin{itemize}
-\item \textbf{CPU}: ARM Cortex-A78 para controle e algoritmos adaptativos
-\item \textbf{GPU}: NVIDIA Jetson Orin Nano (15W TDP) para processamento paralelo
-\item \textbf{FPGA}: Xilinx Zynq UltraScale+ para pré-processamento especializado
-\item \textbf{Memória}: 16GB LPDDR5 compartilhada entre módulos
-\item \textbf{Armazenamento}: SSD NVMe 256GB para datasets e modelos
+\item \textbf{Processamento}: ARM Cortex-A78 + NVIDIA Jetson Orin + Xilinx Zynq UltraScale+
+\item \textbf{Memória}: 16GB LPDDR5 compartilhada
+\item \textbf{Orçamento Energético}: 15W TDP total
+\item \textbf{Throughput Alvo}: >25 fps para imagens 614×512×224 bandas
 \end{itemize}
 
-A seleção desta plataforma baseia-se na validação experimental de Díaz et al. \cite{diaz2019} para GPUs embarcadas e Hwang et al. \cite{hwang2011} para codesign FPGA, oferecendo a melhor relação performance/consumo para aplicações hiperespectrais.
+Esta configuração baseia-se em validações experimentais da literatura \cite{diaz2019, hwang2011} e representa o estado da arte atual em plataformas heterogêneas embarcadas.
 
-\section{Fase 1: Análise e Baseline (2 meses)}
+\section{Fase 1: Análise Sistemática do Estado da Arte (2 meses)}
 
-\subsection{Profiling Sistemático}
+\subsection{Catalogação de Técnicas Comprovadas}
 
-Seguindo a metodologia de Hwang et al. \cite{hwang2011}, o profiling sistemático visa identificar os gargalos computacionais que consomem >90\% do tempo de processamento:
+Esta fase concentra-se na análise sistemática da literatura para catalogar e caracterizar técnicas comprovadas de otimização para processamento hiperespectral embarcado:
 
 \textbf{Objetivos Específicos}:
 \begin{itemize}
-\item Análise de tempo de execução por estágio do pipeline hiperespectral
-\item Medição de bandwidth e padrões de acesso à memória
-\item Profiling energético detalhado por módulo computacional
-\item Identificação de oportunidades de paralelização
-\end{itemize}
-
-\textbf{Ferramentas de Profiling}:
-\begin{itemize}
-\item \textbf{NVIDIA NSight Systems}: Análise detalhada de kernels CUDA e utilização GPU
-\item \textbf{Intel VTune Profiler}: Profiling CPU incluindo cache misses e utilização SIMD
-\item \textbf{Xilinx Vivado HLS}: Análise de síntese e profiling FPGA
-\item \textbf{PowerTOP/Energymon}: Medição de consumo energético por subsistema
+\item Catalogação sistemática de técnicas de redução de dados (compressive sensing, seleção de bandas)
+\item Análise de algoritmos de otimização energética e codesign HW/SW
+\item Caracterização de implementações heterogêneas (CPU/GPU/FPGA) da literatura
+\item Identificação de lacunas e oportunidades de integração
 \end{itemize}
 
 \textbf{Metodologia de Análise}:
-\begin{enumerate}
-\item Implementação baseline single-core CPU dos algoritmos principais
-\item Profiling detalhado identificando top-5 gargalos computacionais
-\item Análise de dependências entre estágios e oportunidades de pipeline
-\item Caracterização de padrões de acesso à memória e bandwidth requirements
-\item Medição de baseline energético e estabelecimento de métricas de referência
-\end{enumerate}
+\begin{itemize}
+\item \textbf{Revisão Sistemática}: Análise de 20+ artigos científicos com critérios de seleção definidos
+\item \textbf{Matriz de Caracterização}: Organização das técnicas por categoria (redução de dados, otimização energética, codesign)
+\item \textbf{Análise Quantitativa}: Extração de métricas de performance, consumo e precisão da literatura
+\item \textbf{Identificação de Lacunas}: Mapeamento de oportunidades para integração sistemática
+\end{itemize}
 
-\subsection{Seleção de Datasets e Métricas}
+\subsection{Estabelecimento de Baselines}
 
 \textbf{Datasets de Validação}:
 Baseados nas referências da literatura \cite{lou2024, ullah2020}:
@@ -71,383 +61,178 @@ Baseados nas referências da literatura \cite{lou2024, ullah2020}:
 \item \textbf{AVIRIS Indian Pines}: Dataset padrão (145×145×220) para agricultura
 \item \textbf{Pavia University}: Ambiente urbano (610×340×103) para robustez
 \item \textbf{Salinas Valley}: Agricultura diversificada (512×217×224)
-\item \textbf{Dataset UAV próprio}: Validação prática em cenário real controlado
 \end{itemize}
 
 \textbf{Métricas de Avaliação}:
 \begin{itemize}
-\item \textbf{Performance}: Throughput (fps), latência (ms/pixel), utilização recursos (\%)
-\item \textbf{Energética}: Consumo total (W), eficiência energética (fps/W), autonomia estimada
-\item \textbf{Qualidade}: Precisão (\%), recall (\%), F1-score, kappa coefficient
-\item \textbf{Sistema}: Temperatura (°C), overhead comunicação (\%), escalabilidade
+\item \textbf{Performance}: Throughput (fps), latência (ms/pixel), utilização recursos (%)
+\item \textbf{Energética}: Consumo total (W), eficiência energética (fps/W)
+\item \textbf{Qualidade}: Precisão (%), recall (%), F1-score, kappa coefficient
 \end{itemize}
 
-\section{Fase 2: Implementação de Módulos Core (4 meses)}
+\section{Fase 2: Modelagem e Simulação Conceitual (3 meses)}
 
-\subsection{Módulo FPGA - Pré-processamento Especializado}
+\subsection{Modelagem Teórica das Técnicas}
 
-O módulo FPGA implementa três técnicas de otimização sequenciais baseadas na literatura:
+Esta fase desenvolve modelos matemáticos e simulações para validar o potencial das técnicas identificadas na Fase 1:
 
-\subsubsection{Correção Radiométrica ELM}
+\subsubsection{Modelagem de Técnicas de Redução de Dados}
 
-Implementação do Empirical Line Method conforme Shin et al. \cite{shin2024}:
-
-\begin{lstlisting}[language=verilog, caption=Módulo ELM em VHDL]
-entity empirical_line_correction is
-    generic (
-        PIXEL_WIDTH : natural := 16;
-        BAND_COUNT  : natural := 224
-    );
-    port (
-        clk              : in  std_logic;
-        rst              : in  std_logic;
-        raw_pixel        : in  std_logic_vector(PIXEL_WIDTH-1 downto 0);
-        dark_reference   : in  std_logic_vector(PIXEL_WIDTH-1 downto 0);
-        bright_reference : in  std_logic_vector(PIXEL_WIDTH-1 downto 0);
-        corrected_pixel  : out std_logic_vector(PIXEL_WIDTH-1 downto 0);
-        valid_out        : out std_logic
-    );
-end entity;
-\end{lstlisting}
-
-\textbf{Justificativa}: Shin et al. demonstraram melhoria de 5-55\% na reflectância com baixo custo computacional, sendo adequado para implementação FPGA.
-
-\subsubsection{Seleção de Bandas EMCR}
-
-Implementação do método EMCR conforme Martins et al. \cite{martins2019}:
-
-\begin{lstlisting}[language=verilog, caption=Seleção EMCR em VHDL]
-entity emcr_band_selection is
-    generic (
-        INPUT_BANDS  : natural := 224;
-        OUTPUT_BANDS : natural := 45  -- 80% reduction
-    );
-    port (
-        clk            : in  std_logic;
-        spectral_bands : in  pixel_array(INPUT_BANDS-1 downto 0);
-        selected_bands : out pixel_array(OUTPUT_BANDS-1 downto 0);
-        band_indices   : out index_array(OUTPUT_BANDS-1 downto 0);
-        selection_done : out std_logic
-    );
-end entity;
-\end{lstlisting}
-
-\textbf{Justificativa}: Redução comprovada de 80\% do processamento mantendo 99.7\% de precisão, essencial para viabilizar tempo real.
-
-\subsubsection{Compressive Sensing Encoder}
-
-Implementação de encoder CS baseada em Lim et al. \cite{lim2022}:
-
-\begin{lstlisting}[language=verilog, caption=CS Encoder em VHDL]
-entity cs_encoder is
-    generic (
-        INPUT_SIZE      : natural := 45;
-        COMPRESSED_SIZE : natural := 23  -- 50% compression
-    );
-    port (
-        clk                  : in  std_logic;
-        input_bands          : in  pixel_array(INPUT_SIZE-1 downto 0);
-        sensing_matrix       : in  matrix_type;
-        compressed_data      : out pixel_array(COMPRESSED_SIZE-1 downto 0);
-        sparse_indices       : out index_array;
-        compression_complete : out std_logic
-    );
-end entity;
-\end{lstlisting}
-
-\textbf{Recursos FPGA Estimados}:
 \begin{itemize}
-\item DSPs: 45\% (600 de 1340 disponíveis no UltraScale+)
-\item BRAMs: 60\% (850 de 1418 disponíveis)
-\item LUTs: 70\% (240K de 343K disponíveis)
+\item \textbf{Compressive Sensing}: Modelagem da redução de 50-70\% dos dados (Lim et al.) com análise de trade-offs precisão vs compressão
+\item \textbf{Seleção EMCR}: Simulação da redução de 80\% das bandas mantendo 99.7\% de precisão (Martins et al.)
+\item \textbf{Codesign HW/SW}: Modelagem do potencial de melhoria energética de 43.5x (Hwang et al.)
 \end{itemize}
 
-\subsection{Módulo GPU - Reconstrução e Extração de Características}
+\textbf{Objetivo}: Quantificar através de simulações o potencial teórico de cada técnica e suas combinações.
 
-O módulo GPU implementa duas funções principais usando CUDA otimizado:
+\subsubsection{Simulação de Trade-offs}
 
-\subsubsection{Reconstrução Compressive Sensing}
+Desenvolvimento de simuladores para análise quantitativa dos trade-offs:
 
-Implementação CGNE baseada em Lim et al. \cite{lim2022}:
-
-\begin{lstlisting}[language=c, caption=CGNE Solver em CUDA]
-__global__ void cgne_reconstruction_kernel(
-    const float* compressed_data,     // Compressed data from FPGA
-    const float* sensing_matrix,      // Sensing matrix
-    float* reconstructed_image,       // Reconstructed image
-    const int compressed_size,
-    const int original_size,
-    const int max_iterations
-) {
-    int tid = blockIdx.x * blockDim.x + threadIdx.x;
-    
-    // CGNE implementation with sparsity exploration
-    // Optimized for Pascal/Ampere architecture
-    if (tid < original_size) {
-        // Parallelized CGNE algorithm
-        // Matrix sparsity exploration
-        // Adaptive convergence
-    }
-}
-\end{lstlisting}
-
-\subsubsection{Extração de Características CNN 3D}
-
-Implementação baseada em TakuNet \cite{takunet2025} e UAV Review \cite{uav_review_2024}:
-
-\begin{lstlisting}[language=c, caption=CNN 3D Otimizada]
-__global__ void depthwise_conv3d_kernel(
-    const float* input_data,          // Reconstructed data
-    const float* weights,             // Depth-wise weights
-    float* output_features,           // Extracted features
-    const int bands, 
-    const int height, 
-    const int width,
-    const int kernel_size
-) {
-    int tid = blockIdx.x * blockDim.x + threadIdx.x;
-    
-    // Depth-wise convolution 3D implementation
-    // Optimized for hyperspectral data
-    // FP16 precision for efficiency
-}
-\end{lstlisting}
-
-\textbf{Otimizações GPU Específicas}:
 \begin{itemize}
-\item \textbf{FP16 Precision}: Redução de 50\% no uso de memória
-\item \textbf{Tensor Cores}: Utilização de unidades especializadas para deep learning
-\item \textbf{Memory Coalescing}: Otimização de padrões de acesso à memória
-\item \textbf{Warp-level Primitives}: Sincronização eficiente entre threads
+\item \textbf{Simulador de Consumo Energético}: Modelo baseado em medições da literatura para estimar consumo por módulo
+\item \textbf{Simulador de Latência}: Análise de pipeline com diferentes configurações de paralelização
+\item \textbf{Simulador de Precisão}: Avaliação do impacto das reduções de dados na qualidade final
 \end{itemize}
 
-\subsection{Módulo CPU - Classificação e Controle}
+\subsection{Análise de Sensibilidade}
 
-O módulo CPU implementa classificação final e controle do sistema:
-
-\subsubsection{Classificador SVM Otimizado}
-
-Baseado em Martins et al. \cite{martins2019}:
-
-\begin{lstlisting}[language=c++, caption=SVM com Distância de Hamming]
-class OptimizedSVM {
-private:
-    std::vector<float> support_vectors;
-    std::vector<int> binary_features;
-    
-public:
-    void hamming_distance_classification(
-        const std::vector<float>& features,
-        std::vector<uint8_t>& classification
-    ) {
-        // Convert to binary representation
-        auto binary_features = convert_to_binary(features);
-        
-        // Classification using Hamming distance
-        // Optimized for ARM NEON SIMD instructions
-        for (size_t i = 0; i < features.size(); ++i) {
-            classification[i] = hamming_classify(binary_features[i]);
-        }
-    }
-};
-\end{lstlisting}
-
-\subsubsection{Controle Adaptativo de Qualidade}
-
-\begin{lstlisting}[language=c++, caption=Controle Adaptativo]
-class AdaptiveQualityController {
-private:
-    float current_power_budget;
-    float target_latency;
-    QualityMetrics current_metrics;
-    
-public:
-    void adjust_system_parameters() {
-        // Dynamic adjustment based on feedback
-        if (current_metrics.latency > target_latency) {
-            reduce_quality_settings();
-        }
-        
-        if (current_power_consumption > current_power_budget) {
-            enable_power_saving_mode();
-        }
-        
-        // Automatic quality vs resources balancing
-        optimize_tradeoffs();
-    }
-};
-\end{lstlisting}
-
-\section{Fase 3: Integração e Otimização do Sistema (3 meses)}
-
-\subsection{Pipeline Heterogêneo}
-
-A integração dos módulos segue arquitetura de pipeline com overlap de processamento:
-
-\begin{lstlisting}[language=c++, caption=Pipeline Heterogêneo]
-class HeterogeneousPipeline {
-private:
-    FPGAProcessor fpga_module;
-    GPUProcessor gpu_module;
-    CPUClassifier cpu_module;
-    
-    // Lock-free queues for communication
-    LockFreeQueue<PreprocessedData> fpga_to_gpu;
-    LockFreeQueue<FeatureData> gpu_to_cpu;
-    
-public:
-    void process_frame(const HyperspectralFrame& frame) {
-        // Stage 1: FPGA preprocessing (pipeline)
-        auto preprocessed = fpga_module.preprocess_async(frame);
-        
-        // Stage 2: GPU reconstruction/extraction (overlap)
-        auto features = gpu_module.extract_features_async(preprocessed);
-        
-        // Stage 3: CPU classification (overlap)
-        auto results = cpu_module.classify_async(features);
-        
-        // Feedback loop for continuous optimization
-        update_system_parameters(results.quality_metrics);
-    }
-};
-\end{lstlisting}
-
-\subsection{Sincronização e Comunicação}
-
-\textbf{Estratégias de Comunicação}:
+\textbf{Parâmetros de Análise}:
 \begin{itemize}
-\item \textbf{DMA Transfers}: Comunicação FPGA-GPU sem intervenção CPU
-\item \textbf{CUDA Streams}: Overlap de computation e communication
-\item \textbf{Lock-free Queues}: Comunicação CPU-GPU sem bloqueios
-\item \textbf{Memory Mapping}: Compartilhamento eficiente de buffers grandes
+\item Taxa de compressão do compressive sensing (10-70\%)
+\item Número de bandas selecionadas EMCR (20-100 bandas)
+\item Particionamento de carga entre módulos (0-100\% por módulo)
+\item Precisão de ponto flutuante (FP16, FP32, INT8)
 \end{itemize}
 
-\subsection{Balanceamento de Carga Dinâmico}
-
-\begin{lstlisting}[language=c++, caption=Balanceamento Dinâmico]
-class LoadBalancer {
-private:
-    SystemMetrics current_metrics;
-    
-public:
-    void distribute_workload() {
-        auto utilization = measure_utilization();
-        
-        if (utilization.fpga < 0.7 && utilization.gpu > 0.9) {
-            migrate_preprocessing_to_fpga();
-        }
-        
-        if (utilization.cpu < 0.5 && utilization.gpu > 0.8) {
-            offload_simple_operations_to_cpu();
-        }
-        
-        adjust_pipeline_parameters(utilization);
-    }
-};
-\end{lstlisting}
-
-\section{Fase 4: Validação e Otimização Avançada (2 meses)}
-
-\subsection{Cenários de Validação Experimental}
-
-\textbf{Cenário 1 - Agricultura de Precisão}:
+\textbf{Métricas de Saída}:
 \begin{itemize}
-\item UAV a 100m de altitude com sensor hiperespectral 224 bandas
-\item Área de teste: 1 hectare de cultura diversificada
-\item Aplicação: Detecção de estresse hídrico e nutricional
-\item Requisitos: 25 fps, autonomia >30 min, precisão >95\%
+\item Consumo energético estimado por configuração
+\item Latência teórica end-to-end
+\item Precisão de classificação esperada
+\item Throughput máximo alcançável
 \end{itemize}
 
-\textbf{Cenário 2 - Monitoramento Urbano}:
+\section{Fase 3: Protótipos de Prova de Conceito (3 meses)}
+
+\subsection{Implementação de Protótipos Simplificados}
+
+Esta fase implementa protótipos simplificados das técnicas mais promissoras para validação experimental dos conceitos:
+
+\subsubsection{Protótipo de Compressive Sensing}
+
 \begin{itemize}
-\item Classificação LULC em tempo real
-\item Processamento contínuo de 30 fps por 2 horas
-\item Aplicação: Monitoramento de crescimento urbano
-\item Requisitos: Latência <100ms, consumo <20W
+\item \textbf{Plataforma}: MATLAB/Python com bibliotecas otimizadas
+\item \textbf{Objetivo}: Validar experimentalmente as reduções teóricas de dados
+\item \textbf{Métricas}: Taxa de compressão vs precisão de reconstrução
 \end{itemize}
 
-\textbf{Cenário 3 - Aplicação de Emergência}:
+\subsubsection{Protótipo de Seleção EMCR}
+
 \begin{itemize}
-\item Detecção de incêndios florestais
-\item Processamento em condições de alta temperatura
-\item Aplicação: Alerta precoce de incêndios
-\item Requisitos: Latência crítica <50ms, robustez térmica
+\item \textbf{Plataforma}: Python com scikit-learn otimizado
+\item \textbf{Objetivo}: Confirmar redução de processamento mantendo precisão
+\item \textbf{Métricas}: Número de bandas vs precisão de classificação
 \end{itemize}
 
-\subsection{Protocolo Experimental}
+\subsubsection{Protótipo de Pipeline Heterogêneo}
 
-\textbf{Metodologia de Comparação}:
+\begin{itemize}
+\item \textbf{Plataforma}: Simulação em MATLAB Simulink
+\item \textbf{Objetivo}: Avaliar coordenação entre módulos e balanceamento de carga
+\item \textbf{Métricas}: Utilização de recursos vs throughput total
+\end{itemize}
+
+\subsection{Validação Experimental}
+
+\textbf{Protocolo de Teste}:
 \begin{enumerate}
-\item Baseline single-core CPU (referência)
-\item Implementação GPU pura (estado da arte)
-\item Sistema heterogêneo proposto (completo)
-\item Comparação com trabalhos relacionados (Díaz et al., Hwang et al.)
+\item Execução de cada protótipo nos datasets de referência
+\item Medição das métricas de performance, consumo e qualidade
+\item Comparação com baselines da literatura
+\item Análise de variabilidade e robustez dos resultados
 \end{enumerate}
 
-\textbf{Métricas de Validação}:
+\textbf{Critérios de Validação}:
 \begin{itemize}
-\item \textbf{Performance}: Throughput absoluto e latência por estágio
-\item \textbf{Eficiência Energética}: mW/fps e autonomia estimada
-\item \textbf{Precisão}: Acurácia, F1-score e matriz de confusão
-\item \textbf{Robustez}: Variação de performance em condições adversas
+\item Confirmação das métricas reportadas na literatura
+\item Identificação de fatores limitantes não reportados
+\item Quantificação da variabilidade entre diferentes datasets
 \end{itemize}
 
-\section{Metas de Performance Estabelecidas}
+\section{Fase 4: Framework Arquitetural e Diretrizes (2 meses)}
 
-Baseadas na análise bibliográfica e capacidades das plataformas selecionadas:
+\subsection{Consolidação dos Resultados}
 
-\begin{table}[H]
-\centering
-\caption{Metas de Performance do Sistema Proposto}
-\begin{tabular}{|l|c|c|c|}
-\hline
-\textbf{Métrica} & \textbf{Target} & \textbf{Baseline} & \textbf{Melhoria} \\
-\hline
-Throughput & 100 fps & 15 fps & 6.7x \\
-Latência & <50ms & 200ms & 4x \\
-Consumo Energético & 15W & 45W & 3x \\
-Precisão & >95\% & 92\% & +3\% \\
-Taxa de Compressão & 10:1 & 3:1 & 3.3x \\
-\hline
-\end{tabular}
-\label{tab:performance_targets}
-\end{table}
+Esta fase consolida os resultados das fases anteriores em um framework arquitetural conceitual para orientar a implementação futura:
 
-\textbf{Justificativas das Metas}:
+\subsubsection{Framework de Decisão}
+
+Desenvolvimento de um framework para seleção de técnicas baseado em:
 \begin{itemize}
-\item \textbf{Throughput}: Baseado em 330 fps (Díaz et al.) com margem para overhead de integração
-\item \textbf{Latência}: Combinação de <10ms (Lim et al.) + 0.1ms/pixel (Martins et al.)
-\item \textbf{Consumo}: Target conservador baseado em 43.5x (Hwang et al.) em plataforma embarcada
-\item \textbf{Precisão}: Manutenção do nível de 99.7\% (Martins et al.) com recursos limitados
+\item \textbf{Características da Aplicação}: Requisitos de latência, precisão e consumo
+\item \textbf{Restrições da Plataforma}: Recursos disponíveis e orçamento energético
+\item \textbf{Características dos Dados}: Resolução espacial/espectral e complexidade da cena
 \end{itemize}
 
-\section{Contribuições Metodológicas Esperadas}
+\subsubsection{Especificações Técnicas}
 
-\subsection{Framework de Codesign Sistemático}
-
-Desenvolvimento de metodologia reproduzível para particionamento HW/SW baseada em:
+Definição de especificações técnicas para a implementação na Etapa 2:
 \begin{itemize}
-\item Profiling automatizado e identificação de gargalos
-\item Análise quantitativa de trade-offs precisão vs recursos
-\item Algoritmos de decisão para seleção de implementação otimizada
+\item \textbf{Arquitetura do Sistema}: Configuração otimizada dos módulos heterogêneos
+\item \textbf{Protocolos de Comunicação}: Interfaces entre módulos FPGA/GPU/CPU
+\item \textbf{Algoritmos Adaptativos}: Estratégias de ajuste dinâmico de qualidade vs recursos
+\item \textbf{Métricas de Monitoramento}: Indicadores para controle em tempo real
 \end{itemize}
 
-\subsection{Algoritmos Adaptativos}
+\subsection{Diretrizes para a Etapa 2}
 
-Implementação de controle adaptativo que ajusta dinamicamente:
+\textbf{Recomendações Arquiteturais}:
 \begin{itemize}
-\item Precisão de processamento (FP32/FP16/INT8) conforme orçamento energético
-\item Taxa de compressão baseada em complexidade da cena
-\item Balanceamento de carga entre módulos conforme utilização
+\item Configuração ótima de módulos baseada na análise de trade-offs
+\item Estratégias de implementação prioritárias
+\item Riscos identificados e estratégias de mitigação
 \end{itemize}
 
-\subsection{Métricas e Benchmarks}
-
-Estabelecimento de métricas padronizadas para:
+\textbf{Plano de Implementação}:
 \begin{itemize}
-\item Eficiência energética normalizada (fps/W/precisão)
-\item Latência por estágio em pipelines heterogêneos
-\item Trade-off curves precisão vs recursos para diferentes aplicações
+\item Sequência de desenvolvimento dos módulos
+\item Milestones de validação intermediária
+\item Critérios de sucesso quantitativos
 \end{itemize}
 
-Esta metodologia fornece uma abordagem sistemática e reproduzível para desenvolvimento de sistemas hiperespectrais embarcados otimizados, integrando as melhores técnicas identificadas na literatura em um framework unificado com validação experimental robusta.
+\section{Metodologia de Análise dos Resultados}
+
+\subsection{Análise Estatística}
+
+\textbf{Testes Estatísticos}:
+\begin{itemize}
+\item ANOVA para comparação entre diferentes configurações
+\item Teste t-student para validação de significância das melhorias
+\item Análise de correlação entre métricas de trade-off
+\end{itemize}
+
+\textbf{Validação de Robustez}:
+\begin{itemize}
+\item Análise de sensibilidade a variações de parâmetros
+\item Teste com diferentes datasets para generalização
+\item Avaliação de estabilidade temporal dos resultados
+\end{itemize}
+
+\subsection{Comparação com Estado da Arte}
+
+\textbf{Benchmarks de Referência}:
+\begin{itemize}
+\item Comparação com implementações CPU convencionais
+\item Análise relativa às melhores soluções GPU/FPGA da literatura
+\item Avaliação do potencial de melhoria teórico vs prático
+\end{itemize}
+
+\textbf{Métricas de Comparação}:
+\begin{itemize}
+\item Fator de melhoria energética (speedup energético)
+\item Redução percentual de latência
+\item Manutenção/melhoria da precisão
+\item Viabilidade de implementação prática
+\end{itemize}
