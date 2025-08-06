@@ -76,7 +76,7 @@ def setup_directories():
 def copy_assets():
     """Copia os arquivos de assets para src/"""
     try:
-        # Copiar figuras
+        # Copiar figuras (mantendo compatibilidade)
         if os.path.exists('assets/figuras'):
             for file in os.listdir('assets/figuras'):
                 src = os.path.join('assets/figuras', file)
@@ -85,7 +85,7 @@ def copy_assets():
                     shutil.copy2(src, dst)
                     print_info(f"Copiado: {src} -> {dst}")
         
-        # Copiar logotipos
+        # Copiar logotipos (mantendo compatibilidade)
         if os.path.exists('assets/logotipos'):
             for file in os.listdir('assets/logotipos'):
                 src = os.path.join('assets/logotipos', file)
@@ -93,6 +93,53 @@ def copy_assets():
                 if os.path.isfile(src):
                     shutil.copy2(src, dst)
                     print_info(f"Copiado: {src} -> {dst}")
+        
+        # Copiar imagens organizadas do artigo
+        if os.path.exists('assets/imagens_artigo'):
+            # Copiar cronogramas
+            if os.path.exists('assets/imagens_artigo/cronogramas'):
+                for file in os.listdir('assets/imagens_artigo/cronogramas'):
+                    src = os.path.join('assets/imagens_artigo/cronogramas', file)
+                    dst = os.path.join('src/figuras', file)
+                    if os.path.isfile(src):
+                        shutil.copy2(src, dst)
+                        print_info(f"Copiado: {src} -> {dst}")
+            
+            # Copiar diagramas de arquitetura
+            if os.path.exists('assets/imagens_artigo/diagramas_arquitetura'):
+                for file in os.listdir('assets/imagens_artigo/diagramas_arquitetura'):
+                    src = os.path.join('assets/imagens_artigo/diagramas_arquitetura', file)
+                    dst = os.path.join('src/figuras', file)
+                    if os.path.isfile(src):
+                        shutil.copy2(src, dst)
+                        print_info(f"Copiado: {src} -> {dst}")
+            
+            # Copiar gráficos de performance
+            if os.path.exists('assets/imagens_artigo/graficos_performance'):
+                for file in os.listdir('assets/imagens_artigo/graficos_performance'):
+                    src = os.path.join('assets/imagens_artigo/graficos_performance', file)
+                    dst = os.path.join('src/figuras', file)
+                    if os.path.isfile(src):
+                        shutil.copy2(src, dst)
+                        print_info(f"Copiado: {src} -> {dst}")
+            
+            # Copiar resultados experimentais
+            if os.path.exists('assets/imagens_artigo/resultados_experimentais'):
+                for file in os.listdir('assets/imagens_artigo/resultados_experimentais'):
+                    src = os.path.join('assets/imagens_artigo/resultados_experimentais', file)
+                    dst = os.path.join('src/figuras', file)
+                    if os.path.isfile(src):
+                        shutil.copy2(src, dst)
+                        print_info(f"Copiado: {src} -> {dst}")
+            
+            # Copiar imagens hiperespectrais
+            if os.path.exists('assets/imagens_artigo/imagens_hiperespectrais'):
+                for file in os.listdir('assets/imagens_artigo/imagens_hiperespectrais'):
+                    src = os.path.join('assets/imagens_artigo/imagens_hiperespectrais', file)
+                    dst = os.path.join('src/figuras', file)
+                    if os.path.isfile(src):
+                        shutil.copy2(src, dst)
+                        print_info(f"Copiado: {src} -> {dst}")
         
         print_success("Assets copiados com sucesso!")
         
