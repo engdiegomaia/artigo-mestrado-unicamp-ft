@@ -31,6 +31,23 @@ A modelagem teórica baseia-se em uma plataforma de referência representativa d
 
 Esta configuração baseia-se em validações experimentais da literatura \cite{diaz2019, hwang2011} e representa o estado da arte atual em plataformas heterogêneas embarcadas.
 
+\subsection{Estudo de Caso Industrial: SightLine Applications}
+
+Para contextualizar a aplicação prática dos conceitos de computação heterogênea, analisa-se o caso da \textbf{SightLine Applications}, uma empresa líder no fornecimento de soluções de processamento de vídeo embarcado para aplicações de Inteligência, Vigilância e Reconhecimento (ISR), especialmente em Veículos Aéreos Não Tripulados (VANTs). As soluções da empresa precisam operar com restrições severas de Tamanho, Peso e Potência (SWaP), tornando a eficiência energética um requisito fundamental.
+
+O produto de destaque da empresa, o processador de vídeo \textbf{4100-OEM}, é um exemplo claro de um sistema heterogêneo. Ele é baseado no System-on-Module (SOM) \textbf{Open-Q 8250CS} da Lantronix, que utiliza o SoC \textbf{Qualcomm QCS8250} \cite{lantronix2023openq}. A arquitetura deste SoC é intrinsecamente heterogênea, distribuindo as cargas de trabalho entre múltiplos núcleos de processamento especializados:
+
+\begin{itemize}
+    \item \textbf{CPU Octa-core Kryo™ 585}: Unidade baseada em ARM Cortex, responsável pelo sistema operacional, controle de fluxo, e tarefas de gerenciamento geral.
+    \item \textbf{GPU Adreno™ 650}: Acelerador gráfico para processamento massivamente paralelo, ideal para tarefas como renderização, filtragem de imagem e transformações geométricas.
+    \item \textbf{DSP Hexagon™}: Processador de Sinal Digital com extensões vetoriais, otimizado para algoritmos matemáticos de baixa latência, como estabilização de imagem e processamento de sinais de sensores.
+    \item \textbf{NPU (Neural Processing Unit)}: Um motor de IA dedicado, capaz de executar até 15 trilhões de operações por segundo (TOPS), acelerando cargas de trabalho de \textit{deep learning} para detecção e classificação de objetos em tempo real.
+    \item \textbf{ISP (Image Signal Processor) Spectra™ 480}: Unidade dedicada ao pipeline de processamento de imagem, lidando com tarefas como demosaicing, balanço de branco e redução de ruído diretamente do sensor.
+\end{itemize}
+
+A abordagem da SightLine, ao adotar um SoC heterogêneo como o QCS8250, permite que cada componente do pipeline de processamento de vídeo seja executado no núcleo mais eficiente para aquela tarefa específica. Isso resulta em um sistema de alta performance, capaz de processar múltiplos streams de vídeo em alta resolução com baixa latência e, crucialmente, dentro de um envelope de consumo energético extremamente restrito (tipicamente entre 5W e 15W). Este estudo de caso valida a premissa de que a computação heterogênea não é apenas uma construção teórica, but uma necessidade prática para a próxima geração de sistemas embarcados inteligentes.
+
+
 \section{Fase 1: Análise Sistemática do Estado da Arte (2 meses)}
 
 \subsection{Catalogação de Técnicas Comprovadas}

@@ -11,7 +11,7 @@
 ## 📊 Status Atual do Projeto
 
 **Etapa Atual**: ✅ **Etapa 1: Fundamentação Teórica e Estado da Arte**  
-**Última Atualização**: 2025-08-05  
+**Última Atualização**: 2025-08-06  
 **Progresso Geral**: 25% (Cronograma detalhado implementado)
 
 ### 🎯 Próximos Passos Imediatos (Etapa 1):
@@ -233,6 +233,14 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 ```
 
 ## 📈 Histórico de Mudanças Recentes
+
+### 2025-08-06:
+- ✅ **Fundamentação de Sistemas Heterogêneos Aprofundada** - Adicionado estudo de caso industrial.
+- ✅ **Análise da SightLine Applications** - Integrada ao capítulo de metodologia como exemplo prático de arquitetura heterogênea (CPU, GPU, DSP, NPU).
+- ✅ **Validação com Fontes Primárias** - O SoC Qualcomm QCS8250, utilizado pela SightLine, foi confirmado através de documentação da Lantronix.
+- ✅ **Bibliografia Expandida** - Adicionada referência técnica do System-on-Module da Lantronix para embasar o estudo de caso.
+- ✅ **Conexão Teoria-Prática Reforçada** - O novo texto serve como ponte entre o framework arquitetural conceitual e as implementações do mundo real.
+
 
 ### 2025-08-05:
 - ✅ **Cronograma detalhado atualizado** - Gantt Chart com 14 meses (Agosto 2025 - Setembro 2026)
