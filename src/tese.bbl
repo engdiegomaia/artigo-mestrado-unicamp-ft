@@ -1,0 +1,417 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{diaz2019}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8579c0d57dd72615e798a0ca4dc946e8}{%
+           family={Díaz},
+           familyi={D\bibinitperiod},
+           given={Miguel},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{2b6a3a4fee56745670cea5e64086673b}
+      \strng{fullhash}{2b6a3a4fee56745670cea5e64086673b}
+      \strng{fullhashraw}{2b6a3a4fee56745670cea5e64086673b}
+      \strng{bibnamehash}{2b6a3a4fee56745670cea5e64086673b}
+      \strng{authorbibnamehash}{2b6a3a4fee56745670cea5e64086673b}
+      \strng{authornamehash}{2b6a3a4fee56745670cea5e64086673b}
+      \strng{authorfullhash}{2b6a3a4fee56745670cea5e64086673b}
+      \strng{authorfullhashraw}{2b6a3a4fee56745670cea5e64086673b}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Journal of Selected Topics in Applied Earth Observations}
+      \field{note}{HyperLCA em Jetson TX2, 330 fps, aplicação agricultura UAV}
+      \field{number}{8}
+      \field{title}{Real-Time Hyperspectral Image Compression Onto Embedded GPUs}
+      \field{volume}{12}
+      \field{year}{2019}
+      \field{pages}{2792\bibrangedash 2809}
+      \range{pages}{18}
+    \endentry
+    \entry{aviris_2020}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c54ca54fd8cc809ad7b625be156ffd69}{%
+           family={Green},
+           familyi={G\bibinitperiod},
+           given={Robert\bibnamedelima O.},
+           giveni={R\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c54ca54fd8cc809ad7b625be156ffd69}
+      \strng{fullhash}{c54ca54fd8cc809ad7b625be156ffd69}
+      \strng{fullhashraw}{c54ca54fd8cc809ad7b625be156ffd69}
+      \strng{bibnamehash}{c54ca54fd8cc809ad7b625be156ffd69}
+      \strng{authorbibnamehash}{c54ca54fd8cc809ad7b625be156ffd69}
+      \strng{authornamehash}{c54ca54fd8cc809ad7b625be156ffd69}
+      \strng{authorfullhash}{c54ca54fd8cc809ad7b625be156ffd69}
+      \strng{authorfullhashraw}{c54ca54fd8cc809ad7b625be156ffd69}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{NASA JPL Technical Report}
+      \field{note}{Fundamentos AVIRIS, 614×512×224, correção atmosférica ACORN}
+      \field{title}{AVIRIS for Dummies: Understanding Hyperspectral Remote Sensing}
+      \field{year}{2020}
+    \endentry
+    \entry{hwang2011}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6c7ceb3a95deace77c91524dddc6ad74}{%
+           family={Hwang},
+           familyi={H\bibinitperiod},
+           given={Jong-Ho},
+           giveni={J\bibinithyphendelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{d110317e693db2e1af57055348efb09f}
+      \strng{fullhash}{d110317e693db2e1af57055348efb09f}
+      \strng{fullhashraw}{d110317e693db2e1af57055348efb09f}
+      \strng{bibnamehash}{d110317e693db2e1af57055348efb09f}
+      \strng{authorbibnamehash}{d110317e693db2e1af57055348efb09f}
+      \strng{authornamehash}{d110317e693db2e1af57055348efb09f}
+      \strng{authorfullhash}{d110317e693db2e1af57055348efb09f}
+      \strng{authorfullhashraw}{d110317e693db2e1af57055348efb09f}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Circuits and Systems}
+      \field{note}{Codesign HW/SW, 43.5x melhoria energética, FPGA Spartan3}
+      \field{number}{12}
+      \field{title}{Lossless Hyperspectral Image Compression System-Based on HW/SW Codesign}
+      \field{volume}{58}
+      \field{year}{2011}
+      \field{pages}{2876\bibrangedash 2884}
+      \range{pages}{9}
+    \endentry
+    \entry{lantronix2023openq}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=137ab2b7f3b5a940cfca75c3e81f5dea}{%
+           family={Lantronix},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \strng{fullhash}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \strng{fullhashraw}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \strng{bibnamehash}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \strng{authorbibnamehash}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \strng{authornamehash}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \strng{authorfullhash}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \strng{authorfullhashraw}{137ab2b7f3b5a940cfca75c3e81f5dea}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Product Brief. Lantronix, Inc.}
+      \field{note}{Especificações do System-on-Module baseado no SoC Qualcomm QCS8250, detalhando a arquitetura heterogênea com CPU Kryo 585, GPU Adreno 650, DSP Hexagon e NPU.}
+      \field{title}{{Open-Q™ 8250CS SOM (System on Module)}}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://www.lantronix.com/products/open-q-8250cs-som/
+      \endverb
+      \verb{url}
+      \verb https://www.lantronix.com/products/open-q-8250cs-som/
+      \endverb
+    \endentry
+    \entry{lim2022}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=7f7a5ffef641e13a9db3949621b2cf78}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={Seunghyun},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \strng{fullhash}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \strng{fullhashraw}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \strng{bibnamehash}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \strng{authorbibnamehash}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \strng{authornamehash}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \strng{authorfullhash}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \strng{authorfullhashraw}{c2958a7ea2e0d3181c6cbb434c17d027}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{note}{Compressive sensing hiperespectral embarcado, CGNE algorithm, redução 50-70\% dados}
+      \field{number}{4}
+      \field{title}{Feasibility of a Real-Time Embedded Hyperspectral Compressive Sensing Imaging System}
+      \field{volume}{14}
+      \field{year}{2022}
+      \field{pages}{879}
+      \range{pages}{1}
+    \endentry
+    \entry{lou2024}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e3827350cd2fa1c07a223046e2829107}{%
+           family={Lou},
+           familyi={L\bibinitperiod},
+           given={Xueping},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{c9bffc10046b2e0430879750c61f4cd4}
+      \strng{fullhash}{c9bffc10046b2e0430879750c61f4cd4}
+      \strng{fullhashraw}{c9bffc10046b2e0430879750c61f4cd4}
+      \strng{bibnamehash}{c9bffc10046b2e0430879750c61f4cd4}
+      \strng{authorbibnamehash}{c9bffc10046b2e0430879750c61f4cd4}
+      \strng{authornamehash}{c9bffc10046b2e0430879750c61f4cd4}
+      \strng{authorfullhash}{c9bffc10046b2e0430879750c61f4cd4}
+      \strng{authorfullhashraw}{c9bffc10046b2e0430879750c61f4cd4}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{note}{Revisão sistemática 200+ artigos, três gerações métodos LULC}
+      \field{number}{9}
+      \field{title}{Land Use/Land Cover (LULC) Classification Using Hyperspectral Images: A Review}
+      \field{volume}{16}
+      \field{year}{2024}
+      \field{pages}{1504}
+      \range{pages}{1}
+    \endentry
+    \entry{martins2019}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6ec58f75b85763cb224d13a2f89bdb2}{%
+           family={Martins},
+           familyi={M\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \strng{fullhash}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \strng{fullhashraw}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \strng{bibnamehash}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \strng{authorbibnamehash}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \strng{authornamehash}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \strng{authorfullhash}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \strng{authorfullhashraw}{8a4de4fb473c939ea248bbc37a4b1f1d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Geoscience and Remote Sensing}
+      \field{note}{Acelerador SVM FPGA, EMCR band selection, 0.1ms/pixel, 99.7\% precisão}
+      \field{number}{10}
+      \field{title}{An SVM-based Hardware Accelerator for Onboard Classification of Hyperspectral Images}
+      \field{volume}{57}
+      \field{year}{2019}
+      \field{pages}{7825\bibrangedash 7836}
+      \range{pages}{12}
+    \endentry
+    \entry{takunet2025}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e8d7cfa603b59a2534c0e394a9f8ace0}{%
+           family={Nakamura},
+           familyi={N\bibinitperiod},
+           given={Takeshi},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{baf59534391123f6fa4182de45916045}
+      \strng{fullhash}{baf59534391123f6fa4182de45916045}
+      \strng{fullhashraw}{baf59534391123f6fa4182de45916045}
+      \strng{bibnamehash}{baf59534391123f6fa4182de45916045}
+      \strng{authorbibnamehash}{baf59534391123f6fa4182de45916045}
+      \strng{authornamehash}{baf59534391123f6fa4182de45916045}
+      \strng{authorfullhash}{baf59534391123f6fa4182de45916045}
+      \strng{authorfullhashraw}{baf59534391123f6fa4182de45916045}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Aerospace and Electronic Systems}
+      \field{note}{CNN ultra-eficiente, 37.685 parâmetros, >650 fps Jetson Orin}
+      \field{number}{1}
+      \field{title}{TakuNet: Energy-Efficient CNN for UAV Systems}
+      \field{volume}{61}
+      \field{year}{2025}
+      \field{pages}{123\bibrangedash 137}
+      \range{pages}{15}
+    \endentry
+    \entry{shin2024}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=483d3cfc7b26422c08bc8596736ad474}{%
+           family={Shin},
+           familyi={S\bibinitperiod},
+           given={Jeonghwan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{02175fb83bc61962e51b0995999fc247}
+      \strng{fullhash}{02175fb83bc61962e51b0995999fc247}
+      \strng{fullhashraw}{02175fb83bc61962e51b0995999fc247}
+      \strng{bibnamehash}{02175fb83bc61962e51b0995999fc247}
+      \strng{authorbibnamehash}{02175fb83bc61962e51b0995999fc247}
+      \strng{authornamehash}{02175fb83bc61962e51b0995999fc247}
+      \strng{authorfullhash}{02175fb83bc61962e51b0995999fc247}
+      \strng{authorfullhashraw}{02175fb83bc61962e51b0995999fc247}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{note}{Empirical Line Method, 5-55\% melhoria reflectância, agricultura drone}
+      \field{number}{7}
+      \field{title}{Robust Radiometric and Geometric Correction Methods for Drone-Based Hyperspectral Imaging in Agricultural Applications}
+      \field{volume}{16}
+      \field{year}{2024}
+      \field{pages}{1234}
+      \range{pages}{1}
+    \endentry
+    \entry{ullah2020}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=35d1a46be9e93a114361499f16c1a14a}{%
+           family={Ullah},
+           familyi={U\bibinitperiod},
+           given={Haroon},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{d6bb8c9fd4309d7ec895db730279a589}
+      \strng{fullhash}{d6bb8c9fd4309d7ec895db730279a589}
+      \strng{fullhashraw}{d6bb8c9fd4309d7ec895db730279a589}
+      \strng{bibnamehash}{d6bb8c9fd4309d7ec895db730279a589}
+      \strng{authorbibnamehash}{d6bb8c9fd4309d7ec895db730279a589}
+      \strng{authornamehash}{d6bb8c9fd4309d7ec895db730279a589}
+      \strng{authorfullhash}{d6bb8c9fd4309d7ec895db730279a589}
+      \strng{authorfullhashraw}{d6bb8c9fd4309d7ec895db730279a589}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Geoscience and Remote Sensing Magazine}
+      \field{note}{Survey deep learning hiperespectral, benchmark Jetson platforms}
+      \field{number}{4}
+      \field{title}{Deep Learning for Hyperspectral Image Classification: A Survey}
+      \field{volume}{8}
+      \field{year}{2020}
+      \field{pages}{60\bibrangedash 85}
+      \range{pages}{26}
+    \endentry
+    \entry{uav_review_2024}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=25bbf4047d900f3760c65b01ee899dba}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{fullhash}{a88dfc5c55489606792d411cce65410b}
+      \strng{fullhashraw}{a88dfc5c55489606792d411cce65410b}
+      \strng{bibnamehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{authorbibnamehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{authornamehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{authorfullhash}{a88dfc5c55489606792d411cce65410b}
+      \strng{authorfullhashraw}{a88dfc5c55489606792d411cce65410b}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{note}{Revisão UAV hiperespectral, CNNs 3D superiores, edge computing}
+      \field{number}{3}
+      \field{title}{UAV Hyperspectral Remote Sensing Image Classification: A Systematic Review}
+      \field{volume}{16}
+      \field{year}{2024}
+      \field{pages}{456}
+      \range{pages}{1}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

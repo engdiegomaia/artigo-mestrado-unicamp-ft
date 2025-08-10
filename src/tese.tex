@@ -33,7 +33,7 @@
 
 %% Informações obrigatórias da classe UNICAMP-FT
 \autor{Diego Maia}
-\titulo{Estudo sobre estratégias para Otimização computacional visando eficiência energética e Latência no Processamento Hiperespectral Embarcado}
+\titulo{Análise Comparativa de Estratégias de Otimização para Processamento de Imagens Hiperespectrais em Sistemas Heterogêneos}
 \mestrado % Define grau como mestrado
 \areaConcentracao{Tecnologia}
 \orientador{Prof. Dr. [Nome do Orientador]}
@@ -49,36 +49,7 @@
 
 \begin{document}
 
-% Capa simples otimizada para A4
-\begin{titlepage}
-\thispagestyle{empty}
-\centering
-
-% Espaço superior (aprox. 1/4 da página)
-\vspace*{0.25\textheight}
-
-% Nome do autor
-{\LARGE\textbf{Diego Maia}}
-
-% Espaço entre autor e título
-\vspace{0.15\textheight}
-
-% Título da dissertação com quebra de linha otimizada
-{\Large\textbf{Estudo sobre estratégias para\\[0.5em]
-Otimização computacional visando\\[0.5em]
-eficiência energética e Latência no\\[0.5em]
-Processamento Hiperespectral Embarcado}}
-
-% Espaço flexível para empurrar o ano para baixo
-\vfill
-
-% Ano na parte inferior
-{\large\textbf{2025}}
-
-% Espaço inferior
-\vspace*{0.1\textheight}
-
-\end{titlepage}
+\maketitle
 
 % Folha de aprovação (comentada para versão preliminar)
 % \approvalpage
@@ -90,17 +61,17 @@ Processamento Hiperespectral Embarcado}}
 % Resumo usando environment da classe
 \begin{resumo}
 
-Este estudo investiga estratégias para otimização computacional visando eficiência energética e redução de latência no processamento hiperespectral embarcado. O processamento de imagens hiperespectrais em sistemas embarcados apresenta desafios significativos relacionados ao alto consumo energético e latência excessiva, limitando sua aplicação em cenários práticos como agricultura de precisão, monitoramento ambiental e vigilância. Esta pesquisa propõe uma arquitetura de sistema heterogêneo (CPU+GPU+FPGA) otimizada especificamente para abordar esses desafios de eficiência energética e latência. A metodologia baseia-se na análise sistemática de 20 artigos científicos que identificaram técnicas comprovadas: compressive sensing (redução de 50-70\% dos dados), seleção inteligente de bandas EMCR (redução de 80\% do processamento), codesign HW/SW (melhoria energética de 43.5x) e implementações GPU otimizadas (330 fps em Jetson TX2). O sistema proposto integra estas técnicas em um pipeline heterogêneo onde o módulo FPGA realiza pré-processamento especializado (correção radiométrica ELM, seleção de bandas, compressive sensing), o módulo GPU executa reconstrução CGNE e extração de características com CNNs 3D otimizadas, e o módulo CPU implementa classificação SVM com distância de Hamming (0.1ms/pixel). As metas estabelecidas incluem redução de 3x no consumo energético, 4x na latência, aumento de 6.7x no throughput mantendo precisão >95\%. A validação experimental será realizada em aplicações práticas de agricultura de precisão com UAVs, utilizando datasets AVIRIS, Indian Pines e Pavia University como benchmarks. Esta pesquisa contribui com um framework integrado de otimização, algoritmos adaptativos de qualidade vs recursos e metodologia de codesign sistemática para processamento hiperespectral embarcado.
+Esta dissertação apresenta uma análise comparativa de estratégias de otimização para o processamento de imagens hiperespectrais em sistemas embarcados heterogêneos (CPU+GPU+FPGA). O objetivo é avaliar a eficácia da integração de técnicas de ponta, identificadas na literatura, para quantificar os trade-offs entre latência, consumo energético e precisão. Para isso, foi implementado um pipeline de processamento que combina compressive sensing, seleção de bandas EMCR e codesign HW/SW em uma arquitetura unificada. O desempenho do sistema integrado é comparado com benchmarks estabelecidos, visando validar o potencial de melhorias em cenários de aplicação real, como agricultura de precisão. A pesquisa contribui com uma análise quantitativa e diretrizes práticas para a implementação de sistemas hiperespectrais eficientes em plataformas heterogêneas.
 
-\textbf{Palavras-chave:} Processamento Hiperespectral, Sistemas Embarcados, Codesign HW/SW, Compressive Sensing, Redução de Consumo Energético, Otimização de Latência.
+\textbf{Palavras-chave:} Análise Comparativa, Otimização de Desempenho, Sistemas Heterogêneos, Processamento Hiperespectral, Análise de Trade-offs.
 \end{resumo}
 
 % Abstract usando environment da classe
 \begin{abstract}
 
-This study investigates strategies for computational optimization targeting energy efficiency and latency reduction in embedded hyperspectral processing. Hyperspectral image processing in embedded systems presents significant challenges related to high energy consumption and excessive latency, limiting their application in practical scenarios such as precision agriculture, environmental monitoring, and surveillance. This research proposes a heterogeneous system architecture (CPU+GPU+FPGA) specifically optimized to address these energy efficiency and latency challenges. The methodology is based on systematic analysis of 20 scientific articles that identified proven techniques: compressive sensing (50-70\% data reduction), EMCR intelligent band selection (80\% processing reduction), HW/SW codesign (43.5x energy improvement), and optimized GPU implementations (330 fps on Jetson TX2). The proposed system integrates these techniques in a heterogeneous pipeline where the FPGA module performs specialized preprocessing (ELM radiometric correction, band selection, compressive sensing), the GPU module executes CGNE reconstruction and feature extraction with optimized 3D CNNs, and the CPU module implements SVM classification with Hamming distance (0.1ms/pixel). Established targets include 3x reduction in energy consumption, 4x in latency, 6.7x increase in throughput while maintaining >95\% accuracy. Experimental validation will be performed in practical precision agriculture applications with UAVs, using AVIRIS, Indian Pines, and Pavia University datasets as benchmarks. This research contributes with an integrated optimization framework, adaptive quality vs resources algorithms, and systematic codesign methodology for embedded hyperspectral processing.
+This dissertation presents a comparative analysis of optimization strategies for hyperspectral image processing on heterogeneous embedded systems (CPU+GPU+FPGA). The objective is to evaluate the effectiveness of integrating state-of-the-art techniques, identified from the literature, to quantify the trade-offs among latency, energy consumption, and accuracy. For this purpose, a processing pipeline was implemented, combining compressive sensing, EMCR band selection, and HW/SW codesign into a unified architecture. The performance of the integrated system is compared against established benchmarks to validate the potential for improvements in real-world application scenarios, such as precision agriculture. This research contributes a quantitative analysis and practical guidelines for implementing efficient hyperspectral systems on heterogeneous platforms.
 
-\textbf{Keywords:} Hyperspectral Processing, Embedded Systems, HW/SW Codesign, Compressive Sensing, Energy Consumption Reduction, Latency Optimization.
+\textbf{Keywords:} Comparative Analysis, Performance Optimization, Heterogeneous Systems, Hyperspectral Processing, Trade-off Analysis.
 \end{abstract}
 
 % Sumário
