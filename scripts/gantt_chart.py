@@ -4,8 +4,8 @@ Script para gerar Gantt Chart do cronograma do projeto de mestrado.
 Gera um arquivo HTML com visualização interativa do cronograma e uma imagem PNG.
 
 Autor: Diego Maia
-Data: 2025-08-05
-Versão: 2.2 - Imagem PNG no novo caminho com fontes maiores
+Data: 2025-08-12
+Versão: 3.0 - Incluindo fase de qualificação UNICAMP e ajuste de cronograma
 """
 
 import datetime
@@ -20,26 +20,28 @@ import numpy as np
 def create_gantt_data():
     """
     Cria os dados do Gantt Chart baseado no cronograma detalhado do projeto.
+    Inclui fase de qualificação UNICAMP e cronograma ajustado.
     
     Returns:
         dict: Dados estruturados para o Gantt Chart
     """
     
-    # Data de início: Hoje (2025-08-05)
-    start_date = datetime.date(2025, 8, 5)
+    # Data de início: Hoje (2025-08-12)
+    start_date = datetime.date(2025, 8, 12)
     
     # Data de defesa: Setembro 2026
     defense_date = datetime.date(2026, 9, 30)
     
     # Estrutura das tarefas detalhadas
     tasks = [
-        # ===== ETAPA 1: FUNDAMENTAÇÃO TEÓRICA (Agosto 2025 - Janeiro 2026) =====
+        # ===== ETAPA 1: FUNDAMENTAÇÃO TEÓRICA (Agosto 2025 - Dezembro 2025) =====
+        # REDUZIDA DE 5 PARA 4 MESES
         {
             "id": "etapa1",
             "name": "Etapa 1: Fundamentação Teórica e Estado da Arte",
             "start": start_date.strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),  # 5 meses
-            "progress": 25,
+            "end": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),  # 4 meses (reduzido de 5)
+            "progress": 30,
             "dependencies": "",
             "color": "#4CAF50"
         },
@@ -48,7 +50,7 @@ def create_gantt_data():
             "name": "1.1 Revisão Sistemática da Literatura",
             "start": start_date.strftime("%Y-%m-%d"),
             "end": (start_date + timedelta(days=45)).strftime("%Y-%m-%d"),  # 1.5 meses
-            "progress": 80,
+            "progress": 85,
             "dependencies": "",
             "color": "#81C784"
         },
@@ -56,28 +58,66 @@ def create_gantt_data():
             "id": "1.2",
             "name": "1.2 Análise de Técnicas de Otimização",
             "start": (start_date + timedelta(days=30)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),  # 2 meses
-            "progress": 40,
+            "end": (start_date + timedelta(days=75)).strftime("%Y-%m-%d"),  # 1.5 meses
+            "progress": 60,
             "dependencies": "1.1",
             "color": "#81C784"
         },
         {
             "id": "1.3",
             "name": "1.3 Caracterização de Sistemas Heterogêneos",
-            "start": (start_date + timedelta(days=75)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),  # 1.5 meses
-            "progress": 20,
+            "start": (start_date + timedelta(days=60)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=105)).strftime("%Y-%m-%d"),  # 1.5 meses
+            "progress": 40,
             "dependencies": "1.2",
             "color": "#81C784"
         },
         {
             "id": "1.4",
             "name": "1.4 Framework Conceitual e Metodologia",
-            "start": (start_date + timedelta(days=105)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),  # 1.5 meses
-            "progress": 0,
+            "start": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),  # 1 mês
+            "progress": 20,
             "dependencies": "1.3",
             "color": "#81C784"
+        },
+        
+        # ===== FASE DE QUALIFICAÇÃO UNICAMP (Dezembro 2025 - Janeiro 2026) =====
+        {
+            "id": "qualificacao",
+            "name": "Fase de Qualificação UNICAMP",
+            "start": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),  # 1 mês
+            "progress": 0,
+            "dependencies": "1.4",
+            "color": "#FF5722"
+        },
+        {
+            "id": "q1",
+            "name": "Q1: Preparação para Qualificação",
+            "start": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=135)).strftime("%Y-%m-%d"),  # 2 semanas
+            "progress": 0,
+            "dependencies": "1.4",
+            "color": "#FF8A65"
+        },
+        {
+            "id": "q2",
+            "name": "Q2: Qualificação UNICAMP",
+            "start": (start_date + timedelta(days=135)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=145)).strftime("%Y-%m-%d"),  # 1 semana
+            "progress": 0,
+            "dependencies": "q1",
+            "color": "#FF8A65"
+        },
+        {
+            "id": "q3",
+            "name": "Q3: Ajustes Pós-Qualificação",
+            "start": (start_date + timedelta(days=145)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),  # 1 semana
+            "progress": 0,
+            "dependencies": "q2",
+            "color": "#FF8A65"
         },
         
         # ===== ETAPA 2: DESENVOLVIMENTO EXPERIMENTAL (Janeiro - Maio 2026) =====
@@ -87,7 +127,7 @@ def create_gantt_data():
             "start": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),
             "end": (start_date + timedelta(days=300)).strftime("%Y-%m-%d"),  # 5 meses
             "progress": 0,
-            "dependencies": "1.4",
+            "dependencies": "q3",
             "color": "#2196F3"
         },
         {
@@ -96,7 +136,7 @@ def create_gantt_data():
             "start": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),
             "end": (start_date + timedelta(days=180)).strftime("%Y-%m-%d"),  # 1 mês
             "progress": 0,
-            "dependencies": "1.4",
+            "dependencies": "q3",
             "color": "#64B5F6"
         },
         {
@@ -207,15 +247,24 @@ def create_gantt_data():
         {
             "id": "m1",
             "name": "M1: Framework Conceitual Completo",
-            "start": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),
+            "start": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),
             "progress": 0,
             "dependencies": "1.4",
             "color": "#BA68C8"
         },
         {
             "id": "m2",
-            "name": "M2: Protótipos Validados",
+            "name": "M2: Qualificação UNICAMP",
+            "start": (start_date + timedelta(days=140)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(days=140)).strftime("%Y-%m-%d"),
+            "progress": 0,
+            "dependencies": "q2",
+            "color": "#BA68C8"
+        },
+        {
+            "id": "m3",
+            "name": "M3: Protótipos Validados",
             "start": (start_date + timedelta(days=300)).strftime("%Y-%m-%d"),
             "end": (start_date + timedelta(days=300)).strftime("%Y-%m-%d"),
             "progress": 0,
@@ -223,8 +272,8 @@ def create_gantt_data():
             "color": "#BA68C8"
         },
         {
-            "id": "m3",
-            "name": "M3: Dissertação Completa",
+            "id": "m4",
+            "name": "M4: Dissertação Completa",
             "start": (start_date + timedelta(days=420)).strftime("%Y-%m-%d"),
             "end": (start_date + timedelta(days=420)).strftime("%Y-%m-%d"),
             "progress": 0,
@@ -232,8 +281,8 @@ def create_gantt_data():
             "color": "#BA68C8"
         },
         {
-            "id": "m4",
-            "name": "M4: Defesa",
+            "id": "m5",
+            "name": "M5: Defesa",
             "start": defense_date.strftime("%Y-%m-%d"),
             "end": defense_date.strftime("%Y-%m-%d"),
             "progress": 0,
@@ -271,7 +320,7 @@ def generate_png_gantt(gantt_data):
     end_date = datetime.datetime.strptime(gantt_data['end_date'], '%Y-%m-%d')
     
     # Filtrar tarefas (excluir milestones e etapas principais)
-    task_tasks = [task for task in gantt_data['tasks'] if task['id'].startswith(('1.', '2.', '3.', '4.'))]
+    task_tasks = [task for task in gantt_data['tasks'] if task['id'].startswith(('1.', '2.', '3.', '4.', 'q'))]
     milestone_tasks = [task for task in gantt_data['tasks'] if task['id'].startswith('m')]
     
     # Preparar dados para o gráfico
@@ -342,6 +391,7 @@ def generate_png_gantt(gantt_data):
     # Adicionar legendas
     legend_elements = [
         plt.Rectangle((0,0),1,1, facecolor='#4CAF50', alpha=0.8, label='Etapa 1: Fundamentação Teórica'),
+        plt.Rectangle((0,0),1,1, facecolor='#FF5722', alpha=0.8, label='Fase de Qualificação UNICAMP'),
         plt.Rectangle((0,0),1,1, facecolor='#2196F3', alpha=0.8, label='Etapa 2: Desenvolvimento Experimental'),
         plt.Rectangle((0,0),1,1, facecolor='#FF9800', alpha=0.8, label='Etapa 3: Análise e Redação'),
         plt.Rectangle((0,0),1,1, facecolor='#E91E63', alpha=0.8, label='Etapa 4: Finalização'),
@@ -471,14 +521,15 @@ def generate_html_gantt(gantt_data):
         <h1>Cronograma Detalhado - Dissertação de Mestrado</h1>
         <div class="progress-info">
             <h3>📊 Status Atual</h3>
-            <p><strong>Etapa Atual:</strong> Etapa 1 - Fundamentação Teórica (25% concluída)</p>
-            <p><strong>Próximo Milestone:</strong> Framework Conceitual Completo (Janeiro 2026)</p>
+            <p><strong>Etapa Atual:</strong> Etapa 1 - Fundamentação Teórica (30% concluída)</p>
+            <p><strong>Próximo Milestone:</strong> Framework Conceitual Completo (Dezembro 2025)</p>
+            <p><strong>Qualificação UNICAMP:</strong> Janeiro 2026</p>
             <p><strong>Defesa Prevista:</strong> Setembro 2026</p>
         </div>
         
         <div class="current-phase">
             <h3>🎯 Fase Atual: Revisão Sistemática da Literatura</h3>
-            <p><strong>Progresso:</strong> 80% concluído</p>
+            <p><strong>Progresso:</strong> 85% concluído</p>
             <p><strong>Próxima Tarefa:</strong> Análise de Técnicas de Otimização</p>
         </div>
         
@@ -496,6 +547,10 @@ def generate_html_gantt(gantt_data):
             <div class="legend-item">
                 <span class="legend-color" style="background-color: #4CAF50;"></span>
                 <span>Etapa 1: Fundamentação Teórica</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #FF5722;"></span>
+                <span>Fase de Qualificação UNICAMP</span>
             </div>
             <div class="legend-item">
                 <span class="legend-color" style="background-color: #2196F3;"></span>
@@ -707,9 +762,9 @@ def main():
     print(f"   • Início: {gantt_data['start_date']}")
     print(f"   • Defesa: {gantt_data['end_date']}")
     print(f"   • Duração: 14 meses")
-    print(f"   • Etapas: 4 principais")
-    print(f"   • Tarefas: 12 detalhadas")
-    print(f"   • Milestones: 4 críticos")
+    print(f"   • Etapas: 4 principais + Fase de Qualificação")
+    print(f"   • Tarefas: 15 detalhadas (incluindo qualificação)")
+    print(f"   • Milestones: 5 críticos")
     
     print("\n🎯 MILESTONES PRINCIPAIS:")
     milestones = [task for task in gantt_data['tasks'] if task['id'].startswith('m')]

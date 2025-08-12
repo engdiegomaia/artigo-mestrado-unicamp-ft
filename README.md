@@ -11,14 +11,18 @@
 ## 📊 Status Atual do Projeto
 
 **Etapa Atual**: ✅ **Etapa 1: Fundamentação Teórica e Estado da Arte**  
-**Última Atualização**: 2025-08-06  
-**Progresso Geral**: 25% (Cronograma detalhado implementado)
+**Última Atualização**: 2025-08-12  
+**Progresso Geral**: 30% (Catalogação sistemática concluída)
 
 ### 🎯 Próximos Passos Imediatos (Etapa 1):
-- Completar revisão sistemática da literatura (80% concluída)
-- Finalizar análise de técnicas de otimização (40% concluída)
-- Desenvolver caracterização de sistemas heterogêneos (20% concluída)
-- Estabelecer framework conceitual e metodologia (0% concluída)
+- ✅ **CONCLUÍDO**: Catalogação sistemática de 25 artigos com métricas quantitativas
+- ✅ **CONCLUÍDO**: Implementação da fase de qualificação UNICAMP no cronograma
+- ✅ **CONCLUÍDO**: Redução da Etapa 1 de 5 para 4 meses
+- Completar revisão sistemática da literatura (85% concluída)
+- Finalizar análise de técnicas de otimização (60% concluída)
+- Desenvolver caracterização de sistemas heterogêneos (40% concluída)
+- Estabelecer framework conceitual e metodologia (20% concluída)
+- Preparar documentação para qualificação UNICAMP (Dezembro 2025)
 
 ## 🔬 Contexto da Pesquisa
 
@@ -36,6 +40,24 @@
 
 ### Problema de Pesquisa da Etapa 1:
 Como validar e quantificar o potencial de integração de técnicas comprovadas de otimização em sistemas heterogêneos para processamento hiperespectral embarcado, estabelecendo metodologias e frameworks conceituais para orientar futuras implementações práticas.
+
+### 📊 Principais Descobertas da Catalogação Sistemática (25 artigos):
+
+**Gaps Identificados:**
+- **96% dos trabalhos** focam em técnicas isoladas (apenas 1 sistema completo UAV)
+- **88% reportam métricas parciais** (apenas 3 trabalhos com FPS+latência+consumo+precisão)
+- **80% validação sintética** (apenas 2 validações em campo real)
+
+**Oportunidades Mapeadas:**
+- **Redução combinada**: 90-95% (EMCR 80% + CS 50-70%)
+- **Eficiência energética**: FPGA + GPU + CPU pode atingir <15W
+- **Throughput integrado**: >100 fps com precisão >95%
+- **Speedup típico**: 18-21x vs CPU baseline
+
+**Configuração Ótima Identificada:**
+1. **FPGA** (Zynq UltraScale+): Correção + Seleção EMCR (80% redução, <5ms, <5W)
+2. **GPU** (Jetson Orin): CS/PCA (50-70% redução adicional, <10ms, <10W)  
+3. **CPU** (ARM Cortex-A78): Classificação leve (CNN/SVM, <5ms, <5W)
 
 ### Hipóteses Principais da Etapa 1:
 - **H1**: A análise sistemática de técnicas comprovadas pode demonstrar, através de simulações e protótipos conceituais, o potencial teórico de redução energética superior a 20x em sistemas hiperespectrais embarcados
@@ -93,11 +115,14 @@ artigo-mestrado-unicamp-ft/
 │   ├── README.md                   # Documentação principal (cópia)
 │   ├── CHANGELOG.md                # Histórico de mudanças
 │   ├── DicasUteisTextosAcademicos.md # Dicas de escrita
+│   ├── qualificacao-unicamp.md     # 📋 Documento para qualificação UNICAMP
+│   ├── resumo-executivo-qualificacao.md # 📊 Resumo das mudanças implementadas
 │   ├── relatorio-etapa1.pdf        # Relatório da Etapa 1
 │   ├── relatorio-etapa1.md         # Versão markdown do relatório
 │   ├── esboco-estado-da-arte.md    # Esboço do estado da arte
 │   ├── matriz-temas-artigos.md     # Matriz temática dos artigos
 │   ├── fichamento-artigos-prioritarios.md # Fichamentos detalhados
+│   ├── catalogacao-sistematica-tecnicas-metricas.md # 📊 Catalogação sistemática de 25 artigos com métricas quantitativas
 │   └── bibliografia-organizada.bib # Bibliografia organizada
 │
 ├── 📁 referencias/                 # 📖 MATERIAL DE REFERÊNCIA
@@ -158,16 +183,39 @@ artigo-mestrado-unicamp-ft/
 - Desenvolvimento pipeline GPU (CGNE + CNNs 3D)
 - Integração sistema completo com balanceamento dinâmico
 
-## 🎯 Plano de Execução (4 Etapas Principais)
+## 🎯 Plano de Execução (4 Etapas Principais + Qualificação)
 
 | Etapa | Título | Duração | Status | Entregáveis Principais |
 |-------|--------|---------|--------|----------------------|
-| **1** | Fundamentação Teórica e Estado da Arte | 5 meses | 🔄 **Em Andamento** | Framework conceitual, metodologia de validação |
+| **1** | Fundamentação Teórica e Estado da Arte | 4 meses | 🔄 **Em Andamento** | Framework conceitual, metodologia de validação |
+| **Q** | **Fase de Qualificação UNICAMP** | **1 mês** | ⏳ **Pendente** | **Documentação para qualificação, apresentação** |
 | **2** | Desenvolvimento Experimental e Validação | 5 meses | ⏳ Pendente | Protótipos implementados, dados experimentais |
 | **3** | Análise de Resultados e Redação | 4 meses | ⏳ Pendente | Capítulos da dissertação, análise estatística |
 | **4** | Finalização e Preparação para Defesa | 1.5 meses | ⏳ Pendente | Dissertação final, apresentação de defesa |
 
 **Duração Total**: 14 meses (Agosto 2025 - Setembro 2026)
+**Qualificação UNICAMP**: Janeiro 2026
+
+### 🎓 Fase de Qualificação UNICAMP (Dezembro 2025 - Janeiro 2026)
+
+**Objetivo**: Apresentação e aprovação da qualificação perante banca examinadora da UNICAMP-FT.
+
+**Componentes da Qualificação**:
+- **Q1: Preparação para Qualificação** (2 semanas): Finalização da documentação e preparação da apresentação
+- **Q2: Qualificação UNICAMP** (1 semana): Apresentação formal perante banca examinadora
+- **Q3: Ajustes Pós-Qualificação** (1 semana): Implementação de sugestões e correções da banca
+
+**Entregáveis para Qualificação**:
+- Documento de qualificação com fundamentação teórica completa
+- Apresentação formal (slides) com metodologia e cronograma
+- Framework conceitual validado e metodologia de validação
+- Cronograma detalhado para desenvolvimento experimental
+
+**Cronograma da Qualificação**:
+- **Início**: 10 de Dezembro 2025
+- **Apresentação**: 30 de Dezembro 2025
+- **Ajustes**: 9 de Janeiro 2026
+- **Início Etapa 2**: 10 de Janeiro 2026
 
 ### 📊 Progresso Detalhado da Etapa 1:
 - **1.1 Revisão Sistemática da Literatura**: 80% concluída
@@ -178,10 +226,11 @@ artigo-mestrado-unicamp-ft/
 ## 📅 Cronograma Detalhado
 
 ### 🎯 Milestones Principais:
-- **M1: Framework Conceitual Completo** (Janeiro 2026): Conclusão da fundamentação teórica
-- **M2: Protótipos Validados** (Maio 2026): Validação experimental das técnicas
-- **M3: Dissertação Completa** (Agosto 2026): Documento final redigido
-- **M4: Defesa** (Setembro 2026): Apresentação e defesa da dissertação
+- **M1: Framework Conceitual Completo** (Dezembro 2025): Conclusão da fundamentação teórica
+- **M2: Qualificação UNICAMP** (Janeiro 2026): Apresentação e aprovação da qualificação
+- **M3: Protótipos Validados** (Junho 2026): Validação experimental das técnicas
+- **M4: Dissertação Completa** (Outubro 2026): Documento final redigido
+- **M5: Defesa** (Setembro 2026): Apresentação e defesa da dissertação
 
 ### 📈 Visualização do Cronograma:
 - **Arquivo HTML**: `cronograma_mestrado_gantt.html` - Visualização interativa com D3.js
@@ -233,6 +282,14 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 ```
 
 ## 📈 Histórico de Mudanças Recentes
+
+### 2025-08-12:
+- ✅ **Implementação da Fase de Qualificação UNICAMP** - Adicionada fase completa de qualificação (Dezembro 2025 - Janeiro 2026) com 3 subfases: preparação, qualificação e ajustes pós-qualificação.
+- ✅ **Redução da Etapa 1 de 5 para 4 meses** - Cronograma ajustado para acomodar a fase de qualificação, mantendo a duração total de 14 meses.
+- ✅ **Atualização do Script de Cronograma** - Versão 3.0 do script gantt_chart.py com suporte à fase de qualificação e novos milestones.
+- ✅ **5 Milestones Principais** - Reorganização dos milestones incluindo M2: Qualificação UNICAMP (Janeiro 2026).
+- ✅ **Cronograma Visual Atualizado** - Gantt Chart HTML e PNG atualizados com nova estrutura incluindo qualificação.
+- ✅ **Documentação Completa** - README atualizado com seção específica sobre qualificação e cronograma detalhado.
 
 ### 2025-08-06:
 - ✅ **Fundamentação de Sistemas Heterogêneos Aprofundada** - Adicionado estudo de caso industrial.
