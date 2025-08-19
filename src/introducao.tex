@@ -1,130 +1,88 @@
-%% Capítulo 1: Introdução
-%% Estratégias para Redução de Consumo e Latência no Processamento Hiperespectral Embarcado
+% Aqui começa o capítulo de Introdução.
+% Use o comando \label para definir um rótulo, 
+% caso seja necessário referenciar esse capítulo
+% posteriormente.
+\chapter{Introdução}\label{chp:Introducao}
 
-\section{Contextualização}
+Esse é um texto de exemplo para o modelo de teses e dissertações da Faculdade de Tecnologia (FT) da UNICAMP. Esse modelo se aplica às teses de doutorado, dissertações de mestrado e Trabalhos de Conclusão de Curso, para a graduação (dos cursos de informática da FT).
 
-O processamento de imagens hiperespectrais representa uma das fronteiras mais desafiadoras na área de sensoriamento remoto e visão computacional. Estas imagens, compostas por centenas de bandas espectrais contínuas que capturam informações detalhadas sobre a reflectância dos materiais, oferecem capacidades de análise sem precedentes para aplicações em agricultura de precisão, monitoramento ambiental, vigilância e exploração mineral \cite{lou2024}. No entanto, a riqueza espectral destas imagens vem acompanhada de desafios computacionais significativos, especialmente quando o processamento deve ser realizado em sistemas embarcados com restrições de energia, memória e capacidade de processamento.
+A seguir, estão alguns exemplos para os elementos mais comuns em textos acadêmicos, \ie tabelas, equações e figuras. 
 
-A demanda por processamento hiperespectral em tempo real tem crescido exponencialmente devido ao avanço de plataformas móveis como UAVs (Unmanned Aerial Vehicles) e satélites CubeSat \cite{uav_review_2024}. Estas aplicações exigem que algoritmos tradicionalmente executados em servidores de alto desempenho sejam adaptados para ambientes com severas limitações de recursos. O paradigma de edge computing se torna, portanto, essencial para viabilizar aplicações práticas onde a latência de comunicação com centros de processamento remotos é proibitiva ou onde a autonomia energética é crítica.
+\section{Exemplos de Tabelas e Equações}\label{sec:exemplostabelas}
+Aqui um exemplo de como referenciar a \Tabela{tab:tabela_1}. Note que é preciso definir um rótulo (\textit{label}) dentro do comando de definição da tabela.
 
-\section{Caracterização do Problema}
+% Veja a seguir um exemplo de Tabela.
+% Você pode usar o site http://www.tablesgenerator.com
+% para gerar as tabelas em LaTeX.
+\begin{table}[!htp]
+\caption[Legenda curta da tabela]{Legenda longa e mais detalhada da tabela.}
+\label{tab:tabela_1}
+\begin{center}
+\begin{tabular}{cc}
+\toprule % Linha superior
+Coluna 1 & Coluna2 \\ \midrule % Linha do meio 
+a & b \\
+c & d \\
+e & f \\\bottomrule % Linha inferior
+\end{tabular}
+\end{center}
+\end{table}
 
-O processamento de imagens hiperespectrais em sistemas embarcados enfrenta três desafios fundamentais interconectados:
+As tabelas mais complexas podem ser feitas com ajuda no site \href{http://www.tablesgenerator.com}{http://www.tables\-ge\-ne\-ra\-tor.com}.
 
-\subsection{Volume de Dados Excessivo}
+Veja um exemplo de equação no próprio texto, \eg, $x=\frac{\sqrt{a^{2}+b^{2}}}{\sigma}$.  Se você preferir, pode escrever a equação de forma estendida, conforme a \Equacao{eq:teste} a seguir. Note que o rótulo é colocado automaticamente.
 
-Uma única imagem hiperespectral típica do sensor AVIRIS contém 614×512×224 pixels/bandas, resultando em aproximadamente 69 milhões de valores espectrais por frame \cite{aviris_2020}. Para aplicações em tempo real que exigem processamento de 25-30 fps, isto representa um throughput de dados brutos superior a 2 GB/s, excedendo significativamente a capacidade de processamento e bandwidth de memória de sistemas embarcados típicos.
+\begin{equation}
+x=\frac{\sqrt{a^{2}+b^{2}}}{\sigma}
+\label{eq:teste}
+\end{equation}
 
-\subsection{Complexidade Computacional}
 
-Os algoritmos de processamento hiperespectral apresentam complexidades computacionais elevadas. Técnicas de classificação baseadas em machine learning tradicionais possuem complexidade O(n²) a O(n³), onde n representa o número de bandas espectrais \cite{lim2022}. Para métodos de compressive sensing, amplamente utilizados para redução de dados, o algoritmo CGNE (Conjugate Gradient for Normal Equation) apresenta complexidade O(n³) nas operações matriciais, tornando-se computacionalmente proibitivo para implementações embarcadas diretas.
+Você também pode obter ajudar para escrever as equações em \LaTeX no site \url{http://www.codecogs.com/latex/eqneditor.php}.
 
-\subsection{Restrições Energéticas}
+% Note que podemos incluir automaticamente alguns termos na lista de abreviaturas e siglas no pré-texto. Veja exemplos a seguir no código fonte. 
 
-Sistemas embarcados típicos operam com orçamentos energéticos de 5-20W, contrastando drasticamente com os 200-1000W consumidos por servidores de alto desempenho tradicionalmente utilizados para processamento hiperespectral \cite{hwang2011}. Esta limitação torna-se crítica em aplicações UAV onde a autonomia de voo é diretamente afetada pelo consumo energético dos sistemas de processamento.
+% A sigla \Sigla{abêcê}{ABC} aparecerá automaticamente na lista de abreviaturas e siglas no pré-texto. Do mesmo modo, podemos usar o comando \SiglaHifen{xisipsilonzê}{XYZ} separado por hífen ao invés de aparecer entre parênteses.
 
-\section{Lacunas na Literatura}
+Veja na \Secao{sec:exemplo_secao} a seguir como referenciar uma seção. Também será preciso definir um rótulo (\textit{label}) logo após o comando \texttt{\textbackslash section}.
 
-A análise sistemática de 20 artigos científicos recentes revelou quatro lacunas principais na literatura atual \cite{lou2024, uav_review_2024}:
+% Aqui começa uma Seção.
+% Use o comando \label para definir um rótulo, 
+% caso seja necessário referenciar essa seção
+% posteriormente.
+\section{Exemplo de seção}\label{sec:exemplo_secao} 
+Agora observe como se faz uma citação de artigo científico em periódico \cite{Gradvohl2014c}. De acordo com \textcite{Gradvohl2016}, essa é uma citação direta. Se for citar mais de um trabalho, faça da seguinte forma \cite{Caldana2017,Gradvohl2015}. As referências bibliográficas estão no arquivo \texttt{bibliografia.bib}. Outros exemplos de citações também se encontram nesse arquivo.
 
-\begin{enumerate}
-\item \textbf{Ausência de Frameworks Integrados}: Embora existam soluções pontuais para otimização específica (GPU, FPGA, ou algoritmos isolados), não há frameworks que integrem sistematicamente múltiplas técnicas de otimização em sistemas heterogêneos.
+Veja a seguir o comando para criar uma figura e o resultado, na \Figura{fig:xwing}. Note, no código fonte, que no comando \texttt{caption} podemos estabelecer uma \enquote{legenda curta} para aparecer na Lista de Figuras. A legenda curta é opcional.
 
-\item \textbf{Falta de Validação Prática}: A maioria dos trabalhos limita-se a validações em datasets sintéticos ou de laboratório, sem demonstração em aplicações práticas com restrições reais de tempo e energia.
+\begin{figure}[!htb]
+\centering
+% As figuras estão na pasta figuras.
+% Se seu texto estiver demorando muito para compilar, use figuras no formato PDF ou PNG.
+% Observe, no comando includegraphics que você pode estabelecer uma proporção para a figura.
+% Nesse caso, a figura tem uma proporção equivalente à metade (0.5) da largura do texto (\textwidth)
+\includegraphics[width=0.5\textwidth]{starwars21280.jpg}
+\caption[Legenda curta de figura]{Legenda mais extensa de figura.}
+\label{fig:xwing}
+\end{figure}
 
-\item \textbf{Trade-offs Não Quantificados}: As relações entre precisão, consumo energético e latência não são adequadamente caracterizadas, dificultando a seleção de técnicas apropriadas para aplicações específicas.
+Dica importante: sempre que possível, use figuras no formato PDF. De acordo com o Overleaf, isso acelera a compilação do texto, sem perder a qualidade da figura. 
 
-\item \textbf{Metodologias de Codesign Limitadas}: Embora o codesign HW/SW seja reconhecido como fundamental \cite{hwang2011}, faltam metodologias sistemáticas para particionamento otimizado entre CPU, GPU e FPGA em aplicações hiperespectrais.
-\end{enumerate}
+\subsection{Exemplo de subseção}\label{subsec:exemploSubsec}
+É importante evitar chegar a esse nível de subseção. Dois níveis são suficientes. Use essa opção em último caso, apenas.
 
-\section{Escopo da Pesquisa: Estruturação em Duas Etapas}
 
-Esta pesquisa está estruturada em duas etapas complementares, onde a presente dissertação de mestrado representa a primeira etapa focada na validação conceitual e metodológica, preparando o terreno para uma segunda etapa de implementação completa durante o doutorado.
+\subsection{Exemplo de adição de siglas}\label{subsec:siglas}
+Para adicionar uma sigla ou abreviatura na lista de siglas e abreviaturas, use o comando ``\texttt{\textbackslash{}Sigla\{nome por extenso\}\{abreviatura\}}'' ou ``\texttt{\textbackslash{}SiglaHifen\{nome por} \texttt{ex\-ten\-so\}\{abreviatura\}}'' para adicionar a sigla com hífen. 
+Por exemplo, respectivamente, \Sigla{Ácido Desoxirribonucleico}{DNA} ou \SiglaHifen{Ácido Ribonucleico}{RNA}. A lista de siglas é adicionada automaticamente.
 
-\subsection{Etapa 1: Validação de Metodologias (Mestrado - 2025)}
+\section{Comandos opcionais para facilitar}\label{sec:comandosOpc}
+Este modelo também criou alguns comandos adicionais não apenas para facilitar o trabalho de quem escreve, mas também para manter uma formatação mais consistente.
 
-A primeira etapa, objeto desta dissertação de mestrado, concentra-se na \textbf{validação conceitual e metodológica} das estratégias de integração de sistemas heterogêneos para processamento hiperespectral embarcado. Esta etapa visa estabelecer a base teórica e experimental necessária para o desenvolvimento futuro de uma arquitetura otimizada.
+Entre esses comandos estão o \texttt{\textbackslash{}ie} que inclui a abreviatura ``\ie'' no texto (equivalente ao ``isto é''). Usar esse comando vai garantir que a abreviatura não se separe entre linhas e que o espaço entre o `.' e a próxima letra seja fixo. O mesmo vale para os comandos \texttt{\textbackslash{}eg} que inclui a abreviatura ``\eg'' e \texttt{\textbackslash{}pex} que inclui a abreviatura ``\pex''.
 
-\textbf{Objetivo Principal da Etapa 1}: Validar e quantificar o potencial de integração de técnicas comprovadas (compressive sensing, seleção EMCR, codesign HW/SW) em sistemas heterogêneos para processamento hiperespectral embarcado, gerando análises detalhadas do estado da arte e estabelecendo metodologias de avaliação para orientar o desenvolvimento futuro.
+Também existem os comandos \texttt{\textbackslash{}Capitulo\{rótulo do capítulo\}}, \texttt{\textbackslash{}Equacao\{ró\-tu\-lo da equação\}}, \texttt{\textbackslash{}Figura\{rótulo da figura\}}, \texttt{\textbackslash{}Secao\{rótulo da seção\}} e \texttt{\textbackslash{}Tabela\{rótulo da tabela\}}. Esses comandos inserem referências para os respectivos elementos. Além disso, no próprio texto aparece a \textit{string} (``Capítulo'', ``Equação'', ``Figura'' etc) seguida da referência já com o link. Por exemplo, \Secao{sec:exemplo_secao}. Sugere-se a utilização desses comandos para referenciar os respectivos elementos ao invés do comando \texttt{\textbackslash{}ref\{rótulo\}}. Assim, o texto ficará mais uniforme. 
 
-\subsection{Etapa 2: Arquitetura Otimizada (Doutorado - 2026-2029)}
+É possível também usar esses comandos nas versões no plural para conjuntos de referências. Por exemplo, para referenciar várias seções, você pode utilizar o comando \texttt{\textbackslash{}secoes\{ró\-tu\-lo\_1, rótulo\_2, rótulo\_3\}}.
 
-A segunda etapa, a ser desenvolvida durante o doutorado, focará na \textbf{proposição e implementação de uma arquitetura otimizada} baseada nos resultados e validações obtidos na primeira etapa. Esta fase concentrar-se-á no desenvolvimento prático e na inovação arquitetural.
-
-\textbf{Objetivo da Etapa 2}: Propor e implementar uma arquitetura de sistema heterogêneo integrado (CPU+GPU+FPGA) completamente otimizada para redução simultânea de consumo energético e latência no processamento hiperespectral embarcado, baseada nas metodologias validadas na Etapa 1.
-
-\section{Objetivos Específicos da Etapa 1 (Mestrado)}
-
-\begin{enumerate}
-\item \textbf{Realizar análise sistemática do estado da arte} em processamento hiperespectral embarcado, identificando e catalogando técnicas comprovadas de otimização energética e redução de latência.
-
-\item \textbf{Caracterizar quantitativamente} os trade-offs entre precisão, consumo energético e latência através de simulações e protótipos conceituais de algoritmos hiperespectrais embarcados.
-
-\item \textbf{Desenvolver metodologia de avaliação} para sistemas heterogêneos, estabelecendo métricas, benchmarks e protocolos de teste para orientar futuras implementações.
-
-\item \textbf{Validar conceitos fundamentais} através de implementações de prova de conceito das técnicas mais promissoras: compressive sensing, seleção EMCR, e codesign básico HW/SW.
-
-\item \textbf{Propor framework arquitetural} para integração sistemática de técnicas em sistemas heterogêneos, definindo especificações e diretrizes para a implementação completa na Etapa 2.
-
-\item \textbf{Estabelecer baseline experimental} através de testes com datasets padrão (AVIRIS, Indian Pines, Pavia) para quantificar o potencial de melhoria e orientar o desenvolvimento futuro.
-\end{enumerate}
-
-\section{Hipóteses de Pesquisa da Etapa 1}
-
-Com base na análise bibliográfica sistemática, três hipóteses principais orientam a validação metodológica desta primeira etapa:
-
-\textbf{H1}: A análise sistemática de técnicas comprovadas (compressive sensing com redução 50-70\% dos dados \cite{lim2022}, seleção EMCR com redução 80\% do processamento \cite{martins2019}, e codesign HW/SW com melhoria energética 43.5x \cite{hwang2011}) pode demonstrar, através de simulações e protótipos conceituais, o potencial teórico de redução energética superior a 20x em sistemas hiperespectrais embarcados.
-
-\textbf{H2}: É possível estabelecer, através de modelagem e validação conceitual, que um framework arquitetural heterogêneo com módulos especializados (FPGA para pré-processamento, GPU para reconstrução, CPU para classificação) pode teoricamente atingir metas de latência <50ms/frame mantendo precisão >95\%, fornecendo diretrizes quantitativas para implementação futura.
-
-\textbf{H3}: Uma metodologia sistemática de avaliação e caracterização pode identificar e quantificar os trade-offs fundamentais entre precisão, consumo e latência, estabelecendo um framework de decisão para orientar a seleção e integração de técnicas em diferentes cenários de aplicação na Etapa 2.
-
-\section{Contribuições Esperadas da Etapa 1}
-
-Esta dissertação visa contribuir para o estado da arte em processamento hiperespectral embarcado através de:
-
-\subsection{Contribuições Metodológicas}
-
-\begin{itemize}
-\item \textbf{Análise Sistemática Abrangente}: Primeira caracterização quantitativa completa das técnicas de otimização disponíveis, organizando o conhecimento disperso na literatura em um framework coerente.
-
-\item \textbf{Metodologia de Avaliação}: Desenvolvimento de protocolos, métricas e benchmarks padronizados para comparação sistemática de abordagens heterogêneas em processamento hiperespectral embarcado.
-
-\item \textbf{Framework Arquitetural Conceitual}: Proposição de diretrizes e especificações técnicas para integração de técnicas em sistemas heterogêneos, estabelecendo a base teórica para implementações futuras.
-\end{itemize}
-
-\subsection{Contribuições Experimentais}
-
-\begin{itemize}
-\item \textbf{Validação Conceitual}: Demonstração do potencial teórico através de simulações e protótipos de prova de conceito das técnicas mais promissoras identificadas na literatura.
-
-\item \textbf{Caracterização Quantitativa}: Análise detalhada dos trade-offs precisão vs consumo vs latência usando datasets padrão (AVIRIS, Indian Pines, Pavia University), estabelecendo baselines para comparações futuras.
-
-\item \textbf{Diretrizes de Implementação}: Definição de especificações técnicas, requisitos de hardware e estratégias de integração para orientar o desenvolvimento da arquitetura otimizada na Etapa 2.
-\end{itemize}
-
-\section{Metodologia Geral da Etapa 1}
-
-A pesquisa da Etapa 1 seguirá uma abordagem de validação conceitual estruturada em quatro fases principais:
-
-\textbf{Fase 1 - Análise Sistemática do Estado da Arte} (2 meses): Revisão abrangente da literatura, catalogação de técnicas comprovadas, identificação de lacunas e estabelecimento de um framework de conhecimento organizado.
-
-\textbf{Fase 2 - Modelagem e Simulação Conceitual} (3 meses): Desenvolvimento de modelos teóricos, simulações das técnicas mais promissoras e quantificação do potencial de melhoria através de análises computacionais.
-
-\textbf{Fase 3 - Protótipos de Prova de Conceito} (3 meses): Implementação de protótipos simplificados das técnicas principais (compressive sensing, seleção EMCR, codesign básico) para validação experimental dos conceitos fundamentais.
-
-\textbf{Fase 4 - Framework Arquitetural e Diretrizes} (2 meses): Consolidação dos resultados em um framework arquitetural conceitual, definição de especificações técnicas e estabelecimento de diretrizes para a implementação completa na Etapa 2.
-
-\section{Estrutura da Dissertação}
-
-Esta dissertação está organizada de forma direta e objetiva em cinco capítulos focados na validação metodológica:
-
-\textbf{Capítulo 2 - Estado da Arte e Análise de Técnicas} apresenta a análise sistemática da literatura, catalogação de técnicas comprovadas e identificação de lacunas para sistemas heterogêneos em processamento hiperespectral embarcado.
-
-\textbf{Capítulo 3 - Metodologia de Validação} detalha a abordagem de validação conceitual, incluindo modelagem teórica, protocolo de simulação e framework de avaliação para caracterização de trade-offs.
-
-\textbf{Capítulo 4 - Validação Experimental e Resultados} apresenta os protótipos de prova de conceito, simulações das técnicas mais promissoras, análise quantitativa dos trade-offs e estabelecimento de baselines experimentais.
-
-\textbf{Capítulo 5 - Conclusões e Continuidade} sintetiza as contribuições metodológicas da Etapa 1, valida as hipóteses de pesquisa e estabelece as diretrizes técnicas para a implementação da arquitetura otimizada na Etapa 2 (doutorado).
-
-Esta estrutura enxuta garante uma apresentação direta dos objetivos da validação metodológica, maximizando a objetividade e facilitando a transição para a fase de implementação prática no doutorado.
+Por exemplo, suponha que queiramos referenciar as \secoes{sec:exemplostabelas,sec:exemplo_secao,subsec:siglas}.
