@@ -1,88 +1,96 @@
-% Aqui começa o capítulo de Introdução.
-% Use o comando \label para definir um rótulo, 
-% caso seja necessário referenciar esse capítulo
-% posteriormente.
+% Capítulo 1: Introdução
 \chapter{Introdução}\label{chp:Introducao}
 
-Esse é um texto de exemplo para o modelo de teses e dissertações da Faculdade de Tecnologia (FT) da UNICAMP. Esse modelo se aplica às teses de doutorado, dissertações de mestrado e Trabalhos de Conclusão de Curso, para a graduação (dos cursos de informática da FT).
+\section{Contexto e motivação}\label{sec:contexto_motivacao}
 
-A seguir, estão alguns exemplos para os elementos mais comuns em textos acadêmicos, \ie tabelas, equações e figuras. 
+O processamento hiperespectral embarcado representa um desafio computacional significativo para aplicações em tempo real, especialmente em cenários onde recursos energéticos são limitados e a latência é crítica. Sistemas hiperespectrais tradicionais, baseados em processamento centralizado ou em nuvem, enfrentam limitações fundamentais quando aplicados a veículos aéreos não tripulados (VANTs), satélites de pequeno porte ou dispositivos de Internet das Coisas (IoT) com restrições de energia e comunicação.
 
-\section{Exemplos de Tabelas e Equações}\label{sec:exemplostabelas}
-Aqui um exemplo de como referenciar a \Tabela{tab:tabela_1}. Note que é preciso definir um rótulo (\textit{label}) dentro do comando de definição da tabela.
+A crescente demanda por aplicações em tempo real, como agricultura de precisão, monitoramento ambiental, segurança e defesa, exige sistemas capazes de processar dados hiperespectrais com centenas de bandas espectrais em taxas superiores a 30 frames por segundo (fps), mantendo latência inferior a 50 milissegundos por frame e consumo energético abaixo de 15 watts. Esta combinação de requisitos representa um desafio técnico que não pode ser resolvido por arquiteturas computacionais tradicionais.
 
-% Veja a seguir um exemplo de Tabela.
-% Você pode usar o site http://www.tablesgenerator.com
-% para gerar as tabelas em LaTeX.
-\begin{table}[!htp]
-\caption[Legenda curta da tabela]{Legenda longa e mais detalhada da tabela.}
-\label{tab:tabela_1}
-\begin{center}
-\begin{tabular}{cc}
-\toprule % Linha superior
-Coluna 1 & Coluna2 \\ \midrule % Linha do meio 
-a & b \\
-c & d \\
-e & f \\\bottomrule % Linha inferior
-\end{tabular}
-\end{center}
-\end{table}
+\section{Problema de pesquisa e perguntas}\label{sec:problema_perguntas}
 
-As tabelas mais complexas podem ser feitas com ajuda no site \href{http://www.tablesgenerator.com}{http://www.tables\-ge\-ne\-ra\-tor.com}.
+O problema central desta pesquisa reside na necessidade de desenvolver sistemas hiperespectrais embarcados que integrem múltiplas técnicas de otimização comprovadas pela literatura, mas que atualmente são implementadas de forma isolada. A análise sistemática do estado da arte revela que 96\% dos trabalhos focam em técnicas individuais, resultando em:
 
-Veja um exemplo de equação no próprio texto, \eg, $x=\frac{\sqrt{a^{2}+b^{2}}}{\sigma}$.  Se você preferir, pode escrever a equação de forma estendida, conforme a \Equacao{eq:teste} a seguir. Note que o rótulo é colocado automaticamente.
+\begin{itemize}
+    \item Falta de análise end-to-end dos trade-offs entre precisão, performance e consumo energético
+    \item Ausência de frameworks integrados que combinem as melhores práticas identificadas
+    \item Limitação na validação de sistemas completos em cenários reais
+\end{itemize}
 
-\begin{equation}
-x=\frac{\sqrt{a^{2}+b^{2}}}{\sigma}
-\label{eq:teste}
-\end{equation}
+As principais perguntas de pesquisa que orientam este trabalho são:
 
+\begin{enumerate}
+    \item Como integrar técnicas comprovadas de otimização (compressive sensing, seleção de bandas, codesign hardware/software) em um sistema heterogêneo único?
+    \item Quais são os trade-offs quantitativos entre precisão, latência e consumo energético em sistemas integrados?
+    \item É possível atingir metas de performance em tempo real mantendo alta precisão e baixo consumo energético?
+\end{enumerate}
 
-Você também pode obter ajudar para escrever as equações em \LaTeX no site \url{http://www.codecogs.com/latex/eqneditor.php}.
+\section{Objetivos}\label{sec:objetivos}
 
-% Note que podemos incluir automaticamente alguns termos na lista de abreviaturas e siglas no pré-texto. Veja exemplos a seguir no código fonte. 
+\subsection{Objetivo geral}\label{subsec:objetivo_geral}
 
-% A sigla \Sigla{abêcê}{ABC} aparecerá automaticamente na lista de abreviaturas e siglas no pré-texto. Do mesmo modo, podemos usar o comando \SiglaHifen{xisipsilonzê}{XYZ} separado por hífen ao invés de aparecer entre parênteses.
+Desenvolver e validar um framework arquitetural heterogêneo para processamento hiperespectral embarcado que integre técnicas comprovadas de otimização, visando atingir metas de performance em tempo real com eficiência energética superior ao estado da arte atual.
 
-Veja na \Secao{sec:exemplo_secao} a seguir como referenciar uma seção. Também será preciso definir um rótulo (\textit{label}) logo após o comando \texttt{\textbackslash section}.
+\subsection{Objetivos específicos}\label{subsec:objetivos_especificos}
 
-% Aqui começa uma Seção.
-% Use o comando \label para definir um rótulo, 
-% caso seja necessário referenciar essa seção
-% posteriormente.
-\section{Exemplo de seção}\label{sec:exemplo_secao} 
-Agora observe como se faz uma citação de artigo científico em periódico \cite{Gradvohl2014c}. De acordo com \textcite{Gradvohl2016}, essa é uma citação direta. Se for citar mais de um trabalho, faça da seguinte forma \cite{Caldana2017,Gradvohl2015}. As referências bibliográficas estão no arquivo \texttt{bibliografia.bib}. Outros exemplos de citações também se encontram nesse arquivo.
+\begin{enumerate}
+    \item Realizar análise sistemática do estado da arte em processamento hiperespectral embarcado, catalogando técnicas comprovadas e suas métricas quantitativas
+    \item Identificar e quantificar gaps na literatura relacionados à integração de sistemas heterogêneos
+    \item Propor arquitetura integrada CPU+GPU+FPGA com pipeline otimizado para diferentes estágios de processamento
+    \item Estabelecer metodologia de validação para sistemas heterogêneos com métricas padronizadas
+    \item Desenvolver framework conceitual que oriente futuras implementações práticas
+\end{enumerate}
 
-Veja a seguir o comando para criar uma figura e o resultado, na \Figura{fig:xwing}. Note, no código fonte, que no comando \texttt{caption} podemos estabelecer uma \enquote{legenda curta} para aparecer na Lista de Figuras. A legenda curta é opcional.
+\section{Hipóteses}\label{sec:hipoteses}
 
-\begin{figure}[!htb]
-\centering
-% As figuras estão na pasta figuras.
-% Se seu texto estiver demorando muito para compilar, use figuras no formato PDF ou PNG.
-% Observe, no comando includegraphics que você pode estabelecer uma proporção para a figura.
-% Nesse caso, a figura tem uma proporção equivalente à metade (0.5) da largura do texto (\textwidth)
-\includegraphics[width=0.5\textwidth]{starwars21280.jpg}
-\caption[Legenda curta de figura]{Legenda mais extensa de figura.}
-\label{fig:xwing}
-\end{figure}
+As hipóteses principais desta pesquisa são:
 
-Dica importante: sempre que possível, use figuras no formato PDF. De acordo com o Overleaf, isso acelera a compilação do texto, sem perder a qualidade da figura. 
+\begin{enumerate}
+    \item \textbf{H1}: A integração de técnicas comprovadas de otimização em sistemas heterogêneos pode resultar em melhoria energética superior a 20x comparado a implementações tradicionais
+    \item \textbf{H2}: É possível atingir latência end-to-end inferior a 50ms por frame mantendo precisão superior a 95\% através de arquitetura heterogênea otimizada
+    \item \textbf{H3}: Um framework sistemático de avaliação pode identificar e quantificar os trade-offs fundamentais entre precisão, consumo energético e latência
+\end{enumerate}
 
-\subsection{Exemplo de subseção}\label{subsec:exemploSubsec}
-É importante evitar chegar a esse nível de subseção. Dois níveis são suficientes. Use essa opção em último caso, apenas.
+\section{Contribuições esperadas}\label{sec:contribuicoes}
 
+As principais contribuições esperadas desta pesquisa incluem:
 
-\subsection{Exemplo de adição de siglas}\label{subsec:siglas}
-Para adicionar uma sigla ou abreviatura na lista de siglas e abreviaturas, use o comando ``\texttt{\textbackslash{}Sigla\{nome por extenso\}\{abreviatura\}}'' ou ``\texttt{\textbackslash{}SiglaHifen\{nome por} \texttt{ex\-ten\-so\}\{abreviatura\}}'' para adicionar a sigla com hífen. 
-Por exemplo, respectivamente, \Sigla{Ácido Desoxirribonucleico}{DNA} ou \SiglaHifen{Ácido Ribonucleico}{RNA}. A lista de siglas é adicionada automaticamente.
+\begin{itemize}
+    \item \textbf{Contribuição Teórica}: Primeira análise sistemática quantitativa de técnicas de processamento hiperespectral embarcado com foco em sistemas heterogêneos
+    \item \textbf{Contribuição Metodológica}: Framework arquitetural conceitual para integração de técnicas comprovadas com validação sistemática
+    \item \textbf{Contribuição Prática}: Especificações técnicas detalhadas para implementação de sistemas heterogêneos otimizados
+    \item \textbf{Contribuição de Validação}: Metodologia padronizada para avaliação de trade-offs em sistemas embarcados
+\end{itemize}
 
-\section{Comandos opcionais para facilitar}\label{sec:comandosOpc}
-Este modelo também criou alguns comandos adicionais não apenas para facilitar o trabalho de quem escreve, mas também para manter uma formatação mais consistente.
+\section{Metodologia da pesquisa (visão geral)}\label{sec:metodologia_geral}
 
-Entre esses comandos estão o \texttt{\textbackslash{}ie} que inclui a abreviatura ``\ie'' no texto (equivalente ao ``isto é''). Usar esse comando vai garantir que a abreviatura não se separe entre linhas e que o espaço entre o `.' e a próxima letra seja fixo. O mesmo vale para os comandos \texttt{\textbackslash{}eg} que inclui a abreviatura ``\eg'' e \texttt{\textbackslash{}pex} que inclui a abreviatura ``\pex''.
+Esta pesquisa está estruturada em duas fases principais:
 
-Também existem os comandos \texttt{\textbackslash{}Capitulo\{rótulo do capítulo\}}, \texttt{\textbackslash{}Equacao\{ró\-tu\-lo da equação\}}, \texttt{\textbackslash{}Figura\{rótulo da figura\}}, \texttt{\textbackslash{}Secao\{rótulo da seção\}} e \texttt{\textbackslash{}Tabela\{rótulo da tabela\}}. Esses comandos inserem referências para os respectivos elementos. Além disso, no próprio texto aparece a \textit{string} (``Capítulo'', ``Equação'', ``Figura'' etc) seguida da referência já com o link. Por exemplo, \Secao{sec:exemplo_secao}. Sugere-se a utilização desses comandos para referenciar os respectivos elementos ao invés do comando \texttt{\textbackslash{}ref\{rótulo\}}. Assim, o texto ficará mais uniforme. 
+\subsection{Fase 1: Análise Sistemática do Estado da Arte (Concluída)}
+\begin{itemize}
+    \item Revisão sistemática de 25 artigos publicados entre 2011-2024
+    \item Catalogação quantitativa de técnicas e métricas de performance
+    \item Identificação de gaps e oportunidades de pesquisa
+    \item Desenvolvimento de framework arquitetural conceitual
+\end{itemize}
 
-É possível também usar esses comandos nas versões no plural para conjuntos de referências. Por exemplo, para referenciar várias seções, você pode utilizar o comando \texttt{\textbackslash{}secoes\{ró\-tu\-lo\_1, rótulo\_2, rótulo\_3\}}.
+\subsection{Fase 2: Desenvolvimento Experimental (Pós-qualificação)}
+\begin{itemize}
+    \item Implementação de protótipos conceituais dos módulos principais
+    \item Validação experimental com datasets padrão
+    \item Análise de trade-offs e otimizações
+    \item Validação em cenários reais de aplicação
+\end{itemize}
 
-Por exemplo, suponha que queiramos referenciar as \secoes{sec:exemplostabelas,sec:exemplo_secao,subsec:siglas}.
+\section{Organização do trabalho}\label{sec:organizacao}
+
+Esta dissertação está organizada da seguinte forma:
+
+\begin{itemize}
+    \item \textbf{Capítulo 1 (Introdução)}: Apresenta o contexto, problema de pesquisa, objetivos e metodologia geral
+    \item \textbf{Capítulo 2 (Levantamento Bibliográfico)}: Descreve a revisão sistemática realizada e análise do estado da arte
+    \item \textbf{Capítulo 3 (Proposta e Metodologia)}: Apresenta o framework arquitetural proposto e metodologia de validação
+    \item \textbf{Capítulo 4 (Conclusões)}: Sintetiza as contribuições da Fase 1 e direciona trabalhos futuros
+\end{itemize}
+
+O trabalho inclui ainda apêndices com detalhes técnicos da revisão sistemática e protocolos de validação propostos.

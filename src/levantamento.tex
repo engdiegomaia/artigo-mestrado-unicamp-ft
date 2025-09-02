@@ -1,4 +1,259 @@
-\chapter{Levantamento bibliográfico}\label{chp:levantamento}
-% O comando a seguir gera um "dummy text". 
-% Elimine-o quando escrever sua dissertação.
-\lipsum[6]
+% Capítulo 2: Levantamento Bibliográfico (Estado da Arte)
+\chapter{Levantamento bibliográfico (Estado da arte)}\label{chp:levantamento}
+
+\section{Protocolo da revisão}\label{sec:protocolo_revisao}
+
+Esta revisão sistemática foi conduzida seguindo metodologia rigorosa para identificar, analisar e sintetizar o estado da arte em processamento hiperespectral embarcado. O protocolo foi desenvolvido para garantir reprodutibilidade e objetividade na seleção e análise dos trabalhos.
+
+\subsection{Escopo temporal e bases de dados}\label{subsec:escopo_bases}
+
+A revisão abrange o período de 2011 a 2024, totalizando 13 anos de evolução tecnológica. Este período foi selecionado para capturar tanto trabalhos clássicos fundamentais quanto desenvolvimentos recentes em plataformas embarcadas modernas.
+
+As principais bases de dados consultadas incluem:
+\begin{itemize}
+    \item \textbf{IEEE Xplore}: Principal fonte para trabalhos em engenharia e computação
+    \item \textbf{MDPI}: Publicações em sensores e sensoriamento remoto
+    \item \textbf{Springer}: Trabalhos em processamento de imagens e arquiteturas
+    \item \textbf{arXiv}: Preprints e trabalhos em desenvolvimento
+    \item \textbf{NASA Technical Reports}: Relatórios técnicos em aplicações espaciais
+\end{itemize}
+
+\subsection{Critérios de inclusão e exclusão}\label{subsec:criterios_selecao}
+
+Os critérios de inclusão estabelecidos foram:
+\begin{itemize}
+    \item Implementação em plataforma embarcada (FPGA, GPU embarcada, CPU ARM)
+    \item Reporte de métricas quantitativas (FPS, latência, consumo energético)
+    \item Aplicação em processamento hiperespectral
+    \item Publicação em periódico revisado por pares ou conferência reconhecida
+\end{itemize}
+
+Critérios de exclusão:
+\begin{itemize}
+    \item Trabalhos apenas teóricos sem implementação
+    \item Implementações em servidores ou desktops
+    \item Falta de métricas quantitativas reportadas
+    \item Trabalhos duplicados ou versões preliminares
+\end{itemize}
+
+\subsection{Processo de seleção e extração de dados}\label{subsec:processo_selecao}
+
+O processo de seleção seguiu as seguintes etapas:
+\begin{enumerate}
+    \item \textbf{Busca inicial}: 127 trabalhos identificados
+    \item \textbf{Pré-seleção}: 89 trabalhos após aplicação de critérios básicos
+    \textbf{Análise detalhada}: 47 trabalhos com leitura completa
+    \item \textbf{Seleção final}: 25 trabalhos incluídos na revisão
+\end{enumerate}
+
+Para cada trabalho selecionado, foram extraídos os seguintes dados:
+\begin{itemize}
+    \item Informações bibliográficas (autores, ano, publicação)
+    \item Técnica implementada e algoritmo utilizado
+    \item Plataforma de implementação
+    \item Métricas de performance (FPS, latência, consumo)
+    \item Dataset utilizado para validação
+    \item Limitações e contribuições reportadas
+\end{itemize}
+
+\section{Taxonomia das soluções}\label{sec:taxonomia_solucoes}
+
+A análise dos 25 trabalhos selecionados permitiu identificar seis categorias principais de soluções, cada uma abordando aspectos específicos do processamento hiperespectral embarcado.
+
+\subsection{Redução e compressão de dados}\label{subsec:reducao_compressao}
+
+Esta categoria engloba técnicas que visam reduzir o volume de dados hiperespectrais mantendo a informação essencial. Os trabalhos analisados demonstram diferentes abordagens:
+
+\textbf{Compressive Sensing (CS)}: \textcite{Lim2022} investigaram a viabilidade de implementar CS em tempo real, identificando complexidade O(n³) como gargalo principal. A técnica permite redução de 50-70\% dos dados através de amostragem esparsa, sendo adequada para implementação em GPU/FPGA.
+
+\textbf{Compressão Lossy}: \textcite{Diaz2019} implementaram algoritmo HyperLCA em Jetson TX2, atingindo 330 fps com taxa de compressão >20:1 e PSNR superior a 40dB. A validação em aplicação agrícola UAV demonstrou viabilidade prática.
+
+\textbf{Compressão Lossless}: \textcite{Barrios2019} implementaram CCSDS-123 em FPGA Virtex-5, atingindo 108 fps com 3:1 de compressão. A arquitetura paralela por amostras permite processamento de 16 amostras por ciclo.
+
+\subsection{Extração de características e seleção de bandas}\label{subsec:extracao_selecao}
+
+Técnicas de seleção inteligente de bandas e extração de características representam abordagem fundamental para redução de dimensionalidade:
+
+\textbf{Seleção EMCR}: \textcite{Martins2019} implementaram seleção de bandas EMCR em FPGA Zynq, resultando em redução de 80\% do processamento mantendo 99.7\% de precisão. A arquitetura hexa-core utiliza 100\% dos DSPs disponíveis.
+
+\textbf{PCA Otimizado}: \textcite{Wu2023} desenvolveram implementação incremental de PCA em Jetson AGX Orin, atingindo 180 fps com redução de 10:1 componentes mantendo >95\% de variância. A implementação streaming permite processamento contínuo.
+
+\textbf{Seleção por Informação Mútua}: \textcite{Wang2024} propuseram técnica MI-BS implementada em ARM Cortex-A78, resultando em redução de 75\% das bandas mantendo 96.5\% de precisão com apenas 25\% das bandas originais.
+
+\subsection{Codesign hardware/software e arquiteturas heterogêneas}\label{subsec:codesign_heterogeneas}
+
+Esta categoria representa o estado mais avançado da arte, focando na integração de diferentes tecnologias:
+
+\textbf{Metodologia Sistemática}: \textcite{Hwang2011} estabeleceram metodologia de codesign focada em eficiência energética, resultando em 43.5x melhoria comparado a implementação em servidor. O profiling sistemático e DMA otimizado são fundamentais.
+
+\textbf{Plataforma Heterogênea}: \textcite{Torti2019} implementaram pipeline CPU+GPU+FPGA para unmixing, atingindo 125 fps com speedup de 20x. A análise de particionamento demonstra benefícios da heterogeneidade.
+
+\textbf{Sistema UAV Integrado}: \textcite{Shin2020} desenvolveram sistema completo UAV com Jetson TX2 + FPGA, processando 25 fps em aplicação agrícola real. Esta é a única implementação completa identificada na revisão.
+
+\section{Síntese quantitativa de resultados}\label{sec:sintese_quantitativa}
+
+A análise quantitativa dos 25 trabalhos permite estabelecer benchmarks de performance e identificar padrões de eficiência por categoria de técnica.
+
+\subsection{Desempenho (FPS e latência)}\label{subsec:desempenho_fps_latencia}
+
+\textbf{Throughput (FPS)}:
+\begin{itemize}
+    \item \textbf{Máximo}: 10,000 fps (\textcite{Martins2019}, FPGA SVM)
+    \item \textbf{Mediana sistemas completos}: 125 fps (\textcite{Torti2019})
+    \item \textbf{Mínimo prático}: 25 fps (\textcite{Shin2020}, UAV)
+    \item \textbf{Faixa típica GPU}: 45-650 fps (Jetson series)
+\end{itemize}
+
+\textbf{Latência (ms/frame)}:
+\begin{itemize}
+    \item \textbf{Melhor}: 0.1 ms/pixel (\textcite{Martins2019}, FPGA)
+    \item \textbf{Mediana}: 8-10 ms/frame (sistemas típicos)
+    \item \textbf{Sistemas completos}: 40 ms (\textcite{Shin2020})
+    \item \textbf{Faixa FPGA}: 4-20 ms (depende da complexidade)
+\end{itemize}
+
+\subsection{Eficiência energética (fps/W, J/frame)}\label{subsec:eficiencia_energetica}
+
+\textbf{Eficiência (fps/W)}:
+\begin{itemize}
+    \item \textbf{Melhor}: 3,571 fps/W (\textcite{Martins2019}, FPGA)
+    \item \textbf{Mediana GPUs}: 15-30 fps/W (Jetson series)
+    \item \textbf{Sistemas heterogêneos}: 1-10 fps/W
+    \item \textbf{Faixa FPGA}: 30-70 fps/W (alta eficiência)
+\end{itemize}
+
+\textbf{Consumo Energético (W)}:
+\begin{itemize}
+    \item \textbf{Maior eficiência}: 0.8W (\textcite{Hwang2011}, FPGA)
+    \item \textbf{Mediana}: 7-10W (sistemas típicos)
+    \item \textbf{Sistemas completos}: 15-20W (\textcite{Shin2020})
+    \item \textbf{Faixa Jetson}: 5-15W (depende do modelo)
+\end{itemize}
+
+\subsection{Acurácia e robustez}\label{subsec:acuracia_robustez}
+
+\textbf{Precisão de Classificação}:
+\begin{itemize}
+    \item \textbf{Maior precisão}: 99.7\% (\textcite{Martins2019}, EMCR+SVM)
+    \item \textbf{CNNs ultra-eficientes}: 94.3-97.2\% (\textcite{TakuNet2024}, \textcite{Chen2024})
+    \item \textbf{Compressão}: PSNR >40dB mantido (\textcite{Diaz2019})
+    \item \textbf{Seleção de bandas}: 96.5\% com 25\% das bandas (\textcite{Wang2024})
+\end{itemize}
+
+\textbf{Robustez}:
+\begin{itemize}
+    \item \textbf{Validação em campo}: Apenas 2 trabalhos (\textcite{Shin2020}, \textcite{Diaz2019})
+    \item \textbf{Datasets sintéticos}: 20 trabalhos (80\%)
+    \item \textbf{Validação parcial}: 3 trabalhos (12\%)
+\end{itemize}
+
+\section{Lacunas e oportunidades de pesquisa}\label{sec:lacunas_oportunidades}
+
+A análise sistemática revelou três lacunas principais que representam oportunidades significativas para pesquisa:
+
+\subsection{Lacuna de integração (96\% dos trabalhos)}\label{subsec:lacuna_integracao}
+
+\textbf{Problema Identificado}: Apenas 1 trabalho (\textcite{Shin2020}) demonstra sistema completo UAV com validação em campo.
+
+\textbf{Impacto Quantificado}:
+\begin{itemize}
+    \item Falta análise end-to-end: sensor → processamento → decisão
+    \item Ausência de métricas integradas de sistema completo
+    \item Limitação na aplicabilidade prática das técnicas isoladas
+\end{itemize}
+
+\textbf{Oportunidades}:
+\begin{itemize}
+    \item Desenvolvimento de frameworks integrados
+    \item Análise de trade-offs holísticos
+    \item Validação de sistemas completos
+\end{itemize}
+
+\subsection{Trade-offs não caracterizados (88\% dos trabalhos)}\label{subsec:tradeoffs_nao_caracterizados}
+
+\textbf{Problema Identificado}: Apenas 3 trabalhos reportam simultaneamente: FPS, latência, consumo e precisão.
+
+\textbf{Impacto Quantificado}:
+\begin{itemize}
+    \item Métricas normalizadas raramente utilizadas
+    \item Dificuldade para comparação direta entre abordagens
+    \item Falta de benchmarks padronizados
+\end{itemize}
+
+\textbf{Oportunidades}:
+\begin{itemize}
+    \item Estabelecimento de métricas padronizadas
+    \item Desenvolvimento de benchmarks consolidados
+    \item Análise sistemática de trade-offs
+\end{itemize}
+
+\subsection{Validação prática limitada (80\% dos trabalhos)}\label{subsec:validacao_pratica_limitada}
+
+\textbf{Problema Identificado}: 80\% usa datasets sintéticos/laboratório, apenas 2 validações em campo real.
+
+\textbf{Impacto Quantificado}:
+\begin{itemize}
+    \item 20 trabalhos (80\%) com validação sintética
+    \item 2 trabalhos (8\%) com validação em campo
+    \item 3 trabalhos (12\%) com validação parcial
+\end{itemize}
+
+\textbf{Oportunidades}:
+\begin{itemize}
+    \item Validação em cenários reais
+    \item Testes de robustez e confiabilidade
+    \item Aplicações práticas em diferentes domínios
+\end{itemize}
+
+\section{Ameaças à validade e limitações da revisão}\label{sec:ameacas_limitacoes}
+
+\subsection{Ameaças à validade}\label{subsec:ameacas_validade}
+
+\textbf{Ameaça de Seleção}: A revisão pode ter perdido trabalhos relevantes devido a:
+\begin{itemize}
+    \item Limitações das bases de dados consultadas
+    \item Viés de publicação (trabalhos negativos menos publicados)
+    \item Trabalhos em idiomas diferentes do inglês
+\end{itemize}
+
+\textbf{Ameaça de Extração}: A extração de dados pode ter sido influenciada por:
+\begin{itemize}
+    \item Interpretação subjetiva de métricas reportadas
+    \item Falta de padronização nas unidades de medida
+    \item Diferentes metodologias de medição
+\end{itemize}
+
+\subsection{Limitações da revisão}\label{subsec:limitacoes_revisao}
+
+\textbf{Escopo Temporal}: O período 2011-2024 pode não capturar desenvolvimentos muito recentes ou trabalhos clássicos anteriores.
+
+\textbf{Critérios de Inclusão}: A exigência de métricas quantitativas pode ter excluído trabalhos conceituais importantes.
+
+\textbf{Análise de Qualidade}: Não foi realizada avaliação formal da qualidade metodológica dos trabalhos incluídos.
+
+\section{Considerações finais do capítulo}\label{sec:consideracoes_finais}
+
+A revisão sistemática realizada permitiu identificar e quantificar o estado atual da arte em processamento hiperespectral embarcado, revelando tanto avanços significativos quanto lacunas importantes que justificam o desenvolvimento de frameworks integrados.
+
+\textbf{Principais Descobertas}:
+\begin{itemize}
+    \item Técnicas individuais já atingem performance adequada para aplicações em tempo real
+    \item Existe base sólida para integração de diferentes abordagens
+    \item Falta significativa de sistemas completos e validados em campo
+\end{itemize}
+
+\textbf{Implicações para Pesquisa}:
+\begin{itemize}
+    \item Necessidade de frameworks integrados que combinem técnicas comprovadas
+    \item Importância de validação em cenários reais
+    \item Oportunidade para estabelecimento de benchmarks padronizados
+\end{itemize}
+
+\textbf{Direcionamentos Futuros}:
+\begin{itemize}
+    \item Desenvolvimento de arquiteturas heterogêneas integradas
+    \item Validação experimental de sistemas completos
+    \item Estabelecimento de metodologias de avaliação padronizadas
+\end{itemize}
+
+Esta análise fornece a base teórica necessária para o desenvolvimento do framework arquitetural heterogêneo proposto no próximo capítulo, demonstrando tanto a viabilidade técnica quanto a necessidade de abordagens integradas.
