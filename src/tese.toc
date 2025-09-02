@@ -1,0 +1,69 @@
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 
+\contentsline {chapter}{\numberline {1}Introdução}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Contexto e motivação}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problema de pesquisa e perguntas}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Objetivos}{3}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Objetivo geral}{3}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Objetivos específicos}{3}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Hipóteses}{3}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Contribuições esperadas}{3}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Metodologia da pesquisa (visão geral)}{4}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Fase 1: Análise Sistemática do Estado da Arte (Concluída)}{4}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Fase 2: Desenvolvimento Experimental (Pós-qualificação)}{4}{subsection.1.6.2}%
+\contentsline {section}{\numberline {1.7}Organização do trabalho}{4}{section.1.7}%
+\contentsline {chapter}{\numberline {2}Levantamento bibliográfico (Estado da arte)}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Protocolo da revisão}{5}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Escopo temporal e bases de dados}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Critérios de inclusão e exclusão}{5}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Processo de seleção e extração de dados}{6}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Taxonomia das soluções}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Redução e compressão de dados}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Extração de características e seleção de bandas}{7}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Codesign hardware/software e arquiteturas heterogêneas}{7}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Síntese quantitativa de resultados}{7}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Desempenho (FPS e latência)}{7}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Eficiência energética (fps/W, J/frame)}{8}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Acurácia e robustez}{8}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Lacunas e oportunidades de pesquisa}{8}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Lacuna de integração (96\% dos trabalhos)}{9}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Trade-offs não caracterizados (88\% dos trabalhos)}{9}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Validação prática limitada (80\% dos trabalhos)}{9}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Ameaças à validade e limitações da revisão}{10}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Ameaças à validade}{10}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Limitações da revisão}{10}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}Considerações finais do capítulo}{10}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Proposta e metodologia}{12}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Framework arquitetural proposto}{12}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Justificativa e requisitos}{12}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Especificações de hardware e software}{13}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Pipeline de processamento}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Pré-processamento no FPGA}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Núcleo de processamento na GPU}{14}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Classificação e controle na CPU}{14}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Interfaces, buffers e sincronização}{14}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Plano de avaliação experimental}{15}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Datasets e cenários de teste}{15}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Métricas e protocolos de medição}{15}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Benchmarks de referência}{16}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Metas quantitativas e critérios de sucesso}{16}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Targets de Performance}{16}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Critérios de Sucesso}{16}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}Riscos técnicos e estratégias de mitigação}{17}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Riscos Identificados}{17}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Estratégias de Mitigação}{17}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Cronograma de desenvolvimento}{17}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Fase 1: Análise e Baseline (Concluída)}{17}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Fase 2: Desenvolvimento Experimental (Pós-qualificação)}{18}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Fase 3: Integração e Validação (Pós-qualificação)}{18}{subsection.3.6.3}%
+\contentsline {section}{\numberline {3.7}Considerações finais do capítulo}{18}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuros}{20}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Síntese das contribuições da Fase 1}{20}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Estado de validação das hipóteses}{21}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Trabalhos futuros e plano pós-qualificação}{21}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Fase 2: Desenvolvimento Experimental (Janeiro-Junho 2026)}{22}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Fase 3: Integração e Validação (Julho-Setembro 2026)}{22}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Validação em Campo (Outubro-Dezembro 2026)}{23}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Contribuições Esperadas da Fase 2}{23}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Impacto Esperado}{24}{subsection.4.3.5}%
+\contentsline {section}{\numberline {4.4}Considerações finais}{24}{section.4.4}%

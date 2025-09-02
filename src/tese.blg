@@ -1,0 +1,17 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'tese.blg'
+[233] biber-MSWIN64:342> INFO - === 
+[318] Biber.pm:421> INFO - Reading 'tese.bcf'
+[456] Biber.pm:1002> INFO - Found 15 citekeys in bib section 0
+[472] Biber.pm:4487> INFO - Processing section 0
+[494] Biber.pm:4678> INFO - Looking for bibtex file 'bibliografia.bib' for section 0
+[554] bibtex.pm:1713> INFO - LaTeX decoding ...
+[602] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliografia.bib'
+[777] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[777] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[777] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'pt-BR'
+[777] Biber.pm:4313> INFO - No sort tailoring available for locale 'pt-BR'
+[795] bbl.pm:676> INFO - Writing 'tese.bbl' with encoding 'UTF-8'
+[807] bbl.pm:779> INFO - Output to tese.bbl
+[807] Biber.pm:132> WARN - Possible typo (case mismatch) between datasource keys: 'hwang2011' and 'Hwang2011' in file 'bibliografia.bib'
+[808] Biber.pm:134> INFO - WARNINGS: 1
