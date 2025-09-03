@@ -1,0 +1,150 @@
+---
+alwaysApply: true
+description: Automação de build e organização de arquivos LaTeX
+---
+
+# Automação de Build LaTeX - Sistema Organizado
+
+## Estrutura de Pastas Automatizada
+
+### Organização Atual (Atualizada 2025-09-02)
+```
+artigo-mestrado-unicamp-ft/
+├── src/                    # Arquivo LaTeX principal + classe
+│   ├── tese.tex           # Documento principal
+│   ├── tese-FT.cls        # Classe UNICAMP-FT
+│   └── bibliografia.bib   # Bibliografia principal
+├── sections/              # Capítulos e seções organizados
+│   ├── resumo.tex         # Resumo em português
+│   ├── abstract.tex       # Abstract em inglês
+│   ├── introducao.tex     # Introdução
+│   ├── levantamento.tex   # Estado da arte
+│   ├── desenvolvimento.tex # Metodologia
+│   └── conclusoes.tex     # Conclusões
+├── output/                # Arquivos temporários (AUTO-GERADO)
+│   ├── *.aux, *.log       # Arquivos auxiliares LaTeX
+│   ├── *.bbl, *.bcf       # Bibliografia processada
+│   └── *.toc, *.lof       # Índices e listas
+└── dist/                  # PDF final (AUTO-GERADO)
+    └── tese.pdf           # Documento final
+```
+
+## Processo de Build Automatizado
+
+### Scripts de Compilação Inteligentes
+
+#### Linux/macOS: `compila.sh`
+- **Detecção automática**: Verifica se `latexmk` está disponível
+- **Build automatizado**: Uma execução completa se latexmk disponível
+- **Fallback tradicional**: 3 passos manuais se latexmk não disponível
+- **Organização automática**: Arquivos gerados nas pastas corretas
+
+#### Windows: `compila.bat`
+- **Mesma funcionalidade**: Detecção e build automatizado
+- **Compatibilidade**: Funciona com PowerShell e CMD
+- **Links simbólicos**: Criação automática para assets
+
+### Comandos de Execução
+```bash
+# Linux/macOS
+./compila.sh tese.tex
+
+# Windows
+compila.bat tese.tex
+```
+
+## Funcionalidades Automáticas
+
+### Setup do Ambiente
+- **Criação de pastas**: `output/`, `dist/`, `sections/` automáticas
+- **Links simbólicos**: Assets linkados automaticamente em `src/`
+- **Variáveis de ambiente**: TEXINPUTS e BIBINPUTS configuradas
+- **Detecção de ferramentas**: Verifica pdflatex, biber, makeindex, latexmk
+
+### Processo de Build Inteligente
+
+#### Com latexmk (Recomendado)
+```bash
+latexmk -pdf -bibtex \
+        -output-directory=output \
+        -auxdir=output \
+        -interaction=nonstopmode \
+        -synctex=1 \
+        -file-line-error \
+        tese.tex
+```
+
+#### Fallback Tradicional
+1. **pdflatex** → Primeira compilação
+2. **biber** → Resolução de referências
+3. **makeindex** → Lista de símbolos
+4. **pdflatex** → Segunda compilação
+5. **pdflatex** → Compilação final
+
+### Saída do Build
+- **PDF final**: Copiado automaticamente para `dist/tese.pdf`
+- **Logs organizados**: Todos em `output/` para debug
+- **Relatório de status**: Método usado, tamanho do arquivo, sucesso/erro
+- **Limpeza automática**: Arquivos temporários organizados
+
+## Regras de Automação
+
+### SEMPRE Fazer
+- **Usar os scripts**: Nunca compilar manualmente
+- **Verificar estrutura**: Arquivos nas pastas corretas
+- **Testar build**: Após mudanças significativas
+- **Manter organização**: Não mover arquivos manualmente
+
+### NUNCA Fazer
+- **Compilar na pasta src/**: Sempre usar output/
+- **Misturar arquivos**: Manter separação clara de pastas
+- **Ignorar erros**: Sempre verificar logs em output/
+- **Editar arquivos auxiliares**: São regenerados automaticamente
+
+## Integração com Desenvolvimento
+
+### Workflow Recomendado
+1. **Editar arquivos**: Em `sections/` ou `src/`
+2. **Executar build**: `./compila.sh tese.tex`
+3. **Verificar resultado**: `dist/tese.pdf`
+4. **Debug se necessário**: Logs em `output/`
+
+### Troubleshooting Automático
+- **Erro de compilação**: Logs detalhados em `output/tese.log`
+- **Referências quebradas**: Verificar `output/tese.blg`
+- **Figuras ausentes**: Verificar links em `src/figuras/`
+- **Bibliografia**: Verificar `src/bibliografia.bib`
+
+### Versionamento
+- **Incluir no Git**: `src/`, `sections/`, `assets/`
+- **Excluir do Git**: `output/`, `dist/` (temporários)
+- **Backup importante**: Sempre versionar arquivos fonte
+
+## Otimizações de Performance
+
+### Build Incremental
+- **latexmk**: Detecta mudanças automaticamente
+- **Cache inteligente**: Reutiliza compilações anteriores
+- **Dependências**: Recompila apenas o necessário
+
+### Configurações Avançadas
+```bash
+# Variáveis de ambiente para automação
+export TEXMFOUTPUT="../output"
+export BIBINPUTS=".:../sections:../src:"
+export TEXINPUTS=".:../sections:../src:../assets:"
+```
+
+## Monitoramento e Logs
+
+### Informações de Build
+- **Método utilizado**: latexmk vs tradicional
+- **Tempo de execução**: Automático vs manual
+- **Tamanho do PDF**: Verificação automática
+- **Status final**: Sucesso com checkmarks coloridos
+
+### Debug e Manutenção
+- **Logs centralizados**: Tudo em `output/`
+- **Mensagens coloridas**: Verde (sucesso), Vermelho (erro), Azul (info)
+- **Códigos de saída**: Para integração com IDEs
+- **Verificação de integridade**: PDF gerado corretamente

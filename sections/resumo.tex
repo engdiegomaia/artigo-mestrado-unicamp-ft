@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Resumo em Português
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Resumo}
+\addcontentsline{toc}{chapter}{Resumo}
+
+% O processamento hiperespectral embarcado representa um desafio significativo
+% devido às limitações energéticas e de latência impostas pelos sistemas móveis e
+% autônomos. Esta dissertação apresenta um estudo sistemático sobre estratégias de
+% otimização computacional para sistemas heterogêneos (CPU+GPU+FPGA) aplicados ao
+% processamento hiperespectral em tempo real.
+
+% A pesquisa foi estruturada em duas fases distintas: a Fase 1 consiste na análise
+% sistemática do estado da arte, catalogando 25 trabalhos científicos e
+% identificando técnicas comprovadas de otimização; a Fase 2, planejada para o
+% pós-qualificação, envolverá o desenvolvimento experimental e validação prática
+% das soluções propostas.
+
+% A análise sistemática revelou lacunas significativas na literatura atual: 96\%
+% dos trabalhos focam em técnicas isoladas, 88\% reportam métricas parciais e 80\%
+% utilizam validação sintética. Como principal contribuição da Fase 1, foi
+% desenvolvido um framework arquitetural conceitual que integra técnicas de
+% compressive sensing, seleção espectral EMCR (Extreme Learning Machine with
+% Correlation Removal) e codesign hardware/software.
+
+% A configuração ótima identificada consiste em: (1) FPGA Zynq UltraScale+ para
+% correção e seleção EMCR, proporcionando 80\% de redução de dados com latência
+% <5ms e consumo <5W; (2) GPU Jetson Orin para processamento com compressive
+% sensing/PCA, oferecendo 50-70\% de redução adicional com <10ms e <10W; (3) CPU
+% ARM Cortex-A78 para classificação final utilizando CNNs leves ou SVM, mantendo
+% <5ms e <5W.
+
+% Os resultados teóricos indicam potencial para atingir throughput >100 fps,
+% latência total <50ms, consumo <15W e precisão >95\%. O speedup estimado é de
+% 18-21x comparado ao baseline de CPU, com eficiência energética superior a 20x.
+% Estas métricas estabelecem uma base sólida para a validação experimental da Fase
+% 2, contribuindo para o avanço do processamento hiperespectral embarcado em
+% aplicações críticas como agricultura de precisão, monitoramento ambiental e
+% sistemas UAV autônomos.
+
+\textbf{Palavras-chave:} 
+% Processamento Hiperespectral, Sistemas Heterogêneos, Otimização Energética, Compressive Sensing, Codesign Hardware/Software, Sistemas Embarcados.

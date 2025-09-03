@@ -248,8 +248,8 @@
   \fi
   \gdef\@degnameen{Master of Science in Technology}
   \gdef\@monopt{Dissertação}
-  \gdef\@monoes{Dissertacíon}
-  \gdef\@monoen{Thesis}
+  \gdef\@monoes{Disertación}
+  \gdef\@monoen{Dissertation}
   \gdef\@nivelEnsino{Pós-graduação}
 }
 %%%%

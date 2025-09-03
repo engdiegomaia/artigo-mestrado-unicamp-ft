@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abstract em Inglês
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+% Embedded hyperspectral processing represents a significant challenge due to
+% energy and latency constraints imposed by mobile and autonomous systems. This
+% dissertation presents a systematic study on computational optimization
+% strategies for heterogeneous systems (CPU+GPU+FPGA) applied to real-time
+% hyperspectral processing.
+
+% The research was structured in two distinct phases: Phase 1 consists of
+% systematic state-of-the-art analysis, cataloging 25 scientific works and
+% identifying proven optimization techniques; Phase 2, planned for
+% post-qualification, will involve experimental development and practical
+% validation of proposed solutions.
+
+% The systematic analysis revealed significant gaps in current literature: 96\% of
+% works focus on isolated techniques, 88\% report partial metrics, and 80\% use
+% synthetic validation. As the main contribution of Phase 1, a conceptual
+% architectural framework was developed that integrates compressive sensing
+% techniques, EMCR (Extreme Learning Machine with Correlation Removal) spectral
+% selection, and hardware/software codesign.
+
+% The identified optimal configuration consists of: (1) Zynq UltraScale+ FPGA for
+% correction and EMCR selection, providing 80\% data reduction with <5ms latency
+% and <5W consumption; (2) Jetson Orin GPU for compressive sensing/PCA processing,
+% offering 50-70\% additional reduction with <10ms and <10W; (3) ARM Cortex-A78
+% CPU for final classification using lightweight CNNs or SVM, maintaining <5ms and
+% <5W.
+
+% Theoretical results indicate potential to achieve throughput >100 fps, total
+% latency <50ms, consumption <15W, and accuracy >95\%. The estimated speedup is
+% 18-21x compared to CPU baseline, with energy efficiency superior to 20x. These
+% metrics establish a solid foundation for Phase 2 experimental validation,
+% contributing to the advancement of embedded hyperspectral processing in critical
+% applications such as precision agriculture, environmental monitoring, and
+% autonomous UAV systems.
+
+\textbf{Keywords:} 
+% Hyperspectral Processing, Heterogeneous Systems, Energy Optimization, Compressive Sensing, Hardware/Software Codesign, Embedded Systems.

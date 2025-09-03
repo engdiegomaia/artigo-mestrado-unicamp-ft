@@ -12,7 +12,7 @@
 
 **Etapa Atual**: ✅ **Fase 1: Análise Sistemática do Estado da Arte - COMPLETA**  
 **Próxima Etapa**: 🎓 **Qualificação UNICAMP** (Dezembro 2025)  
-**Última Atualização**: 2025-08-26  
+**Última Atualização**: 2025-09-02  
 **Progresso Geral**: 100% da Fase 1 (Pronta para qualificação)
 
 ### 🎯 Próximos Passos Imediatos (Qualificação UNICAMP):
@@ -67,33 +67,35 @@ Como validar e quantificar o potencial de integração de técnicas comprovadas 
 - **H2**: É possível estabelecer, através de modelagem e validação conceitual, que um framework arquitetural heterogêneo pode teoricamente atingir metas de latência <50ms/frame mantendo precisão >95%
 - **H3**: Uma metodologia sistemática de avaliação pode identificar e quantificar os trade-offs fundamentais entre precisão, consumo e latência, estabelecendo um framework de decisão para a Etapa 2
 
-## 📁 Nova Estrutura Organizacional do Projeto
+## 📁 Estrutura Organizacional do Projeto (Atualizada 2025-09-02)
 
 ```
 artigo-mestrado-unicamp-ft/
-├── 📄 compila.sh                   # Script de compilação principal
+├── 📄 compila.sh                   # Script de compilação principal (Linux/macOS)
+├── 📄 compila.bat                  # Script de compilação (Windows)
 ├── 📄 README.md                    # Documentação do projeto
 ├── 📄 .gitignore                   # Arquivos ignorados pelo Git
 ├── 📄 LICENSE.txt                  # Licença do projeto
 ├── 📄 CITATION.cff                 # Informações de citação
 │
-├── 📁 src/                         # 📝 ARQUIVOS LATEX PRINCIPAIS
+├── 📁 src/                         # 📝 ARQUIVO LATEX PRINCIPAL
 │   ├── tese.tex                    # Documento principal
-│   ├── introducao.tex              # Capítulo: Introdução
-│   ├── levantamento.tex            # Capítulo: Estado da Arte
-│   ├── desenvolvimento.tex         # Capítulo: Metodologia
-│   ├── resultados.tex              # Capítulo: Resultados
-│   ├── discussao.tex               # Capítulo: Discussão
-│   ├── conclusoes.tex              # Capítulo: Conclusões
-│   ├── agradecimentos.tex          # Agradecimentos
-│   ├── apendices.tex               # Apêndices
-│   ├── listaSimbolos.tex           # Lista de símbolos
 │   ├── bibliografia.bib            # Bibliografia principal
 │   ├── tese-FT.cls                 # Classe LaTeX UNICAMP-FT
+│   ├── listaSimbolos.tex           # Lista de símbolos
 │   ├── figuras/                    # → Link para ../assets/figuras/
 │   └── logotipos/                  # → Link para ../assets/logotipos/
 │
-├── 📁 compilacao/                  # 🔧 ARQUIVOS TEMPORÁRIOS DE COMPILAÇÃO
+├── 📁 sections/                    # 📝 CAPÍTULOS E SEÇÕES ORGANIZADOS
+│   ├── resumo.tex                  # Resumo em português
+│   ├── abstract.tex                # Abstract em inglês
+│   ├── introducao.tex              # Capítulo: Introdução
+│   ├── levantamento.tex            # Capítulo: Estado da Arte
+│   ├── desenvolvimento.tex         # Capítulo: Metodologia
+│   ├── conclusoes.tex              # Capítulo: Conclusões
+│   └── agradecimentos.tex          # Agradecimentos
+│
+├── 📁 output/                      # 🔧 ARQUIVOS TEMPORÁRIOS DE COMPILAÇÃO
 │   ├── *.aux                       # Arquivos auxiliares LaTeX
 │   ├── *.log                       # Logs de compilação
 │   ├── *.bcf, *.bbl               # Arquivos de bibliografia
@@ -294,6 +296,15 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 ```
 
 ## 📈 Histórico de Mudanças Recentes
+
+### 2025-09-02:
+- ✅ **Reorganização Estrutural Completa** - Nova estrutura de pastas mais organizada e limpa
+- ✅ **Pasta `output/` Criada** - Todos os arquivos auxiliares do LaTeX (.aux, .bbl, .bcf, .blg, .lof, .log, .lot, .nlo, .out) movidos para pasta dedicada
+- ✅ **Pasta `sections/` Criada** - Capítulos e seções organizados em pasta separada para melhor estruturação
+- ✅ **Resumo e Abstract Reintroduzidos** - Criados arquivos dedicados `sections/resumo.tex` e `sections/abstract.tex` com conteúdo completo
+- ✅ **Scripts de Compilação Atualizados** - Ambos `compila.sh` e `compila.bat` adaptados para nova estrutura de pastas
+- ✅ **Documento Principal Atualizado** - `src/tese.tex` modificado para incluir resumo/abstract e referenciar nova estrutura
+- ✅ **README Atualizado** - Documentação atualizada refletindo nova organização e estrutura mais limpa
 
 ### 2025-08-18:
 - ✅ **Fase 1 - Análise Sistemática do Estado da Arte COMPLETA** - Todas as atividades da Fase 1 foram concluídas com sucesso.

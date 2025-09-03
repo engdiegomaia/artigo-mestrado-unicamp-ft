@@ -1,0 +1,17 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.blg'
+[219] biber-MSWIN64:342> INFO - === 
+[292] Biber.pm:421> INFO - Reading 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf'
+[426] Biber.pm:1002> INFO - Found 12 citekeys in bib section 0
+[441] Biber.pm:4487> INFO - Processing section 0
+[462] Biber.pm:4678> INFO - Looking for bibtex file 'bibliografia.bib' for section 0
+[526] bibtex.pm:1713> INFO - LaTeX decoding ...
+[571] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliografia.bib'
+[722] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[722] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[722] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'pt-BR'
+[722] Biber.pm:4313> INFO - No sort tailoring available for locale 'pt-BR'
+[736] bbl.pm:676> INFO - Writing 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl' with encoding 'UTF-8'
+[745] bbl.pm:779> INFO - Output to C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl
+[746] Biber.pm:132> WARN - Possible typo (case mismatch) between datasource keys: 'hwang2011' and 'Hwang2011' in file 'bibliografia.bib'
+[746] Biber.pm:134> INFO - WARNINGS: 1

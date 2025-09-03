@@ -1,0 +1,103 @@
+% Capítulo 1: Introdução
+\chapter{Introdução}\label{chp:Introducao}
+
+\section{Contexto e motivação}\label{sec:contexto_motivacao}
+
+% \indent O processamento hiperespectral embarcado representa um desafio computacional significativo para aplicações em tempo real, especialmente em cenários onde recursos energéticos são limitados e a latência é crítica. Sistemas hiperespectrais tradicionais, baseados em processamento centralizado ou em nuvem, enfrentam limitações fundamentais quando aplicados a veículos aéreos não tripulados (VANTs), satélites de pequeno porte ou dispositivos de Internet das Coisas (IoT) com restrições de energia e comunicação.
+
+% A crescente demanda por aplicações em tempo real, como agricultura de precisão,
+% monitoramento ambiental, segurança e defesa, exige sistemas capazes de processar
+% dados hiperespectrais com centenas de bandas espectrais em taxas superiores a 30
+% frames por segundo (fps), mantendo latência inferior a 50 milissegundos por
+% frame e consumo energético abaixo de 15 watts. Esta combinação de requisitos
+% representa um desafio técnico que não pode ser resolvido por arquiteturas
+% computacionais tradicionais.
+
+% \section{Problema de pesquisa e perguntas}\label{sec:problema_perguntas}
+
+% \indent O problema central desta pesquisa reside na necessidade de desenvolver sistemas hiperespectrais embarcados que integrem múltiplas técnicas de otimização comprovadas pela literatura, mas que atualmente são implementadas de forma isolada. A análise sistemática do estado da arte revela que 96\% dos trabalhos focam em técnicas individuais, resultando em:
+
+% \begin{itemize}
+%     \item Falta de análise end-to-end dos trade-offs entre precisão, performance e consumo energético
+%     \item Ausência de frameworks integrados que combinem as melhores práticas identificadas
+%     \item Limitação na validação de sistemas completos em cenários reais
+% \end{itemize}
+
+% As principais perguntas de pesquisa que orientam este trabalho são:
+
+% \begin{enumerate}
+%     \item Como integrar técnicas comprovadas de otimização (compressive sensing, seleção de bandas, codesign hardware/software) em um sistema heterogêneo único?
+%     \item Quais são os trade-offs quantitativos entre precisão, latência e consumo energético em sistemas integrados?
+%     \item É possível atingir metas de performance em tempo real mantendo alta precisão e baixo consumo energético?
+% \end{enumerate}
+
+\section{Objetivos}\label{sec:objetivos}
+
+\subsection{Objetivo geral}\label{subsec:objetivo_geral}
+
+% \indent Desenvolver e validar um framework arquitetural heterogêneo para processamento hiperespectral embarcado que integre técnicas comprovadas de otimização, visando atingir metas de performance em tempo real com eficiência energética superior ao estado da arte atual.
+
+\subsection{Objetivos específicos}\label{subsec:objetivos_especificos}
+
+% \begin{enumerate}
+%     \item Realizar análise sistemática do estado da arte em processamento hiperespectral embarcado, catalogando técnicas comprovadas e suas métricas quantitativas
+%     \item Identificar e quantificar gaps na literatura relacionados à integração de sistemas heterogêneos
+%     \item Propor arquitetura integrada CPU+GPU+FPGA com pipeline otimizado para diferentes estágios de processamento
+%     \item Estabelecer metodologia de validação para sistemas heterogêneos com métricas padronizadas
+%     \item Desenvolver framework conceitual que oriente futuras implementações práticas
+% \end{enumerate}
+
+\section{Hipóteses}\label{sec:hipoteses}
+
+% \indent As hipóteses principais desta pesquisa são:
+
+% \begin{enumerate}
+%     \item \textbf{H1}: A integração de técnicas comprovadas de otimização em sistemas heterogêneos pode resultar em melhoria energética superior a 20x comparado a implementações tradicionais
+%     \item \textbf{H2}: É possível atingir latência end-to-end inferior a 50ms por frame mantendo precisão superior a 95\% através de arquitetura heterogênea otimizada
+%     \item \textbf{H3}: Um framework sistemático de avaliação pode identificar e quantificar os trade-offs fundamentais entre precisão, consumo energético e latência
+% \end{enumerate}
+
+\section{Contribuições esperadas}\label{sec:contribuicoes}
+
+% \indent As principais contribuições esperadas desta pesquisa incluem:
+
+% \begin{itemize}
+%     \item \textbf{Contribuição Teórica}: Primeira análise sistemática quantitativa de técnicas de processamento hiperespectral embarcado com foco em sistemas heterogêneos
+%     \item \textbf{Contribuição Metodológica}: Framework arquitetural conceitual para integração de técnicas comprovadas com validação sistemática
+%     \item \textbf{Contribuição Prática}: Especificações técnicas detalhadas para implementação de sistemas heterogêneos otimizados
+%     \item \textbf{Contribuição de Validação}: Metodologia padronizada para avaliação de trade-offs em sistemas embarcados
+% \end{itemize}
+
+\section{Metodologia da pesquisa (visão geral)}\label{sec:metodologia_geral}
+
+% \indent Esta pesquisa está estruturada em duas fases principais:
+
+% \subsection{Fase 1: Análise Sistemática do Estado da Arte (Concluída)}
+% \begin{itemize}
+%     \item Revisão sistemática de 25 artigos publicados entre 2011-2024
+%     \item Catalogação quantitativa de técnicas e métricas de performance
+%     \item Identificação de gaps e oportunidades de pesquisa
+%     \item Desenvolvimento de framework arquitetural conceitual
+% \end{itemize}
+
+% \subsection{Fase 2: Desenvolvimento Experimental (Pós-qualificação)}
+% \begin{itemize}
+%     \item Implementação de protótipos conceituais dos módulos principais
+%     \item Validação experimental com datasets padrão
+%     \item Análise de trade-offs e otimizações
+%     \item Validação em cenários reais de aplicação
+% \end{itemize}
+
+\section{Organização do trabalho}\label{sec:organizacao}
+
+% \indent Esta dissertação está organizada da seguinte forma:
+
+% \begin{itemize}
+%     \item \textbf{Capítulo 1 (Introdução)}: Apresenta o contexto, problema de pesquisa, objetivos e metodologia geral
+%     \item \textbf{Capítulo 2 (Levantamento Bibliográfico)}: Descreve a revisão sistemática realizada e análise do estado da arte
+%     \item \textbf{Capítulo 3 (Proposta e Metodologia)}: Apresenta o framework arquitetural proposto e metodologia de validação
+%     \item \textbf{Capítulo 4 (Conclusões)}: Sintetiza as contribuições da Fase 1 e direciona trabalhos futuros
+% \end{itemize}
+
+% O trabalho inclui ainda apêndices com detalhes técnicos da revisão sistemática e
+% protocolos de validação propostos.

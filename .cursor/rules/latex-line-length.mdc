@@ -1,0 +1,84 @@
+# Regra de Tamanho Máximo de Linhas para LaTeX
+
+## Objetivo
+Estabelecer um padrão de formatação para documentos LaTeX que melhore a legibilidade e manutenibilidade do código.
+
+## Padrão de Linhas
+- **Tamanho máximo**: 80 caracteres por linha
+- **Quebra de linha**: Usar `\\` ou quebra natural em pontos lógicos
+- **Indentação**: Manter 2 espaços de indentação para continuidade
+
+## Aplicação em Diferentes Contextos
+
+### Texto Contínuo
+```latex
+% ❌ Linha muito longa
+\indent O processamento hiperespectral embarcado representa um desafio computacional significativo para aplicações em tempo real, especialmente em cenários onde recursos energéticos são limitados e a latência é crítica.
+
+% ✅ Linha quebrada adequadamente
+\indent O processamento hiperespectral embarcado representa um desafio 
+computacional significativo para aplicações em tempo real, especialmente 
+em cenários onde recursos energéticos são limitados e a latência é crítica.
+```
+
+### Comandos Longos
+```latex
+% ❌ Comando muito longo
+\subsection{Sensores e Sistemas Comerciais Representativos}\label{subsec:sensores_sistemas}
+
+% ✅ Comando quebrado adequadamente
+\subsection{Sensores e Sistemas Comerciais Representativos}
+\label{subsec:sensores_sistemas}
+```
+
+### Tabelas e Ambientes
+```latex
+% ❌ Linha de tabela muito longa
+\begin{tabular}{p{2.5cm}|p{2.0cm}|p{2.5cm}|p{2.0cm}|p{2.5cm}|p{3.0cm}}
+
+% ✅ Linha de tabela quebrada
+\begin{tabular}{p{2.5cm}|p{2.0cm}|p{2.5cm}|
+                p{2.0cm}|p{2.5cm}|p{3.0cm}}
+```
+
+## Regras de Quebra
+
+### Pontos de Quebra Preferidos
+1. **Após vírgulas** em listas longas
+2. **Antes de conectivos** (e, ou, mas, porém)
+3. **Após pontos finais** de frases
+4. **Em operadores matemáticos** (+, -, =, ×)
+
+### Exemplo de Aplicação
+```latex
+% ❌ Linha muito longa
+\indent Os sistemas de imageamento hiperespectral podem ser classificados em duas categorias principais quanto à tecnologia de aquisição, sendo a primeira categoria engloba os sistemas pushbroom que capturam uma linha espacial por vez.
+
+% ✅ Linha quebrada adequadamente
+\indent Os sistemas de imageamento hiperespectral podem ser classificados 
+em duas categorias principais quanto à tecnologia de aquisição, sendo 
+a primeira categoria engloba os sistemas pushbroom que capturam uma 
+linha espacial por vez.
+```
+
+## Benefícios
+- **Legibilidade**: Código mais fácil de ler e entender
+- **Manutenibilidade**: Facilita edições e correções
+- **Colaboração**: Melhora a experiência de trabalho em equipe
+- **Debugging**: Facilita identificação de problemas
+- **Versionamento**: Mudanças mais claras no controle de versão
+
+## Ferramentas de Aplicação
+- **Editor**: Usar quebra automática de linha a 80 caracteres
+- **Linter**: Configurar avisos para linhas muito longas
+- **Pre-commit**: Verificar automaticamente antes de commits
+- **IDE**: Ativar guias visuais para 80 caracteres
+
+## Exceções
+- **URLs longas**: Manter em uma linha se não houver ponto de quebra adequado
+- **Comandos LaTeX**: Quebrar em pontos lógicos mesmo que ultrapasse 80 caracteres
+- **Código matemático**: Preservar integridade das expressões matemáticas
+description:
+globs:
+alwaysApply: true
+---

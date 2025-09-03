@@ -37,6 +37,7 @@ if not exist "%ARQUIVO_ENTRADA%" (
 :: Variáveis que contêm informações sobre o nome do arquivo
 set "NOMEARQCOMPLETO=%~1"
 set "NOMEARQ=%~n1"
+set "NOME_SAIDA=dissertacao"
 
 :: Verifica se os comandos necessários estão no PATH
 where pdflatex >nul 2>&1
@@ -60,9 +61,16 @@ if errorlevel 1 (
     exit /b 3
 )
 
-:: Cria pastas necessárias se não existirem
-if not exist "compilacao" mkdir compilacao
+:: Função para configurar ambiente automatizado
+call :setup_automated_build
+
+goto :main_execution
+
+:setup_automated_build
+:: Cria todas as pastas necessárias
+if not exist "output" mkdir output
 if not exist "dist" mkdir dist
+if not exist "sections" mkdir sections
 
 :: Cria links simbólicos para assets na pasta src (se não existirem)
 cd src
@@ -70,12 +78,67 @@ if not exist "figuras" mklink /D figuras ..\assets\figuras >nul 2>&1
 if not exist "logotipos" mklink /D logotipos ..\assets\logotipos >nul 2>&1
 cd ..
 
+:: Configura variáveis de ambiente LaTeX para automação
+set "TEXMFOUTPUT=..\output"
+set "BIBINPUTS=.;..\sections;..\src;..\assets;"
+set "TEXINPUTS=.;..\sections;..\src;..\assets;"
+set "BSTINPUTS=.;..\sections;..\src;"
+
+echo %GREEN%✅ Ambiente automatizado configurado%NC%
+exit /b 0
+
+:main_execution
+
+:: Verifica se latexmk está disponível para build automatizado
+where latexmk >nul 2>&1
+if errorlevel 1 (
+    set "USE_LATEXMK=false"
+    echo %LIGHTBLUE%ℹ️ latexmk não encontrado - usando método tradicional%NC%
+) else (
+    set "USE_LATEXMK=true"
+    echo %GREEN%✅ latexmk detectado - usando build automatizado%NC%
+)
+
 echo %LIGHTBLUE%=== COMPILAÇÃO DA DISSERTAÇÃO ===%NC%
 echo %LIGHTBLUE%Estrutura do projeto:%NC%
-echo   📁 src/         → Arquivos LaTeX
-echo   📁 compilacao/  → Arquivos temporários
+echo   📁 src/         → Arquivo LaTeX principal
+echo   📁 sections/    → Capítulos e seções
+echo   📁 output/      → Arquivos temporários
 echo   📁 dist/        → PDF final
 echo   📁 assets/      → Figuras e logotipos
+echo.
+
+:: Escolhe método de compilação
+if "%USE_LATEXMK%"=="true" (
+    call :automated_build_latexmk
+    set "BUILD_SUCCESS=%errorlevel%"
+) else (
+    call :traditional_build
+    set "BUILD_SUCCESS=%errorlevel%"
+)
+
+goto :finalize_build
+
+:automated_build_latexmk
+echo ^>^>^> %GREEN%Build automatizado com latexmk%NC%
+echo ^>^>^> %LIGHTBLUE%Compilação completa em uma execução%NC%
+echo.
+
+cd src
+latexmk -pdf -bibtex -output-directory=..\output -auxdir=..\output -interaction=nonstopmode -synctex=1 -file-line-error -jobname=%NOME_SAIDA% %NOMEARQCOMPLETO%
+set "BUILD_RESULT=%errorlevel%"
+cd ..
+
+if %BUILD_RESULT% equ 0 (
+    echo %GREEN%✅ Build automatizado concluído com sucesso!%NC%
+    exit /b 0
+) else (
+    echo %RED%❌ Erro no build automatizado%NC%
+    exit /b 1
+)
+
+:traditional_build
+echo ^>^>^> %GREEN%Compilação tradicional (3 passos)%NC%
 echo.
 
 :: Primeira compilação
@@ -84,7 +147,7 @@ echo ^>^>^> %LIGHTBLUE%Se houver erros, o script vai parar. Aguarde!%NC%
 echo.
 
 cd src
-pdflatex -halt-on-error -file-line-error -output-directory=..\compilacao %NOMEARQCOMPLETO%
+pdflatex -halt-on-error -file-line-error -output-directory=..\output -jobname=%NOME_SAIDA% %NOMEARQCOMPLETO%
 if errorlevel 1 (
     echo %RED%Houve erros durante a compilação inicial.%NC% 1>&2
     echo %RED%Corrija o erro e execute o script novamente.%NC% 1>&2
@@ -100,8 +163,8 @@ echo.
 echo ^>^>^> %LIGHTBLUE%Resolvendo as referências bibliográficas.%NC%
 echo ^>^>^> %LIGHTBLUE%Aguarde!%NC%
 
-cd compilacao
-biber %NOMEARQ%
+cd output
+biber %NOME_SAIDA%
 if errorlevel 1 (
     echo %RED%Houve problemas nas referências bibliográficas.%NC%
     echo %RED%Tente localizar e resolver o problema.%NC%
@@ -117,8 +180,8 @@ echo.
 echo ^>^>^> %LIGHTBLUE%Resolvendo a lista de siglas.%NC%
 echo ^>^>^> %LIGHTBLUE%Aguarde!%NC%
 
-cd compilacao
-makeindex %NOMEARQ%.nlo -s nomencl.ist -o %NOMEARQ%.nls
+cd output
+makeindex %NOME_SAIDA%.nlo -s nomencl.ist -o %NOME_SAIDA%.nls
 if errorlevel 1 (
     echo %RED%Houve problemas na geração da lista de símbolos.%NC%
     echo %RED%Tente localizar e resolver o problema.%NC%
@@ -136,7 +199,7 @@ echo ^>^>^> %LIGHTBLUE%Não devem aparecer erros agora. Aguarde!%NC%
 echo.
 
 cd src
-pdflatex -halt-on-error -file-line-error -output-directory=..\compilacao %NOMEARQCOMPLETO%
+pdflatex -halt-on-error -file-line-error -output-directory=..\output -jobname=%NOME_SAIDA% %NOMEARQCOMPLETO%
 if errorlevel 1 (
     echo %RED%Houve erros durante a segunda compilação.%NC% 1>&2
     cd ..
@@ -153,7 +216,7 @@ echo ^>^>^> %LIGHTBLUE%Finalizando o documento. Aguarde!%NC%
 echo.
 
 cd src
-pdflatex -halt-on-error -file-line-error -output-directory=..\compilacao %NOMEARQCOMPLETO%
+pdflatex -halt-on-error -file-line-error -output-directory=..\output -jobname=%NOME_SAIDA% %NOMEARQCOMPLETO%
 if errorlevel 1 (
     echo %RED%Houve erros durante a terceira compilação.%NC% 1>&2
     cd ..
@@ -161,30 +224,58 @@ if errorlevel 1 (
 )
 cd ..
 
-:: Move o PDF final para a pasta dist/
-if exist "compilacao\%NOMEARQ%.pdf" (
-    copy "compilacao\%NOMEARQ%.pdf" "dist\%NOMEARQ%.pdf" >nul
-    echo %GREEN%======= Compilação concluída com sucesso! =======%NC%
-    echo ^>^>^> %LIGHTBLUE%PDF gerado: %GREEN%dist\%NOMEARQ%.pdf%NC%
-    echo ^>^>^> %LIGHTBLUE%Arquivos temporários: %GREEN%compilacao\%NC%
-    
-    :: Mostra informações do arquivo final
-    for %%I in ("dist\%NOMEARQ%.pdf") do set "TAMANHO=%%~zI"
-    if !TAMANHO! GTR 1048576 (
-        set /a "TAMANHO=!TAMANHO!/1048576"
-        echo ^>^>^> %LIGHTBLUE%Tamanho do arquivo: %GREEN%!TAMANHO! MB%NC%
-    ) else if !TAMANHO! GTR 1024 (
-        set /a "TAMANHO=!TAMANHO!/1024"
-        echo ^>^>^> %LIGHTBLUE%Tamanho do arquivo: %GREEN%!TAMANHO! KB%NC%
+set "BUILD_SUCCESS=0"
+exit /b 0
+
+:finalize_build
+:: Finalização do build
+for /f "tokens=1-3 delims=/ " %%a in ("%date%") do set YY=%%c& set MM=%%a& set DD=%%b
+set TS=%YY:~2%%MM%%DD%
+:: Replace the above with robust PowerShell-based timestamp
+for /f %%i in ('powershell -NoProfile -Command "(Get-Date).ToString(\"yyMMdd\")"') do set TS=%%i
+
+if %BUILD_SUCCESS% equ 0 (
+    if exist "output\%NOME_SAIDA%.pdf" (
+        :: Move o PDF final para a pasta dist/
+        copy "output\%NOME_SAIDA%.pdf" "dist\%TS%_%NOME_SAIDA%.pdf" >nul
+        
+        echo COMPILACAO AUTOMATIZADA CONCLUIDA!
+        echo PDF gerado: dist\%TS%_%NOME_SAIDA%.pdf
+        echo Arquivos temporarios: output\
+        echo Secoes organizadas: sections\
+        
+        :: Mostra informacoes do arquivo final
+        for %%I in ("dist\%TS%_%NOME_SAIDA%.pdf") do set "TAMANHO=%%~zI"
+        if !TAMANHO! GTR 1048576 (
+            set /a "TAMANHO=!TAMANHO!/1048576"
+            echo Tamanho do arquivo: !TAMANHO! MB
+        ) else if !TAMANHO! GTR 1024 (
+            set /a "TAMANHO=!TAMANHO!/1024"
+            echo Tamanho do arquivo: !TAMANHO! KB
+        ) else (
+            echo Tamanho do arquivo: !TAMANHO! bytes
+        )
+        
+        :: Mostra estatisticas do build
+        if "%USE_LATEXMK%"=="true" (
+            echo Metodo utilizado: Build automatizado - latexmk
+        ) else (
+            echo Metodo utilizado: Compilacao tradicional - 3 passos
+        )
+        
+        echo.
+        echo Dissertacao compilada automaticamente!
+        echo Todos os arquivos organizados nas pastas corretas.
+        echo.
+        exit /b 0
     ) else (
-        echo ^>^>^> %LIGHTBLUE%Tamanho do arquivo: %GREEN%!TAMANHO! bytes%NC%
+        echo ERRO: PDF nao foi gerado corretamente. 1>&2
+        echo Verifique os logs em output\ para mais detalhes. 1>&2
+        exit /b 9
     )
-    
-    echo.
-    echo %GREEN%🎉 Dissertação compilada com sucesso! 🎉%NC%
-    echo.
 ) else (
-    echo %RED%Erro: PDF não foi gerado corretamente.%NC% 1>&2
+    echo ERRO na compilacao. 1>&2
+    echo Verifique os logs em output\ para mais detalhes. 1>&2
     exit /b 9
 )
 

@@ -1,0 +1,404 @@
+% Capítulo 2: Levantamento Bibliográfico (Estado da Arte)
+\chapter{Levantamento bibliográfico }\label{chp:levantamento}
+Este capítulo apresenta a revisão da literatura sobre imageamento hiperespectral, abordando os fundamentos, tecnologias 
+disponíveis e aplicações. A análise foi organizada em três seções principais: princípios físicos da 
+espectroscopia de imageamento e formação de imagens espectrais; arquiteturas de sensores hiperespectrais, desde sistemas 
+dispersivos até implementações baseadas em filtros sintonizáveis; e métodos de processamento de dados, incluindo redução 
+dimensional, classificação espectral e extração de características. A revisão abrange trabalhos fundamentais da área e 
+publicações recentes sobre aplicações em agricultura de precisão, monitoramento ambiental e sistemas embarcados, com ênfase 
+nos desafios computacionais do processamento de grandes volumes de dados e soluções para operação em tempo real.
+
+\section{Fundamentos do Espectro Eletromagnético e Interação com a Matéria}
+\label{sec:fundamentos_espectro}
+Os conceitos fundamentais do imageamento hiperespectral baseiam-se nos princípios da física óptica 
+que descrevem a interação entre a radiação eletromagnética e a matéria. Esta seção examina as características 
+das ondas eletromagnéticas e sua organização espectral, com foco particular na faixa de 400 a 2500 nm, 
+que abrange as regiões do visível, infravermelho próximo e infravermelho de ondas curtas, essenciais para 
+o sensoriamento remoto. As propriedades ópticas dos materiais são analisadas através dos fenômenos de reflectância, 
+transmitância e absorção, processos físicos que originam as assinaturas espectrais únicas de cada substância e 
+possibilitam sua identificação e caracterização. A compreensão da distinção entre sistemas multiespectrais e 
+hiperespectrais, quanto à resolução espectral e capacidade de discriminação, fundamenta a escolha da tecnologia 
+adequada para cada aplicação. Esses princípios teóricos são demonstrados através de aplicações práticas em agricultura 
+de precisão e monitoramento ambiental, evidenciando como o conhecimento dos fundamentos físicos é indispensável para 
+o desenvolvimento de metodologias robustas de aquisição, processamento e análise de dados hiperespectrais.
+
+\subsection{O Espectro Eletromagnético}
+\label{subsec:espectro_eletromagnetico}
+
+\begin{itemize}
+    \item \textbf{Definição e características das ondas eletromagnéticas}
+    \item \textbf{Regiões espectrais}: do ultravioleta ao infravermelho
+    \item \textbf{Comprimentos de onda relevantes para sensoriamento remoto (400-2500 nm)}
+\end{itemize}
+
+\subsection{Propriedades Ópticas dos Materiais}
+\label{subsec:propriedades_opticas}
+
+\begin{itemize}
+    \item \textbf{Reflectância espectral}: definição e fatores influenciadores
+    \item \textbf{Transmitância e absorção}: princípios físicos
+    \item \textbf{Assinatura espectra}: conceito e importância para identificação de materiais
+\end{itemize}
+
+\subsection{Princípios de Sensoriamento Espectral}
+\label{subsec:principios_sensoriamento}
+
+\begin{itemize}
+    \item \textbf{Interação radiação-matéria no contexto de sensoriamento remoto}
+    \item \textbf{Sensores multiespectrais vs. hiperespectrais}: diferenças fundamentais
+    \item \textbf{Aplicações práticas}: agricultura de precisão e monitoramento ambiental
+\end{itemize}
+
+\section{Câmeras Hiperespectrais: Tecnologia e Aplicações}
+\label{sec:cameras_hiperespectrais}
+
+\subsection{Tipos de Sistemas de Imageamento Hiperespectral}
+\label{subsec:tipos_sistemas}
+
+\begin{itemize}
+    \item \textbf{Whiskbroom (varredura pontual)}: Sensores que capturam um pixel por vez, realizando varredura mecânica em duas dimensões
+    \item \textbf{Pushbroom (varredura linear)}: Capturam uma linha completa de pixels simultaneamente, sendo o tipo mais comum em plataformas aéreas e UAVs
+    \item \textbf{Snapshot (imageamento instantâneo)}: Adquirem toda a informação espacial e espectral em uma única exposição
+\end{itemize}
+
+\subsection{Principais Aplicações e Domínios de Uso}
+\label{subsec:aplicacoes_dominios}
+
+\begin{itemize}
+    \item \textbf{Agricultura de precisão}: Monitoramento de saúde vegetal, detecção de pragas e estresse hídrico
+    \item \textbf{Monitoramento ambiental}: Qualidade da água, detecção de poluentes e análise de cobertura vegetal
+    \item \textbf{Aplicações industriais}: Inspeção de qualidade, classificação de materiais e controle de processos
+    \item \textbf{Defesa e vigilância}: Detecção de alvos camuflados e identificação de materiais
+\end{itemize}
+
+\subsection{Sensores e Sistemas Comerciais Representativos}\label{subsec:sensores_sistemas}
+
+\indent
+O desenvolvimento de sistemas hiperespectrais comerciais tem apresentado avanços significativos 
+nos últimos anos, com diferentes fabricantes oferecendo soluções adaptadas para
+aplicações específicas em agricultura de precisão, monitoramento ambiental, inspeção industrial e uso
+embarcado em VANTs~\cite{Aasen2015,Diaz2019,Shin2020}. Alguns fabricantes como Specim, Resonon e Cubert oferecem soluções 
+comerciais interessantes para essas aplicações, na Tabela~\ref{tab:comparativo_sensores_literatura} 
+é apresentada uma análise aprofundada dos principais sensores e sistemas disponíveis no mercado, suas características 
+técnicas e aplicações práticas.
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{Análise comparativa de sensores hiperespectrais baseada na literatura científica}
+    \label{tab:comparativo_sensores_literatura}
+    \small
+    \begin{tabular}{p{2.5cm}p{2.0cm}p{2.5cm}p{2.0cm}p{2.5cm}p{3.0cm}}
+    \toprule
+    \textbf{Sensor/Sistema} & \textbf{Tecnologia de Aquisição} & \textbf{Faixa Espectral} & \textbf{Características Espectrais} & \textbf{Performance Reportada} & \textbf{Referência/Aplicação} \\
+    \midrule
+    \textbf{Specim FX10} & Pushbroom & 400--1000~nm (VNIR) & 224 bandas espectrais & Taxa: até 330 FPS & \textcite{Diaz2019} -- Agricultura UAV \\
+    & & & 1024 pixels espaciais & Throughput: 144,375~MB/s & Validação em campo \\
+    \midrule
+    \textbf{Resonon Pika L} & Pushbroom & 400--1000~nm & 281 bandas espectrais & Taxa: 249 FPS & Aplicações em \\
+    & & & 900 pixels espaciais & Throughput: 94,45~MB/s & monitoramento de vegetação
+    \\
+    & & & 12 bits/pixel & Com binning 2$\times$: 47,22~MB/s & e qualidade da água \\
+    \midrule
+    \textbf{Resonon PIKA-NIR-320} & Pushbroom & 900--1700~nm (NIR-SWIR) & 164 bandas espectrais & Taxa: até 520~Hz & Detecção de resíduos \\
+    & & & 320 pixels espaciais & Pixel size: 30~$\mu$m & marinhos flutuantes \\
+    & & & 168 canais totais & Line-scan operation & \cite{Lim2022} \\
+    \midrule
+    \textbf{Cubert S185 FireflEYE SE} & Snapshot & 450--950~nm & 125 bandas espectrais & Taxa: até 25~Hz & Monitoramento de \\
+    & & & 1~MP (1000$\times$1000) & 5 cubos hiperespectrais/s & saúde vegetal e \\
+    & & & 12/14 bits & Throughput: 31,25~MB/s & análise agrícola \\
+    & & & & Consumo: 15~W, Peso: 490~g & \\
+    \midrule
+    \textbf{Headwall Nano-Hyperspec} & Pushbroom & 400--1000~nm & 270 bandas espectrais & Taxa: 300 FPS & Pequenas plataformas \\
+    & & & 640 pixels espaciais & Throughput: 103,68~MB/s & UAV, excelente \\
+    & & & & Armazenamento: 480~GB & adaptabilidade \\
+    \midrule
+    \textbf{Sistemas baseados em} & Snapshot & Variável & 150+ bandas & Performance variável & Tecnologia IMEC \\
+    \textbf{Filtros Fabry-Pérot} & (Captura única) & conforme filtros & Filtros sintonizáveis & dependente da aplicação & Imageamento instantâneo \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+
+Vimos na Seção~\ref{subsec:tipos_sistemas} a classificação dos sistemas de 
+imageamento hiperespectral quanto à tecnologia de aquisição. Entre os sistemas do tipo pushbroom, destacam-se o Specim FX10, 
+amplamente empregado em aplicações embarcadas em UAVs devido ao seu baixo peso e alta taxa de aquisição \cite{Diaz2019,SpecimFX10Datasheet}, 
+o Resonon Pika L, reconhecido por sua robustez em monitoramento de vegetação e qualidade da água \cite{Aasen2015,ResononPikaLManual}, 
+e o Headwall Nano-Hyperspec, notável pela adaptabilidade a plataformas compactas \cite{Shin2020,HeadwallNanoHyperspec}. 
+No segmento dos sistemas snapshot, que realizam a captura simultânea de toda a cena espectral e espacial, sobressaem o 
+Cubert S185 FireflEYE SE \cite{CubertS185Manual} e soluções baseadas em filtros Fabry-Pérot \cite{Shin2020,FabryPerotReview}, ambos voltados para aplicações que demandam imageamento 
+instantâneo e portabilidade. A escolha entre esses modelos está diretamente relacionada ao tipo de aplicação, 
+requisitos de portabilidade e necessidades de processamento em tempo real \cite{Aasen2015,Diaz2019,Shin2020}. 
+
+Um dos principais desafios no uso desses sistemas é o gerenciamento do alto volume de dados gerados. Os sensores 
+hiperespectrais produzem throughput na faixa de 30~MB/s a 300~MB/s, exigindo interfaces de alta velocidade como USB 3.0, 
+Camera Link ou GigE Vision, além de soluções de armazenamento local com capacidade e velocidade adequadas \cite{Diaz2019,ResononPikaLManual,SpecimFX10Datasheet}. 
+Para ilustrar a magnitude desse desafio, sistemas operando em capacidade máxima podem gerar aproximadamente 4,15~TB de dados 
+em 8 horas de operação contínua, ou até 6~GB por minuto quando embarcados em VANTs, conforme demonstrado por 
+\textcite{Diaz2019} em implementações com throughput de 144,375~MB/s.
+
+A qualidade dos dados hiperespectrais depende fundamentalmente de 
+procedimentos adequados de pré-processamento. A calibração radiométrica 
+e a correção atmosférica são etapas essenciais para garantir a precisão 
+espectral dos cubos hiperespectrais. \textcite{Shin2020} demonstrou que 
+métodos de correção radiométrica baseados em Extreme Learning Machines 
+(ELM) podem proporcionar melhorias de 5--55\% na qualidade dos dados, 
+sendo particularmente eficazes para sistemas embarcados em drones com 
+condições de iluminação variáveis.
+
+Para aplicações que demandam processamento em tempo real ou em sistemas 
+embarcados, a escolha da plataforma computacional é crítica. 
+\textcite{Ullah2020} realizaram estudos de benchmarking entre plataformas 
+NVIDIA Jetson para processamento em borda, demonstrando que o modelo 
+Xavier apresenta desempenho significativamente superior ao Nano e TX1 
+para classificação de imagens hiperespectrais e execução concorrente 
+de múltiplas tarefas. Alternativamente, implementações em FPGA têm 
+mostrado resultados promissores. \textcite{Martins2019} demonstraram que 
+aceleradores baseados em SVM (Support Vector Machine) com seleção 
+otimizada de bandas espectrais baseada em entropia e correlação (EMCR) 
+podem viabilizar classificação em tempo real com alta acurácia (99,7\%) 
+e baixo consumo de recursos de silício.
+
+A escolha do sensor mais adequado deve considerar diversos fatores relacionados
+ao domínio de aplicação. Para mapeamento aéreo em VANTs, onde se busca alta
+resolução espectral com varredura contínua de grandes áreas, os sensores
+pushbroom como o Specim FX10 apresentam vantagens significativas.
+\textcite{Diaz2019} demonstraram a eficácia deste sensor em aplicações de
+agricultura de precisão, alcançando throughput de 330~fps com processamento em
+tempo real em plataformas NVIDIA Jetson TX2. O sistema se destaca por integrar
+capacidade de georreferenciamento direto, eliminando a necessidade de correções
+geométricas posteriores e simplificando o fluxo de processamento para aplicações
+de mapeamento preciso.
+
+Por outro lado, aplicações que requerem captura instantânea de toda a cena, como
+inspeção industrial de objetos em movimento ou monitoramento de fenômenos
+dinâmicos, beneficiam-se dos sistemas snapshot. O Cubert S185 FireflEYE SE, com
+seu baixo consumo energético de 15~W e peso reduzido de 490~g, apresenta-se como
+solução adequada para plataformas com restrições de peso e energia
+\cite{Cubert2020,FireflEYESE2021}. Sistemas baseados em filtros Fabry-Pérot
+oferecem flexibilidade adicional ao permitir sintonização espectral dinâmica,
+facilitando a implementação de algoritmos de processamento acelerado diretamente
+no fluxo de aquisição \cite{IMEC2017,Li2019}.
+
+
+
+\subsection{Estrutura e Dimensionalidade dos Dados}
+\label{subsec:estrutura_dados}
+
+\indent Os dados hiperespectrais são organizados em estruturas 
+tridimensionais denominadas cubos hiperespectrais, onde duas dimensões 
+representam informações espaciais (x, y) e a terceira dimensão contém 
+informações espectrais ($\lambda$). Esta organização permite a análise 
+simultânea de características espaciais e espectrais dos objetos imageados.
+
+\subsection{Datasets Públicos de Referência}
+\label{subsec:datasets_publicos}
+
+\indent Os datasets públicos constituem recursos fundamentais para 
+validação e comparação de algoritmos de processamento hiperespectral. 
+Os principais datasets utilizados na literatura científica incluem:
+\begin{itemize}
+    \item \textbf{Indian Pines}: Dataset de solo e cultura
+    \item \textbf{Pavia University}: Dataset de cobertura vegetal
+    \item \textbf{Salinas}: Dataset de solo e cultura
+    \item \textbf{Kennedy Space Center}: Dataset de solo e cultura
+    \item \textbf{AVIRIS}: Dataset de solo e cultura
+    \item \textbf{Botswana}: Dataset de classificação de vegetação em savana africana
+\end{itemize}
+
+
+% \section{Síntese quantitativa de resultados}\label{sec:sintese_quantitativa}
+
+% A análise quantitativa dos 25 trabalhos permite estabelecer benchmarks de
+performance e identificar padrões de eficiência por categoria de técnica.
+
+% \subsection{Desempenho (FPS e latência)}\label{subsec:desempenho_fps_latencia}
+
+% \textbf{Throughput (FPS)}:
+% \begin{itemize}
+%     \item \textbf{Máximo}: 10,000 fps (\textcite{Martins2019}, FPGA SVM)
+%     \item \textbf{Mediana sistemas completos}: 125 fps (\textcite{Torti2019})
+%     \item \textbf{Mínimo prático}: 25 fps (\textcite{Shin2020}, UAV)
+%     \item \textbf{Faixa típica GPU}: 45-650 fps (Jetson series)
+% \end{itemize}
+
+% \textbf{Latência (ms/frame)}:
+% \begin{itemize}
+%     \item \textbf{Melhor}: 0.1 ms/pixel (\textcite{Martins2019}, FPGA)
+%     \item \textbf{Mediana}: 8-10 ms/frame (sistemas típicos)
+%     \item \textbf{Sistemas completos}: 40 ms (\textcite{Shin2020})
+%     \item \textbf{Faixa FPGA}: 4-20 ms (depende da complexidade)
+% \end{itemize}
+
+% \subsection{Eficiência energética (fps/W,
+J/frame)}\label{subsec:eficiencia_energetica}
+
+% \textbf{Eficiência (fps/W)}:
+% \begin{itemize}
+%     \item \textbf{Melhor}: 3,571 fps/W (\textcite{Martins2019}, FPGA)
+%     \item \textbf{Mediana GPUs}: 15-30 fps/W (Jetson series)
+%     \item \textbf{Sistemas heterogêneos}: 1-10 fps/W
+%     \item \textbf{Faixa FPGA}: 30-70 fps/W (alta eficiência)
+% \end{itemize}
+
+% \textbf{Consumo Energético (W)}:
+% \begin{itemize}
+%     \item \textbf{Maior eficiência}: 0.8W (\textcite{Hwang2011}, FPGA)
+%     \item \textbf{Mediana}: 7-10W (sistemas típicos)
+%     \item \textbf{Sistemas completos}: 15-20W (\textcite{Shin2020})
+%     \item \textbf{Faixa Jetson}: 5-15W (depende do modelo)
+% \end{itemize}
+
+% \subsection{Acurácia e robustez}\label{subsec:acuracia_robustez}
+
+% \textbf{Precisão de Classificação}:
+% \begin{itemize}
+%     \item \textbf{Maior precisão}: 99.7\% (\textcite{Martins2019}, EMCR+SVM)
+% \item \textbf{CNNs ultra-eficientes}: 94.3-97.2\% (\textcite{TakuNet2024},
+\textcite{Chen2024})
+%     \item \textbf{Compressão}: PSNR >40dB mantido (\textcite{Diaz2019})
+% \item \textbf{Seleção de bandas}: 96.5\% com 25\% das bandas
+(\textcite{Wang2024})
+% \end{itemize}
+
+% \textbf{Robustez}:
+% \begin{itemize}
+% \item \textbf{Validação em campo}: Apenas 2 trabalhos (\textcite{Shin2020},
+\textcite{Diaz2019})
+%     \item \textbf{Datasets sintéticos}: 20 trabalhos (80\%)
+%     \item \textbf{Validação parcial}: 3 trabalhos (12\%)
+% \end{itemize}
+
+% \section{Lacunas e oportunidades de pesquisa}\label{sec:lacunas_oportunidades}
+
+% A análise sistemática revelou três lacunas principais que representam
+oportunidades significativas para pesquisa:
+
+% \subsection{Lacuna de integração (96\% dos
+trabalhos)}\label{subsec:lacuna_integracao}
+
+% \textbf{Problema Identificado}: Apenas 1 trabalho (\textcite{Shin2020})
+demonstra sistema completo UAV com validação em campo.
+
+% \textbf{Impacto Quantificado}:
+% \begin{itemize}
+%     \item Falta análise end-to-end: sensor → processamento → decisão
+%     \item Ausência de métricas integradas de sistema completo
+%     \item Limitação na aplicabilidade prática das técnicas isoladas
+% \end{itemize}
+
+% \textbf{Oportunidades}:
+% \begin{itemize}
+%     \item Desenvolvimento de frameworks integrados
+%     \item Análise de trade-offs holísticos
+%     \item Validação de sistemas completos
+% \end{itemize}
+
+% \subsection{Trade-offs não caracterizados (88\% dos
+trabalhos)}\label{subsec:tradeoffs_nao_caracterizados}
+
+% \textbf{Problema Identificado}: Apenas 3 trabalhos reportam simultaneamente:
+FPS, latência, consumo e precisão.
+
+% \textbf{Impacto Quantificado}:
+% \begin{itemize}
+%     \item Métricas normalizadas raramente utilizadas
+%     \item Dificuldade para comparação direta entre abordagens
+%     \item Falta de benchmarks padronizados
+% \end{itemize}
+
+% \textbf{Oportunidades}:
+% \begin{itemize}
+%     \item Estabelecimento de métricas padronizadas
+%     \item Desenvolvimento de benchmarks consolidados
+%     \item Análise sistemática de trade-offs
+% \end{itemize}
+
+% \subsection{Validação prática limitada (80\% dos
+trabalhos)}\label{subsec:validacao_pratica_limitada}
+
+% \textbf{Problema Identificado}: 80\% usa datasets sintéticos/laboratório,
+apenas 2 validações em campo real.
+
+% \textbf{Impacto Quantificado}:
+% \begin{itemize}
+%     \item 20 trabalhos (80\%) com validação sintética
+%     \item 2 trabalhos (8\%) com validação em campo
+%     \item 3 trabalhos (12\%) com validação parcial
+% \end{itemize}
+
+% \textbf{Oportunidades}:
+% \begin{itemize}
+%     \item Validação em cenários reais
+%     \item Testes de robustez e confiabilidade
+%     \item Aplicações práticas em diferentes domínios
+% \end{itemize}
+
+% \section{Ameaças à validade e limitações da
+revisão}\label{sec:ameacas_limitacoes}
+
+% \subsection{Ameaças à validade}\label{subsec:ameacas_validade}
+
+% \textbf{Ameaça de Seleção}: A revisão pode ter perdido trabalhos relevantes
+devido a:
+% \begin{itemize}
+%     \item Limitações das bases de dados consultadas
+%     \item Viés de publicação (trabalhos negativos menos publicados)
+%     \item Trabalhos em idiomas diferentes do inglês
+% \end{itemize}
+
+% \textbf{Ameaça de Extração}: A extração de dados pode ter sido influenciada
+por:
+% \begin{itemize}
+%     \item Interpretação subjetiva de métricas reportadas
+%     \item Falta de padronização nas unidades de medida
+%     \item Diferentes metodologias de medição
+% \end{itemize}
+
+% \subsection{Limitações da revisão}\label{subsec:limitacoes_revisao}
+
+% \textbf{Escopo Temporal}: O período 2011-2024 pode não capturar
+desenvolvimentos muito recentes ou trabalhos clássicos anteriores.
+
+% \textbf{Critérios de Inclusão}: A exigência de métricas quantitativas pode ter
+excluído trabalhos conceituais importantes.
+
+% \textbf{Análise de Qualidade}: Não foi realizada avaliação formal da qualidade
+metodológica dos trabalhos incluídos.
+
+% \section{Considerações finais do
+capítulo}\label{sec:consideracoes_finais_levantamento}
+
+% A revisão sistemática realizada permitiu identificar e quantificar o estado
+atual da arte em processamento hiperespectral embarcado, revelando tanto avanços
+significativos quanto lacunas importantes que justificam o desenvolvimento de
+frameworks integrados.
+
+% \textbf{Principais Descobertas}:
+% \begin{itemize}
+% \item Técnicas individuais já atingem performance adequada para aplicações em
+tempo real
+%     \item Existe base sólida para integração de diferentes abordagens
+%     \item Falta significativa de sistemas completos e validados em campo
+% \end{itemize}
+
+% \textbf{Implicações para Pesquisa}:
+% \begin{itemize}
+% \item Necessidade de frameworks integrados que combinem técnicas comprovadas
+%     \item Importância de validação em cenários reais
+%     \item Oportunidade para estabelecimento de benchmarks padronizados
+% \end{itemize}
+
+% \textbf{Direcionamentos Futuros}:
+% \begin{itemize}
+%     \item Desenvolvimento de arquiteturas heterogêneas integradas
+%     \item Validação experimental de sistemas completos
+%     \item Estabelecimento de metodologias de avaliação padronizadas
+% \end{itemize}
+
+% Esta análise fornece a base teórica necessária para o desenvolvimento do
+framework arquitetural heterogêneo proposto no próximo capítulo, demonstrando
+tanto a viabilidade técnica quanto a necessidade de abordagens integradas.
+% Altere o termo "subseção" para "subcapítulo" em todas as ocorrências relevantes do texto, por exemplo:
+% \subsection{Limitações da revisão}\label{subsec:limitacoes_revisao}
+% deve se tornar:
+% \subcapitulo{Limitações da revisão}\label{subcap:limitacoes_revisao}

@@ -1,0 +1,187 @@
+---
+globs: *.tex,*.cls,*.sty,*.bib
+description: Boas práticas de LaTeX para dissertações acadêmicas UNICAMP-FT
+---
+
+# Boas Práticas de LaTeX - Dissertação UNICAMP-FT
+
+## Estrutura e Organização
+
+### Organização de Arquivos
+- **Arquivo principal**: Manter apenas `tese.tex` na pasta `src/`
+- **Seções separadas**: Todos os capítulos em `sections/` (resumo.tex, abstract.tex, introducao.tex, etc.)
+- **Arquivos auxiliares**: Automaticamente gerados em `output/`
+- **PDF final**: Sempre em `dist/tese.pdf`
+
+### Estrutura do Documento Principal
+```latex
+\documentclass[Portugues,Final]{tese-FT}
+\addbibresource{bibliografia.bib}
+\begin{document}
+% Informações obrigatórias
+\autor{Nome Completo}
+\titulo{Título da Dissertação}
+\orientador{Prof.\ Dr.\ Nome do Orientador}
+\mestrado
+\areaConcentracao{Área de Concentração}
+\datadadefesa{dd}{mm}{aaaa}
+% Páginas iniciais automáticas
+\paginasiniciais
+% Resumo e Abstract antes do corpo
+\input{sections/resumo}
+\input{sections/abstract}
+% Corpo da dissertação
+\pagenumbering{arabic}
+\input{sections/introducao}
+% ... outros capítulos
+\printbibliography
+\end{document}
+```
+
+## Formatação e Estilo
+
+### Comandos e Ambientes
+- **Sempre usar `\input{}`** em vez de `\include{}` para seções
+- **Quebras de linha**: Usar `\\` apenas em tabelas e equações, nunca em texto corrido
+- **Espaçamento**: Usar `\,` para espaços pequenos, `\quad` para espaços médios
+- **Aspas**: Usar ``` `` ``` e `''` em vez de `""`
+- **Traços**: Usar `--` para intervalos (1990--2000) e `---` para travessões
+
+### Referências e Citações
+```latex
+% Citações
+\cite{autor2024}           % (AUTOR, 2024)
+\textcite{autor2024}       % Autor (2024)
+\parencite{autor2024}      % (AUTOR, 2024)
+
+% Referências cruzadas
+\label{sec:introducao}     % Labels descritivos
+\ref{sec:introducao}       % Referência simples
+\autoref{sec:introducao}   % Referência automática
+```
+
+### Figuras e Tabelas
+```latex
+% Figuras
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figuras/nome-figura}
+    \caption{Descrição clara e completa da figura}
+    \label{fig:nome-descritivo}
+\end{figure}
+
+% Tabelas
+\begin{table}[htbp]
+    \centering
+    \caption{Título da tabela sempre antes}
+    \label{tab:nome-descritivo}
+    \begin{tabular}{lcc}
+        \toprule
+        Coluna 1 & Coluna 2 & Coluna 3 \\
+        \midrule
+        Dados & Dados & Dados \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+```
+
+### Equações Matemáticas
+```latex
+% Equações numeradas
+\begin{equation}
+    E = mc^2
+    \label{eq:einstein}
+\end{equation}
+
+% Equações não numeradas
+\begin{equation*}
+    F = ma
+\end{equation*}
+
+% Sistemas de equações
+\begin{align}
+    x + y &= 1 \label{eq:sistema1} \\
+    2x - y &= 0 \label{eq:sistema2}
+\end{align}
+```
+
+## Boas Práticas de Código
+
+### Formatação do Código LaTeX
+- **Indentação**: 4 espaços para ambientes aninhados
+- **Quebras de linha**: Uma linha em branco entre parágrafos
+- **Comentários**: Usar `%` para comentários explicativos
+- **Comprimento de linha**: Máximo 80-100 caracteres por linha
+
+### Nomenclatura
+- **Labels**: Usar prefixos descritivos (`fig:`, `tab:`, `eq:`, `sec:`, `cha:`)
+- **Arquivos**: Nomes em minúsculas, separados por hífen
+- **Comandos personalizados**: Usar `\newcommand` com nomes claros
+
+### Bibliografia (BibTeX)
+```bibtex
+@article{autor2024,
+    author = {Sobrenome, Nome and Sobrenome2, Nome2},
+    title = {Título do Artigo},
+    journal = {Nome da Revista},
+    volume = {10},
+    number = {2},
+    pages = {123--145},
+    year = {2024},
+    doi = {10.1000/doi}
+}
+```
+
+## Compilação e Build
+
+### Processo Automatizado
+- **Sempre usar os scripts**: `compila.sh` (Linux/macOS) ou `compila.bat` (Windows)
+- **Verificar saída**: PDF em `dist/`, auxiliares em `output/`
+- **Limpeza**: Arquivos temporários organizados automaticamente
+
+### Comandos de Compilação Manual (se necessário)
+```bash
+# Com latexmk (recomendado)
+latexmk -pdf -bibtex -output-directory=output -auxdir=output tese.tex
+
+# Método tradicional
+pdflatex -output-directory=output tese.tex
+biber output/tese
+pdflatex -output-directory=output tese.tex
+pdflatex -output-directory=output tese.tex
+```
+
+## Padrões UNICAMP-FT
+
+### Elementos Obrigatórios
+- **Classe**: Sempre usar `tese-FT.cls`
+- **Idioma**: `[Portugues,Final]` para versão final
+- **Metadados**: Autor, título, orientador, área, data da defesa
+- **Estrutura**: Resumo, Abstract, capítulos, referências
+
+### Formatação Institucional
+- **Margens**: Definidas pela classe `tese-FT.cls`
+- **Fontes**: Times New Roman (padrão da classe)
+- **Espaçamento**: 1,5 linhas no texto, simples em citações
+- **Numeração**: Páginas em arábico no corpo do texto
+
+## Verificações de Qualidade
+
+### Antes de Compilar
+- [ ] Todos os `\input{}` apontam para arquivos existentes
+- [ ] Todas as figuras estão no diretório correto
+- [ ] Bibliografia está completa e formatada
+- [ ] Labels são únicos e descritivos
+
+### Após Compilação
+- [ ] PDF gerado sem erros
+- [ ] Todas as referências resolvidas
+- [ ] Figuras e tabelas aparecem corretamente
+- [ ] Numeração de páginas consistente
+- [ ] Sumário gerado automaticamente
+
+### Revisão Final
+- [ ] Ortografia e gramática verificadas
+- [ ] Formatação consistente em todo documento
+- [ ] Referências bibliográficas completas
+- [ ] Conformidade com padrões UNICAMP-FT

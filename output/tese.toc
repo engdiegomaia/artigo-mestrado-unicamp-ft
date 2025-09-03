@@ -1,5 +1,7 @@
 \babel@toc {brazil}{}\relax 
 \babel@toc {brazil}{}\relax 
+\contentsline {chapter}{Resumo}{9}{chapter*.4}%
+\contentsline {chapter}{Abstract}{1}{chapter*.5}%
 \contentsline {chapter}{\numberline {1}Introdução}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Contexto e motivação}{2}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Problema de pesquisa e perguntas}{2}{section.1.2}%

@@ -7,8 +7,33 @@
 
 \documentclass[Portugues,Final]{tese-FT}
 
-% Configurações de bibliografia
+% Configurações de codificação e fonte para compatibilidade
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Configuração específica para dvilualatex
+\ifx\directlua\undefined
+  % Compilação com pdflatex - usar configuração normal
+\else
+  % Compilação com LuaLaTeX/dvilualatex - configuração simplificada
+  \usepackage{fontspec}
+  \defaultfontfeatures{Ligatures=TeX}
+  % Usar fontes Latin Modern para máxima compatibilidade
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  % Desabilitar alguns recursos problemáticos para DVI
+  \PassOptionsToPackage{dvips}{hyperref}
+\fi
+
+% Configurações de bibliografia - backend já configurado na classe
 \addbibresource{bibliografia.bib}
+
+% Configuração para compatibilidade UTF-8 com dvilualatex
+\makeatletter
+% Não redefinir paginasiniciais - usar o original da classe
+\makeatother
 
 \begin{document}
 
@@ -33,20 +58,24 @@
 \listoffigures
 \listoftables
 
+% Resumo e Abstract
+\input{../sections/resumo}
+\input{../sections/abstract}
+
 % Corpo da dissertação
 \pagenumbering{arabic}
 
 % Capítulo 1: Introdução
-\input{introducao}
+\input{../sections/introducao}
 
 % Capítulo 2: Levantamento Bibliográfico
-\input{levantamento}
+\input{../sections/levantamento}
 
 % Capítulo 3: Proposta e Metodologia
-\input{desenvolvimento}
+\input{../sections/desenvolvimento}
 
 % Capítulo 4: Conclusões
-\input{conclusoes}
+\input{../sections/conclusoes}
 
 % Elementos pós-textuais
 
