@@ -27,35 +27,29 @@
 \contentsline {section}{\numberline {2.2}Câmeras Hiperespectrais: Tecnologia e Aplicações}{12}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Tipos de Sistemas de Imageamento Hiperespectral}{12}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Sensores e Sistemas Comerciais Representativos}{12}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Estrutura e Dimensionalidade dos Dados}{13}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Técnicas de Processamento de Imagens Hiperespectrais}{13}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Pré-processamento e Correção Radiométrica}{15}{subsection.2.3.1}%
+\contentsline {section}{\numberline {2.3}Técnicas de Processamento de Imagens Hiperespectrais}{14}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Pré-processamento e Correção Radiométrica}{14}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Redução Dimensional e Seleção de Bandas}{15}{subsection.2.3.2}%
+\contentsline {subsubsection}{Técnicas Lineares de Redução Dimensional}{15}{section*.14}%
+\contentsline {subsubsection}{Métodos de Seleção de Bandas}{15}{section*.15}%
 \contentsline {subsection}{\numberline {2.3.3}Algoritmos de Classificação Espectral}{15}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Processamento de Sinais Espectrais}{16}{subsection.2.3.4}%
-\contentsline {section}{\numberline {2.4}Tipos de Processadores para Processamento Hiperespectral}{16}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Processadores de Uso Geral (CPU)}{16}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Unidades de Processamento Gráfico (GPU)}{17}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Field-Programmable Gate Arrays (FPGA)}{17}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Processadores de Sinal Digital (DSP)}{17}{subsection.2.4.4}%
-\contentsline {subsection}{\numberline {2.4.5}Unidades de Processamento Neural (NPU/TPU)}{18}{subsection.2.4.5}%
-\contentsline {subsection}{\numberline {2.4.6}Microcontroladores (MCU) e Processadores de Ultra-Baixo Consumo}{18}{subsection.2.4.6}%
-\contentsline {section}{\numberline {2.5}Arquiteturas Heterogêneas de Processamento}{18}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Fundamentos de Computação Heterogênea}{19}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Arquiteturas CPU+GPU Integradas}{19}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Sistemas CPU+FPGA}{19}{subsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.5.4}Arquiteturas Tri-híbridas CPU+GPU+FPGA}{20}{subsection.2.5.4}%
-\contentsline {subsection}{\numberline {2.5.5}Estudo de Caso: Arquitetura Qualcomm QCS8250}{20}{subsection.2.5.5}%
-\contentsline {section}{\numberline {2.6}Plataformas de Processamento para Sensoriamento Remoto}{20}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Plataformas NVIDIA Jetson}{21}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Sistemas Embarcados Especializados}{21}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Plataformas para Aplicações Espaciais}{21}{subsection.2.6.3}%
-\contentsline {section}{\numberline {2.7}Benchmarking de Plataformas no Mercado}{22}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Metodologia de Benchmarking}{22}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Análise Comparativa de Performance}{22}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Trade-offs Performance vs Consumo}{22}{subsection.2.7.3}%
-\contentsline {subsection}{\numberline {2.7.4}Adequação por Tipo de Aplicação}{23}{subsection.2.7.4}%
-\contentsline {subsection}{\numberline {2.7.5}Tendências Futuras}{23}{subsection.2.7.5}%
-\contentsline {section}{\numberline {2.8}Métodos de Processamento de Dados Hiperespectrais}{24}{section.2.8}%
-\contentsline {chapter}{\numberline {3}Proposta e metodologia}{25}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuros}{26}{chapter.4}%
+\contentsline {subsubsection}{Métodos Clássicos de Classificação}{16}{section*.16}%
+\contentsline {subsubsection}{Abordagens de Aprendizado Profundo}{16}{section*.17}%
+\contentsline {subsection}{\numberline {2.3.4}Processamento de Sinais Espectrais Avançado}{16}{subsection.2.3.4}%
+\contentsline {subsubsection}{Análise Espectral no Domínio da Frequência}{16}{section*.18}%
+\contentsline {subsubsection}{Detecção de Anomalias e Alvos Específicos}{17}{section*.19}%
+\contentsline {subsection}{\numberline {2.3.5}Considerações para Implementação Embarcada}{17}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Tipos de Processadores para Processamento Hiperespectral}{18}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Processadores de Uso Geral (CPU)}{18}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Unidades de Processamento Gráfico (GPU)}{18}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Field-Programmable Gate Arrays (FPGA)}{19}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Arquiteturas Heterogêneas de Processamento}{20}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Fundamentos de Computação Heterogênea}{20}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Arquiteturas CPU+GPU Integradas}{20}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Sistemas CPU+FPGA}{21}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.4}Arquiteturas Tri-híbridas CPU+GPU+FPGA}{22}{subsection.2.5.4}%
+\contentsline {section}{\numberline {2.6}Plataformas de Processamento para Sensoriamento Remoto}{22}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Sistemas Embarcados Especializados}{22}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Tendências Futuras}{23}{subsection.2.6.2}%
+\contentsline {chapter}{\numberline {3}Proposta e metodologia}{24}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuros}{25}{chapter.4}%

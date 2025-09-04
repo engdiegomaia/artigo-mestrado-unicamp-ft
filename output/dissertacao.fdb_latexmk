@@ -1,31 +1,31 @@
 # Fdb version 4
-["biber C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao"] 1756953871.36003 "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf" "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl" "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao" 1756953887.27054 0
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf" 1756953886 116218 2cc32e7df01c75ea5c261f3ec77040cf "pdflatex"
-  "bibliografia.bib" 1756953814 13646 d07201dd937ea60e5150297c6e765c06 ""
+["biber C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao"] 1756957195.00807 "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf" "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl" "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao" 1756957212.34003 0
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf" 1756957211 118604 9ecb140c95c6b96b76464e22f4c5b28d "pdflatex"
+  "bibliografia.bib" 1756957166 16003 aaf0beb38fde14cab5ac1996b155e816 ""
   (generated)
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl"
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.blg"
   (rewritten before read)
-["pdflatex"] 1756953882.62569 "tese.tex" "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.pdf" "dissertacao" 1756953887.27144 0
+["pdflatex"] 1756957207.40919 "tese.tex" "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.pdf" "dissertacao" 1756957212.34094 0
   "../sections/abstract.tex" 1756869416 2441 5d03fae8e9957056cdc35a1099381e57 ""
   "../sections/conclusoes.tex" 1756869447 12703 23b30abc6aa0391a9790486bce29563f ""
   "../sections/desenvolvimento.tex" 1756869455 16372 e8d03605b834c0498c353686b3cb4331 ""
   "../sections/introducao.tex" 1756869565 6845 4538dd72bfce71e931cae91aedec0a92 ""
-  "../sections/levantamento.tex" 1756953848 64897 661bf91279a6ee238d91172b61e1f307 ""
+  "../sections/levantamento.tex" 1756957195 72084 9e5e469d85b3da390eefe81d22cd1b32 ""
   "../sections/resumo.tex" 1756869469 2585 d2130b999b541e6166ed5b52d3092543 ""
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/abstract.tex" 1756869416 2441 5d03fae8e9957056cdc35a1099381e57 ""
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/conclusoes.tex" 1756869447 12703 23b30abc6aa0391a9790486bce29563f ""
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/desenvolvimento.tex" 1756869455 16372 e8d03605b834c0498c353686b3cb4331 ""
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/introducao.tex" 1756869565 6845 4538dd72bfce71e931cae91aedec0a92 ""
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/levantamento.tex" 1756953848 64897 661bf91279a6ee238d91172b61e1f307 ""
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/levantamento.tex" 1756957195 72084 9e5e469d85b3da390eefe81d22cd1b32 ""
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/resumo.tex" 1756869469 2585 d2130b999b541e6166ed5b52d3092543 ""
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.aux" 1756953886 23150 ef917599ed4ee2a9be269235cd4b43ab "pdflatex"
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl" 1756953873 9628 30d2be8a9a05c212afb2527a2cf0bb61 "biber C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao"
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.lof" 1756953886 138 1141f794a16ad8013aa43ec0ef324cf4 "pdflatex"
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.lot" 1756953886 624 db53cd1ff1023c8b5f1e7c1b7bb68366 "pdflatex"
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.out" 1756953886 12229 17337695d432d1ce55509c6724ee2a68 "pdflatex"
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.run.xml" 1756953886 2667 c657858678a27b53c9f6eeabd05bedee "pdflatex"
-  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.toc" 1756953886 6080 74fbd0fbc1aff792f176d6dbe7e588a0 "pdflatex"
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.aux" 1756957211 23140 191d684e752302111cf381f9e4e9868d "pdflatex"
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl" 1756957197 21063 27eda9d1b0b84e6862b70fba94c03595 "biber C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao"
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.lof" 1756957211 138 1141f794a16ad8013aa43ec0ef324cf4 "pdflatex"
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.lot" 1756957211 490 aa7c23ed8ba465dc46d6db2e2f3fc405 "pdflatex"
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.out" 1756957211 9107 5bebab060da662ae88aa6ef027b594e9 "pdflatex"
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.run.xml" 1756957211 2667 c657858678a27b53c9f6eeabd05bedee "pdflatex"
+  "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.toc" 1756957211 5334 2596c6e2e83f1c12e04a3a8a3dd767af "pdflatex"
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1752549731 2375 baa924870cfb487815765f9094cf3728 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1752549731 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc" 1752549731 2840 216e6e45ad352e2456e1149f28885bee ""
@@ -211,7 +211,7 @@
   "c:/texlive/2025/texmf.cnf" 1752552252 713 e69b156964470283e0530f5060668171 ""
   "logotipos/logo-unicamp.pdf" 1752545228 19981 c79bf7cf73ef4a8cb3ba22a62bf94c23 ""
   "tese-FT.cls" 1756849485 21655 25444c6a0896ef2fa49068c8f52b426b ""
-  "tese.tex" 1756953842 2578 e6ee4207453766491806b8a0ffa17357 ""
+  "tese.tex" 1756955915 2578 e6ee4207453766491806b8a0ffa17357 ""
   (generated)
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.aux"
   "C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf"

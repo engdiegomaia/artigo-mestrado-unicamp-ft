@@ -72,8 +72,82 @@
       \strng{authornamehash}{6693106acb836ddb7713c44be50f54a9}
       \strng{authorfullhash}{352e97fad2d636e4f239e27eec42580e}
       \strng{authorfullhashraw}{352e97fad2d636e4f239e27eec42580e}
+      \field{extraname}{1}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{number}{11}
+      \field{title}{Hyperspectral imaging: a review on UAV-based sensors, data processing and applications for agriculture and forestry}
+      \field{volume}{9}
+      \field{year}{2017}
+      \field{pages}{1110}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs9111110
+      \endverb
+    \endentry
+    \entry{ADAO2017}{article}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=39167ab419086a8a2fc2e6012c8a3ae9}{%
+           family={Adão},
+           familyi={A\bibinitperiod},
+           given={Telmo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8890887294e46c3dbe8cd026dc684188}{%
+           family={Hruška},
+           familyi={H\bibinitperiod},
+           given={Jonáš},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=379d76fb68d8353d2df7a3440ec52873}{%
+           family={Pádua},
+           familyi={P\bibinitperiod},
+           given={Luís},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b924d047070172533b2d9324ad14e295}{%
+           family={Bessa},
+           familyi={B\bibinitperiod},
+           given={José},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bda151a314df8c5ba1ee1019b52ea266}{%
+           family={Peres},
+           familyi={P\bibinitperiod},
+           given={Emanuel},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5672130f9e6dfd860ccd60a266b51ce5}{%
+           family={Morais},
+           familyi={M\bibinitperiod},
+           given={Raul},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0733a7e3d2454587d9eb3791036493f9}{%
+           family={Sousa},
+           familyi={S\bibinitperiod},
+           given={Joaquim\bibnamedelima J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{fullhash}{349109e8b3de6687d5b3c22e20262861}
+      \strng{fullhashraw}{349109e8b3de6687d5b3c22e20262861}
+      \strng{bibnamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authorbibnamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authornamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authorfullhash}{349109e8b3de6687d5b3c22e20262861}
+      \strng{authorfullhashraw}{349109e8b3de6687d5b3c22e20262861}
+      \field{extraname}{2}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradate}{2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
@@ -123,6 +197,32 @@
       \field{title}{Sensoriamento remoto hiperespectral}
       \field{year}{2019}
     \endentry
+    \entry{ComparativeFPGAGPUCPU2025}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b705dff5c6cae62a7530722f9fee3829}{%
+           family={{Comparative analysis of FPGA, GPU, and CPU platforms for digital signal processing}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b705dff5c6cae62a7530722f9fee3829}
+      \strng{fullhash}{b705dff5c6cae62a7530722f9fee3829}
+      \strng{fullhashraw}{b705dff5c6cae62a7530722f9fee3829}
+      \strng{bibnamehash}{b705dff5c6cae62a7530722f9fee3829}
+      \strng{authorbibnamehash}{b705dff5c6cae62a7530722f9fee3829}
+      \strng{authornamehash}{b705dff5c6cae62a7530722f9fee3829}
+      \strng{authorfullhash}{b705dff5c6cae62a7530722f9fee3829}
+      \strng{authorfullhashraw}{b705dff5c6cae62a7530722f9fee3829}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Low Power Electronics and Applications}
+      \field{number}{40}
+      \field{title}{Comparative analysis of FPGA, GPU, and CPU platforms for digital signal processing}
+      \field{volume}{15}
+      \field{year}{2025}
+    \endentry
     \entry{Lorenzzetti2015}{book}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=68047fd2fb71ebc079ef76c7a1087cf7}{%
@@ -156,6 +256,168 @@
       \field{note}{E-book. Disponível em: https://plataforma.bvirtual.com.br. Acesso em: 03 set 2025.}
       \field{title}{Princípios físicos de sensoriamento remoto}
       \field{year}{2015}
+    \endentry
+    \entry{MartinsEtAl2019}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=f312655b1408d4a472f15ba903dc5f97}{%
+           family={Martins},
+           familyi={M\bibinitperiod},
+           given={L.\bibnamedelimi A.},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=27e9e8d76e64410646517ebfceee591c}{%
+           family={Faria},
+           familyi={F\bibinitperiod},
+           given={F.\bibnamedelimi A.},
+           giveni={F\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c269634e8a5b8708054eeb523387e091}{%
+           family={Prado},
+           familyi={P\bibinitperiod},
+           given={D.\bibnamedelimi R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{578fb905dedaee394f28c2d36e60fd91}
+      \strng{fullhash}{578fb905dedaee394f28c2d36e60fd91}
+      \strng{fullhashraw}{578fb905dedaee394f28c2d36e60fd91}
+      \strng{bibnamehash}{578fb905dedaee394f28c2d36e60fd91}
+      \strng{authorbibnamehash}{578fb905dedaee394f28c2d36e60fd91}
+      \strng{authornamehash}{578fb905dedaee394f28c2d36e60fd91}
+      \strng{authorfullhash}{578fb905dedaee394f28c2d36e60fd91}
+      \strng{authorfullhashraw}{578fb905dedaee394f28c2d36e60fd91}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 32nd Symposium on Integrated Circuits and Systems Design}
+      \field{title}{A hardware accelerator for real-time hyperspectral image classification using machine learning}
+      \field{year}{2019}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+    \endentry
+    \entry{MichonEtAl2025}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=ef45495beabba335764f2ff1229096c0}{%
+           family={Michon},
+           familyi={M\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a7449b5c63d04005965c5e8b538c52c1}{%
+           family={Shan},
+           familyi={S\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8c7e3c34758119eaddbfea6a8f0aaecb}{%
+           family={Granzow},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cb56ce341047019b7e7235567c701d67}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={J.\bibnamedelimi O.},
+           giveni={J\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b4df946582b3538be58dfcc10a404abe}
+      \strng{fullhash}{cd16349856122180099fafc0d721b338}
+      \strng{fullhashraw}{cd16349856122180099fafc0d721b338}
+      \strng{bibnamehash}{cd16349856122180099fafc0d721b338}
+      \strng{authorbibnamehash}{cd16349856122180099fafc0d721b338}
+      \strng{authornamehash}{b4df946582b3538be58dfcc10a404abe}
+      \strng{authorfullhash}{cd16349856122180099fafc0d721b338}
+      \strng{authorfullhashraw}{cd16349856122180099fafc0d721b338}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Frontiers in Signal Processing}
+      \field{title}{Modal physical modelling on GPUs and FPGAs: a comparative study for real-time audio}
+      \field{volume}{1}
+      \field{year}{2025}
+      \field{pages}{1522604}
+      \range{pages}{1}
+    \endentry
+    \entry{SahovicQuinten2025}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=53fb197939c3e47bf5c563c7920cb9f5}{%
+           family={Sahovic},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=24f188b68020ae626be1e3f2404e1116}{%
+           family={Quinten},
+           familyi={Q\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \strng{fullhash}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \strng{fullhashraw}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \strng{bibnamehash}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \strng{authorbibnamehash}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \strng{authornamehash}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \strng{authorfullhash}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \strng{authorfullhashraw}{b9dd6a1c521fb87747e23b18afc0f4ac}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Results in Engineering}
+      \field{title}{Hybrid computational approach for WMS processing}
+      \field{volume}{27}
+      \field{year}{2025}
+      \field{pages}{106188}
+      \range{pages}{1}
+    \endentry
+    \entry{Vaithianathan2025}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=42317bbd483d073ac56c1ae5a98b9f06}{%
+           family={Vaithianathan},
+           familyi={V\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{42317bbd483d073ac56c1ae5a98b9f06}
+      \strng{fullhash}{42317bbd483d073ac56c1ae5a98b9f06}
+      \strng{fullhashraw}{42317bbd483d073ac56c1ae5a98b9f06}
+      \strng{bibnamehash}{42317bbd483d073ac56c1ae5a98b9f06}
+      \strng{authorbibnamehash}{42317bbd483d073ac56c1ae5a98b9f06}
+      \strng{authornamehash}{42317bbd483d073ac56c1ae5a98b9f06}
+      \strng{authorfullhash}{42317bbd483d073ac56c1ae5a98b9f06}
+      \strng{authorfullhashraw}{42317bbd483d073ac56c1ae5a98b9f06}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Emerging Trends in Computer Science and Information Technology}
+      \field{number}{1}
+      \field{title}{The future of heterogeneous computing: integrating CPUs, GPUs, and FPGAs for high-performance applications}
+      \field{volume}{1}
+      \field{year}{2025}
+      \field{pages}{12\bibrangedash 23}
+      \range{pages}{12}
     \endentry
     \entry{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}{article}{}{}
       \name{author}{8}{}{%

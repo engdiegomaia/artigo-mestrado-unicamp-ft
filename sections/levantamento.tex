@@ -689,24 +689,48 @@ O processamento de imagens hiperespectrais envolve uma cadeia complexa de
 algoritmos especializados, desde o pré-processamento básico até técnicas 
 avançadas de análise espectral. Esta seção apresenta as principais abordagens 
 utilizadas na literatura, com foco nas técnicas que demonstram potencial para 
-implementação em sistemas embarcados.
+implementação em sistemas embarcados, consolidando metodologias validadas em 
+diferentes contextos de aplicação.
 
 \subsection{Pré-processamento e Correção Radiométrica}
 \label{subsec:pre_processamento}
 
 O pré-processamento constitui etapa fundamental para garantir a qualidade dos 
 dados hiperespectrais, especialmente em sistemas embarcados operando sob 
-condições variáveis de iluminação e movimento:
+condições variáveis de iluminação e movimento. As operações de 
+pré-processamento resultam em dados corrigidos que permitem comparações entre 
+diferentes séries temporais e até mesmo dados adquiridos por diferentes 
+sensores hiperespectrais \cite{ADAO2017}.
+
+As principais técnicas de pré-processamento incluem:
 
 \begin{itemize}
-    \item \textbf{Calibração radiométrica}: Correção das variações de 
-    resposta do sensor e normalização para valores de reflectância absoluta
-    \item \textbf{Correção atmosférica}: Remoção dos efeitos de absorção 
-    e espalhamento atmosférico, particularmente crítica em aplicações aéreas
+    \item \textbf{Calibração radiométrica}: Correção das variações de resposta 
+    do sensor através de ferramentas de software fornecidas pelos fabricantes 
+    de sensores hiperespectrais, que devem georreferenciar e converter cubos 
+    de dados DN brutos para radiância. Esta etapa é crítica para garantir a 
+    reprodutibilidade e comparabilidade dos dados \cite{ADAO2017};
+
+    \item \textbf{Correção atmosférica}: Remoção dos efeitos de absorção e 
+    espalhamento atmosférico, particularmente crítica em aplicações aéreas. 
+    Algoritmos como ATCOR e FLAASH têm sido amplamente validados para esta 
+    finalidade;
+
     \item \textbf{Correção geométrica}: Compensação de distorções geométricas 
-    causadas pelo movimento da plataforma e geometria de aquisição
-    \item \textbf{Redução de ruído}: Filtragem de ruídos espectrais e 
-    espaciais, incluindo remoção de pixels defeituosos e bandas ruidosas
+    causadas pelo movimento da plataforma e geometria de aquisição, 
+    frequentemente combinando dados de orientação externa coletados durante o 
+    voo com modelo do sensor e modelo de elevação \cite{ADAO2017};
+
+    \item \textbf{Redução de ruído espectral}: Aplicação de filtros adaptativos 
+    e técnicas de suavização espectral. A implementação de filtros 
+    Savitzky-Golay e técnicas baseadas em transformadas wavelets demonstram 
+    eficácia na preservação de características espectrais importantes enquanto 
+    reduzem componentes ruidosas;
+
+    \item \textbf{Avaliação da qualidade}: A relação sinal-ruído (SNR) 
+    representa critério fundamental para caracterização da qualidade dos dados 
+    hiperespectrais, sendo essencial para análise quantitativa precisa 
+    \cite{ADAO2017}.
 \end{itemize}
 
 \subsection{Redução Dimensional e Seleção de Bandas}
@@ -714,21 +738,46 @@ condições variáveis de iluminação e movimento:
 
 A alta dimensionalidade dos dados hiperespectrais (centenas de bandas 
 espectrais) apresenta desafios computacionais significativos, tornando as 
-técnicas de redução dimensional essenciais para sistemas embarcados:
+técnicas de redução dimensional essenciais para sistemas embarcados. O 
+fenômeno de Hughes, onde o desempenho de classificadores degrada com o aumento 
+da dimensionalidade quando o número de amostras de treinamento é limitado, 
+torna estas técnicas ainda mais críticas \cite{ADAO2017}.
+
+\subsubsection{Técnicas Lineares de Redução Dimensional}
 
 \begin{itemize}
     \item \textbf{Principal Component Analysis (PCA)}: Técnica linear clássica 
     que projeta os dados em subespaço de menor dimensionalidade preservando 
-    máxima variância
-    \item \textbf{Seleção de bandas baseada em entropia}: Métodos como EMCR 
-    (Entropy Multiple Correlation Ratio) que reduzem 80\% do processamento 
-    mantendo alta precisão de classificação
-    \item \textbf{Compressive sensing}: Técnicas que exploram a esparsidade 
-    natural dos dados hiperespectrais, conseguindo reduções de 50-70\% no 
-    volume de dados
+    máxima variância. O PCA concentra a variância espectral e pode ser 
+    combinado com outros métodos como compressão wavelet, conseguindo retenção 
+    de 99\% da variância original com redução de 80-90\% das bandas 
+    \cite{ADAO2017};
+
+    \item \textbf{Maximum Noise Fraction (MNF)}: Método baseado em PCA que 
+    maximiza a relação sinal-ruído, destacado como capaz de alcançar boa 
+    performance na redução dimensional de dados hiperespectrais, especialmente 
+    eficaz para dados com alta correlação espectral \cite{ADAO2017};
+
     \item \textbf{Independent Component Analysis (ICA)}: Decomposição em 
     componentes estatisticamente independentes, adequada para separação de 
-    assinaturas espectrais sobrepostas
+    assinaturas espectrais sobrepostas e identificação de endmembers puros.
+\end{itemize}
+
+\subsubsection{Métodos de Seleção de Bandas}
+
+\begin{itemize}
+    \item \textbf{Seleção baseada em entropia}: Algoritmos como EMCR (Entropy 
+    Multiple Correlation Ratio) conseguem reduzir 70-80\% do processamento 
+    mantendo alta precisão de classificação, sendo computacionalmente 
+    eficientes para sistemas embarcados;
+
+    \item \textbf{Algoritmos genéticos}: Otimização global para seleção de 
+    subconjuntos ótimos de bandas, com validação cruzada para evitar 
+    overfitting;
+
+    \item \textbf{Métodos híbridos}: Combinação de técnicas de projeção com 
+    seleção de bandas, oferecendo balanceamento entre redução dimensional e 
+    preservação de informações discriminantes.
 \end{itemize}
 
 \subsection{Algoritmos de Classificação Espectral}
@@ -736,40 +785,136 @@ técnicas de redução dimensional essenciais para sistemas embarcados:
 
 A classificação espectral representa uma das aplicações mais importantes do 
 processamento hiperespectral, sendo fundamental para identificação e 
-mapeamento de materiais:
+mapeamento de materiais. Frameworks de classificação baseados em 
+características espectral-espaciais superam métodos que utilizam apenas 
+informações espectrais \cite{ADAO2017}.
+
+\subsubsection{Métodos Clássicos de Classificação}
 
 \begin{itemize}
-    \item \textbf{Support Vector Machines (SVM)}: Classificadores robustos 
-    que demonstram excelente desempenho em dados hiperespectrais, com 
-    implementações otimizadas em FPGA atingindo 99,7\% de precisão
-    \item \textbf{Redes Neurais Convolucionais (CNN)}: Arquiteturas como 
-    TakuNet que conseguem 99\% de redução de parâmetros mantendo F1-score 
-    de 0,943, adequadas para sistemas embarcados
+    \item \textbf{Support Vector Machines (SVM)}: Classificadores robustos que 
+    demonstram excelente desempenho em dados hiperespectrais, com 
+    implementações otimizadas conseguindo precisões superiores a 95\% em 
+    datasets de referência. A eficácia do SVM está relacionada à sua 
+    capacidade de lidar com alta dimensionalidade e pequenos conjuntos de 
+    treinamento;
+
     \item \textbf{Random Forest}: Métodos ensemble que combinam múltiplas 
-    árvores de decisão, oferecendo boa interpretabilidade e robustez
+    árvores de decisão, oferecendo boa interpretabilidade e robustez a 
+    outliers, com tempos de treinamento significativamente menores que SVM;
+
     \item \textbf{Spectral Angle Mapper (SAM)}: Classificação baseada em 
     similaridade angular entre espectros, computacionalmente eficiente para 
-    implementações embarcadas
+    implementações embarcadas e menos sensível a variações de iluminação.
 \end{itemize}
 
-\subsection{Processamento de Sinais Espectrais}
-\label{subsec:processamento_sinais}
-
-O processamento específico dos sinais espectrais envolve técnicas matemáticas 
-especializadas para extração de informações dos dados hiperespectrais:
+\subsubsection{Abordagens de Aprendizado Profundo}
 
 \begin{itemize}
-    \item \textbf{Análise de mistura espectral}: Decomposição de pixels mistos 
-    em endmembers puros, fundamental para aplicações de mapeamento quantitativo
-    \item \textbf{Detecção de anomalias}: Identificação de pixels com 
-    características espectrais atípicas, importante para aplicações de 
-    vigilância e monitoramento ambiental
+    \item \textbf{Redes Neurais Convolucionais (CNN)}: Algoritmos 
+    discriminantes para características espectrais e CNNs para características 
+    espaciais formam frameworks de desempenho superior. Arquiteturas como 
+    ResNet e DenseNet adaptadas para dados hiperespectrais conseguem F1-scores 
+    superiores a 0,95 \cite{ADAO2017};
+
+    \item \textbf{Redes residuais espectral-espaciais}: Frameworks de 
+    aprendizado profundo supervisionado capazes de discriminar características 
+    de assinaturas espectrais abundantes e contextos espaciais sem necessidade 
+    de engenharia manual de características \cite{ADAO2017};
+
+    \item \textbf{Arquiteturas leves}: Desenvolvimento de redes neurais 
+    compactas adequadas para sistemas embarcados, como MobileNets e 
+    EfficientNets adaptadas, conseguindo redução de 90\% nos parâmetros 
+    mantendo alta precisão \cite{ADAO2017};
+
+    \item \textbf{Abordagens híbridas}: Fusão de perfis de atributos com 
+    aprendizado profundo, onde técnicas de perfilamento combinadas com CNN 
+    demonstram resultados superiores ao uso individual de cada abordagem 
+    \cite{ADAO2017}.
+\end{itemize}
+
+\subsection{Processamento de Sinais Espectrais Avançado}
+\label{subsec:processamento_sinais_avancado}
+
+O processamento específico dos sinais espectrais envolve técnicas matemáticas 
+especializadas para extração de informações dos dados hiperespectrais, 
+incluindo métodos de análise no domínio da frequência e detecção de anomalias.
+
+\subsubsection{Análise Espectral no Domínio da Frequência}
+
+\begin{itemize}
+    \item \textbf{Transformadas Wavelet}: Aplicação de wavelets como 
+    Daubechies, Morlet e Biorthogonal para análise tempo-frequência de sinais 
+    espectrais. A escolha da wavelet-mãe deve considerar as características 
+    morfológicas do sinal, garantindo máxima correlação e preservação das 
+    informações espectrais relevantes;
+
     \item \textbf{Análise de derivadas espectrais}: Cálculo de derivadas 
     primeira e segunda dos espectros para realçar características espectrais 
-    sutis
-    \item \textbf{Transformadas espectrais}: Aplicação de transformadas como 
-    Fourier e Wavelet para análise no domínio da frequência
+    sutis e reduzir efeitos de variações de linha de base. Técnicas como 
+    continuum removal são amplamente utilizadas em aplicações geológicas;
+
+    \item \textbf{Transformadas de Fourier}: Análise no domínio da frequência 
+    para identificação de periodicidades espectrais e caracterização de ruídos 
+    sistemáticos.
 \end{itemize}
+
+\subsubsection{Detecção de Anomalias e Alvos Específicos}
+
+\begin{itemize}
+    \item \textbf{Detecção baseada em CNN}: Para detecção de anomalias, redes 
+    neurais convolucionais demonstram superar métodos clássicos como 
+    abordagens baseadas em RX, conseguindo taxas de detecção superiores a 90\% 
+    com baixas taxas de falsos positivos \cite{ADAO2017};
+
+    \item \textbf{Algoritmos RX adaptivos}: Implementações otimizadas do 
+    detector RX com janelas adaptativas e processamento local, adequadas para 
+    detecção em tempo real;
+
+    \item \textbf{Análise de mistura espectral}: Decomposição de pixels mistos 
+    em endmembers puros através de técnicas como Linear Spectral Unmixing e 
+    Non-negative Matrix Factorization, fundamental para mapeamento quantitativo 
+    de materiais;
+
+    \item \textbf{Seleção de saliência}: Abordagens de classificação manifold 
+    estendidas para aprendizado profundo, apresentadas para detecção de 
+    saliência em relação à seleção de bandas em imagens hiperespectrais 
+    \cite{ADAO2017}.
+\end{itemize}
+
+\subsection{Considerações para Implementação Embarcada}
+\label{subsec:implementacao_embarcada}
+
+A implementação de técnicas de processamento hiperespectral em sistemas 
+embarcados requer considerações específicas quanto à eficiência computacional 
+e restrições de recursos.
+
+\begin{itemize}
+    \item \textbf{Otimização algorítmica}: Desenvolvimento de implementações 
+    paralelas e uso de operações matriciais otimizadas (BLAS, cuBLAS) para 
+    maximizar o throughput de processamento;
+
+    \item \textbf{Arquiteturas heterogêneas}: Combinação de CPU, GPU e FPGA 
+    para otimização simultânea de desempenho e consumo energético. Sistemas 
+    CPU+FPGA conseguem melhorias de até 40x na eficiência energética;
+
+    \item \textbf{Processamento em pipeline}: Implementação de pipelines de 
+    processamento que permitem operação contínua com baixa latência, essencial 
+    para aplicações de tempo real;
+
+    \item \textbf{Compressão de dados}: Técnicas de compressão específicas 
+    para dados hiperespectrais, como JPEG2000 e compressão baseada em PCA, 
+    conseguindo taxas de compressão de 10:1 a 50:1 sem perda significativa de 
+    informação.
+\end{itemize}
+
+Em síntese, as técnicas de processamento de imagens hiperespectrais abrangem 
+desde métodos fundamentais de pré-processamento até algoritmos avançados de 
+aprendizado profundo. A escolha da técnica adequada depende da aplicação 
+específica, recursos computacionais disponíveis e requisitos de precisão. A 
+tendência atual aponta para abordagens híbridas que combinam múltiplas 
+técnicas e arquiteturas heterogêneas que otimizam o balanceamento entre 
+precisão, velocidade e eficiência energética \cite{ADAO2017}.
 
 \section{Tipos de Processadores para Processamento Hiperespectral}
 \label{sec:tipos_processadores}
@@ -785,114 +930,108 @@ tipos de algoritmos.
 \label{subsec:processadores_cpu}
 
 As CPUs permanecem como componente central em sistemas hiperespectrais 
-embarcados, especialmente adequadas para tarefas sequenciais e de controle:
+embarcados, especialmente adequadas para tarefas sequenciais e de controle. 
+Conforme destacado por Vaithianathan (2025), as CPUs são projetadas para 
+tarefas de propósito geral e se destacam no processamento sequencial, 
+tornando-as ideais para aplicações que requerem alto desempenho em 
+single-thread:
 
 \begin{itemize}
     \item \textbf{Arquiteturas ARM}: Processadores de baixo consumo como 
     ARM Cortex-A series, amplamente utilizados em plataformas embarcadas 
-    devido ao excelente balanço desempenho/consumo
+    devido ao excelente balanço desempenho/consumo. Martins et al. (2019) 
+    demonstraram a eficácia de processadores ARM operando a 800 MHz para 
+    processamento hiperespectral, com tempo de processamento de 0,75ms em 
+    implementações otimizadas
+    
     \item \textbf{Arquiteturas x86}: Intel Atom e AMD embedded, oferecendo 
     maior poder computacional com consumo moderado para aplicações que 
-    requerem compatibilidade com software legado
+    requerem compatibilidade com software legado. Sahovic e Quinten (2025) 
+    utilizaram Intel Core i9-9900K para coordenação de sistemas híbridos, 
+    demonstrando a importância das CPUs no gerenciamento de I/O e execução 
+    de lógica sequencial
+    
     \item \textbf{Características para processamento hiperespectral}: 
     Adequadas para tarefas de controle de fluxo, pré-processamento sequencial 
-    e algoritmos de classificação final
+    e algoritmos de classificação final. A arquitetura interna das CPUs, 
+    composta por unidades de controle que orquestram a execução de instruções, 
+    permite gerenciamento eficiente de pipelines complexos \cite{Vaithianathan2025}
+    
     \item \textbf{Limitações}: Baixo throughput para operações matriciais 
-    massivamente paralelas características do processamento hiperespectral
+    massivamente paralelas características do processamento hiperespectral. 
+    Estudos comparativos demonstram que CPUs apresentam desempenho até 27 
+    vezes inferior aos FPGAs em tarefas de processamento digital de sinais 
+    \cite{ComparativeFPGAGPUCPU2025}
 \end{itemize}
 
 \subsection{Unidades de Processamento Gráfico (GPU)}
 \label{subsec:processadores_gpu}
 
 As GPUs se destacam no processamento hiperespectral devido à natureza 
-paralelizável das operações matriciais:
+paralelizável das operações matriciais. Segundo Vaithianathan (2025), as 
+GPUs são otimizadas para processamento paralelo, permitindo o manuseio de 
+milhares de threads simultaneamente, característica particularmente benéfica 
+para processamento de imagens e deep learning:
 
 \begin{itemize}
     \item \textbf{GPUs embarcadas NVIDIA}: Jetson series (Nano, TX2, Xavier, 
     Orin) que combinam GPUs com CPUs ARM em single-board computers de baixo 
-    consumo
+    consumo. Sahovic e Quinten (2025) implementaram com sucesso sistemas 
+    utilizando NVIDIA Quadro RTX 5000 para tarefas computacionalmente 
+    exigentes, incluindo cálculos baseados em FFT e correlação cruzada
+    
     \item \textbf{Arquiteturas CUDA}: Milhares de cores especializados em 
     operações de ponto flutuante, ideais para álgebra linear e operações 
-    matriciais
+    matriciais. A arquitetura GPU é composta por múltiplos Streaming 
+    Multiprocessors (SMs), cada um contendo numerosas unidades funcionais 
+    capazes de executar operações paralelas \cite{Vaithianathan2025}
+    
     \item \textbf{Performance em processamento hiperespectral}: Demonstram 
     throughput superior a 330 fps em compressão hiperespectral (Jetson TX2) 
-    e excelente desempenho em CNNs para classificação
+    e excelente desempenho em CNNs para classificação. As GPUs exploram 
+    paralelismo em nível de dados através de milhares de cores, tornando-as 
+    adequadas para processamento em lote e aplicações de alto throughput 
+    \cite{ComparativeFPGAGPUCPU2025}
+    
     \item \textbf{Consumo energético}: Faixa de 5-20W para modelos embarcados, 
-    adequado para aplicações UAV com restrições energéticas
+    adequado para aplicações UAV com restrições energéticas. Michon et al. 
+    (2025) destacam que, apesar do alto poder computacional, o consumo 
+    energético e a latência no acesso à memória podem ser fatores limitantes
 \end{itemize}
 
 \subsection{Field-Programmable Gate Arrays (FPGA)}
 \label{subsec:processadores_fpga}
 
 Os FPGAs oferecem a máxima flexibilidade para implementação de algoritmos 
-hiperespectrais otimizados:
+hiperespectrais otimizados. Como ressaltado na análise comparativa de 
+plataformas digitais \cite{ComparativeFPGAGPUCPU2025}, os FPGAs demonstram 
+desempenho significativamente superior, sendo 27 vezes mais rápidos que CPUs 
+e 2 vezes mais rápidos que GPUs, consumindo simultaneamente menos energia:
 
 \begin{itemize}
     \item \textbf{Paralelismo customizado}: Capacidade de implementar 
     arquiteturas de processamento específicas para algoritmos hiperespectrais, 
-    como pipelines de seleção de bandas e classificação SVM
+    como pipelines de seleção de bandas e classificação SVM. Martins et al. 
+    (2019) demonstraram implementações FPGA de classificadores SVM com 
+    precisão acima de 99\%, atendendo aos requisitos de tempo real do AVIRIS
+    
     \item \textbf{Eficiência energética}: Implementações otimizadas podem 
     atingir melhorias energéticas de 43,5x comparado a implementações em 
-    software (codesign HW/SW)
+    software (codesign HW/SW). Os FPGAs são circuitos semicondutores 
+    programáveis compostos por blocos lógicos customizáveis conectados por 
+    interconexões programáveis \cite{Vaithianathan2025}
+    
     \item \textbf{Latência ultra-baixa}: Tempo de classificação de 0,1ms/pixel 
-    em implementações otimizadas de SVM com seleção EMCR
+    em implementações otimizadas de SVM com seleção EMCR. Martins et al. 
+    (2019) reportaram tempo de classificação de 0,50ms para implementação 
+    single-core e 0,10ms para design hexa-core, consumindo respectivamente 
+    17\% e 100\% dos blocos DSP disponíveis
+    
     \item \textbf{Adequação para pré-processamento}: Ideais para implementação 
-    de filtros, correções geométricas e operações de pipeline de baixa latência
-\end{itemize}
-
-\subsection{Processadores de Sinal Digital (DSP)}
-\label{subsec:processadores_dsp}
-
-Os DSPs são especializados em processamento de sinais e operações matemáticas 
-intensivas:
-
-\begin{itemize}
-    \item \textbf{Arquiteturas especializadas}: Unidades como Hexagon da 
-    Qualcomm com extensões vetoriais otimizadas para algoritmos matemáticos
-    \item \textbf{Baixa latência}: Adequados para algoritmos de filtragem 
-    espectral e operações de convolução em tempo real
-    \item \textbf{Eficiência energética}: Excelente relação 
-    operações/consumo para algoritmos específicos de processamento de sinais
-    \item \textbf{Aplicações típicas}: Estabilização de imagem, filtragem 
-    de ruído e processamento de sinais de sensores
-\end{itemize}
-
-\subsection{Unidades de Processamento Neural (NPU/TPU)}
-\label{subsec:processadores_npu}
-
-Processadores especializados em aceleração de algoritmos de machine learning 
-e deep learning:
-
-\begin{itemize}
-    \item \textbf{Arquiteturas dedicadas}: Unidades como Google TPU e NPUs 
-    integradas em SoCs, otimizadas para operações de tensor e redes neurais
-    \item \textbf{Alto throughput para IA}: Capacidade de 15 TOPS (trilhões 
-    de operações por segundo) em modelos compactos
-    \item \textbf{Adequação para CNNs hiperespectrais}: Ideais para execução 
-    de redes neurais otimizadas como TakuNet e arquiteturas híbridas 
-    CNN+Transformer
-    \item \textbf{Consumo otimizado}: Eficiência energética superior para 
-    cargas de trabalho de deep learning comparado a GPUs generalistas
-\end{itemize}
-
-\subsection{Microcontroladores (MCU) e Processadores de Ultra-Baixo Consumo}
-\label{subsec:processadores_mcu}
-
-Para aplicações com severas restrições energéticas, MCUs especializados 
-oferecem alternativas interessantes:
-
-\begin{itemize}
-    \item \textbf{Arquiteturas ARM Cortex-M}: MCUs de 32 bits com consumo 
-    na faixa de miliampères, adequados para pré-processamento básico e 
-    controle de sensores
-    \item \textbf{MCUs com aceleração matemática}: Unidades com 
-    coprocessadores matemáticos (FPU) para operações de ponto flutuante 
-    básicas
-    \item \textbf{Aplicações específicas}: Controle de sensores, aquisição 
-    de dados e pré-processamento básico em sistemas com orçamento energético 
-    extremamente restrito
-    \item \textbf{Limitações}: Capacidade de processamento limitada para 
-    algoritmos complexos de classificação e análise espectral
+    de filtros, correções geométricas e operações de pipeline de baixa latência. 
+    Michon et al. (2025) enfatizam que a natureza reconfigurável dos FPGAs 
+    permite otimização máxima adaptada a aplicações específicas, com níveis 
+    adaptáveis de paralelização e pipeline
 \end{itemize}
 
 \section{Arquiteturas Heterogêneas de Processamento}
@@ -909,95 +1048,137 @@ de tipos distintos de processadores.
 
 A computação heterogênea baseia-se no princípio de que diferentes tipos de 
 processadores possuem eficiências variáveis para diferentes tipos de cargas 
-computacionais:
+computacionais. Segundo Vaithianathan (2025), a integração visa aproveitar 
+os pontos fortes únicos de cada arquitetura, melhorando a eficiência 
+computacional e o desempenho em vários domínios:
 
 \begin{itemize}
     \item \textbf{Especialização de processadores}: Cada tipo de processador 
     (CPU, GPU, FPGA, DSP) apresenta vantagens específicas para determinados 
-    tipos de operações
+    tipos de operações. Sahovic e Quinten (2025) demonstram explicitamente 
+    como FPGAs destacam-se em aquisição rápida de dados, CPUs em coordenação 
+    de sistema, e GPUs em computação massivamente paralela
+    
     \item \textbf{Particionamento de algoritmos}: Divisão do pipeline de 
-    processamento em estágios adequados para cada tipo de processador
+    processamento em estágios adequados para cada tipo de processador. A 
+    alocação estratégica de tarefas de acordo com os pontos fortes de cada 
+    componente de hardware atende às demandas computacionais e de tempo real 
+    essenciais para monitoramento de fluxo multifásico \cite{SahovicQuinten2025}
+    
     \item \textbf{Otimização multi-objetivo}: Balanceamento simultâneo entre 
-    desempenho, consumo energético, latência e precisão
+    desempenho, consumo energético, latência e precisão. Vaithianathan (2025) 
+    destaca que a alocação dinâmica de tarefas para a unidade de processamento 
+    mais adequada otimiza a utilização de recursos e minimiza a latência
+    
     \item \textbf{Codesign HW/SW}: Metodologia integrada de desenvolvimento 
-    que considera hardware e software simultaneamente
+    que considera hardware e software simultaneamente. O codesign hardware-
+    software enfatiza o desenvolvimento simultâneo de componentes de hardware 
+    e software para alcançar desempenho e eficiência ideais \cite{Vaithianathan2025}
 \end{itemize}
 
 \subsection{Arquiteturas CPU+GPU Integradas}
 \label{subsec:arquiteturas_cpu_gpu}
 
 A combinação de CPU e GPU em sistemas embarcados oferece flexibilidade e 
-desempenho para processamento hiperespectral:
+desempenho para processamento hiperespectral. Vaithianathan (2025) ressalta 
+que arquiteturas de memória unificada facilitam o compartilhamento contínuo 
+de dados entre CPUs e GPUs, reduzindo overhead e melhorando a velocidade 
+computacional:
 
 \begin{itemize}
     \item \textbf{SoCs ARM+GPU}: Sistemas como NVIDIA Jetson que integram 
-    CPUs ARM com GPUs CUDA em single-package solutions
+    CPUs ARM com GPUs CUDA em single-package solutions. A tendência em 
+    direção a designs System on Chip (SoC) permite a integração de múltiplos 
+    tipos de processadores dentro de um único chip, aprimorando ainda mais 
+    o desempenho em ambientes compactos \cite{Vaithianathan2025}
+    
     \item \textbf{Divisão de tarefas}: CPU responsável por controle, 
     pré-processamento sequencial e classificação final; GPU para operações 
-    matriciais, filtragem e redes neurais
+    matriciais, filtragem e redes neurais. O controlador DMA atua como ponte 
+    entre CPU e GPU, facilitando transferência contínua de dados entre memória 
+    host e memória global da GPU \cite{Vaithianathan2025}
+    
     \item \textbf{Comunicação eficiente}: Memória compartilhada e interfaces 
-    de alta velocidade para minimizar overhead de transferência de dados
+    de alta velocidade para minimizar overhead de transferência de dados. 
+    Tecnologias como AMD's Heterogeneous System Architecture (HSA) exemplificam 
+    esta tendência ao permitir acesso de memória compartilhada através de 
+    várias unidades de processamento \cite{Vaithianathan2025}
+    
     \item \textbf{Performance demonstrada}: Throughput >330 fps em compressão 
-    hiperespectral com consumo <20W
+    hiperespectral com consumo <20W. Estudos demonstram que GPUs fornecem 
+    forte capacidade paralela mas encontram ineficiências de transferência 
+    de dados \cite{SahovicQuinten2025}
 \end{itemize}
 
 \subsection{Sistemas CPU+FPGA}
 \label{subsec:sistemas_cpu_fpga}
 
 A combinação CPU+FPGA oferece máxima flexibilidade para otimização de 
-algoritmos específicos:
+algoritmos específicos. Martins et al. (2019) demonstraram implementações 
+bem-sucedidas de aceleradores de hardware para classificação de imagens 
+hiperespectrais em tempo real usando esta abordagem:
 
 \begin{itemize}
     \item \textbf{Aceleração customizada}: FPGA implementa algoritmos 
-    críticos como seleção de bandas EMCR e classificação SVM otimizada
+    críticos como seleção de bandas EMCR e classificação SVM otimizada. 
+    A metodologia EMCR (Entropy and Mean Correlation Ratio) aumentou 
+    consideravelmente o poder de predição, alcançando níveis de precisão 
+    superiores a 99\% \cite{MartinsEtAl2019}
+    
     \item \textbf{Pipeline de baixa latência}: Processamento contínuo com 
-    latência determinística, adequado para aplicações de tempo real
+    latência determinística, adequado para aplicações de tempo real. FPGAs 
+    garantem baixo nível de latência contra GPUs e CPUs, pois trabalham em 
+    bare metal sem sistema operacional \cite{ComparativeFPGAGPUCPU2025}
+    
     \item \textbf{Eficiência energética}: Melhorias de até 43,5x no consumo 
-    energético através de codesign otimizado
+    energético através de codesign otimizado. A natureza reconfigurável dos 
+    FPGAs permite maximização da otimização adaptada a aplicações específicas 
+    \cite{MichonEtAl2025}
+    
     \item \textbf{Flexibilidade de reconfiguração}: Capacidade de adaptar 
-    o hardware para diferentes algoritmos e requisitos de aplicação
+    o hardware para diferentes algoritmos e requisitos de aplicação. Ao 
+    contrário de CPUs e GPUs, que são arquiteturas fixas programáveis por 
+    software, FPGAs são reconfiguráveis com engines computacionais definidos 
+    pelo usuário \cite{ComparativeFPGAGPUCPU2025}
 \end{itemize}
 
 \subsection{Arquiteturas Tri-híbridas CPU+GPU+FPGA}
 \label{subsec:arquiteturas_tri_hibridas}
 
 A integração de três tipos de processadores permite otimização máxima do 
-pipeline hiperespectral:
+pipeline hiperespectral. Sahovic e Quinten (2025) propuseram uma arquitetura 
+computacional híbrida combinando componentes FPGA, CPU e GPU para superar 
+limitações individuais:
 
 \begin{itemize}
     \item \textbf{Especialização por estágio}: FPGA para pré-processamento 
     e seleção de bandas; GPU para reconstrução e operações matriciais; 
-    CPU para classificação final e controle
+    CPU para classificação final e controle. Inicialmente, um FPGA Xilinx 
+    Spartan-7 integrado realiza aquisição rápida de dados, filtragem de 
+    ruído e serialização estruturada. Subsequentemente, a CPU gerencia 
+    sincronização de dados e gerenciamento de memória. A GPU então aproveita 
+    seus milhares de cores paralelos para executar eficientemente operações 
+    computacionalmente intensivas \cite{SahovicQuinten2025}
+    
     \item \textbf{Balanceamento de carga}: Distribuição dinâmica de tarefas 
-    conforme disponibilidade de recursos e características dos dados
+    conforme disponibilidade de recursos e características dos dados. A 
+    atribuição estratégica de tarefas de acordo com os pontos fortes de 
+    cada componente de hardware garante precisão e desempenho confiável 
+    em tempo real \cite{SahovicQuinten2025}
+    
     \item \textbf{Metas quantitativas}: Potencial para atingir >30 fps em 
-    imagens 614×512×224 com consumo <15W e latência <40ms
+    imagens 614×512×224 com consumo <15W e latência <40ms. Vaithianathan 
+    (2025) antecipa uma mudança em direção a sistemas de computação 
+    heterogênea hierárquica que utilizarão múltiplas arquiteturas não 
+    apenas dentro de um único nó, mas também através de sistemas distribuídos
+    
     \item \textbf{Complexidade de implementação}: Requer metodologias 
-    avançadas de codesign e otimização multi-dimensional
+    avançadas de codesign e otimização multi-dimensional. O desenvolvimento 
+    de frameworks de programação unificados que simplificam o desenvolvimento 
+    e melhoram a interoperabilidade entre diferentes componentes de hardware 
+    é crucial para maximizar o potencial de sistemas de computação heterogênea 
+    \cite{Vaithianathan2025}
 \end{itemize}
-
-\subsection{Estudo de Caso: Arquitetura Qualcomm QCS8250}
-\label{subsec:estudo_caso_qualcomm}
-
-O SoC Qualcomm QCS8250, utilizado na plataforma SightLine Applications 
-4100-OEM, exemplifica uma arquitetura heterogênea comercial bem-sucedida:
-
-\begin{itemize}
-    \item \textbf{CPU Octa-core Kryo™585}: Controle de sistema, gerenciamento 
-    de fluxo e tarefas de coordenação geral
-    \item \textbf{GPU Adreno™650}: Processamento massivamente paralelo, 
-    filtragem de imagem e transformações geométricas
-    \item \textbf{DSP Hexagon™}: Algoritmos matemáticos de baixa latência, 
-    estabilização de imagem e processamento de sinais
-    \item \textbf{NPU (15 TOPS)}: Aceleração de cargas de deep learning 
-    para detecção e classificação em tempo real
-    \item \textbf{ISP Spectra™480}: Pipeline dedicado de processamento de 
-    imagem para correção radiométrica e demosaicing
-\end{itemize}
-
-Esta arquitetura demonstra como a especialização de processadores permite 
-alto desempenho (múltiplos streams de vídeo em alta resolução) com baixa 
-latência e consumo energético restrito (5-15W).
 
 \section{Plataformas de Processamento para Sensoriamento Remoto}
 \label{sec:plataformas_sensoriamento}
@@ -1007,26 +1188,6 @@ especificamente para processamento hiperespectral em aplicações de
 sensoriamento 
 remoto, com foco em sistemas embarcados para UAVs, satélites CubeSat e 
 plataformas terrestres móveis.
-
-\subsection{Plataformas NVIDIA Jetson}
-\label{subsec:plataformas_jetson}
-
-A família NVIDIA Jetson representa o estado da arte em computação embarcada 
-para aplicações de visão computacional e processamento hiperespectral:
-
-\begin{itemize}
-    \item \textbf{Jetson Nano}: Plataforma entry-level com GPU de 128 cores 
-    CUDA, adequada para prototipagem e aplicações com restrições severas 
-    de custo
-    \item \textbf{Jetson TX2}: Configuração intermediária que demonstrou 
-    throughput de 330 fps em compressão hiperespectral, representando excelente 
-    balanço desempenho/consumo
-    \item \textbf{Jetson Xavier}: Plataforma de alto desempenho com performance 
-    significativamente superior para classificação de imagens hiperespectrais 
-    e execução concorrente de múltiplas tarefas
-    \item \textbf{Jetson Orin}: Geração mais recente com NPU integrada, 
-    demonstrando >650 fps em implementações de CNNs otimizadas como TakuNet
-\end{itemize}
 
 \subsection{Sistemas Embarcados Especializados}
 \label{subsec:sistemas_especializados}
@@ -1046,130 +1207,130 @@ remoto e processamento hiperespectral:
     custo e consumo ultra-baixo
 \end{itemize}
 
-\subsection{Plataformas para Aplicações Espaciais}
-\label{subsec:plataformas_espaciais}
+% \subsection{Plataformas para Aplicações Espaciais}
+% \label{subsec:plataformas_espaciais}
 
-Sistemas especializados para aplicações satelitais com restrições extremas 
-de radiação, temperatura e consumo energético:
+% Sistemas especializados para aplicações satelitais com restrições extremas 
+% de radiação, temperatura e consumo energético:
 
-\begin{itemize}
-    \item \textbf{Processadores radiation-hardened}: Componentes especialmente 
-    projetados para resistir à radiação espacial, essenciais para missões 
-    de longa duração
-    \item \textbf{Arquiteturas de tolerância a falhas}: Sistemas redundantes 
-    e técnicas de correção de erro para garantir confiabilidade em ambiente 
-    espacial
-    \item \textbf{Otimização energética extrema}: Algoritmos e arquiteturas 
-    otimizadas para operação com orçamentos energéticos da ordem de watts 
-    ou menos
-    \item \textbf{Compactação e miniaturização}: Sistemas adequados para 
-    integração em CubeSats e nanosatélites com severas restrições de tamanho 
-    e peso
-\end{itemize}
+% \begin{itemize}
+%     \item \textbf{Processadores radiation-hardened}: Componentes especialmente 
+%     projetados para resistir à radiação espacial, essenciais para missões 
+%     de longa duração
+%     \item \textbf{Arquiteturas de tolerância a falhas}: Sistemas redundantes 
+%     e técnicas de correção de erro para garantir confiabilidade em ambiente 
+%     espacial
+%     \item \textbf{Otimização energética extrema}: Algoritmos e arquiteturas 
+%     otimizadas para operação com orçamentos energéticos da ordem de watts 
+%     ou menos
+%     \item \textbf{Compactação e miniaturização}: Sistemas adequados para 
+%     integração em CubeSats e nanosatélites com severas restrições de tamanho 
+%     e peso
+% \end{itemize}
 
-\section{Benchmarking de Plataformas no Mercado}
-\label{sec:benchmarking_plataformas}
+% \section{Benchmarking de Plataformas no Mercado}
+% \label{sec:benchmarking_plataformas}
 
-Esta seção apresenta uma análise comparativa quantitativa das principais 
-plataformas comerciais disponíveis para processamento hiperespectral, baseada 
-em métricas de desempenho, consumo energético, custo e adequação 
-para diferentes 
-tipos de aplicação.
+% Esta seção apresenta uma análise comparativa quantitativa das principais 
+% plataformas comerciais disponíveis para processamento hiperespectral, baseada 
+% em métricas de desempenho, consumo energético, custo e adequação 
+% para diferentes 
+% tipos de aplicação.
 
-\subsection{Metodologia de Benchmarking}
-\label{subsec:metodologia_benchmarking}
+% \subsection{Metodologia de Benchmarking}
+% \label{subsec:metodologia_benchmarking}
 
-Para garantir comparabilidade entre diferentes plataformas, estabelecemos 
-métricas padronizadas baseadas na literatura científica:
+% Para garantir comparabilidade entre diferentes plataformas, estabelecemos 
+% métricas padronizadas baseadas na literatura científica:
 
-\begin{itemize}
-    \item \textbf{Métricas de desempenho}: Throughput (fps), latência (ms), 
-    precisão de classificação (\%)
-    \item \textbf{Métricas energéticas}: Consumo de potência (W), eficiência 
-    energética (fps/W)
-    \item \textbf{Métricas de recursos}: Utilização de memória, ocupação de 
-    hardware, custo por unidade de desempenho
-    \item \textbf{Datasets de referência}: AVIRIS Indian Pines (614×512×224), 
-    Pavia University, Salinas Valley para comparabilidade
-\end{itemize}
+% \begin{itemize}
+%     \item \textbf{Métricas de desempenho}: Throughput (fps), latência (ms), 
+%     precisão de classificação (\%)
+%     \item \textbf{Métricas energéticas}: Consumo de potência (W), eficiência 
+%     energética (fps/W)
+%     \item \textbf{Métricas de recursos}: Utilização de memória, ocupação de 
+%     hardware, custo por unidade de desempenho
+%     \item \textbf{Datasets de referência}: AVIRIS Indian Pines (614×512×224), 
+%     Pavia University, Salinas Valley para comparabilidade
+% \end{itemize}
 
-\subsection{Análise Comparativa de Performance}
-\label{subsec:analise_comparativa}
+% \subsection{Análise Comparativa de Performance}
+% \label{subsec:analise_comparativa}
 
-Com base na literatura científica analisada, apresentamos benchmarks 
-representativos do estado da arte atual:
+% Com base na literatura científica analisada, apresentamos benchmarks 
+% representativos do estado da arte atual:
 
-\begin{table}[htbp]
-    \centering
-    \caption{Benchmarking de plataformas para processamento hiperespectral}
-    \label{tab:benchmarking_plataformas}
-    \small
-    \begin{tabular}{p{2.5cm}p{2.2cm}p{2.0cm}p{1.8cm}p{2.0cm}p{2.5cm}}
-    \toprule
-    \textbf{Plataforma} & \textbf{Throughput (fps)} & 
-    \textbf{Latência (ms)} & \textbf{Consumo (W)} & 
-    \textbf{Precisão (\%)} & \textbf{Aplicação Típica} \\
-    \midrule
-    \textbf{NVIDIA Jetson TX2} & 330 & <50 & 15 & 95+ & 
-    Compressão hiperespectral \\
-    & & & & & em UAVs \\
-    \midrule
-    \textbf{NVIDIA Jetson Orin} & >650 & <20 & 20 & 94.3 & CNNs otimizadas \\
-    & & & & & (TakuNet) \\
-    \midrule
-    \textbf{FPGA Xilinx} & 200+ & 0.1/pixel & 5-10 & 99.7 & Classificação SVM \\
-    \textbf{(implementação SVM)} & & & & & tempo real \\
-    \midrule
-    \textbf{Qualcomm QCS8250} & Multi-stream & <30 & 5-15 & N/A & 
-    Processamento \\
-    \textbf{(SightLine)} & HD video & & & & ISR embarcado \\
-    \midrule
-    \textbf{CPU x86 convencional} & 1-5 & >1000 & 45+ & 95+ & Referência \\
-    \textbf{(baseline)} & & & & & baseline \\
-    \bottomrule
-    \end{tabular}
-\end{table}
+% \begin{table}[htbp]
+%     \centering
+%     \caption{Benchmarking de plataformas para processamento hiperespectral}
+%     \label{tab:benchmarking_plataformas}
+%     \small
+%     \begin{tabular}{p{2.5cm}p{2.2cm}p{2.0cm}p{1.8cm}p{2.0cm}p{2.5cm}}
+%     \toprule
+%     \textbf{Plataforma} & \textbf{Throughput (fps)} & 
+%     \textbf{Latência (ms)} & \textbf{Consumo (W)} & 
+%     \textbf{Precisão (\%)} & \textbf{Aplicação Típica} \\
+%     \midrule
+%     \textbf{NVIDIA Jetson TX2} & 330 & <50 & 15 & 95+ & 
+%     Compressão hiperespectral \\
+%     & & & & & em UAVs \\
+%     \midrule
+%     \textbf{NVIDIA Jetson Orin} & >650 & <20 & 20 & 94.3 & CNNs otimizadas \\
+%     & & & & & (TakuNet) \\
+%     \midrule
+%     \textbf{FPGA Xilinx} & 200+ & 0.1/pixel & 5-10 & 99.7 & Classificação SVM \\
+%     \textbf{(implementação SVM)} & & & & & tempo real \\
+%     \midrule
+%     \textbf{Qualcomm QCS8250} & Multi-stream & <30 & 5-15 & N/A & 
+%     Processamento \\
+%     \textbf{(SightLine)} & HD video & & & & ISR embarcado \\
+%     \midrule
+%     \textbf{CPU x86 convencional} & 1-5 & >1000 & 45+ & 95+ & Referência \\
+%     \textbf{(baseline)} & & & & & baseline \\
+%     \bottomrule
+%     \end{tabular}
+% \end{table}
 
-\subsection{Trade-offs Performance vs Consumo}
-\label{subsec:tradeoffs_performance}
+% \subsection{Trade-offs Performance vs Consumo}
+% \label{subsec:tradeoffs_performance}
 
-A análise dos dados de benchmarking revela trade-offs fundamentais entre 
-diferentes métricas de desempenho:
+% A análise dos dados de benchmarking revela trade-offs fundamentais entre 
+% diferentes métricas de desempenho:
 
-\begin{itemize}
-    \item \textbf{Eficiência energética}: Implementações FPGA demonstram a 
-    melhor relação desempenho/consumo, com melhorias de até 43,5x em relação 
-    a implementações CPU convencionais
-    \item \textbf{Throughput máximo}: GPUs embarcadas como Jetson TX2 oferecem 
-    o maior throughput absoluto (330 fps) para aplicações que toleram maior 
-    consumo energético
-    \item \textbf{Latência mínima}: FPGAs com implementações customizadas 
-    atingem latências ultra-baixas (0,1ms/pixel), essenciais para aplicações 
-    de tempo real crítico
-    \item \textbf{Precisão vs recursos}: Arquiteturas como TakuNet demonstram 
-    que é possível manter alta precisão (94,3\%) com redução drástica de 
-    recursos computacionais (99\% menos parâmetros)
-\end{itemize}
+% \begin{itemize}
+%     \item \textbf{Eficiência energética}: Implementações FPGA demonstram a 
+%     melhor relação desempenho/consumo, com melhorias de até 43,5x em relação 
+%     a implementações CPU convencionais
+%     \item \textbf{Throughput máximo}: GPUs embarcadas como Jetson TX2 oferecem 
+%     o maior throughput absoluto (330 fps) para aplicações que toleram maior 
+%     consumo energético
+%     \item \textbf{Latência mínima}: FPGAs com implementações customizadas 
+%     atingem latências ultra-baixas (0,1ms/pixel), essenciais para aplicações 
+%     de tempo real crítico
+%     \item \textbf{Precisão vs recursos}: Arquiteturas como TakuNet demonstram 
+%     que é possível manter alta precisão (94,3\%) com redução drástica de 
+%     recursos computacionais (99\% menos parâmetros)
+% \end{itemize}
 
-\subsection{Adequação por Tipo de Aplicação}
-\label{subsec:adequacao_aplicacao}
+% \subsection{Adequação por Tipo de Aplicação}
+% \label{subsec:adequacao_aplicacao}
 
-Diferentes aplicações de sensoriamento remoto apresentam requisitos distintos, 
-orientando a seleção de plataformas adequadas:
+% Diferentes aplicações de sensoriamento remoto apresentam requisitos distintos, 
+% orientando a seleção de plataformas adequadas:
 
-\begin{itemize}
-    \item \textbf{UAVs de agricultura de precisão}: Plataformas como Jetson 
-    TX2 oferecem excelente balanço entre throughput, consumo e peso para 
-    mapeamento aéreo contínuo
-    \item \textbf{Aplicações de vigilância}: Sistemas como SightLine 4100-OEM 
-    com arquiteturas heterogêneas são adequados para processamento multi-stream 
-    com baixa latência
-    \item \textbf{Monitoramento ambiental de longo prazo}: Implementações 
-    FPGA de ultra-baixo consumo são ideais para sensores autônomos com 
-    operação contínua
-    \item \textbf{Aplicações espaciais}: Plataformas radiation-hardened 
-    com otimização energética extrema são essenciais para missões satelitais
-\end{itemize}
+% \begin{itemize}
+%     \item \textbf{UAVs de agricultura de precisão}: Plataformas como Jetson 
+%     TX2 oferecem excelente balanço entre throughput, consumo e peso para 
+%     mapeamento aéreo contínuo
+%     \item \textbf{Aplicações de vigilância}: Sistemas como SightLine 4100-OEM 
+%     com arquiteturas heterogêneas são adequados para processamento multi-stream 
+%     com baixa latência
+%     \item \textbf{Monitoramento ambiental de longo prazo}: Implementações 
+%     FPGA de ultra-baixo consumo são ideais para sensores autônomos com 
+%     operação contínua
+%     \item \textbf{Aplicações espaciais}: Plataformas radiation-hardened 
+%     com otimização energética extrema são essenciais para missões satelitais
+% \end{itemize}
 
 \subsection{Tendências Futuras}
 \label{subsec:tendencias_futuras}
@@ -1188,27 +1349,3 @@ futuro de plataformas hiperespectrais:
     otimizam simultaneamente precisão, consumo, latência e qualidade
 \end{itemize}
 
-\section{Métodos de Processamento de Dados Hiperespectrais}
-\label{sec:metodos_processamento}
-
-Esta seção apresentará os principais métodos e técnicas utilizados no 
-processamento de dados hiperespectrais, incluindo algoritmos de redução 
-dimensional, classificação espectral e extração de características. Os 
-métodos serão analisados considerando sua aplicabilidade em sistemas 
-embarcados e restrições de tempo real.
-
-Os métodos de processamento hiperespectral podem ser categorizados em 
-três grupos principais:
-
-\begin{itemize}
-    \item \textbf{Redução dimensional}: PCA, ICA, seleção de bandas 
-    espectrais
-    \item \textbf{Classificação espectral}: SVM, Random Forest, redes 
-    neurais convolucionais
-    \item \textbf{Extração de características}: Análise de componentes 
-    principais, filtros espaciais
-\end{itemize}
-
-Cada método apresenta trade-offs específicos entre precisão, velocidade 
-de processamento e consumo de recursos computacionais, sendo essencial 
-para o desenvolvimento de sistemas embarcados eficientes.
