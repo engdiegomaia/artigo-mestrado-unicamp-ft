@@ -508,6 +508,7 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathrm-bold.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathit-bold.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmb10.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmri10.tfm
 INPUT ../sections/desenvolvimento.tex
 INPUT C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/../sections/desenvolvimento.tex
 INPUT ../sections/desenvolvimento.tex
@@ -529,6 +530,7 @@ INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb

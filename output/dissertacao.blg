@@ -1,27 +1,17 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.blg'
-[230] biber-MSWIN64:342> INFO - === 
-[311] Biber.pm:421> INFO - Reading 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf'
-[439] Biber.pm:1002> INFO - Found 17 citekeys in bib section 0
-[454] Biber.pm:4487> INFO - Processing section 0
-[478] Biber.pm:4678> INFO - Looking for bibtex file 'bibliografia.bib' for section 0
-[535] bibtex.pm:1713> INFO - LaTeX decoding ...
-[581] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliografia.bib'
-[698] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
-[698] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[698] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'pt-BR'
-[698] Biber.pm:4313> INFO - No sort tailoring available for locale 'pt-BR'
-[706] bbl.pm:676> INFO - Writing 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl' with encoding 'UTF-8'
-[712] bbl.pm:779> INFO - Output to C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl
-[713] Biber.pm:132> WARN - Possible typo (case mismatch) between datasource keys: 'hwang2011' and 'Hwang2011' in file 'bibliografia.bib'
-[713] Biber.pm:132> WARN - I didn't find a database entry for 'Aasen2015' (section 0)
-[713] Biber.pm:132> WARN - I didn't find a database entry for 'SpecimFX10Datasheet' (section 0)
-[713] Biber.pm:132> WARN - I didn't find a database entry for 'ResononPikaLManual' (section 0)
-[713] Biber.pm:132> WARN - I didn't find a database entry for 'HeadwallNanoHyperspec' (section 0)
-[713] Biber.pm:132> WARN - I didn't find a database entry for 'CubertS185Manual' (section 0)
-[713] Biber.pm:132> WARN - I didn't find a database entry for 'FabryPerotReview' (section 0)
-[714] Biber.pm:132> WARN - I didn't find a database entry for 'Cubert2020' (section 0)
-[714] Biber.pm:132> WARN - I didn't find a database entry for 'FireflEYESE2021' (section 0)
-[714] Biber.pm:132> WARN - I didn't find a database entry for 'IMEC2017' (section 0)
-[714] Biber.pm:132> WARN - I didn't find a database entry for 'Li2019' (section 0)
-[714] Biber.pm:134> INFO - WARNINGS: 11
+[113] biber-MSWIN64:342> INFO - === 
+[150] Biber.pm:421> INFO - Reading 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bcf'
+[268] Biber.pm:1002> INFO - Found 4 citekeys in bib section 0
+[283] Biber.pm:4487> INFO - Processing section 0
+[294] Biber.pm:4678> INFO - Looking for bibtex file 'bibliografia.bib' for section 0
+[353] bibtex.pm:1713> INFO - LaTeX decoding ...
+[403] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliografia.bib'
+[475] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[475] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[475] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'pt-BR'
+[475] Biber.pm:4313> INFO - No sort tailoring available for locale 'pt-BR'
+[481] bbl.pm:676> INFO - Writing 'C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl' with encoding 'UTF-8'
+[487] bbl.pm:779> INFO - Output to C:/workspace/mestrado/artigo-mestrado-unicamp-ft/output/dissertacao.bbl
+[487] Biber.pm:132> WARN - Possible typo (case mismatch) between datasource keys: 'hwang2011' and 'Hwang2011' in file 'bibliografia.bib'
+[488] Biber.pm:134> INFO - WARNINGS: 1

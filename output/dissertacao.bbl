@@ -19,13 +19,157 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{Chen2024}{article}{}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=b45fc3561031fcbc2bf68efba71f7c36}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Yifan},
-           giveni={Y\bibinitperiod},
+    \entry{remotesensing-09-01110-v2}{article}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=39167ab419086a8a2fc2e6012c8a3ae9}{%
+           family={Adão},
+           familyi={A\bibinitperiod},
+           given={Telmo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=72ec5f8e5e276bafe4a10ebd65f63300}{%
+           family={Hruška},
+           familyi={H\bibinitperiod},
+           given={Jonatan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=379d76fb68d8353d2df7a3440ec52873}{%
+           family={Pádua},
+           familyi={P\bibinitperiod},
+           given={Luís},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4bd1913bc27174d95e6b173e14db70dd}{%
+           family={Bessa},
+           familyi={B\bibinitperiod},
+           given={Joaquim},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bda151a314df8c5ba1ee1019b52ea266}{%
+           family={Peres},
+           familyi={P\bibinitperiod},
+           given={Emanuel},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5672130f9e6dfd860ccd60a266b51ce5}{%
+           family={Morais},
+           familyi={M\bibinitperiod},
+           given={Raul},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0733a7e3d2454587d9eb3791036493f9}{%
+           family={Sousa},
+           familyi={S\bibinitperiod},
+           given={Joaquim\bibnamedelima J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{fullhash}{352e97fad2d636e4f239e27eec42580e}
+      \strng{fullhashraw}{352e97fad2d636e4f239e27eec42580e}
+      \strng{bibnamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authorbibnamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authornamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authorfullhash}{352e97fad2d636e4f239e27eec42580e}
+      \strng{authorfullhashraw}{352e97fad2d636e4f239e27eec42580e}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{number}{11}
+      \field{title}{Hyperspectral imaging: a review on UAV-based sensors, data processing and applications for agriculture and forestry}
+      \field{volume}{9}
+      \field{year}{2017}
+      \field{pages}{1110}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs9111110
+      \endverb
+    \endentry
+    \entry{Baptista2019}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4a4ae4a7a1c7fabfce0ccbfad86137d4}{%
+           family={BAPTISTA},
+           familyi={B\bibinitperiod},
+           given={Gustavo\bibnamedelimb Macedo\bibnamedelimb de\bibnamedelima Mello},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Rio de Janeiro}%
+      }
+      \list{publisher}{1}{%
+        {Interciência}%
+      }
+      \strng{namehash}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \strng{fullhash}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \strng{fullhashraw}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \strng{bibnamehash}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \strng{authorbibnamehash}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \strng{authornamehash}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \strng{authorfullhash}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \strng{authorfullhashraw}{4a4ae4a7a1c7fabfce0ccbfad86137d4}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{note}{E-book. Disponível em: https://plataforma.bvirtual.com.br. Acesso em: 03 set 2025.}
+      \field{title}{Sensoriamento remoto hiperespectral}
+      \field{year}{2019}
+    \endentry
+    \entry{Lorenzzetti2015}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=68047fd2fb71ebc079ef76c7a1087cf7}{%
+           family={LORENZZETTI},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {São Paulo}%
+      }
+      \list{publisher}{1}{%
+        {Blucher}%
+      }
+      \strng{namehash}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \strng{fullhash}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \strng{fullhashraw}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \strng{bibnamehash}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \strng{authorbibnamehash}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \strng{authornamehash}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \strng{authorfullhash}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \strng{authorfullhashraw}{68047fd2fb71ebc079ef76c7a1087cf7}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1}
+      \field{note}{E-book. Disponível em: https://plataforma.bvirtual.com.br. Acesso em: 03 set 2025.}
+      \field{title}{Princípios físicos de sensoriamento remoto}
+      \field{year}{2015}
+    \endentry
+    \entry{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}{article}{}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=4be62463c6bbd4876f8fceaf19e1edcf}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Zhen},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=300c264a6e226ecdca51ccf8e495dc6b}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Ming},
+           giveni={M\bibinitperiod},
            givenun=0}}%
         {{un=0,uniquepart=base,hash=b881686cdf68b52745dbcb6374b8008b}{%
            family={Liu},
@@ -33,329 +177,62 @@
            given={Xiaodong},
            giveni={X\bibinitperiod},
            givenun=0}}%
-        {{un=1,uniquepart=given,hash=c8cf19241225247d6d07dbf8a516b8ed}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Hao},
-           giveni={H\bibinitperiod},
-           givenun=1}}%
-      }
-      \strng{namehash}{a9aa37671cd50d83162c4538163d2ea8}
-      \strng{fullhash}{a9aa37671cd50d83162c4538163d2ea8}
-      \strng{fullhashraw}{a9aa37671cd50d83162c4538163d2ea8}
-      \strng{bibnamehash}{a9aa37671cd50d83162c4538163d2ea8}
-      \strng{authorbibnamehash}{a9aa37671cd50d83162c4538163d2ea8}
-      \strng{authornamehash}{a9aa37671cd50d83162c4538163d2ea8}
-      \strng{authorfullhash}{a9aa37671cd50d83162c4538163d2ea8}
-      \strng{authorfullhashraw}{a9aa37671cd50d83162c4538163d2ea8}
-      \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Geoscience and Remote Sensing Letters}
-      \field{note}{Early Access}
-      \field{title}{Lightweight 3D-CNN for Hyperspectral Classification on Edge Devices}
-      \field{volume}{21}
-      \field{year}{2024}
-      \field{pages}{1\bibrangedash 5}
-      \range{pages}{5}
-    \endentry
-    \entry{Diaz2019}{article}{}{}
-      \name{author}{5}{}{%
-        {{un=0,uniquepart=base,hash=8579c0d57dd72615e798a0ca4dc946e8}{%
-           family={Díaz},
-           familyi={D\bibinitperiod},
-           given={Miguel},
+        {{un=0,uniquepart=base,hash=2c73b61c0c57123ef817152de6d4dc0f}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Guangyuan},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95ba6e2f6365c69ebe646a919ca97e33}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Qingwang},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=770b397695ff4137f3692703ee19d4ae}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Mengmeng},
            giveni={M\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=b7ab37dc084e78ebf5400b7477d26173}{%
-           family={Guerra},
-           familyi={G\bibinitperiod},
-           given={Raquel},
-           giveni={R\bibinitperiod},
+        {{un=0,uniquepart=base,hash=99d069ea21acec1ec9dc1f83ee5c1b8b}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Guangpeng},
+           giveni={G\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=c6b50eb252c26213c9424e4ca88992b3}{%
-           family={Horstrand},
-           familyi={H\bibinitperiod},
-           given={Pablo},
-           giveni={P\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=31a865cba59d2fbfc3d95730b1b73109}{%
-           family={López},
-           familyi={L\bibinitperiod},
-           given={Sebastián},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=3cbf5d66b053485ac96eed0e582a77b9}{%
-           family={López},
-           familyi={L\bibinitperiod},
-           given={José\bibnamedelima F.},
-           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+        {{un=0,uniquepart=base,hash=fde7b3951a6950427c000bc94f2b4243}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Zhengchao},
+           giveni={Z\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{2b6a3a4fee56745670cea5e64086673b}
-      \strng{fullhash}{8f775f5eb6764da010da49d7e94dbe72}
-      \strng{fullhashraw}{8f775f5eb6764da010da49d7e94dbe72}
-      \strng{bibnamehash}{2b6a3a4fee56745670cea5e64086673b}
-      \strng{authorbibnamehash}{2b6a3a4fee56745670cea5e64086673b}
-      \strng{authornamehash}{2b6a3a4fee56745670cea5e64086673b}
-      \strng{authorfullhash}{8f775f5eb6764da010da49d7e94dbe72}
-      \strng{authorfullhashraw}{8f775f5eb6764da010da49d7e94dbe72}
-      \field{sortinit}{D}
-      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \strng{namehash}{5ca876172d3e73bbfd99ae2fc8bb938e}
+      \strng{fullhash}{84644c0479e2b6b1067adb9e98d0623d}
+      \strng{fullhashraw}{84644c0479e2b6b1067adb9e98d0623d}
+      \strng{bibnamehash}{5ca876172d3e73bbfd99ae2fc8bb938e}
+      \strng{authorbibnamehash}{5ca876172d3e73bbfd99ae2fc8bb938e}
+      \strng{authornamehash}{5ca876172d3e73bbfd99ae2fc8bb938e}
+      \strng{authorfullhash}{84644c0479e2b6b1067adb9e98d0623d}
+      \strng{authorfullhashraw}{84644c0479e2b6b1067adb9e98d0623d}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing}
-      \field{number}{8}
-      \field{title}{Real-Time Hyperspectral Image Compression Onto Embedded GPUs}
-      \field{volume}{12}
-      \field{year}{2019}
-      \field{pages}{2792\bibrangedash 2809}
-      \range{pages}{18}
-      \verb{doi}
-      \verb 10.1109/JSTARS.2019.2925436
-      \endverb
-    \endentry
-    \entry{Lim2022}{article}{}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=aa3b6593f95a72f9ad6ccd157fd8dab5}{%
-           family={Lim},
-           familyi={L\bibinitperiod},
-           given={Wai\bibnamedelima Lam},
-           giveni={W\bibinitperiod\bibinitdelim L\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=04d062e8fce9842e9474b29c898be454}{%
-           family={Ko},
-           familyi={K\bibinitperiod},
-           given={Chiu\bibnamedelima Choi},
-           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=0d469b8c109750a0f91857fd5de49144}{%
-           family={Ma},
-           familyi={M\bibinitperiod},
-           given={Kai-Kit},
-           giveni={K\bibinithyphendelim K\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \strng{fullhash}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \strng{fullhashraw}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \strng{bibnamehash}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \strng{authorbibnamehash}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \strng{authornamehash}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \strng{authorfullhash}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \strng{authorfullhashraw}{d2dbe2dffbf858bdc3023b787cd381d6}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Sensors}
-      \field{number}{24}
-      \field{title}{Feasibility of a Real-Time Embedded Hyperspectral Compressive Sensing Imaging System}
-      \field{volume}{22}
-      \field{year}{2022}
-      \field{pages}{9793}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.3390/s22249793
-      \endverb
-    \endentry
-    \entry{Martins2019}{article}{}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=5ba793d8be1b2d72ff2d9078edab8e4d}{%
-           family={Martins},
-           familyi={M\bibinitperiod},
-           given={Luciano},
-           giveni={L\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=3b23f958465cf5e52216b9b3341fa5a1}{%
-           family={Faria},
-           familyi={F\bibinitperiod},
-           given={Fabiano\bibnamedelima A.},
-           giveni={F\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=a163a7c9053893c0e111b26a135deb79}{%
-           family={Prado},
-           familyi={P\bibinitperiod},
-           given={Danilo\bibnamedelima R.},
-           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{c3a2117cf24c315805973edb2153b820}
-      \strng{fullhash}{c3a2117cf24c315805973edb2153b820}
-      \strng{fullhashraw}{c3a2117cf24c315805973edb2153b820}
-      \strng{bibnamehash}{c3a2117cf24c315805973edb2153b820}
-      \strng{authorbibnamehash}{c3a2117cf24c315805973edb2153b820}
-      \strng{authornamehash}{c3a2117cf24c315805973edb2153b820}
-      \strng{authorfullhash}{c3a2117cf24c315805973edb2153b820}
-      \strng{authorfullhashraw}{c3a2117cf24c315805973edb2153b820}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Real-Time Image Processing}
-      \field{title}{A real-time SVM-based hardware accelerator for hyperspectral images classification}
-      \field{volume}{16}
-      \field{year}{2019}
-      \field{pages}{1547\bibrangedash 1562}
-      \range{pages}{16}
-      \verb{doi}
-      \verb 10.1007/s11554-017-0719-9
-      \endverb
-    \endentry
-    \entry{Shin2020}{article}{}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=b2ace81962527f00f939e8febc867bd8}{%
-           family={Shin},
-           familyi={S\bibinitperiod},
-           given={Seonho},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=8eb67ff5e732d15beb9ff5fe16b948f7}{%
-           family={Song},
-           familyi={S\bibinitperiod},
-           given={Jaehyung},
-           giveni={J\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=fcd195e61655c07d1ac8e2953d6e2b5b}{%
-           family={Ryu},
-           familyi={R\bibinitperiod},
-           given={Changsu},
-           giveni={C\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{e2038535d0831367dc36f15dd10034df}
-      \strng{fullhash}{e2038535d0831367dc36f15dd10034df}
-      \strng{fullhashraw}{e2038535d0831367dc36f15dd10034df}
-      \strng{bibnamehash}{e2038535d0831367dc36f15dd10034df}
-      \strng{authorbibnamehash}{e2038535d0831367dc36f15dd10034df}
-      \strng{authornamehash}{e2038535d0831367dc36f15dd10034df}
-      \strng{authorfullhash}{e2038535d0831367dc36f15dd10034df}
-      \strng{authorfullhashraw}{e2038535d0831367dc36f15dd10034df}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Remote Sensing}
-      \field{number}{23}
-      \field{title}{UAV-Based Hyperspectral System with Onboard Processing}
-      \field{volume}{12}
-      \field{year}{2020}
-      \field{pages}{3897}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.3390/rs12233897
-      \endverb
-    \endentry
-    \entry{Ullah2020}{article}{}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=39853eaa1594aae12ad5a6bff1f3efb8}{%
-           family={Ullah},
-           familyi={U\bibinitperiod},
-           given={Safi},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=033e1978ba23825a196e6284416fcb4a}{%
-           family={Kumar},
-           familyi={K\bibinitperiod},
-           given={Naveen},
-           giveni={N\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=c43e14f46985bec56d21ea3720ba1132}{%
-           family={Kim},
-           familyi={K\bibinitperiod},
-           given={Dongsik},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \strng{fullhash}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \strng{fullhashraw}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \strng{bibnamehash}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \strng{authorbibnamehash}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \strng{authornamehash}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \strng{authorfullhash}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \strng{authorfullhashraw}{6b7d9bf2ee22b42ba9a663e92249025c}
-      \field{sortinit}{U}
-      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Access}
-      \field{title}{Benchmarking NVIDIA Jetson Platform for Deep Learning Applications}
-      \field{volume}{8}
-      \field{year}{2020}
-      \field{pages}{206326\bibrangedash 206339}
-      \range{pages}{14}
-      \verb{doi}
-      \verb 10.1109/ACCESS.2020.3037683
-      \endverb
-    \endentry
-    \entry{Wang2024}{article}{}{}
-      \name{author}{3}{}{%
-        {{un=1,uniquepart=given,hash=7b5e35e817f2f1ae70b06c851edbe304}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={Jianhua},
-           giveni={J\bibinitperiod},
-           givenun=1}}%
-        {{un=0,uniquepart=base,hash=bf0b951b76fb2e3bfd6e202e6cafc63f}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Qingshan},
-           giveni={Q\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=2a72f304d2bc33c9c92301f2dc3063b2}{%
-           family={Zhou},
-           familyi={Z\bibinitperiod},
-           given={Ming},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{de2647bbbbcbbca101939e807f923975}
-      \strng{fullhash}{de2647bbbbcbbca101939e807f923975}
-      \strng{fullhashraw}{de2647bbbbcbbca101939e807f923975}
-      \strng{bibnamehash}{de2647bbbbcbbca101939e807f923975}
-      \strng{authorbibnamehash}{de2647bbbbcbbca101939e807f923975}
-      \strng{authornamehash}{de2647bbbbcbbca101939e807f923975}
-      \strng{authorfullhash}{de2647bbbbcbbca101939e807f923975}
-      \strng{authorfullhashraw}{de2647bbbbcbbca101939e807f923975}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Transactions on Geoscience and Remote Sensing}
-      \field{note}{Early Access}
-      \field{title}{Energy-Efficient Band Selection Using Information Theory}
-      \field{volume}{62}
+      \field{title}{UAV hyperspectral remote sensing image classification: a systematic review}
+      \field{volume}{18}
       \field{year}{2024}
-      \field{pages}{1\bibrangedash 15}
-      \range{pages}{15}
+      \field{pages}{3099\bibrangedash 3124}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1109/JSTARS.2024.3514789
+      \endverb
     \endentry
   \enddatalist
-  \missing{Aasen2015}
-  \missing{Cubert2020}
-  \missing{CubertS185Manual}
-  \missing{FabryPerotReview}
-  \missing{FireflEYESE2021}
-  \missing{HeadwallNanoHyperspec}
-  \missing{IMEC2017}
-  \missing{Li2019}
-  \missing{ResononPikaLManual}
-  \missing{SpecimFX10Datasheet}
 \endrefsection
 \endinput
 

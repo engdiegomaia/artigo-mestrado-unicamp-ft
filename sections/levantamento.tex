@@ -550,37 +550,40 @@ serão abordados em detalhes nas próximas seções desta dissertação.
 Esta seção apresenta uma análise abrangente das tecnologias de imageamento 
 hiperespectral disponíveis, abordando desde os princípios de funcionamento 
 até as aplicações práticas. O foco está nos sistemas comerciais 
-representativos, 
-suas características técnicas e adequação para diferentes tipos de aplicação, 
-incluindo datasets públicos de referência utilizados para validação e 
-benchmarking.
+representativos, suas características técnicas e adequação para diferentes 
+tipos de aplicação, incluindo datasets públicos de referência utilizados 
+para validação e benchmarking. As discussões são embasadas em referências 
+bibliográficas relevantes, fornecendo um panorama atualizado do estado da arte.
 
 \subsection{Tipos de Sistemas de Imageamento Hiperespectral}
 \label{subsec:tipos_sistemas}
 
-\begin{itemize}
-    \item \textbf{Whiskbroom (varredura pontual)}: Sensores que capturam um 
-    pixel por vez, realizando varredura mecânica em duas dimensões
-    \item \textbf{Pushbroom (varredura linear)}: Capturam uma linha completa 
-    de pixels simultaneamente, sendo o tipo mais comum em plataformas aéreas 
-    e UAVs
-    \item \textbf{Snapshot (imageamento instantâneo)}: Adquirem toda a 
-    informação espacial e espectral em uma única exposição
-\end{itemize}
-
-\subsection{Principais Aplicações e Domínios de Uso}
-\label{subsec:aplicacoes_dominios}
+Os sistemas de imageamento hiperespectral podem ser categorizados segundo 
+diferentes modos de aquisição, cada um apresentando características 
+específicas quanto à velocidade, qualidade e adequação para diferentes 
+plataformas. Conforme estabelecido na literatura
+\cite{remotesensing-09-01110-v2},
+os principais modos de aquisição são:
 
 \begin{itemize}
-    \item \textbf{Agricultura de precisão}: Monitoramento de saúde vegetal, 
-    detecção de pragas e estresse hídrico
-    \item \textbf{Monitoramento ambiental}: Qualidade da água, detecção de 
-    poluentes e análise de cobertura vegetal
-    \item \textbf{Aplicações industriais}: Inspeção de qualidade, 
-    classificação de materiais e controle de processos
-    \item \textbf{Defesa e vigilância}: Detecção de alvos camuflados e 
-    identificação de materiais
+   
+    \item \textbf{Pushbroom (varredura linear)}: Captura uma linha completa 
+    de pixels simultaneamente, constituindo um cubo band-interleaved-by-line 
+    (BIL). É o tipo mais comum em plataformas aéreas e UAVs devido às 
+    características de tamanho compacto, baixo peso, operação simplificada 
+    e alta relação sinal/ruído \cite{remotesensing-09-01110-v2};
+    
+    
+    \item \textbf{Snapshot (imageamento instantâneo)}: Adquire toda a 
+    informação espacial e espectral em uma única exposição dentro de um 
+    único período de integração. Representa uma tecnologia em desenvolvimento 
+    que ainda carece de suporte para resoluções espaciais mais altas 
+    \cite{remotesensing-09-01110-v2}.
 \end{itemize}
+
+A seleção do sistema adequado deve considerar os requisitos específicos da 
+aplicação, incluindo resolução espacial e espectral, velocidade de aquisição, 
+portabilidade e condições operacionais da plataforma.
 
 \subsection{Sensores e Sistemas Comerciais Representativos}
 \label{subsec:sensores_sistemas}
@@ -589,10 +592,11 @@ O desenvolvimento de sistemas hiperespectrais comerciais tem apresentado
 avanços significativos nos últimos anos, com diferentes fabricantes 
 oferecendo soluções adaptadas para aplicações específicas em agricultura de 
 precisão, monitoramento ambiental, inspeção industrial e uso embarcado em 
-VANTs. Alguns fabricantes como Specim, Resonon e Cubert oferecem soluções 
-comerciais interessantes para essas aplicações. Na 
-Tabela~\ref{tab:comparativo_sensores_literatura} é apresentada uma análise 
-aprofundada dos principais sensores e sistemas disponíveis no mercado, suas 
+VANTs. Fabricantes como Specim, Resonon, Cubert e Headwall oferecem 
+soluções comerciais consolidadas para essas aplicações 
+\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}. 
+A Tabela~\ref{tab:comparativo_sensores_literatura} apresenta uma análise 
+detalhada dos principais sensores e sistemas disponíveis no mercado, suas 
 características técnicas e aplicações práticas.
 
 \begin{table}[htbp]
@@ -610,14 +614,16 @@ características técnicas e aplicações práticas.
     \textbf{Specim FX10} & Pushbroom & 400--1000~nm (VNIR) & 224 bandas 
     espectrais & Taxa: até 330 FPS & Agricultura UAV \\
     & & & 1024 pixels espaciais & Throughput: 144,375~MB/s & 
-    Validação em campo \\
+Validação em campo
+\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}
+\\
     \midrule
     \textbf{Resonon Pika L} & Pushbroom & 400--1000~nm & 281 bandas 
     espectrais & Taxa: 249 FPS & Aplicações em \\
     & & & 900 pixels espaciais & Throughput: 94,45~MB/s & 
     monitoramento de vegetação \\
     & & & 12 bits/pixel & Com binning 2$\times$: 47,22~MB/s & 
-    e qualidade da água \\
+    e qualidade da água \cite{remotesensing-09-01110-v2} \\
     \midrule
     \textbf{Resonon PIKA-NIR-320} & Pushbroom & 900--1700~nm (NIR-SWIR) & 
     164 bandas espectrais & Taxa: até 520~Hz & Detecção de resíduos \\
@@ -629,37 +635,43 @@ características técnicas e aplicações práticas.
     bandas espectrais & Taxa: até 25~Hz & Monitoramento de \\
     & & & 1~MP (1000$\times$1000) & 5 cubos hiperespectrais/s & 
     saúde vegetal e \\
-    & & & 12/14 bits & Throughput: 31,25~MB/s & análise agrícola \\
+    & & & 12/14 bits & Throughput: 31,25~MB/s & 
+análise agrícola
+\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}
+\\
     & & & & Consumo: 15~W, Peso: 490~g & \\
     \midrule
     \textbf{Headwall Nano-Hyperspec} & Pushbroom & 400--1000~nm & 270 
     bandas espectrais & Taxa: 300 FPS & Pequenas plataformas \\
     & & & 640 pixels espaciais & Throughput: 103,68~MB/s & 
     UAV, excelente \\
-    & & & & Armazenamento: 480~GB & adaptabilidade \\
+    & & & & Armazenamento: 480~GB & 
+    adaptabilidade \cite{remotesensing-09-01110-v2} \\
     \midrule
     \textbf{Sistemas baseados em} & Snapshot & Variável & 150+ bandas & 
     Performance variável & Tecnologia IMEC \\
     \textbf{Filtros Fabry-Pérot} & (Captura única) & conforme filtros & 
-    Filtros sintonizáveis & dependente da aplicação & Imageamento 
-    instantâneo \\
+    Filtros sintonizáveis & dependente da aplicação & 
+    Imageamento instantâneo \\
     \bottomrule
     \end{tabular}
-    \end{table}
+\end{table}
 
-Vimos na Seção~\ref{subsec:tipos_sistemas} a classificação dos sistemas de 
-imageamento hiperespectral quanto à tecnologia de aquisição. Entre os sistemas 
-do tipo pushbroom, destacam-se o Specim FX10, amplamente empregado em 
-aplicações embarcadas em UAVs devido ao seu baixo peso e alta taxa de 
-aquisição, o Resonon Pika L, reconhecido por sua robustez em monitoramento 
-de vegetação e qualidade da água, e o Headwall Nano-Hyperspec, notável pela 
-adaptabilidade a plataformas compactas. No segmento dos sistemas snapshot, 
-que realizam a captura simultânea de toda a cena espectral e espacial, 
-sobressaem o Cubert S185 FireflEYE SE e soluções baseadas em filtros 
-Fabry-Pérot, ambos voltados para aplicações que demandam imageamento 
-instantâneo e portabilidade. A escolha entre esses modelos está diretamente 
-relacionada ao tipo de aplicação, requisitos de portabilidade e necessidades 
-de processamento em tempo real.
+Conforme estabelecido na classificação apresentada na 
+Subseção~\ref{subsec:tipos_sistemas}, os sistemas hiperespectrais 
+dividem-se em diferentes tecnologias de aquisição. Entre os sistemas do tipo 
+pushbroom, destacam-se o Specim FX10, amplamente empregado em aplicações 
+embarcadas em UAVs devido ao seu baixo peso e alta taxa de aquisição, o 
+Resonon Pika L, reconhecido por sua robustez em monitoramento de vegetação 
+e qualidade da água, e o Headwall Nano-Hyperspec, notável pela 
+adaptabilidade a plataformas compactas 
+\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}. 
+No segmento dos sistemas snapshot, que realizam a captura simultânea de toda 
+a cena espectral e espacial, sobressaem o Cubert S185 FireflEYE SE e 
+soluções baseadas em filtros Fabry-Pérot, ambos voltados para aplicações 
+que demandam imageamento instantâneo e portabilidade. A escolha entre esses 
+modelos está diretamente relacionada ao tipo de aplicação, requisitos de 
+portabilidade e necessidades de processamento em tempo real.
 
 Um dos principais desafios no uso desses sistemas é o gerenciamento do alto 
 volume de dados gerados. Os sensores hiperespectrais produzem throughput na 
@@ -669,41 +681,6 @@ local com capacidade e velocidade adequadas. Para ilustrar a magnitude desse
 desafio, sistemas operando em capacidade máxima podem gerar aproximadamente 
 4,15~TB de dados em 8 horas de operação contínua, ou até 6~GB por minuto 
 quando embarcados em VANTs.
-
-\subsection{Estrutura e Dimensionalidade dos Dados}
-\label{subsec:estrutura_dados}
-
-Os dados hiperespectrais são organizados em estruturas tridimensionais 
-denominadas cubos hiperespectrais, onde duas dimensões representam 
-informações espaciais (x, y) e a terceira dimensão contém informações 
-espectrais ($\lambda$). Esta organização permite a análise simultânea de 
-características espaciais e espectrais dos objetos imageados.
-
-\subsection{Datasets Públicos de Referência}
-\label{subsec:datasets_publicos}
-
-Os datasets públicos constituem recursos fundamentais para validação e 
-comparação de algoritmos de processamento hiperespectral. Os principais 
-datasets utilizados na literatura científica incluem:
-
-\begin{itemize}
-    \item \textbf{AVIRIS Indian Pines}: Dataset padrão de 614×512×224 bandas 
-    para classificação em agricultura de precisão, amplamente utilizado para 
-    benchmarking de algoritmos de classificação
-    \item \textbf{Pavia University}: Dataset urbano de 610×340×103 bandas, 
-    ideal para validação de técnicas de segmentação e classificação em 
-    ambiente urbano
-    \item \textbf{Salinas Valley}: Dataset agrícola de 512×217×224 bandas, 
-    focado em aplicações de monitoramento de cultivos e análise de vegetação
-    \item \textbf{Kennedy Space Center}: Dataset de 512×614×176 bandas para 
-    aplicações de classificação de cobertura terrestre em ambiente costeiro
-    \item \textbf{Botswana}: Dataset de 1476×256×145 bandas para classificação 
-    de vegetação em savana africana, importante para estudos de biodiversidade
-\end{itemize}
-
-Estes datasets servem como benchmarks padrão na literatura, permitindo 
-comparação sistemática de algoritmos e validação de técnicas de otimização 
-em sistemas embarcados.
 
 \section{Técnicas de Processamento de Imagens Hiperespectrais}
 \label{sec:tecnicas_processamento}

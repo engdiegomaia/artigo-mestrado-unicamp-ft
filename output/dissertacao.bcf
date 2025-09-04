@@ -2482,6 +2482,15 @@
     <bcf:citekey order="13" intorder="1">Baptista2019</bcf:citekey>
     <bcf:citekey order="14" intorder="1">Baptista2019</bcf:citekey>
     <bcf:citekey order="15" intorder="1">Lorenzzetti2015</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">remotesensing-09-01110-v2</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">remotesensing-09-01110-v2</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">remotesensing-09-01110-v2</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">remotesensing-09-01110-v2</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">remotesensing-09-01110-v2</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
