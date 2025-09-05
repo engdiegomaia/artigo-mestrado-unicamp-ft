@@ -50,7 +50,7 @@ artigo-mestrado-unicamp-ft/
 │   ├── tese.tex                    # Documento principal
 │   ├── introducao.tex              # Capítulo: Introdução
 │   ├── levantamento.tex            # Capítulo: Estado da Arte
-│   ├── desenvolvimento.tex         # Capítulo: Metodologia
+│   ├── metodologia.tex             # Capítulo: Metodologia
 │   ├── resultados.tex              # Capítulo: Resultados
 │   ├── discussao.tex               # Capítulo: Discussão
 │   ├── conclusoes.tex              # Capítulo: Conclusões

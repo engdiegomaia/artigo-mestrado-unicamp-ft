@@ -94,11 +94,11 @@ destacam-se as seguintes faixas:
     em aplicações específicas.
     \item[Visível:] 0,4 a 0,7~$\mu$m, correspondente à radiação percebida pelo
     olho humano. Subdivisões usuais:
-    \begin{itemize}
+\begin{itemize}
         \item Azul: 0,4---0,5~$\mu$m
         \item Verde: 0,5---0,6~$\mu$m
         \item Vermelho: 0,6---0,7~$\mu$m
-    \end{itemize}
+\end{itemize}
     \item[Infravermelho próximo (NIR):] 0,7 a 1,3~$\mu$m. Importante para
     estudos de vegetação devido à alta reflectância da clorofila.
     \item[Infravermelho de ondas curtas (SWIR):] 1,3 a 3,0~$\mu$m. Fundamental
@@ -655,7 +655,7 @@ análise agrícola
     Imageamento instantâneo \\
     \bottomrule
     \end{tabular}
-\end{table}
+    \end{table}
 
 Conforme estabelecido na classificação apresentada na 
 Subseção~\ref{subsec:tipos_sistemas}, os sistemas hiperespectrais 
@@ -1180,172 +1180,7 @@ limitações individuais:
     \cite{Vaithianathan2025}
 \end{itemize}
 
-\section{Plataformas de Processamento para Sensoriamento Remoto}
-\label{sec:plataformas_sensoriamento}
 
-Esta seção apresenta as principais plataformas computacionais utilizadas 
-especificamente para processamento hiperespectral em aplicações de 
-sensoriamento 
-remoto, com foco em sistemas embarcados para UAVs, satélites CubeSat e 
-plataformas terrestres móveis.
 
-\subsection{Sistemas Embarcados Especializados}
-\label{subsec:sistemas_especializados}
 
-Plataformas desenvolvidas especificamente para aplicações de sensoriamento 
-remoto e processamento hiperespectral:
-
-\begin{itemize}
-    \item \textbf{SightLine Applications 4100-OEM}: Sistema baseado em 
-    Qualcomm QCS8250 para aplicações ISR (Intelligence, Surveillance, 
-    Reconnaissance), demonstrando arquitetura heterogênea comercial viável
-    \item \textbf{Plataformas FPGA embarcadas}: Sistemas como Xilinx Zynq 
-    UltraScale+ que combinam ARM cores com FPGA fabric, adequados para 
-    implementações customizadas de alta eficiência
-    \item \textbf{Single-board computers especializados}: Plataformas como 
-    RaspberryPi com aceleradores computacionais para aplicações de baixo 
-    custo e consumo ultra-baixo
-\end{itemize}
-
-% \subsection{Plataformas para Aplicações Espaciais}
-% \label{subsec:plataformas_espaciais}
-
-% Sistemas especializados para aplicações satelitais com restrições extremas 
-% de radiação, temperatura e consumo energético:
-
-% \begin{itemize}
-%     \item \textbf{Processadores radiation-hardened}: Componentes especialmente 
-%     projetados para resistir à radiação espacial, essenciais para missões 
-%     de longa duração
-%     \item \textbf{Arquiteturas de tolerância a falhas}: Sistemas redundantes 
-%     e técnicas de correção de erro para garantir confiabilidade em ambiente 
-%     espacial
-%     \item \textbf{Otimização energética extrema}: Algoritmos e arquiteturas 
-%     otimizadas para operação com orçamentos energéticos da ordem de watts 
-%     ou menos
-%     \item \textbf{Compactação e miniaturização}: Sistemas adequados para 
-%     integração em CubeSats e nanosatélites com severas restrições de tamanho 
-%     e peso
-% \end{itemize}
-
-% \section{Benchmarking de Plataformas no Mercado}
-% \label{sec:benchmarking_plataformas}
-
-% Esta seção apresenta uma análise comparativa quantitativa das principais 
-% plataformas comerciais disponíveis para processamento hiperespectral, baseada 
-% em métricas de desempenho, consumo energético, custo e adequação 
-% para diferentes 
-% tipos de aplicação.
-
-% \subsection{Metodologia de Benchmarking}
-% \label{subsec:metodologia_benchmarking}
-
-% Para garantir comparabilidade entre diferentes plataformas, estabelecemos 
-% métricas padronizadas baseadas na literatura científica:
-
-% \begin{itemize}
-%     \item \textbf{Métricas de desempenho}: Throughput (fps), latência (ms), 
-%     precisão de classificação (\%)
-%     \item \textbf{Métricas energéticas}: Consumo de potência (W), eficiência 
-%     energética (fps/W)
-%     \item \textbf{Métricas de recursos}: Utilização de memória, ocupação de 
-%     hardware, custo por unidade de desempenho
-%     \item \textbf{Datasets de referência}: AVIRIS Indian Pines (614×512×224), 
-%     Pavia University, Salinas Valley para comparabilidade
-% \end{itemize}
-
-% \subsection{Análise Comparativa de Performance}
-% \label{subsec:analise_comparativa}
-
-% Com base na literatura científica analisada, apresentamos benchmarks 
-% representativos do estado da arte atual:
-
-% \begin{table}[htbp]
-%     \centering
-%     \caption{Benchmarking de plataformas para processamento hiperespectral}
-%     \label{tab:benchmarking_plataformas}
-%     \small
-%     \begin{tabular}{p{2.5cm}p{2.2cm}p{2.0cm}p{1.8cm}p{2.0cm}p{2.5cm}}
-%     \toprule
-%     \textbf{Plataforma} & \textbf{Throughput (fps)} & 
-%     \textbf{Latência (ms)} & \textbf{Consumo (W)} & 
-%     \textbf{Precisão (\%)} & \textbf{Aplicação Típica} \\
-%     \midrule
-%     \textbf{NVIDIA Jetson TX2} & 330 & <50 & 15 & 95+ & 
-%     Compressão hiperespectral \\
-%     & & & & & em UAVs \\
-%     \midrule
-%     \textbf{NVIDIA Jetson Orin} & >650 & <20 & 20 & 94.3 & CNNs otimizadas \\
-%     & & & & & (TakuNet) \\
-%     \midrule
-%     \textbf{FPGA Xilinx} & 200+ & 0.1/pixel & 5-10 & 99.7 & Classificação SVM \\
-%     \textbf{(implementação SVM)} & & & & & tempo real \\
-%     \midrule
-%     \textbf{Qualcomm QCS8250} & Multi-stream & <30 & 5-15 & N/A & 
-%     Processamento \\
-%     \textbf{(SightLine)} & HD video & & & & ISR embarcado \\
-%     \midrule
-%     \textbf{CPU x86 convencional} & 1-5 & >1000 & 45+ & 95+ & Referência \\
-%     \textbf{(baseline)} & & & & & baseline \\
-%     \bottomrule
-%     \end{tabular}
-% \end{table}
-
-% \subsection{Trade-offs Performance vs Consumo}
-% \label{subsec:tradeoffs_performance}
-
-% A análise dos dados de benchmarking revela trade-offs fundamentais entre 
-% diferentes métricas de desempenho:
-
-% \begin{itemize}
-%     \item \textbf{Eficiência energética}: Implementações FPGA demonstram a 
-%     melhor relação desempenho/consumo, com melhorias de até 43,5x em relação 
-%     a implementações CPU convencionais
-%     \item \textbf{Throughput máximo}: GPUs embarcadas como Jetson TX2 oferecem 
-%     o maior throughput absoluto (330 fps) para aplicações que toleram maior 
-%     consumo energético
-%     \item \textbf{Latência mínima}: FPGAs com implementações customizadas 
-%     atingem latências ultra-baixas (0,1ms/pixel), essenciais para aplicações 
-%     de tempo real crítico
-%     \item \textbf{Precisão vs recursos}: Arquiteturas como TakuNet demonstram 
-%     que é possível manter alta precisão (94,3\%) com redução drástica de 
-%     recursos computacionais (99\% menos parâmetros)
-% \end{itemize}
-
-% \subsection{Adequação por Tipo de Aplicação}
-% \label{subsec:adequacao_aplicacao}
-
-% Diferentes aplicações de sensoriamento remoto apresentam requisitos distintos, 
-% orientando a seleção de plataformas adequadas:
-
-% \begin{itemize}
-%     \item \textbf{UAVs de agricultura de precisão}: Plataformas como Jetson 
-%     TX2 oferecem excelente balanço entre throughput, consumo e peso para 
-%     mapeamento aéreo contínuo
-%     \item \textbf{Aplicações de vigilância}: Sistemas como SightLine 4100-OEM 
-%     com arquiteturas heterogêneas são adequados para processamento multi-stream 
-%     com baixa latência
-%     \item \textbf{Monitoramento ambiental de longo prazo}: Implementações 
-%     FPGA de ultra-baixo consumo são ideais para sensores autônomos com 
-%     operação contínua
-%     \item \textbf{Aplicações espaciais}: Plataformas radiation-hardened 
-%     com otimização energética extrema são essenciais para missões satelitais
-% \end{itemize}
-
-\subsection{Tendências Futuras}
-\label{subsec:tendencias_futuras}
-
-A análise do mercado atual indica tendências importantes para o desenvolvimento 
-futuro de plataformas hiperespectrais:
-
-\begin{itemize}
-    \item \textbf{Integração de NPUs}: Crescente incorporação de unidades 
-    de processamento neural dedicadas para acelerar algoritmos de deep learning
-    \item \textbf{Arquiteturas heterogêneas}: Evolução para sistemas que 
-    combinam múltiplos tipos de processadores em arquiteturas otimizadas
-    \item \textbf{Edge computing inteligente}: Desenvolvimento de frameworks 
-    para processamento distribuído e colaborativo entre múltiplas plataformas
-    \item \textbf{Otimização multi-objetivo}: Algoritmos avançados que 
-    otimizam simultaneamente precisão, consumo, latência e qualidade
-\end{itemize}
 

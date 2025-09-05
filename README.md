@@ -91,7 +91,7 @@ artigo-mestrado-unicamp-ft/
 │   ├── abstract.tex                # Abstract em inglês
 │   ├── introducao.tex              # Capítulo: Introdução
 │   ├── levantamento.tex            # Capítulo: Estado da Arte
-│   ├── desenvolvimento.tex         # Capítulo: Metodologia
+│   ├── metodologia.tex             # Capítulo: Metodologia
 │   ├── conclusoes.tex              # Capítulo: Conclusões
 │   └── agradecimentos.tex          # Agradecimentos
 │
@@ -455,5 +455,40 @@ Validar e quantificar o potencial de integração de técnicas comprovadas de ot
 
 ---
 
-**Última atualização**: 2025-01-03  
+**Última atualização**: 2025-09-03  
 **Próxima revisão prevista**: Ao completar Etapa 2 (Reestruturação Teórica)
+
+## 🔧 Modificações Técnicas Recentes (2025-09-03)
+
+### ✅ **Correção de Símbolos Matemáticos nas Equações**
+- **Problema identificado**: Símbolos de multiplicação inconsistentes nas equações
+  - Apareciam como círculo com ponto central (`\cdot`)
+  - Apareciam como símbolos estranhos (`Î`, `☉`, `Ì`)
+  - Símbolo `\times` renderizando incorretamente como `Ì` (I com acento grave)
+- **Solução implementada**: 
+  - Padronizado uso do símbolo de multiplicação (`\cdot`) para equações físicas
+  - Mantido `\times` apenas para notação científica (expoentes)
+  - Corrigidas as equações de ondas eletromagnéticas e equação de Planck
+  - Mantida consistência em todo o documento
+- **Equações corrigidas**:
+  - `c = λ · f` (velocidade da luz)
+  - `E = h · f = hc/λ` (equação de Planck)
+  - Unidades da constante de Planck: `J·s`
+
+### ✅ **Seção "Tendências Futuras" - Expansão e Detalhamento**
+- **Melhoria implementada**: Expansão significativa da seção de tendências futuras
+- **Conteúdo adicionado**:
+  - Análise quantitativa baseada nos 28 artigos examinados
+  - Percentuais específicos sobre NPUs (18% dos artigos recentes)
+  - Lacunas identificadas em arquiteturas heterogêneas (apenas 21% exploram CPU+GPU+FPGA)
+  - Gargalos de memory bandwidth (67% dos sistemas GPU)
+  - Oportunidades de codesign sistemático (11% da literatura)
+- **Resultado**: Seção mais robusta e fundamentada em dados quantitativos
+
+### ✅ **Tabela 2.1 - Otimização para Formato Paisagem**
+- **Problema resolvido**: Tabela muito larga para formato retrato
+- **Solução implementada**: 
+  - Adicionado pacote `pdflscape` para orientação paisagem
+  - Tabela envolvida com ambiente `\begin{landscape}...\end{landscape}`
+  - Espaçamento das colunas otimizado para aproveitar espaço horizontal
+- **Resultado**: Tabela agora exibida corretamente em orientação paisagem com melhor legibilidade
