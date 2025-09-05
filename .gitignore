@@ -18,6 +18,7 @@ compilar.py
 # Arquivos de compilação LaTeX
 compilacao/
 dist/*.pdf
+output/
 
 # Arquivos temporários do sistema
 .DS_Store

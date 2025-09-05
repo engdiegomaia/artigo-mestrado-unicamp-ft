@@ -5,39 +5,44 @@
 \chapter*{Resumo}
 \addcontentsline{toc}{chapter}{Resumo}
 
-% O processamento hiperespectral embarcado representa um desafio significativo
-% devido às limitações energéticas e de latência impostas pelos sistemas móveis e
-% autônomos. Esta dissertação apresenta um estudo sistemático sobre estratégias de
-% otimização computacional para sistemas heterogêneos (CPU+GPU+FPGA) aplicados ao
-% processamento hiperespectral em tempo real.
+O processamento de imagens hiperespectrais em sistemas embarcados representa 
+um dos desafios computacionais mais complexos da atualidade, exigindo 
+conciliação entre requisitos aparentemente conflitantes de alta performance, 
+baixa latência e eficiência energética em plataformas com severas restrições 
+de recursos. Esta dissertação apresenta metodologia sistemática de investigação 
+comparativa para otimização computacional de processamento hiperespectral 
+embarcado, focando na análise de trade-offs entre diferentes arquiteturas 
+heterogêneas e técnicas de otimização através de abordagem exploratória-comparativa 
+baseada em simulação e modelagem teórica.
 
-% A pesquisa foi estruturada em duas fases distintas: a Fase 1 consiste na análise
-% sistemática do estado da arte, catalogando 25 trabalhos científicos e
-% identificando técnicas comprovadas de otimização; a Fase 2, planejada para o
-% pós-qualificação, envolverá o desenvolvimento experimental e validação prática
-% das soluções propostas.
+A pesquisa adota abordagem metodológica inovadora que privilegia análise 
+teórica e simulada sobre implementação física, justificada pela necessidade 
+de investigar sistematicamente múltiplas alternativas arquiteturais sob 
+condições controladas. A metodologia estrutura-se em oito componentes principais: 
+catalogação sistemática de técnicas de otimização FPGA e GPU; modelagem 
+teórica comparativa de performance; framework de simulação integrado; estudo 
+comparativo cross-platform; protocolo de benchmarking padronizado; análise 
+multi-critério baseada em metodologia AHP e análise de Pareto; design space 
+exploration para identificação de configurações ótimas; e síntese de arquitetura 
+heterogênea otimizada.
 
-% A análise sistemática revelou lacunas significativas na literatura atual: 96\%
-% dos trabalhos focam em técnicas isoladas, 88\% reportam métricas parciais e 80\%
-% utilizam validação sintética. Como principal contribuição da Fase 1, foi
-% desenvolvido um framework arquitetural conceitual que integra técnicas de
-% compressive sensing, seleção espectral EMCR (Extreme Learning Machine with
-% Correlation Removal) e codesign hardware/software.
+A revisão sistemática de 25 trabalhos publicados entre 2011-2024 revelou 
+lacuna metodológica significativa: apenas 4\% dos estudos abordam sistemas 
+completos integrados, enquanto 96\% focam em técnicas isoladas ou otimizações 
+específicas de plataforma. Esta fragmentação impede análise sistemática de 
+trade-offs e identificação de soluções ótimas para cenários específicos de 
+aplicação. Como principal contribuição, desenvolve-se framework metodológico 
+unificado que permite comparação objetiva entre diferentes abordagens 
+arquiteturais considerando múltiplos critérios de performance.
 
-% A configuração ótima identificada consiste em: (1) FPGA Zynq UltraScale+ para
-% correção e seleção EMCR, proporcionando 80\% de redução de dados com latência
-% <5ms e consumo <5W; (2) GPU Jetson Orin para processamento com compressive
-% sensing/PCA, oferecendo 50-70\% de redução adicional com <10ms e <10W; (3) CPU
-% ARM Cortex-A78 para classificação final utilizando CNNs leves ou SVM, mantendo
-% <5ms e <5W.
-
-% Os resultados teóricos indicam potencial para atingir throughput >100 fps,
-% latência total <50ms, consumo <15W e precisão >95\%. O speedup estimado é de
-% 18-21x comparado ao baseline de CPU, com eficiência energética superior a 20x.
-% Estas métricas estabelecem uma base sólida para a validação experimental da Fase
-% 2, contribuindo para o avanço do processamento hiperespectral embarcado em
-% aplicações críticas como agricultura de precisão, monitoramento ambiental e
-% sistemas UAV autônomos.
+A metodologia proposta estabelece base científica rigorosa para investigação 
+de sistemas hiperespectrais embarcados, preenchendo lacuna identificada na 
+literatura e proporcionando framework reprodutível para pesquisas futuras. 
+Os resultados esperados incluem identificação quantitativa de trade-offs 
+fundamentais, proposição de arquitetura heterogênea otimizada baseada em 
+análise sistemática, e desenvolvimento de recomendações práticas para seleção 
+de técnicas segundo requisitos específicos de aplicação em agricultura de 
+precisão, monitoramento ambiental e sistemas UAV autônomos.
 
 \textbf{Palavras-chave:} 
-% Processamento Hiperespectral, Sistemas Heterogêneos, Otimização Energética, Compressive Sensing, Codesign Hardware/Software, Sistemas Embarcados.
+Processamento Hiperespectral, Arquiteturas Heterogêneas, Metodologia Comparativa, Otimização Computacional, Análise Multi-critério, Sistemas Embarcados, FPGA, GPU.

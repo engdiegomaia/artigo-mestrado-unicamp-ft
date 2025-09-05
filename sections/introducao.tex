@@ -1,20 +1,25 @@
 % Capítulo 1: Introdução
 \chapter{Introdução}\label{chp:introducao}
 
-Este capítulo apresenta o contexto, motivação e estrutura geral desta 
-dissertação de mestrado, que investiga estratégias para otimização 
-computacional visando eficiência energética e latência no processamento 
-hiperespectral embarcado. A introdução está organizada em seis seções 
-principais: contexto e motivação que fundamentam a relevância da pesquisa; 
-problema de pesquisa e perguntas norteadoras que delimitam o escopo de 
-investigação; objetivos geral e específicos que estabelecem as metas a serem 
-alcançadas; hipóteses de trabalho que orientam a investigação científica; 
-contribuições esperadas que justificam a relevância acadêmica e prática; e 
-organização do trabalho que estrutura a apresentação dos resultados. O 
-capítulo estabelece a base conceitual para compreensão dos desafios 
-computacionais do processamento hiperespectral em sistemas embarcados e 
-apresenta a abordagem metodológica adotada para investigação sistemática de 
-técnicas de otimização em arquiteturas heterogêneas.
+O imageamento hiperespectral representa uma das tecnologias de sensoriamento 
+remoto mais avançadas da atualidade, capaz de capturar informações detalhadas 
+sobre a composição química e física de objetos e superfícies através da 
+aquisição simultânea de centenas de bandas espectrais estreitas. Esta 
+capacidade de caracterização espectral detalhada possibilita aplicações 
+revolucionárias em agricultura de precisão, monitoramento ambiental, defesa, 
+mineração e saúde. Contudo, a implementação prática destas aplicações em 
+sistemas autônomos e móveis enfrenta um desafio crítico: o processamento 
+eficiente de enormes volumes de dados hiperespectrais em plataformas com 
+severas restrições de energia, peso e tamanho. Esta dissertação investiga 
+este problema fundamental, propondo uma abordagem metodológica inovadora para 
+análise comparativa e síntese de arquiteturas heterogêneas otimizadas que 
+conciliem requisitos aparentemente conflitantes de alta performance, baixa 
+latência e eficiência energética. A pesquisa aborda uma lacuna significativa 
+identificada na literatura científica atual - a ausência de frameworks 
+sistemáticos para integração e avaliação de técnicas de otimização em sistemas 
+hiperespectrais embarcados - e propõe metodologia estruturada para investigação 
+de trade-offs fundamentais e síntese de soluções arquiteturais otimizadas para 
+diferentes cenários de aplicação.
 
 \section{Contexto e motivação}\label{sec:contexto_motivacao}
 
@@ -26,7 +31,11 @@ aquisição simultânea de informações espaciais e espectrais em centenas de
 bandas estreitas do espectro eletromagnético, geram volumes de dados que podem 
 exceder centenas de megabytes por frame, exigindo capacidade de processamento 
 que tradicionalmente só era disponível em sistemas computacionais de grande 
-porte \cite{Lorenzzetti2015}.
+porte \cite{Lorenzzetti2015}. Cada pixel de uma imagem hiperespectral contém 
+uma assinatura espectral completa que permite identificação e caracterização 
+precisa de materiais, substâncias e condições biológicas com aplicações que 
+vão desde detecção de estresse hídrico em culturas agrícolas até identificação 
+de minerais em exploração remota.
 
 A crescente demanda por aplicações autônomas em agricultura de precisão, 
 monitoramento ambiental, vigilância e defesa tem impulsionado o desenvolvimento 
