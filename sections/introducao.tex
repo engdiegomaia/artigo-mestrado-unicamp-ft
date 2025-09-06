@@ -1,338 +1,302 @@
 % Capítulo 1: Introdução
 \chapter{Introdução}\label{chp:introducao}
 
-O imageamento hiperespectral representa uma das tecnologias de sensoriamento 
-remoto mais avançadas da atualidade, capaz de capturar informações detalhadas 
-sobre a composição química e física de objetos e superfícies através da 
-aquisição simultânea de centenas de bandas espectrais estreitas. Esta 
-capacidade de caracterização espectral detalhada possibilita aplicações 
-revolucionárias em agricultura de precisão, monitoramento ambiental, defesa, 
-mineração e saúde. Contudo, a implementação prática destas aplicações em 
-sistemas autônomos e móveis enfrenta um desafio crítico: o processamento 
-eficiente de enormes volumes de dados hiperespectrais em plataformas com 
-severas restrições de energia, peso e tamanho. Esta dissertação investiga 
-este problema fundamental, propondo uma abordagem metodológica inovadora para 
-análise comparativa e síntese de arquiteturas heterogêneas otimizadas que 
-conciliem requisitos aparentemente conflitantes de alta performance, baixa 
-latência e eficiência energética. A pesquisa aborda uma lacuna significativa 
-identificada na literatura científica atual - a ausência de frameworks 
-sistemáticos para integração e avaliação de técnicas de otimização em sistemas 
-hiperespectrais embarcados - e propõe metodologia estruturada para investigação 
-de trade-offs fundamentais e síntese de soluções arquiteturais otimizadas para 
+O imageamento hiperespectral desenvolveu-se nas últimas décadas como uma 
+tecnologia avançada no campo do sensoriamento remoto, alterando 
+significativamente os métodos de caracterização e análise de materiais, 
+superfícies e fenômenos naturais. Esta tecnologia permite a captura 
+simultânea de informações sobre a composição química e física de objetos 
+através da aquisição de centgia tem 
+possibilitado aplicações em múltiplos domínios do conhecimeenas de bandas espectrais estreitas, sendo que 
+cada banda revela características específicas dos materiais imageados. 
+Diferentemente dos sistemas multiespectrais convencionais, que operam com 
+poucas bandas largas, os sensores hiperespectrais proporcionam resolução 
+espectral superior, possibilitando a identificação de assinaturas espectrais 
+que seriam imperceptíveis em sistemas tradicionais \cite{Lorenzzetti2015}.
+
+A resolução espectral detalhada oferecida por esta tecnolonto. Na 
+agricultura de precisão, sistemas hiperespectrais permitem a detecção 
+precoce de estresse hídrico, deficiências nutricionais e infestações de 
+pragas, possibilitando intervenções que maximizam a produtividade e 
+minimizam o uso de recursos. No monitoramento ambiental, estas tecnologias 
+viabilizam a caracterização de ecossistemas, detecção de poluentes e 
+acompanhamento de mudanças climáticas. Aplicações em defesa e segurança 
+exploram a capacidade de detectar materiais camuflados ou ocultos, enquanto 
+na mineração, a tecnologia facilita a identificação remota de depósitos 
+minerais \cite{Baptista2019}.
+
+O processamento eficiente dos grandes volumes de dados hiperespectrais ---
+que podem exceder centenas de megabytes por frame --- em plataformas com 
+restrições de energia, peso e tamanho representa um dos principais problemas 
+da computação embarcada contemporânea. Esta dissertação investiga este 
+problema fundamental, propondo uma abordagem metodológica baseada em análise 
+comparativa sistemática e síntese de arquiteturas heterogêneas otimizadas.
+
+A pesquisa desenvolvida neste trabalho aborda uma lacuna identificada na 
+literatura científica atual: a ausência de frameworks sistemáticos e 
+integrados para avaliação e otimização de técnicas de processamento 
+hiperespectral em sistemas embarcados. Através de metodologia estruturada, 
+investigamos os trade-offs fundamentais entre performance computacional, 
+eficiência energética e precisão de classificação, propondo soluções 
+arquiteturais otimizadas que atendam aos requisitos específicos de 
 diferentes cenários de aplicação.
 
-\section{Contexto e motivação}\label{sec:contexto_motivacao}
+\section{Contexto e Motivação}\label{sec:contexto_motivacao}
 
 O processamento de imagens hiperespectrais em sistemas embarcados representa 
-um dos desafios computacionais mais complexos da atualidade, especialmente 
-quando aplicado a cenários que demandam operação em tempo real com severas 
-restrições energéticas. As imagens hiperespectrais, caracterizadas pela 
-aquisição simultânea de informações espaciais e espectrais em centenas de 
-bandas estreitas do espectro eletromagnético, geram volumes de dados que podem 
-exceder centenas de megabytes por frame, exigindo capacidade de processamento 
-que tradicionalmente só era disponível em sistemas computacionais de grande 
-porte \cite{Lorenzzetti2015}. Cada pixel de uma imagem hiperespectral contém 
-uma assinatura espectral completa que permite identificação e caracterização 
-precisa de materiais, substâncias e condições biológicas com aplicações que 
-vão desde detecção de estresse hídrico em culturas agrícolas até identificação 
-de minerais em exploração remota.
+um dos principais desafios computacionais da atualidade. A complexidade 
+desta tarefa emerge das características dos dados hiperespectrais, 
+onde cada pixel de uma imagem hiperespectral 
+contém uma assinatura espectral completa composta por centenas de valores 
+espectrais que capturam informações sobre propriedades biofísicas e 
+bioquímicas dos objetos observados 
+\cite{Zhang2023}. 
+Esta riqueza informacional, que constitui a principal vantagem da tecnologia, 
+representa simultaneamente seu maior desafio computacional, especialmente 
+considerando a necessidade de processamento em tempo real sob restrições de 
+recursos.
 
-A crescente demanda por aplicações autônomas em agricultura de precisão, 
-monitoramento ambiental, vigilância e defesa tem impulsionado o desenvolvimento 
-de sistemas hiperespectrais embarcados capazes de operar em plataformas com 
-limitações críticas de peso, energia e espaço. Veículos aéreos não tripulados 
-(UAV), satélites de pequeno porte (CubeSats), e dispositivos de Internet das 
-Coisas (IoT) representam cenários típicos onde a capacidade de processar dados 
-hiperespectrais localmente determina a viabilidade técnica e econômica da 
-aplicação \cite{Baptista2019}.
+O desafio torna-se mais evidente quando analisamos aplicações de veículos 
+aéreos não tripulados (UAVs) para imageamento hiperespectral. As imagens 
+hiperespectrais capturadas por UAVs exibem variações espectrais mais 
+pronunciadas comparadas aos dados obtidos por plataformas espaciais, 
+apresentando desafios maiores para classificação \cite{Zhang2023}. 
+Esta complexidade surge das condições operacionais dos UAVs, incluindo 
+variações de altitude, ângulos de observação, condições atmosféricas e 
+iluminação, que introduzem heterogeneidade espectral e radiométrica que 
+sistemas tradicionais de processamento frequentemente não conseguem lidar 
+adequadamente.
 
-O desafio fundamental reside na necessidade de conciliar requisitos 
-aparentemente conflitantes: alta precisão de classificação espectral, 
-throughput elevado para operação em tempo real, baixa latência para aplicações 
-críticas, e consumo energético reduzido para autonomia operacional estendida. 
-Sistemas tradicionais baseados em processamento centralizado ou em nuvem 
-enfrentam limitações intransponíveis quando aplicados a cenários embarcados, 
-incluindo dependência de conectividade, latência de comunicação variável, 
-consumo energético de transmissão de dados, e questões de segurança e 
-privacidade.
+O problema é mais crítico quando consideramos os requisitos específicos de 
+processamento em tempo real. Sistemas 
+hiperespectrais embarcados devem atender simultaneamente a múltiplos 
+requisitos: alta taxa de compressão devido aos volumes de dados, 
+processamento em tempo real para evitar acúmulo de dados não processados, e 
+baixa complexidade computacional devido às limitações de recursos das 
+plataformas embarcadas \cite{Diaz2019}.
 
-A análise do estado da arte revela que técnicas individuais de otimização têm 
-demonstrado resultados promissores em contextos específicos. Trabalhos como 
-\textcite{Martins2019} alcançam throughput de 10.000 frames por segundo com 
-99,7\% de precisão utilizando FPGA otimizada, enquanto \textcite{Diaz2019} 
-demonstra 330 fps com compressão superior a 20:1 em GPU embarcada. 
-Simultaneamente, \textcite{Hwang2011} reporta melhoria energética de 43,5x 
-através de codesign hardware-software, evidenciando o potencial de diferentes 
-abordagens arquiteturais.
+A análise dos trabalhos existentes revela que as técnicas tradicionais de 
+processamento enfrentam limitações quando aplicadas ao contexto embarcado. 
+Díaz et al.\ observam que, embora a maioria dos compressores com perdas 
+alcancem performance satisfatória em termos de taxa de distorção, eles são 
+caracterizados por custos computacionais altos, requisitos intensivos de 
+memória e natureza não escalável, impedindo seu uso em aplicações sob 
+restrições de latência, energia e memória, típicas da compressão embarcada 
+\cite{Diaz2019}.
 
-Contudo, a implementação isolada dessas técnicas não explora adequadamente as 
-sinergias potenciais entre diferentes estratégias de otimização nem considera 
-os trade-offs globais inerentes a sistemas integrados. A ausência de 
-frameworks unificados que combinem múltiplas técnicas comprovadas representa 
-lacuna significativa que limita o desenvolvimento de sistemas hiperespectrais 
-embarcados de próxima geração capazes de atender aos requisitos rigorosos de 
-aplicações reais.
+A demanda crescente por aplicações autônomas tem impulsionado o 
+desenvolvimento de soluções baseadas em arquiteturas heterogêneas. Destacando o 
+avanço da tecnologia UAV, combinado com a 
+miniaturização de equipamentos de imageamento hiperespectral, tornou o 
+sensoriamento remoto hiperespectral baseado em UAV uma ferramenta essencial 
+para observação da Terra 
+\cite{Zhang}. 
+No entanto, é ressaltado que os sensores hiperespectrais baseados 
+em UAV oferecem vantagens em capturar informações espectrais de objetos 
+terrestres, mas também apresentam desafios relacionados ao processamento de 
+dados de alta resolução espacial, temporal e espectral.
 
-\section{Problema de pesquisa e perguntas}\label{sec:problema_perguntas}
+O cenário atual de pesquisa revela avanços em técnicas individuais de 
+otimização. Técnicas de deep learning, incluindo 
+redes neurais convolucionais (CNNs), métodos baseados em Transformer, redes 
+neurais recorrentes (RNNs), redes neurais de grafos convolucionais (GCNs), 
+redes adversariais generativas (GANs) e modelos híbridos, demonstram 
+potencial na classificação de imagens hiperespectrais 
+\cite{Zhang2023}. 
+Estes modelos podem melhorar significativamente a 
+precisão e robustez da classificação explorando características espaciais e 
+espectrais simultaneamente, estabelecendo deep learning como paradigma 
+dominante no campo.
 
-O problema central investigado nesta dissertação emerge da análise crítica do 
-estado da arte em processamento hiperespectral embarcado, que revela lacuna 
-metodológica fundamental na literatura científica atual. A revisão sistemática 
-de 25 trabalhos publicados entre 2011-2024 em periódicos e conferências de 
-primeira linha demonstra que apenas 4\% dos estudos abordam sistemas completos 
-integrados, enquanto 96\% focam em técnicas isoladas ou otimizações específicas 
-de plataforma.
+Paralelamente, Díaz et al.\ demonstram o potencial das GPUs embarcadas para 
+compressão hiperespectral em tempo real, implementando o compressor HyperLCA 
+(lossy compression algorithm for hyperspectral image system) nos kits de 
+desenvolvimento NVIDIA Jetson TK1 e TX2. Os resultados 
+obtidos pelos autores mostram que o sistema consegue processar mais de 330 
+frames por segundo, verificando tanto a performance do compressor HyperLCA 
+para a aplicação quanto o alcance de performance em tempo real através das 
+implementações desenvolvidas. Este trabalho demonstra como GPUs embarcadas 
+de baixo consumo podem ser utilizadas para acelerar o processamento de dados 
+hiperespectrais, aproveitando sua capacidade de processamento paralelo.
 
-Esta fragmentação da pesquisa resulta em limitações significativas para o 
-desenvolvimento de sistemas práticos. Primeiro, a ausência de análise 
-sistemática dos trade-offs entre precisão, latência e consumo energético 
-impede a otimização global de sistemas integrados. Segundo, a falta de 
-metodologias padronizadas para comparação entre diferentes abordagens 
-arquiteturais dificulta a identificação de soluções ótimas para cenários 
-específicos de aplicação. Terceiro, a predominância de validações em contextos 
-controlados limita a compreensão do comportamento de sistemas completos em 
-condições operacionais reais.
+A importância da eficiência energética em sistemas embarcados é demonstrada 
+pelos resultados que mostram melhorias através de 
+arquiteturas heterogêneas.\cite{Vaithianathan2011} Técnicas de co-design hardware-software 
+podem resultar em melhorias de 21x na velocidade de throughput\cite{Hwang2011} e redução de até 69,88x 
+no consumo energético comparado a implementações em GPUs \cite{ArucuIliev2025}. Estes resultados evidenciam o 
+potencial de abordagens integradas que exploram sinergias entre diferentes 
+componentes arquiteturais.
 
-O problema de pesquisa pode ser formulado da seguinte forma: \textit{Como 
+Contudo, apesar destes avanços pontuais, é identificado uma lacuna 
+na literatura atual: ``Apesar destes avanços, as técnicas atuais de 
+classificação de imagens hiperespectrais de UAV ainda enfrentam diversos 
+desafios, incluindo processamento de dados de alta dimensionalidade, 
+heterogeneidade espectral e variabilidade radiométrica entre diferentes 
+cenas'' 
+\cite{Zhang2023}. 
+Os autores enfatizam que deep learning permanece largamente uma solução de 
+``caixa preta'' para a maioria dos problemas, indicando a necessidade de 
+abordagens mais sistemáticas e interpretáveis.
+
+\section{Problema de Pesquisa}\label{sec:problema_pesquisa}
+
+O problema central investigado nesta dissertação emerge da análise do estado 
+da arte em processamento hiperespectral embarcado, revelando lacuna 
+metodológica que permeia a literatura científica contemporânea. Esta lacuna 
+se manifesta quando analisamos a evolução das técnicas de processamento 
+hiperespectral nas últimas décadas.
+
+Zhang et al.\ documentam que, ao longo das últimas décadas, as técnicas de 
+classificação de imagens hiperespectrais de sensoriamento remoto por UAV 
+alcançaram avanços, oferecendo detalhes e precisão para observação da Terra 
+\cite{Zhang2023}. 
+O trabalho oferece revisão das aplicações e performances de métodos 
+tradicionais de machine learning e deep learning neste campo, resumindo as 
+principais direções de pesquisa atuais e desafios técnicos. No entanto, os 
+autores identificam fragmentação significativa na pesquisa: ``algoritmos 
+tradicionais de machine learning podem alcançar certos níveis de precisão 
+de classificação, mas frequentemente têm dificuldades com a alta 
+dimensionalidade e natureza não-linear dos dados hiperespectrais''.
+
+Esta fragmentação resulta em limitações para o desenvolvimento de sistemas 
+práticos. Díaz et al.\ observam que a complexidade dos algoritmos de 
+compressão, bem como o volume de dados a serem comprimidos e os recursos 
+computacionais limitados dos dispositivos de hardware embarcados, tornam a 
+compressão em tempo real uma tarefa desafiadora. Os autores 
+enfatizam que esta complexidade não é meramente técnica, mas representa 
+barreira à implementação prática de sistemas hiperespectrais em plataformas 
+com restrições de recursos.
+
+A ausência de metodologias sistemáticas para comparação objetiva entre 
+diferentes abordagens arquiteturais cria ambiente de incerteza que impede o 
+progresso da área. Zhang et al.\ destacam que ``a performance de diferentes 
+frameworks de redes neurais na classificação de imagens hiperespectrais de 
+UAV varia significativamente, com métodos baseados em GCN e CNN geralmente 
+superando abordagens baseadas em RNN''. 
+No entanto, os autores observam que cada trabalho utiliza métricas próprias, 
+datasets distintos e condições experimentais particulares, impedindo 
+comparações diretas e síntese de conhecimento sistemática.
+
+O problema se agrava quando consideramos a predominância de validações em 
+contextos controlados e simplificados. Vaithianathan observa que, embora 
+avanços tenham sido alcançados em arquiteturas heterogêneas individuais, 
+``questões relacionadas ao consumo de energia, escalabilidade, complexidade 
+de programação, gerenciamento de recursos e segurança devem ser abordadas 
+para criar sistemas robustos e eficientes''. O 
+autor enfatiza que as complexidades da integração de múltiplos componentes, 
+as interações entre subsistemas, e os desafios práticos de implementação 
+permanecem inexplorados.
+
+Díaz et al.\ contribuem para esta discussão documentando que os experimentos 
+realizados em seu trabalho são ``orientados às necessidades impostas por uma 
+aplicação específica de agricultura inteligente, embora todas as conclusões 
+obtidas sejam extrapoláveis para outros campos nos quais imagens 
+hiperespectrais sensoreadas remotamente devem ser comprimidas em tempo real''. 
+Esta observação ressalta a necessidade de frameworks mais 
+gerais que possam ser aplicados sistematicamente a diferentes domínios de 
+aplicação.
+
+Diante deste cenário, o problema de pesquisa pode ser formulado: Como 
 desenvolver metodologia sistemática para investigação comparativa de técnicas 
 de otimização em processamento hiperespectral embarcado que permita 
-identificação de arquiteturas ótimas considerando trade-offs entre performance, 
-eficiência energética e precisão para diferentes cenários de aplicação?}
+identificação objetiva de arquiteturas ótimas, considerando os trade-offs 
+entre performance computacional, eficiência energética e precisão de 
+classificação para diferentes cenários de aplicação com requisitos 
+específicos e constraints operacionais distintos?
 
-Esta formulação origina três perguntas de pesquisa específicas que orientam a 
-investigação:
-
-\textbf{P1 - Análise Comparativa}: Quais são as características quantitativas 
-das diferentes técnicas de otimização disponíveis para processamento 
-hiperespectral embarcado e como elas se comparam em termos de performance, 
-consumo energético e precisão quando aplicadas a arquiteturas heterogêneas 
-(FPGA, GPU, CPU)?
-
-\textbf{P2 - Trade-offs Sistêmicos}: Quais são os trade-offs fundamentais 
-entre throughput, latência, consumo energético e precisão de classificação em 
-sistemas hiperespectrais integrados, e como estes trade-offs variam segundo 
-diferentes cenários de aplicação (agricultura de precisão, monitoramento 
-urbano, aplicações de emergência)?
-
-\textbf{P3 - Metodologia de Síntese}: Como desenvolver framework metodológico 
-que permita síntese sistemática de arquiteturas otimizadas baseada em análise 
-multi-critério, considerando requisitos específicos de aplicação e restrições 
-operacionais de sistemas embarcados?
-
-Estas perguntas direcionam a pesquisa para abordagem exploratória-comparativa 
-que privilegia análise teórica e simulação sobre implementação física, 
-justificada pela necessidade de investigar sistematicamente múltiplas 
-alternativas arquiteturais sob condições controladas e reprodutíveis.
+Esta formulação origina três questões de pesquisa interdependentes que 
+estruturam a investigação: Como caracterizar quantitativamente as diferentes 
+técnicas de otimização disponíveis, estabelecendo métricas padronizadas que 
+permitam comparação objetiva? Quais são os trade-offs fundamentais entre 
+throughput, latência, consumo energético, precisão e custo em sistemas 
+integrados? Como desenvolver framework metodológico que permita síntese 
+sistemática de arquiteturas otimizadas através de análise multi-critério?
 
 \section{Objetivos}\label{sec:objetivos}
 
-Os objetivos desta dissertação foram estruturados para abordar sistematicamente 
-as lacunas identificadas na literatura e responder às perguntas de pesquisa 
-formuladas, estabelecendo metas específicas e mensuráveis que orientam o 
-desenvolvimento da investigação científica.
+Os objetivos desta dissertação foram estruturados para abordar 
+sistematicamente as lacunas identificadas na literatura científica, 
+respondendo às questões de pesquisa formuladas. O objetivo geral consiste em 
+desenvolver metodologia sistemática e reproduzível para investigação 
+comparativa de técnicas de otimização em processamento hiperespectral 
+embarcado, estabelecendo framework analítico que permita quantificação 
+objetiva de trade-offs entre performance computacional, eficiência energética 
+e precisão de classificação em arquiteturas heterogêneas.
 
-\subsection{Objetivo geral}\label{subsec:objetivo_geral}
+Os objetivos específicos desdobram-se em cinco dimensões complementares. 
+Primeiramente, realizar mapeamento de técnicas de otimização disponíveis na 
+literatura científica, organizando-as segundo taxonomia estruturada que 
+considere tipo de plataforma, estágio de processamento, métricas de 
+performance e adequação a cenários específicos. Em segundo lugar, desenvolver 
+modelos matemáticos analíticos de performance para diferentes arquiteturas, 
+estabelecendo framework teórico que capture complexidade computacional, 
+utilização de recursos e padrões de consumo energético.
+O terceiro objetivo específico envolve implementar ambiente de simulação 
+integrado que permita avaliação comparativa sistemática sob condições 
+controladas, integrando simuladores específicos de plataforma, datasets 
+padronizados e protocolos de medição reprodutíveis. O quarto objetivo 
+estabelece metodologia de análise multi-critério baseada em teoria de 
+decisão, incorporando técnicas como Analytic Hierarchy Process para 
+ponderação de critérios e análise de Pareto para identificação de soluções 
+não-dominadas. Finalmente, o quinto objetivo visa propor arquitetura 
+heterogênea otimizada baseada nos resultados da análise comparativa, 
+incluindo especificação arquitetural detalhada, interfaces de comunicação e 
+validação teórica através dos modelos desenvolvidos.
 
-Desenvolver metodologia sistemática de investigação comparativa para 
-otimização de processamento hiperespectral embarcado que permita análise 
-quantitativa de trade-offs entre performance, eficiência energética e precisão 
-em arquiteturas heterogêneas, culminando na proposição de framework 
-arquitetural otimizado baseado em critérios objetivos e validação teórica 
-rigorosa.
+\section{Hipóteses de Trabalho}\label{sec:hipoteses}
 
-\subsection{Objetivos específicos}\label{subsec:objetivos_especificos}
+As hipóteses desta investigação foram formuladas com base em evidências 
+empíricas identificadas na literatura. A primeira hipótese postula que 
+análise sistemática e integrada de técnicas de otimização complementares 
+revelará oportunidades de melhoria superiores àquelas obtidas por técnicas 
+isoladas. Díaz et al.\ fornecem evidência empírica para esta hipótese ao 
+demonstrar que implementações otimizadas em GPUs embarcadas alcançam 
+performance de 330 fps com compressão, enquanto 
+Vaithianathan reporta melhorias de 2100\% em throughput\cite{Hwang2011} e redução de até 69,88x 
+no consumo energético através de co-design hardware-software\cite{ArucuIliev2025}.
 
-Os objetivos específicos estruturam-se em cinco dimensões complementares que 
-abordam diferentes aspectos da investigação proposta:
+A segunda hipótese afirma a existência de trade-offs fundamentais e 
+matematicamente modeláveis entre dimensões de performance. Zhang et al.\ 
+fundamentam esta hipótese ao documentar que ``métodos baseados em GCN 
+demonstram vantagem particular ao lidar com amostras pequenas'', 
+indicando relações sistemáticas entre arquitetura, tamanho do dataset e 
+performance de classificação que podem ser capturadas por modelos analíticos 
+apropriados.
 
-\textbf{OE1 - Catalogação Sistemática}: Realizar mapeamento abrangente e 
-catalogação quantitativa de técnicas de otimização para processamento 
-hiperespectral embarcado disponíveis na literatura, organizando-as segundo 
-taxonomia estruturada que considere tipo de plataforma (FPGA, GPU, CPU), 
-estágio de processamento, métricas de performance reportadas, e adequação a 
-diferentes cenários de aplicação.
+A terceira hipótese propõe que metodologia de análise multi-critério baseada 
+em simulação e modelagem teórica demonstrará capacidade superior de 
+identificar arquiteturas otimizadas. Esta hipótese é fundamentada pela 
+observação de Zhang et al.\ de que ``com a integração de inteligência 
+artificial, deep learning e tecnologias de Big Data, o sensoriamento remoto 
+hiperespectral por UAV está fazendo a transição de um `observador' passivo 
+para um `analisador' e `tomador de decisão' ativo'', 
+sugerindo que abordagens sistemáticas e integradas podem superar métodos 
+tradicionais.
 
-\textbf{OE2 - Modelagem Comparativa}: Desenvolver modelos matemáticos de 
-performance para diferentes arquiteturas e técnicas de otimização que permitam 
-comparação objetiva sob condições padronizadas, considerando complexidade 
-computacional, utilização de recursos, consumo energético, e qualidade de 
-resultados para workloads hiperespectrais representativos.
+\section{Estrutura da Dissertação}\label{sec:estrutura}
 
-\textbf{OE3 - Framework de Simulação}: Implementar ambiente de simulação 
-integrado que permita avaliação comparativa sistemática de diferentes 
-configurações arquiteturais sob condições controladas, utilizando simuladores 
-específicos (Vivado para FPGA, CUDA para GPU) e datasets padronizados para 
-garantir reprodutibilidade e comparabilidade dos resultados.
+Esta dissertação está organizada em capítulos que seguem progressão lógica, 
+construindo o conhecimento necessário para abordar o 
+problema identificado. O Capítulo 2 apresenta levantamento bibliográfico, 
+estabelecendo fundamentos teóricos através de exposição dos princípios 
+físicos da espectroscopia de imageamento, análise das tecnologias de câmeras 
+hiperespectrais disponíveis, categorização sistemática de técnicas de 
+processamento e análise de arquiteturas de processamento modernas incluindo 
+FPGAs, GPUs e sistemas heterogêneos.
 
-\textbf{OE4 - Análise Multi-critério}: Estabelecer metodologia de análise 
-multi-critério baseada em técnicas de tomada de decisão (AHP, análise de 
-Pareto) que permita identificação de configurações arquiteturais ótimas 
-considerando múltiplos objetivos conflitantes e diferentes cenários de 
-aplicação com requisitos específicos.
+O Capítulo 3 desenvolve a metodologia de pesquisa, justificando cada escolha 
+metodológica baseada na análise da literatura. A abordagem 
+exploratória-comparativa é descrita, incluindo protocolos de catalogação 
+sistemática, frameworks de modelagem matemática e ambientes de simulação. Os 
+procedimentos de análise multi-critério são formalizados, incluindo 
+metodologias para ponderação de objetivos e identificação de soluções ótimas.
 
-\textbf{OE5 - Síntese Arquitetural}: Propor arquitetura heterogênea otimizada 
-baseada nos resultados da análise comparativa, incluindo especificação 
-detalhada de componentes, interfaces de comunicação, protocolos de 
-sincronização, e validação teórica através de modelos matemáticos 
-desenvolvidos.
-
-Estes objetivos específicos estabelecem trajetória clara para desenvolvimento 
-da pesquisa, desde a fundamentação teórica até a proposição de solução 
-arquitetural, garantindo que cada etapa contribua sistematicamente para 
-responder às perguntas de pesquisa formuladas.
-
-\section{Hipóteses}\label{sec:hipoteses}
-
-As hipóteses de trabalho desta pesquisa foram formuladas com base na análise 
-crítica da literatura e fundamentam-se em evidências empíricas identificadas 
-em trabalhos individuais que demonstram potencial significativo de otimização 
-em contextos específicos. Estas hipóteses orientam a investigação científica 
-e estabelecem expectativas quantitativas que podem ser validadas através da 
-metodologia proposta.
-
-\textbf{H1 - Potencial de Otimização Integrada}: A análise sistemática e 
-comparativa de técnicas de otimização em arquiteturas heterogêneas revelará 
-oportunidades de melhoria de performance superiores a 10x em throughput e 5x 
-em eficiência energética quando comparadas a implementações baseline em 
-processador de propósito geral, baseando-se em evidências individuais como 
-os 10.000 fps reportados por \textcite{Martins2019} e a melhoria energética 
-de 43,5x demonstrada por \textcite{Hwang2011}.
-
-\textbf{H2 - Trade-offs Quantificáveis}: Existem trade-offs fundamentais e 
-quantificáveis entre throughput, latência, consumo energético e precisão em 
-sistemas hiperespectrais embarcados que podem ser modelados matematicamente 
-e utilizados para otimização multi-objetivo, permitindo identificação de 
-configurações Pareto-ótimas que atendam a requisitos específicos de diferentes 
-cenários de aplicação.
-
-\textbf{H3 - Metodologia de Síntese Eficaz}: A metodologia de análise 
-multi-critério baseada em simulação e modelagem teórica pode identificar 
-arquiteturas heterogêneas otimizadas que superem soluções ad-hoc em pelo menos 
-duas das três métricas principais (throughput, latência, eficiência energética) 
-simultaneamente, demonstrando a eficácia da abordagem sistemática proposta.
-
-Estas hipóteses estabelecem expectativas específicas e mensuráveis que podem 
-ser validadas através dos procedimentos metodológicos desenvolvidos, 
-proporcionando base objetiva para avaliação do sucesso da investigação 
-proposta.
-
-\section{Contribuições esperadas}\label{sec:contribuicoes}
-
-As contribuições desta dissertação estruturam-se em quatro dimensões 
-complementares que abordam aspectos teóricos, metodológicos, práticos e de 
-validação, estabelecendo avanços significativos no conhecimento científico 
-da área de processamento hiperespectral embarcado.
-
-\subsection{Contribuições teóricas}\label{subsec:contribuicoes_teoricas}
-
-\textbf{Taxonomia Unificada}: Desenvolvimento de taxonomia abrangente e 
-estruturada de técnicas de otimização para processamento hiperespectral 
-embarcado que organiza sistematicamente o conhecimento disperso na literatura, 
-facilitando identificação de padrões, lacunas e oportunidades de pesquisa 
-futura.
-
-\textbf{Modelos Matemáticos de Performance}: Formulação de modelos teóricos 
-que relacionam características algorítmicas com métricas de performance em 
-diferentes arquiteturas, estabelecendo base quantitativa para predição de 
-comportamento e comparação objetiva entre alternativas técnicas.
-
-\textbf{Análise de Trade-offs Sistêmicos}: Identificação e quantificação dos 
-trade-offs fundamentais entre performance, eficiência energética e precisão 
-em sistemas integrados, contribuindo para compreensão teórica das limitações 
-e potencialidades de diferentes abordagens arquiteturais.
-
-\subsection{Contribuições metodológicas}\label{subsec:contribuicoes_metodologicas}
-
-\textbf{Framework de Investigação Comparativa}: Estabelecimento de metodologia 
-sistemática para comparação de técnicas de otimização que pode ser aplicada 
-a outras áreas de processamento de sinais embarcado, proporcionando base 
-metodológica replicável para pesquisas futuras.
-
-\textbf{Protocolo de Simulação Padronizado}: Desenvolvimento de ambiente e 
-protocolos de simulação que garantem reprodutibilidade e comparabilidade de 
-resultados, estabelecendo padrões metodológicos para avaliação de sistemas 
-hiperespectrais embarcados.
-
-\textbf{Metodologia de Síntese Multi-critério}: Proposição de framework 
-sistemático para síntese de arquiteturas otimizadas baseado em análise 
-multi-critério, que pode orientar desenvolvimento de sistemas embarcados em 
-diferentes domínios de aplicação.
-
-\subsection{Contribuições práticas}\label{subsec:contribuicoes_praticas}
-
-\textbf{Especificação Arquitetural Detalhada}: Proposição de arquitetura 
-heterogênea otimizada com especificações técnicas suficientemente detalhadas 
-para orientar implementações futuras, incluindo componentes, interfaces e 
-protocolos de comunicação.
-
-\textbf{Diretrizes de Design}: Desenvolvimento de recomendações práticas para 
-seleção de técnicas e configurações arquiteturais segundo diferentes cenários 
-de aplicação, proporcionando orientação técnica para engenheiros e 
-pesquisadores.
-
-\textbf{Benchmarks de Referência}: Estabelecimento de conjunto padronizado 
-de benchmarks e métricas que podem ser utilizados pela comunidade científica 
-para avaliação e comparação de sistemas hiperespectrais embarcados.
-
-\subsection{Contribuições de validação}\label{subsec:contribuicoes_validacao}
-
-\textbf{Validação Teórica Rigorosa}: Demonstração da viabilidade técnica da 
-arquitetura proposta através de modelos matemáticos validados, estabelecendo 
-base científica sólida para desenvolvimentos futuros.
-
-\textbf{Análise de Sensibilidade}: Caracterização da robustez das soluções 
-propostas a variações em parâmetros operacionais e condições ambientais, 
-proporcionando compreensão das limitações e aplicabilidade prática.
-
-\textbf{Roadmap Tecnológico}: Identificação de tendências e oportunidades 
-futuras baseadas na análise sistemática do estado da arte, orientando 
-investimentos em pesquisa e desenvolvimento na área.
-
-\section{Organização do trabalho}\label{sec:organizacao}
-
-Esta dissertação está estruturada em quatro capítulos principais que abordam 
-sistematicamente os aspectos teóricos, metodológicos e práticos da investigação 
-proposta, seguindo sequência lógica que conduz desde a fundamentação conceitual 
-até as contribuições específicas e direcionamentos futuros.
-
-\textbf{Capítulo 1 - Introdução}: Apresenta o contexto e motivação que 
-fundamentam a relevância da pesquisa, formula o problema de investigação e 
-perguntas norteadoras, estabelece objetivos geral e específicos, define 
-hipóteses de trabalho, e delineia as contribuições esperadas. O capítulo 
-proporciona visão abrangente do escopo e estrutura da dissertação, 
-estabelecendo base conceitual para compreensão dos capítulos subsequentes.
-
-\textbf{Capítulo 2 - Levantamento Bibliográfico}: Apresenta revisão sistemática 
-da literatura sobre processamento hiperespectral embarcado, abordando 
-fundamentos físicos da espectroscopia de imageamento, tecnologias de aquisição, 
-técnicas de processamento, arquiteturas computacionais, e aplicações em 
-sistemas embarcados. O capítulo estabelece estado da arte quantitativo que 
-fundamenta a identificação de lacunas e oportunidades de pesquisa, 
-proporcionando base científica sólida para desenvolvimento da metodologia.
-
-\textbf{Capítulo 3 - Metodologia}: Detalha a abordagem metodológica adotada 
-para investigação comparativa, incluindo caracterização da pesquisa 
-exploratória-comparativa, procedimentos de catalogação e modelagem teórica, 
-framework de simulação integrado, protocolo de benchmarking, metodologia de 
-análise multi-critério, e processo de síntese arquitetural. O capítulo 
-estabelece base metodológica rigorosa que garante validade científica e 
-reprodutibilidade dos resultados.
-
-\textbf{Capítulo 4 - Conclusões}: Sintetiza as principais contribuições 
-alcançadas na fase atual da pesquisa, analisa o cumprimento dos objetivos 
-propostos, discute as implicações teóricas e práticas dos resultados obtidos, 
-identifica limitações da abordagem adotada, e estabelece direcionamentos para 
-trabalhos futuros. O capítulo consolida o conhecimento gerado e orienta 
-desenvolvimentos subsequentes na área.
-
-A dissertação inclui ainda elementos complementares que enriquecem a 
-apresentação e facilitam a compreensão: resumo e abstract que sintetizam 
-objetivos, metodologia e contribuições; lista de figuras e tabelas que 
-organizam elementos visuais; referências bibliográficas que documentam a base 
-científica utilizada; e apêndices com detalhes técnicos específicos quando 
-necessário.
-
-Esta organização garante apresentação clara e sistemática dos resultados da 
-investigação, facilitando compreensão por parte de leitores com diferentes 
-níveis de especialização na área e proporcionando base sólida para 
-desenvolvimentos futuros em processamento hipeerspectral embarcado.
+O Capítulo 4 apresentará os resultados da catalogação sistemática e análise 
+comparativa, organizados segundo taxonomia desenvolvida. Modelos matemáticos 
+de performance serão derivados e validados, com resultados de simulação 
+apresentados através de visualizações que permitem exploração do espaço de 
+trade-offs. O Capítulo 5 sintetizará os resultados em proposta de arquitetura 
+heterogênea otimizada, incluindo especificação completa, validação teórica e 
+diretrizes para implementação. O Capítulo 6 concluirá com síntese das 
+contribuições principais, discussão de limitações e delineamento de direções 
+futuras de pesquisa.
