@@ -1,0 +1,210 @@
+% Exemplo de Uso de Figuras na Dissertação UNICAMP-FT
+% Este arquivo demonstra as melhores práticas para inclusão de figuras
+
+% ============================================================================
+% EXEMPLOS POR TIPO DE FIGURA
+% ============================================================================
+
+% ----------------------------------------------------------------------------
+% 1. FIGURA SIMPLES (Capítulo)
+% ----------------------------------------------------------------------------
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figuras/capitulos/cap01-introducao/fig-cap01-01-arquitetura-hiperespectral}
+    \caption{Arquitetura geral de um sistema de imageamento hiperespectral embarcado, 
+             mostrando os componentes principais: sensor, processamento e armazenamento.}
+    \label{fig:cap01-arquitetura}
+\end{figure}
+
+% Referência no texto:
+% Como mostrado na \autoref{fig:cap01-arquitetura}, a arquitetura proposta...
+
+% ----------------------------------------------------------------------------
+% 2. DIAGRAMA DE BLOCOS
+% ----------------------------------------------------------------------------
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figuras/diagramas/diag-arquitetura-fpga-gpu}
+    \caption{Diagrama de blocos da arquitetura heterogênea FPGA-GPU proposta 
+             para processamento hiperespectral em tempo real.}
+    \label{fig:diag-fpga-gpu}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% 3. GRÁFICO DE PERFORMANCE
+% ----------------------------------------------------------------------------
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figuras/graficos/graf-performance-comparativa}
+    \caption{Comparação de performance entre diferentes arquiteturas para 
+             processamento hiperespectral: throughput (fps) versus consumo 
+             energético (W) para datasets de referência.}
+    \label{fig:graf-performance}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% 4. ESQUEMA TÉCNICO
+% ----------------------------------------------------------------------------
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figuras/esquemas/esq-sistema-embarcado}
+    \caption{Esquema detalhado do sistema embarcado proposto, incluindo 
+             hierarquia de memória, unidades de processamento e interfaces 
+             de comunicação.}
+    \label{fig:esq-sistema}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% 5. DUAS FIGURAS LADO A LADO
+% ----------------------------------------------------------------------------
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figuras/graficos/graf-throughput}
+        \caption{Throughput}
+        \label{fig:throughput}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figuras/graficos/graf-latencia}
+        \caption{Latência}
+        \label{fig:latencia}
+    \end{subfigure}
+    \caption{Análise de performance: (a) throughput médio e (b) latência 
+             para diferentes configurações de hardware.}
+    \label{fig:performance-analise}
+\end{figure}
+
+% Referência: A \autoref{fig:throughput} mostra que...
+
+% ----------------------------------------------------------------------------
+% 6. FIGURA COM MÚLTIPLAS PARTES (2x2)
+% ----------------------------------------------------------------------------
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figuras/capitulos/cap04-resultados/fig-cap04-01-fpga-results}
+        \caption{Resultados FPGA}
+        \label{fig:results-fpga}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figuras/capitulos/cap04-resultados/fig-cap04-02-gpu-results}
+        \caption{Resultados GPU}
+        \label{fig:results-gpu}
+    \end{subfigure}
+    
+    \vspace{0.5cm}
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figuras/capitulos/cap04-resultados/fig-cap04-03-hybrid-results}
+        \caption{Resultados Híbridos}
+        \label{fig:results-hybrid}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figuras/capitulos/cap04-resultados/fig-cap04-04-comparison}
+        \caption{Comparação}
+        \label{fig:results-comparison}
+    \end{subfigure}
+    
+    \caption{Resultados experimentais para diferentes arquiteturas: 
+             (a) FPGA standalone, (b) GPU standalone, (c) arquitetura 
+             híbrida proposta, e (d) comparação geral de performance.}
+    \label{fig:resultados-completos}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% 7. TABELA COMO FIGURA (para tabelas complexas)
+% ----------------------------------------------------------------------------
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figuras/tabelas/tab-comparacao-tecnicas}
+    \caption{Comparação detalhada entre técnicas de processamento hiperespectral 
+             embarcado, incluindo métricas de performance, consumo energético 
+             e precisão de classificação.}
+    \label{fig:tab-comparacao}
+\end{figure}
+
+% ============================================================================
+% COMANDOS ÚTEIS PARA FIGURAS
+% ============================================================================
+
+% ----------------------------------------------------------------------------
+% Ajustes de Tamanho
+% ----------------------------------------------------------------------------
+% \includegraphics[width=0.5\textwidth]{figura}     % 50% da largura do texto
+% \includegraphics[width=\textwidth]{figura}        % 100% da largura do texto
+% \includegraphics[height=5cm]{figura}              % Altura específica
+% \includegraphics[scale=0.8]{figura}               % Escala relativa
+% \includegraphics[width=10cm,height=8cm]{figura}   % Dimensões específicas
+
+% ----------------------------------------------------------------------------
+% Posicionamento
+% ----------------------------------------------------------------------------
+% [h]    - here (aqui)
+% [t]    - top (topo da página)
+% [b]    - bottom (final da página)
+% [p]    - page (página separada)
+% [htbp] - hierarquia de preferências (recomendado)
+% [H]    - força posição exata (requer \usepackage{float})
+
+% ----------------------------------------------------------------------------
+% Rotação
+% ----------------------------------------------------------------------------
+% \includegraphics[angle=90,width=\textwidth]{figura}  % Rotacionar 90°
+
+% ----------------------------------------------------------------------------
+% Figuras Lado a Lado (alternativa simples)
+% ----------------------------------------------------------------------------
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.45\textwidth]{figura1}
+%     \hfill
+%     \includegraphics[width=0.45\textwidth]{figura2}
+%     \caption{Duas figuras lado a lado}
+%     \label{fig:lado-a-lado}
+% \end{figure}
+
+% ============================================================================
+% PACOTES NECESSÁRIOS NO PREÂMBULO
+% ============================================================================
+% \usepackage{graphicx}      % Para \includegraphics
+% \usepackage{subcaption}    % Para subfiguras
+% \usepackage{float}         % Para posicionamento [H]
+% \usepackage{caption}       % Para personalizar captions
+
+% ============================================================================
+% CONFIGURAÇÕES RECOMENDADAS NO PREÂMBULO
+% ============================================================================
+% % Caminho padrão para figuras
+% \graphicspath{{figuras/}}
+% 
+% % Extensões de arquivo (ordem de prioridade)
+% \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+% 
+% % Configuração de captions
+% \captionsetup{
+%     font=small,
+%     labelfont=bf,
+%     textfont=it,
+%     justification=centering
+% }
+
+% ============================================================================
+% DICAS IMPORTANTES
+% ============================================================================
+% 1. Sempre usar \autoref{} para referenciar figuras
+% 2. Colocar figuras próximas ao texto que as referencia
+% 3. Captions devem ser autoexplicativas
+% 4. Usar labels descritivos e únicos
+% 5. Preferir formato PDF para figuras vetoriais
+% 6. Manter resolução mínima de 300 DPI para figuras rasterizadas
+% 7. Testar visualização em diferentes tamanhos
+% 8. Verificar legibilidade quando impressa em preto e branco

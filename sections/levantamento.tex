@@ -54,7 +54,7 @@ aquisição e análise de dados hiperespectrais.
 \subsubsection{Definição e características das ondas eletromagnéticas}
 
 Ondas eletromagnéticas são perturbações que se propagam no espaço à 
-velocidade da luz ($c \approx 3 \times 10^8$ m/s no vácuo). São 
+velocidade da luz ($c \approx 3 x 10^8$ m/s no vácuo). São 
 caracterizadas principalmente pelo comprimento de onda ($\lambda$) e 
 pela frequência ($f$), relacionados por:
 \begin{equation}
@@ -65,17 +65,17 @@ frequência, conforme a equação de Planck:
 \begin{equation}
 E = h \cdot f = \frac{hc}{\lambda}
 \end{equation}
-em que $h$ é a constante de Planck ($6{,}626 \times 10^{-34}$~J$\cdot$s).
+em que $h$ é a constante de Planck ($6{,}626 x 10^{-34}$~J$\cdot$s).
 
 No contexto do sensoriamento remoto, diferentes unidades são empregadas para
 descrever as faixas espectrais:
 \begin{itemize}
-    \item 1~kHz = $1 \times 10^3$~Hz
-    \item 1~MHz = $1 \times 10^6$~Hz
-    \item 1~GHz = $1 \times 10^9$~Hz
-    \item 1~THz = $1 \times 10^{12}$~Hz
-    \item 1~$\mu$m = $1 \times 10^{-6}$~m
-    \item 1~nm = $1 \times 10^{-9}$~m
+    \item 1~kHz = $1 x 10^3$~Hz
+    \item 1~MHz = $1 x 10^6$~Hz
+    \item 1~GHz = $1 x 10^9$~Hz
+    \item 1~THz = $1 x 10^{12}$~Hz
+    \item 1~$\mu$m = $1 x 10^{-6}$~m
+    \item 1~nm = $1 x 10^{-9}$~m
 \end{itemize}
 
 Neste trabalho adota-se a unidade de micrometro ($\mu$m) para o 
@@ -478,6 +478,12 @@ A Figura 1.1 (LORENZZETTI, 2015) mostra esquematicamente como se processa
 a aquisição de informação sobre um alvo (geralmente, mas não sempre, na 
 superfície da Terra) por meio da técnica de sensoriamento remoto. Os 
 seguintes aspectos devem ser levados em conta:
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.85\textwidth]{fig-cap01-01-principais-componentes-sensoreamento-remoto.png}
+    \caption{Principais componentes de um sistema de sensoriamento remoto, ilustrando a interação entre fonte de energia, atmosfera, alvo e sensor. Adaptado de Lorenzzetti (2015).}
+    \label{fig:cap01-01-principais-componentes-sensoreamento-remoto}
+\end{figure}
 
 \begin{enumerate}
 \item As características da energia que incide sobre o alvo, quando 
@@ -622,7 +628,7 @@ Validação em campo
     espectrais & Taxa: 249 FPS & Aplicações em \\
     & & & 900 pixels espaciais & Throughput: 94,45~MB/s & 
     monitoramento de vegetação \\
-    & & & 12 bits/pixel & Com binning 2$\times$: 47,22~MB/s & 
+    & & & 12 bits/pixel & Com binning 2$x$: 47,22~MB/s & 
     e qualidade da água \cite{remotesensing-09-01110-v2} \\
     \midrule
     \textbf{Resonon PIKA-NIR-320} & Pushbroom & 900--1700~nm (NIR-SWIR) & 
@@ -633,7 +639,7 @@ Validação em campo
     \midrule
     \textbf{Cubert S185 FireflEYE SE} & Snapshot & 450--950~nm & 125 
     bandas espectrais & Taxa: até 25~Hz & Monitoramento de \\
-    & & & 1~MP (1000$\times$1000) & 5 cubos hiperespectrais/s & 
+    & & & 1~MP (1000$x$1000) & 5 cubos hiperespectrais/s & 
     saúde vegetal e \\
     & & & 12/14 bits & Throughput: 31,25~MB/s & 
 análise agrícola
@@ -1076,6 +1082,43 @@ computacional e o desempenho em vários domínios:
     e software para alcançar desempenho e eficiência ideais \cite{Vaithianathan2025}
 \end{itemize}
 
+\subsubsection{Tendências Futuras em Computação Heterogênea}
+\label{subsubsec:tendencias_futuras_heterogenea}
+
+Vaithianathan (2025) identifica direções emergentes que moldarão o futuro 
+da computação heterogênea, com implicações diretas para processamento 
+hiperespectral embarcado:
+
+\begin{itemize}
+    \item \textbf{Aceleradores específicos para IA}: A integração de Neural 
+    Processing Units (NPUs) e Application-Specific Integrated Circuits (ASICs) 
+    oferece eficiência energética 5-10x superior para inferência de IA 
+    comparado a GPUs genéricas. Google TPUv4 demonstra 420 TFLOPS em 
+    operações de machine learning, enquanto NPUs móveis alcançam 15-45 TOPS 
+    com consumo inferior a 5W
+    
+    \item \textbf{Heterogeneidade hierárquica}: Evolução para sistemas que 
+    utilizam múltiplas arquiteturas não apenas dentro de um único nó, mas 
+    também através de sistemas distribuídos. Esta abordagem permite 
+    combinação de diferentes processadores otimizados para tarefas específicas 
+    em múltiplas camadas do sistema
+    
+    \item \textbf{Arquiteturas de memória unificada}: Tecnologias como AMD 
+    Heterogeneous System Architecture (HSA) e NVIDIA Grace Hopper (900GB/s 
+    de largura de banda CPU-GPU) reduzem 40-60\% da latência de transferência 
+    de dados, simplificando significativamente o modelo de programação
+    
+    \item \textbf{Frameworks de programação unificados}: Desenvolvimento de 
+    abstrações de alto nível que simplificam a programação cross-platform, 
+    permitindo que desenvolvedores escrevam código uma vez e executem em 
+    múltiplas configurações de hardware sem modificações extensivas
+    
+    \item \textbf{Alocação autônoma de recursos}: Sistemas orientados por IA 
+    que analisam métricas de performance em tempo real e ajustam alocação 
+    de recursos dinamicamente, otimizando utilização e minimizando latência 
+    sem intervenção manual
+\end{itemize}
+
 \subsection{Arquiteturas CPU+GPU Integradas}
 \label{subsec:arquiteturas_cpu_gpu}
 
@@ -1142,6 +1185,79 @@ hiperespectrais em tempo real usando esta abordagem:
     pelo usuário \cite{ComparativeFPGAGPUCPU2025}
 \end{itemize}
 
+\subsection{Processamento Digital de Sinais em Sistemas Heterogêneos}
+\label{subsec:processamento_digital_sinais}
+
+O processamento digital de sinais (DSP) constitui um componente fundamental 
+em sistemas hiperespectrais, especialmente para operações de filtragem, 
+correção e pré-processamento. Arucu e Iliev (2025) apresentam uma avaliação 
+quantitativa rigorosa de plataformas heterogêneas para implementação de 
+filtros FIR (Finite Impulse Response), oferecendo insights cruciais sobre 
+trade-offs de performance e eficiência energética:
+
+\subsubsection{Filtros FIR em Processamento Hiperespectral}
+\label{subsubsec:filtros_fir_hiperespectral}
+
+Os filtros FIR desempenham papel essencial no pipeline de processamento 
+hiperespectral, sendo utilizados para correção radiométrica, seleção de 
+bandas espectrais e redução de ruído:
+
+\begin{itemize}
+    \item \textbf{Performance comparativa quantificada}: Implementação de 
+    filtro FIR Kaiser (27 taps, β=5.65) demonstra superioridade clara do 
+    FPGA com tempo de processamento de 0.004s, comparado a 0.008s da GPU 
+    e 0.107s da CPU. O FPGA alcança aceleração de 27× versus CPU e 2× 
+    versus GPU \cite{ArucuIliev2025}
+    
+    \item \textbf{Eficiência energética excepcional}: FPGA consome apenas 
+    135mW para lógica do filtro FIR, atingindo 185 GOPS/W (Giga Operations 
+    Per Second por Watt), significativamente superior à GPU (0.27 GOPS/W) 
+    e CPU (4.7 GOPS/W). Esta eficiência é crucial para sistemas embarcados 
+    com restrições energéticas
+    
+    \item \textbf{Latência determinística}: FPGAs oferecem processamento 
+    com latência ultra-baixa (4ms) e comportamento determinístico, essencial 
+    para aplicações de tempo real. A implementação paralela em nível de 
+    hardware através de blocos lógicos configuráveis elimina overhead de 
+    sistema operacional \cite{ArucuIliev2025}
+    
+    \item \textbf{Aplicações específicas}: Filtros passa-baixa para redução 
+    de ruído térmico, filtros passa-banda para isolamento de bandas espectrais 
+    específicas, e filtros anti-aliasing para decimação controlada de dados 
+    hiperespectrais
+\end{itemize}
+
+\subsubsection{Implementação Multi-plataforma de Algoritmos DSP}
+\label{subsubsec:implementacao_multiplataforma_dsp}
+
+A análise comparativa de Arucu e Iliev (2025) revela características 
+distintas de cada plataforma para processamento digital de sinais:
+
+\begin{itemize}
+    \item \textbf{FPGA - Otimização dedicada}: Implementação usando ZYNQ 
+    XC7Z020 com VIVADO HLX suite demonstra paralelismo espacial nativo, 
+    permitindo múltiplos filtros simultâneos. Temperatura de junção de 
+    41.5°C com margem térmica de 43.5°C confirma operação segura em 
+    ambientes embarcados
+    
+    \item \textbf{GPU - Throughput massivo}: Tesla K80 com framework CUDA 
+    oferece paralelismo temporal através de milhares de threads, adequado 
+    para processamento simultâneo de múltiplas bandas espectrais. Consumo 
+    estimado de 50-100W limita aplicação a sistemas com fonte de energia 
+    robusta
+    
+    \item \textbf{CPU - Flexibilidade e controle}: ARM Cortex-A9 com 
+    Python/NumPy/SciPy fornece ambiente de desenvolvimento ágil e debugging 
+    simplificado, ideal para prototipagem e algoritmos adaptativos. 
+    Performance limitada (27× mais lenta que FPGA) restringe uso a tarefas 
+    de controle
+    
+    \item \textbf{Metodologia experimental}: Filtro Kaiser com banda passante 
+    0-5MHz, banda de parada 10-50MHz, frequência de amostragem 100MHz, 
+    validado com sinal complexo multi-componente para garantir robustez 
+    da implementação \cite{ArucuIliev2025}
+\end{itemize}
+
 \subsection{Arquiteturas Tri-híbridas CPU+GPU+FPGA}
 \label{subsec:arquiteturas_tri_hibridas}
 
@@ -1178,6 +1294,213 @@ limitações individuais:
     e melhoram a interoperabilidade entre diferentes componentes de hardware 
     é crucial para maximizar o potencial de sistemas de computação heterogênea 
     \cite{Vaithianathan2025}
+\end{itemize}
+
+\subsection{Desafios e Soluções em Computação Heterogênea}
+\label{subsec:desafios_solucoes_heterogenea}
+
+A implementação de sistemas heterogêneos para processamento hiperespectral 
+embarcado enfrenta desafios significativos que requerem soluções inovadoras. 
+Vaithianathan (2025) identifica cinco categorias principais de desafios e 
+suas respectivas estratégias de mitigação:
+
+\subsubsection{Consumo de Energia e Eficiência}
+\label{subsubsec:consumo_energia_eficiencia}
+
+O balanceamento entre performance e consumo energético constitui um dos 
+principais desafios em sistemas heterogêneos embarcados:
+
+\begin{itemize}
+    \item \textbf{Gerenciamento dinâmico de energia}: Implementação de Dynamic 
+    Voltage and Frequency Scaling (DVFS) permite ajuste das condições 
+    operacionais baseado na demanda de workload, reduzindo consumo durante 
+    períodos de baixa utilização
+    
+    \item \textbf{Algoritmos de scheduling térmico}: Coordenação harmoniosa 
+    entre processadores considerando temperatura operacional para prevenir 
+    thermal throttling e estender vida útil do hardware
+    
+    \item \textbf{Otimização de alocação}: GPUs oferecem performance superior 
+    para tarefas paralelas mas consomem 300-700W em configurações de alto 
+    desempenho, enquanto FPGAs demonstram eficiência energética 2-10x 
+    superior para workloads específicos com consumo de 10-50W
+\end{itemize}
+
+\subsubsection{Complexidade de Programação}
+\label{subsubsec:complexidade_programacao}
+
+A diversidade de modelos de programação representa um obstáculo significativo 
+para desenvolvedores:
+
+\begin{itemize}
+    \item \textbf{Modelos heterogêneos}: GPUs utilizam CUDA/OpenCL para 
+    programação paralela, CPUs empregam OpenMP/pthreads para multi-threading, 
+    e FPGAs requerem HDL/HLS, necessitando expertise em múltiplas tecnologias
+    
+    \item \textbf{Frameworks unificados}: TensorFlow e PyTorch fornecem 
+    abstrações que ocultam especificidades de hardware, permitindo código 
+    único para múltiplas configurações, embora com trade-offs em capacidades 
+    de otimização
+    
+    \item \textbf{Debugging cross-platform}: Bugs manifestam-se diferentemente 
+    em cada processador, requerendo ferramentas integradas para análise 
+    abrangente de sistemas heterogêneos
+\end{itemize}
+
+\subsubsection{Escalabilidade e Interoperabilidade}
+\label{subsubsec:escalabilidade_interoperabilidade}
+
+A integração eficiente de múltiplos tipos de processadores apresenta desafios 
+de coordenação e comunicação:
+
+\begin{itemize}
+    \item \textbf{Load balancing inteligente}: Algoritmos sofisticados de 
+    scheduling baseados em métricas de performance em tempo real previnem 
+    sobrecarga de processadores específicos e maximizam throughput geral
+    
+    \item \textbf{Padronização de interfaces}: APIs unificadas e protocolos 
+    de comunicação comuns facilitam interoperabilidade entre processadores 
+    com diferentes Instruction Set Architectures (ISAs)
+    
+    \item \textbf{Tecnologias de interconexão}: PCIe e Compute Express Link 
+    (CXL) oferecem comunicação de alta velocidade e acesso coerente à memória, 
+    reduzindo latência e melhorando eficiência do sistema
+\end{itemize}
+
+\subsection{Aplicações em Tempo Real e Simulação Multi-taxa}
+\label{subsec:aplicacoes_tempo_real_simulacao}
+
+As arquiteturas heterogêneas demonstram particular eficácia em aplicações 
+de simulação em tempo real que demandam diferentes escalas temporais e 
+níveis de fidelidade computacional. Zou et al. (2025) apresentam uma 
+implementação inovadora de simulação EMT (Electromagnetic Transient) 
+multi-taxa em arquitetura CPU-GPU-FPGA, oferecendo insights valiosos 
+sobre particionamento sinérgico de problemas computacionais complexos:
+
+\subsubsection{Particionamento Temporal e Espacial}
+\label{subsubsec:particionamento_temporal_espacial}
+
+A estratégia de particionamento sinérgico permite otimização simultânea 
+de fidelidade e performance através da especialização de cada processador:
+
+\begin{itemize}
+    \item \textbf{CPU - Simulação de rede principal}: Responsável pela 
+    simulação da rede elétrica principal utilizando time-steps maiores, 
+    adequados para fenômenos de baixa frequência. Esta abordagem permite 
+    manutenção da estabilidade numérica global enquanto reduz overhead 
+    computacional para componentes menos críticos \cite{ZouEtAl2025}
+    
+    \item \textbf{FPGA - Modelagem de alta fidelidade}: Executa modelos 
+    detalhados de conversores eletrônicos de potência com resolução 
+    sub-microsegundo, capturando transientes rápidos essenciais para 
+    análise precisa. A implementação em hardware dedicado garante 
+    determinismo temporal e latência ultra-baixa
+    
+    \item \textbf{GPU - Aceleração de álgebra linear}: Acelera operações 
+    computacionalmente intensivas como fatoração LU da matriz de admitância 
+    após mudanças topológicas, aproveitando paralelismo massivo para 
+    reduzir significativamente o tempo de recálculo \cite{ZouEtAl2025}
+    
+    \item \textbf{Comunicação assíncrona}: Implementação de mecanismos 
+    de comunicação assíncrona entre processadores permite operação 
+    simultânea sem bloqueios, maximizando utilização de recursos e 
+    mantendo sincronização temporal adequada
+\end{itemize}
+
+\subsubsection{Otimizações Algorítmicas para Sistemas Heterogêneos}
+\label{subsubsec:otimizacoes_algoritmicas_heterogeneos}
+
+A implementação de Zou et al. (2025) demonstra técnicas avançadas de 
+otimização específicas para arquiteturas heterogêneas:
+
+\begin{itemize}
+    \item \textbf{Pré-ordenação AMD}: Utilização de Approximate Minimum 
+    Degree ordering para confinar mudanças topológicas, reduzindo 
+    significativamente o overhead computacional. Apenas submatrizes 
+    L'BB e U'BB necessitam recálculo após mudanças, mantendo LAA, 
+    LBA, UAA e UAB inalteradas
+    
+    \item \textbf{Discretização otimizada}: Aplicação da regra trapezoidal 
+    de integração com modelagem específica para disjuntores, onde estado 
+    fechado equivale a indutor em série com resistor e estado aberto a 
+    capacitor em série com resistor \cite{ZouEtAl2025}
+    
+    \item \textbf{Escalas temporais adaptativas}: Diferentes componentes 
+    do sistema executam em suas escalas temporais físicas ótimas, com 
+    conversores operando em resolução sub-microsegundo no FPGA enquanto 
+    a rede principal utiliza time-steps maiores no CPU
+    
+    \item \textbf{Validação HIL}: A arquitetura oferece solução escalável 
+    para análise Hardware-in-the-Loop (HIL) de sistemas modernos, 
+    demonstrando co-simulação multi-taxa efetiva com manutenção de 
+    fidelidade crítica \cite{ZouEtAl2025}
+\end{itemize}
+
+\subsubsection{Trade-offs Fundamentais em Simulação Tempo Real}
+\label{subsubsec:tradeoffs_simulacao_tempo_real}
+
+A análise de Zou et al. (2025) revela trade-offs fundamentais que são 
+diretamente aplicáveis ao processamento hiperespectral embarcado:
+
+\begin{itemize}
+    \item \textbf{Fidelidade versus escala computacional}: O trade-off 
+    fundamental entre fidelidade de simulação e escala computacional 
+    demonstra que aplicar time-steps pequenos em toda uma rede de grande 
+    escala é computacionalmente intratável para atender restrições de 
+    tempo real. Esta limitação é análoga ao processamento hiperespectral, 
+    onde resolução espectral completa pode ser computacionalmente proibitiva
+    
+    \item \textbf{Limitações de recursos on-chip}: Arquiteturas CPU-FPGA 
+    enfrentam recursos limitados on-chip e complexidade de desenvolvimento, 
+    restringindo escalabilidade para processar sistemas completos. No 
+    contexto hiperespectral, isso se traduz em limitações para processar 
+    cubos de dados completos em FPGAs de capacidade limitada \cite{ZouEtAl2025}
+    
+    \item \textbf{Gargalos de comunicação}: Arquiteturas CPU-GPU apresentam 
+    gargalo de performance devido à largura de banda de comunicação e 
+    overhead de sincronização, necessitando time-steps maiores que 
+    sacrificam fidelidade. Para processamento hiperespectral, isso implica 
+    em trade-offs entre throughput e latência de transferência de dados
+    
+    \item \textbf{Aproximações de engenharia}: Simplificações necessárias 
+    para garantir estabilidade numérica (como a aproximação na modelagem 
+    de disjuntores) representam compromissos entre realismo físico e 
+    viabilidade computacional, princípio aplicável a algoritmos de 
+    compressão e reconstrução hiperespectral \cite{ZouEtAl2025}
+\end{itemize}
+
+\subsubsection{Aplicabilidade ao Processamento Hiperespectral}
+\label{subsubsec:aplicabilidade_processamento_hiperespectral}
+
+Os princípios de particionamento sinérgico e simulação multi-taxa 
+demonstrados por Zou et al. (2025) oferecem insights diretos para 
+otimização de sistemas hiperespectrais embarcados:
+
+\begin{itemize}
+    \item \textbf{Particionamento por resolução temporal}: Assim como 
+    conversores eletrônicos requerem resolução sub-microsegundo enquanto 
+    a rede principal opera com time-steps maiores, diferentes estágios 
+    do processamento hiperespectral podem operar em escalas temporais 
+    distintas - correção radiométrica em tempo real no FPGA, processamento 
+    de bandas espectrais na GPU, e classificação adaptativa na CPU
+    
+    \item \textbf{Comunicação assíncrona otimizada}: Os mecanismos de 
+    comunicação assíncrona entre CPU-GPU-FPGA demonstrados na simulação 
+    EMT são diretamente aplicáveis ao pipeline hiperespectral, permitindo 
+    processamento contínuo sem bloqueios entre estágios de correção, 
+    compressão e classificação
+    
+    \item \textbf{Otimização matricial especializada}: As técnicas de 
+    fatoração LU otimizada para mudanças topológicas podem ser adaptadas 
+    para operações matriciais em processamento hiperespectral, como 
+    decomposições espectrais e transformações de bandas, aproveitando 
+    paralelismo massivo da GPU \cite{ZouEtAl2025}
+    
+    \item \textbf{Validação de arquitetura tri-híbrida}: A demonstração 
+    bem-sucedida de co-simulação multi-taxa em arquitetura CPU-GPU-FPGA 
+    valida a viabilidade da abordagem tri-híbrida proposta para 
+    processamento hiperespectral, confirmando que diferentes processadores 
+    podem operar simultaneamente em suas especialidades ótimas
 \end{itemize}
 
 

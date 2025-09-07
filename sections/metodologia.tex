@@ -1,203 +1,189 @@
 % Capítulo 3: Metodologia
 \chapter{Metodologia}\label{chp:metodologia}
 
-Este capítulo apresenta a metodologia de pesquisa adotada para investigação 
-comparativa de técnicas de processamento de imagens hiperespectrais em 
-arquiteturas heterogêneas. A abordagem metodológica foi estruturada em oito 
-seções principais: considerações iniciais sobre a mudança de foco para pesquisa 
-comparativa e simulação; fundamentação da estratégia de investigação baseada em 
-estudo comparativo e modelagem teórica; procedimentos detalhados de 
-investigação, incluindo levantamento sistemático e catalogação de técnicas; 
-estudo comparativo de arquiteturas FPGA e GPU embarcadas; protocolo de 
-simulação e benchmarking com ambiente controlado; metodologia de síntese 
-arquitetural baseada em análise multi-critério; planejamento temporal de 
-execução da pesquisa; e considerações finais sobre as escolhas metodológicas. 
-A metodologia privilegia a análise teórica e simulada em detrimento da 
-implementação física, justificada pela necessidade de comparação sistemática 
-entre diferentes abordagens tecnológicas e pela complexidade de validação 
-experimental em múltiplas plataformas heterogêneas.
+Este capítulo apresenta a metodologia para investigação comparativa de 
+técnicas de processamento de imagens hiperespectrais em arquiteturas 
+heterogêneas. A abordagem estrutura-se em oito seções: considerações iniciais, 
+estratégia de investigação, procedimentos de investigação, estudo comparativo 
+de arquiteturas FPGA e GPU, protocolo de simulação e benchmarking, metodologia 
+de síntese arquitetural, planejamento de execução, e considerações finais. A 
+metodologia privilegia análise teórica e simulada sobre implementação física, 
+justificada pela necessidade de comparação entre abordagens tecnológicas e 
+pela complexidade de validação experimental em múltiplas plataformas 
+heterogêneas.
 
 \section{Considerações Iniciais}\label{sec:consideracoes_iniciais}
 
-A definição da metodologia de pesquisa para esta dissertação baseou-se na 
-análise crítica dos resultados obtidos no levantamento bibliográfico 
-apresentado no \autoref{chp:levantamento}, que revelou lacunas significativas 
-na literatura sobre sistemas integrados de processamento hiperespectral. A 
-revisão sistemática de 25 trabalhos identificou que apenas 4\% dos estudos 
-abordam sistemas completos integrados, enquanto 96\% focam em técnicas isoladas 
-ou otimizações específicas de plataforma. Esta constatação direcionou a 
-pesquisa para uma abordagem comparativa e analítica, priorizando a investigação 
-teórica e simulada sobre a implementação física de protótipos.
+A metodologia baseou-se na análise do levantamento bibliográfico apresentado 
+no \autoref{chp:levantamento}, que revelou lacunas na literatura sobre sistemas 
+integrados de processamento hiperespectral. A revisão identificou que apenas 
+parte dos trabalhos abordam sistemas completos integrados. Esta constatação 
+direcionou a pesquisa para abordagem comparativa, priorizando investigação 
+teórica e simulada sobre implementação física de protótipos.
 
-A mudança de foco para pesquisa comparativa fundamenta-se em três aspectos 
-metodológicos essenciais. Primeiro, a necessidade de análise sistemática das 
-diferentes abordagens tecnológicas disponíveis, considerando que trabalhos como 
-\textcite{Martins2019} demonstram 10.000 fps com 99,7\% de precisão em FPGA, 
-enquanto \textcite{Diaz2019} alcança 330 fps com compressão superior a 20:1 em 
-GPU, evidenciando a diversidade de soluções e a ausência de critérios 
-unificados de comparação. Segundo, a complexidade técnica e financeira de 
-implementar e validar múltiplas arquiteturas heterogêneas em ambiente 
-experimental controlado, considerando que cada plataforma (FPGA Xilinx, GPU 
-NVIDIA, processadores ARM) requer ferramentas específicas, licenças 
-proprietárias e expertise técnica especializada. Terceiro, a contribuição 
-científica mais significativa reside na proposição de framework teórico 
-unificado para comparação e seleção de técnicas, preenchendo lacuna 
-metodológica identificada na literatura.
+A pesquisa comparativa fundamenta-se em três aspectos. Primeiro, a análise 
+das abordagens tecnológicas disponíveis, considerando que trabalhos como 
+\textcite{Diaz2019} demonstram processamento de mais de 330 frames por segundo 
+em GPU embarcada NVIDIA Jetson TX2 com algoritmo HyperLCA para compressão 
+hiperespectral, enquanto \textcite{Hwang2011} propõe metodologia de design 
+consciente de energia para compressão de imagens hiperespectrais, evidenciando 
+diversidade de soluções e ausência de critérios unificados de comparação. 
+Segundo, a complexidade de implementar e validar múltiplas arquiteturas 
+heterogêneas em ambiente experimental, considerando que cada plataforma (FPGA 
+Xilinx, GPU NVIDIA, processadores ARM) requer ferramentas específicas, licenças 
+proprietárias e expertise técnica. Terceiro, a contribuição reside na 
+proposição de framework teórico unificado para comparação e seleção de 
+técnicas, preenchendo lacuna metodológica na literatura.
 
-A justificativa para priorização da análise teórica e simulada baseia-se na 
-natureza exploratória da pesquisa e nos objetivos específicos definidos. A 
-investigação visa estabelecer critérios comparativos entre diferentes 
-abordagens arquiteturais, identificar trade-offs fundamentais entre 
-performance, consumo energético e precisão, e propor metodologia sistemática 
-para seleção de técnicas adequadas a diferentes cenários de aplicação. Estes 
-objetivos são mais efetivamente alcançados através de modelagem matemática, 
-simulação controlada e análise comparativa do que através de implementação 
+A priorização da análise teórica e simulada baseia-se na natureza exploratória 
+da pesquisa. A investigação visa estabelecer critérios comparativos entre 
+abordagens arquiteturais, identificar trade-offs entre performance, consumo 
+energético e precisão, e propor metodologia para seleção de técnicas para 
+diferentes cenários de aplicação. Estes objetivos são alcançados através de 
+modelagem matemática, simulação e análise comparativa ao invés de implementação 
 física limitada a configurações específicas de hardware.
 
 \section{Abordagem Metodológica}\label{sec:abordagem_metodologica}
 
-A fundamentação da estratégia de pesquisa baseia-se em abordagem 
-exploratória-comparativa com ênfase quantitativa, estruturada para investigar 
-sistematicamente as diferentes técnicas e arquiteturas disponíveis para 
+A estratégia de pesquisa baseia-se em abordagem exploratória-comparativa com 
+ênfase quantitativa para investigar técnicas e arquiteturas disponíveis para 
 processamento de imagens hiperespectrais. Esta seção apresenta a caracterização 
 da pesquisa, a estratégia de investigação comparativa e a delimitação do escopo 
-tecnológico, estabelecendo os pilares metodológicos para desenvolvimento do 
-estudo.
+tecnológico.
 
 \subsection{Caracterização da Pesquisa}\label{subsec:caracterizacao_pesquisa}
 
-A pesquisa caracteriza-se como exploratória-comparativa, fundamentada em 
-abordagem quantitativa baseada em simulação e modelagem teórica. O caráter 
-exploratório justifica-se pela ausência de estudos sistemáticos que comparem 
-diferentes arquiteturas heterogêneas para processamento hiperespectral, 
-conforme evidenciado no levantamento bibliográfico. A dimensão comparativa 
-emerge da necessidade de estabelecer critérios objetivos para avaliação de 
-técnicas e arquiteturas, permitindo identificação de soluções ótimas para 
-diferentes cenários de aplicação.
+A pesquisa caracteriza-se como exploratória-comparativa, baseada em simulação 
+e modelagem teórica. O caráter exploratório justifica-se pela ausência de 
+estudos que comparem arquiteturas heterogêneas para processamento 
+hiperespectral, conforme evidenciado no levantamento bibliográfico. A dimensão 
+comparativa emerge da necessidade de estabelecer critérios para avaliação de 
+técnicas e arquiteturas, permitindo identificação de soluções para diferentes 
+cenários de aplicação.
 
-A abordagem quantitativa baseia-se em análise de desempenho teórico e modelado, 
-utilizando métricas padronizadas para comparação entre diferentes técnicas. Os 
-parâmetros quantitativos incluem throughput (frames por segundo), latência 
-(milissegundos por frame), consumo energético (watts), utilização de recursos 
-(percentual de DSPs, BRAMs, LUTs), precisão de classificação (accuracy, 
-F1-score) e eficiência computacional (operações por segundo por watt). Esta 
-abordagem permite comparação objetiva entre trabalhos que utilizam métricas 
-diferentes ou cenários experimentais distintos.
+A abordagem quantitativa baseia-se em análise de desempenho teórico e 
+modelado, utilizando métricas padronizadas para comparação entre técnicas. Os 
+parâmetros incluem throughput (frames por segundo), latência (milissegundos 
+por frame), consumo energético (watts), utilização de recursos (percentual de 
+DSPs, BRAMs, LUTs), precisão de classificação (accuracy, F1-score) e 
+eficiência computacional (operações por segundo por watt). A abordagem 
+quantitativa permite comparação entre trabalhos que utilizam métricas diferentes 
+ou cenários experimentais distintos.
 
 O benchmarking de técnicas e arquiteturas constitui elemento central da 
-metodologia, estabelecendo conjunto padronizado de testes e métricas para 
-avaliação comparativa. Os benchmarks incluem datasets de referência (AVIRIS 
-Indian Pines, Pavia University, Salinas Valley), cargas de trabalho 
-representativas de aplicações reais, e protocolos de medição que consideram 
-variabilidade temporal e dependência de condições operacionais. Esta 
-padronização permite comparação direta entre diferentes trabalhos da literatura 
-e validação dos resultados teóricos propostos.
+metodologia, estabelecendo conjunto de testes e métricas para avaliação 
+comparativa. Os benchmarks incluem datasets de referência (AVIRIS Indian 
+Pines, Pavia University, Salinas Valley), cargas de trabalho de aplicações 
+reais, e protocolos de medição que consideram variabilidade temporal e 
+condições operacionais. Esta padronização permite comparação entre trabalhos da 
+literatura e validação dos resultados teóricos propostos.
 
 \subsection{Estratégia de Investigação Comparativa}
 \label{subsec:estrategia_investigacao}
 
-A metodologia de comparação sistemática estrutura-se em quatro etapas 
-principais: mapeamento abrangente das técnicas disponíveis, catalogação 
-quantitativa de características e performance, análise comparativa baseada em 
-critérios objetivos, e síntese de recomendações para diferentes cenários de 
-aplicação. Esta abordagem sistemática garante cobertura completa do espaço de 
-soluções e identificação de lacunas ou oportunidades de otimização.
+A metodologia de comparação estrutura-se em quatro etapas: mapeamento das 
+técnicas disponíveis, catalogação de características e performance, análise 
+comparativa baseada em critérios objetivos, e síntese de recomendações para 
+diferentes cenários de aplicação. A metodologia de comparação garante cobertura 
+do espaço de soluções e identificação de lacunas ou oportunidades de otimização.
 
 Os critérios de seleção de técnicas e modelos baseiam-se em relevância para 
-aplicações embarcadas, disponibilidade de dados quantitativos de performance, 
+aplicações embarcadas, disponibilidade de dados de performance, 
 representatividade no estado da arte, e potencial de integração em arquiteturas 
-heterogêneas. Técnicas que atendem a estes critérios são priorizadas para 
-análise detalhada, enquanto abordagens com limitações significativas ou dados 
-insuficientes são documentadas mas não incluídas na comparação quantitativa.
+heterogêneas. Técnicas que atendem estes critérios são priorizadas para análise, 
+enquanto abordagens com limitações ou dados insuficientes são documentadas mas 
+não incluídas na comparação quantitativa.
 
-O framework de avaliação de desempenho estabelece métricas padronizadas e 
-protocolos de medição que permitem comparação objetiva entre diferentes 
-abordagens. As métricas incluem indicadores de performance (throughput, 
-latência), eficiência (consumo energético, utilização de recursos), qualidade 
-(precisão, robustez) e escalabilidade (suporte a diferentes resoluções e 
-bandas espectrais). Os protocolos especificam condições experimentais, datasets 
-de teste, e procedimentos de medição que garantem reprodutibilidade e 
-comparabilidade dos resultados.
+O framework de avaliação de desempenho estabelece métricas e protocolos de 
+medição que permitem comparação entre abordagens. As métricas incluem 
+indicadores de performance (throughput, latência), eficiência (consumo 
+energético, utilização de recursos), qualidade (precisão, robustez) e 
+escalabilidade (suporte a diferentes resoluções e bandas espectrais). Os 
+protocolos especificam condições experimentais, datasets de teste, e 
+procedimentos de medição que garantem reprodutibilidade e comparabilidade dos 
+resultados.
 
 A análise multi-critério para otimização utiliza técnicas de tomada de decisão 
-que consideram simultaneamente múltiplos objetivos conflitantes. A metodologia 
-AHP (Analytic Hierarchy Process) é empregada para ponderação de critérios 
-segundo diferentes cenários de aplicação, enquanto análise de Pareto identifica 
-soluções não-dominadas no espaço de trade-offs. Esta abordagem permite 
-identificação de configurações ótimas para diferentes requisitos operacionais.
+que consideram múltiplos objetivos conflitantes. A metodologia AHP (Analytic 
+Hierarchy Process) é empregada para ponderação de critérios segundo cenários 
+de aplicação, enquanto análise de Pareto identifica soluções não-dominadas no 
+espaço de trade-offs. A análise multi-critério permite identificação de 
+configurações para diferentes requisitos operacionais.
 
 \subsection{Delimitação do Escopo Tecnológico}
 \label{subsec:delimitacao_escopo}
 
-O escopo tecnológico da pesquisa concentra-se em FPGA Xilinx das famílias Zynq 
-e UltraScale+, justificado pela ampla adoção em aplicações de processamento de 
-sinais e disponibilidade de ferramentas de desenvolvimento maduras. A escolha 
-por FPGA Xilinx baseia-se na análise da literatura que demonstra predominância 
-desta plataforma em trabalhos de processamento hiperespectral embarcado, com 
-destaque para \textcite{Hwang2011} que alcança melhoria energética de 43,5x, e 
-\textcite{Martins2019} que demonstra throughput de 10.000 fps com precisão de 
-99,7\%.
+O escopo tecnológico concentra-se em FPGA Xilinx das famílias Zynq e 
+UltraScale+, justificado pela adoção em aplicações de processamento de sinais 
+e disponibilidade de ferramentas de desenvolvimento. A escolha por FPGA Xilinx 
+baseia-se na análise da literatura que demonstra uso desta plataforma em 
+trabalhos de processamento hiperespectral embarcado, com destaque para 
+\textcite{Hwang2011} que propõe metodologia de design consciente de energia 
+para compressão de imagens hiperespectrais, e \textcite{ArucuIliev2025} que 
+apresenta estudo comparativo sobre eficiência energética em processamento 
+hiperespectral acelerado por FPGA.
 
 As GPU embarcadas incluem plataformas NVIDIA Jetson (TX2, Xavier, Orin) e AMD 
-equivalentes, selecionadas por representarem o estado da arte em processamento 
-paralelo embarcado com restrições energéticas. A análise de \textcite{Diaz2019} 
-demonstra viabilidade de 330 fps em Jetson TX2 com algoritmo HyperLCA, enquanto 
-\textcite{TakuNet2024} alcança 650 fps com arquitetura CNN otimizada, 
+equivalentes, selecionadas por representarem processamento paralelo embarcado 
+com restrições energéticas. A análise de \textcite{Diaz2019} demonstra 
+viabilidade de processamento de mais de 330 frames por segundo em Jetson TX2 
+com algoritmo HyperLCA para compressão hiperespectral em tempo real, 
 evidenciando o potencial destas plataformas para processamento hiperespectral 
-em tempo real.
+embarcado. O trabalho de \textcite{Zhang2023} apresenta revisão sobre 
+classificação de imagens hiperespectrais de sensoriamento remoto por UAV, 
+destacando avanços em técnicas de deep learning para esta aplicação.
 
-As técnicas de otimização específicas abrangem paralelização em pipeline, 
-otimizações de memória, técnicas de quantização, compressive sensing, seleção 
-inteligente de bandas espectrais, e fusão de dados multi-sensor. Esta seleção 
-baseia-se na análise quantitativa da literatura que identifica estas técnicas 
-como mais promissoras para aplicações embarcadas, considerando trade-offs entre 
-performance e consumo energético.
+As técnicas de otimização abrangem paralelização em pipeline, otimizações de 
+memória, técnicas de quantização, compressive sensing, seleção de bandas 
+espectrais, e fusão de dados multi-sensor. Esta seleção baseia-se na análise 
+da literatura que identifica as técnicas de otimização como promissoras para aplicações 
+embarcadas, considerando trade-offs entre performance e consumo energético.
 
-As limitações e premissas do estudo incluem foco em aplicações de sensoriamento 
-remoto com UAV, consideração de datasets públicos padronizados para validação, 
-análise limitada a faixa espectral de 400-2500 nm (visível e infravermelho 
-próximo), e premissa de operação em tempo real com restrições energéticas 
-inferiores a 20W. Estas limitações garantem foco e profundidade da análise, 
-evitando dispersão em cenários muito específicos ou com requisitos conflitantes.
+As limitações do estudo incluem foco em aplicações de sensoriamento remoto 
+com UAV, consideração de datasets públicos para validação, análise limitada a 
+faixa espectral de 400-2500 nm (visível e infravermelho próximo), e premissa 
+de operação em tempo real com restrições energéticas inferiores a 20W. Estas 
+limitações garantem foco da análise, evitando dispersão em cenários com 
+requisitos conflitantes.
 
 \section{Procedimentos de Investigação}\label{sec:procedimentos_investigacao}
 
-Os métodos de pesquisa e análise comparativa estruturam-se em três etapas 
-sequenciais: levantamento e catalogação sistemática de técnicas disponíveis na 
-literatura, modelagem teórica comparativa baseada em análise matemática de 
-performance, e desenvolvimento de framework de simulação integrado para 
-validação dos modelos teóricos. Esta seção detalha os procedimentos específicos 
-de cada etapa, estabelecendo protocolos rigorosos para garantir 
-reprodutibilidade e validade científica dos resultados.
+Os métodos de pesquisa e análise comparativa estruturam-se em três etapas: 
+levantamento e catalogação de técnicas disponíveis na literatura, modelagem 
+teórica comparativa baseada em análise matemática de performance, e 
+desenvolvimento de framework de simulação para validação dos modelos teóricos. Esta seção detalha os procedimentos de cada etapa, estabelecendo protocolos 
+para garantir reprodutibilidade e validade dos resultados.
 
 \subsection{Levantamento e Catalogação de Técnicas}
 \label{subsec:levantamento_catalogacao}
 
-O mapeamento sistemático de técnicas FPGA baseia-se em revisão estruturada da 
-literatura com foco em trabalhos publicados entre 2018-2024 em conferências e 
-periódicos de primeira linha (IEEE TGRS, Remote Sensing, IGARSS, FPL, FCCM). 
-A estratégia de busca utiliza combinações de termos-chave incluindo 
-``hyperspectral'', ``FPGA'', ``real-time'', ``embedded'', ``classification'', 
-``compression'', garantindo cobertura abrangente do estado da arte. Cada 
-trabalho identificado é analisado segundo protocolo padronizado que extrai 
-informações sobre arquitetura utilizada, técnicas implementadas, datasets de 
-validação, métricas de performance, e limitações reportadas.
+O mapeamento de técnicas FPGA baseia-se em revisão da literatura com foco em 
+trabalhos publicados entre 2018-2024 em conferências e periódicos (IEEE TGRS, 
+Remote Sensing, IGARSS, FPL, FCCM). A estratégia de busca utiliza 
+combinações de termos-chave incluindo ``hyperspectral'', ``FPGA'', 
+``real-time'', ``embedded'', ``classification'', ``compression'', garantindo 
+cobertura do estado da arte. Cada trabalho identificado é analisado segundo 
+protocolo que extrai informações sobre arquitetura utilizada, técnicas 
+implementadas, datasets de validação, métricas de performance, e limitações 
+reportadas.
 
 A catalogação de otimizações GPU segue metodologia similar, com ênfase em 
-técnicas específicas para plataformas embarcadas com restrições energéticas. 
-O protocolo de análise inclui identificação de otimizações CUDA/OpenCL, 
-estratégias de gerenciamento de memória, técnicas de paralelização, uso de 
-precisão mista, e implementação de algoritmos de aprendizado de máquina. 
-Trabalhos como \textcite{Diaz2019} e \textcite{TakuNet2024} são analisados em 
-detalhe para extração de padrões de otimização e identificação de boas práticas.
+técnicas para plataformas embarcadas com restrições energéticas. O protocolo 
+de análise inclui identificação de otimizações CUDA/OpenCL, estratégias de 
+gerenciamento de memória, técnicas de paralelização, uso de precisão mista, e 
+implementação de algoritmos de aprendizado de máquina. Trabalhos como 
+\textcite{Diaz2019}, que implementa compressão hiperespectral em tempo real em 
+GPUs embarcadas, e \textcite{Vaithianathan2025}, que discute desafios em 
+arquiteturas de computação heterogênea, são analisados para extração de 
+padrões de otimização e identificação de práticas.
 
 A análise de trabalhos correlatos estende-se além de FPGA e GPU para incluir 
-processadores ARM, DSPs, e arquiteturas heterogêneas. Esta análise mais ampla 
-permite identificação de tendências tecnológicas, lacunas na literatura, e 
-oportunidades de integração entre diferentes plataformas. Trabalhos que 
-demonstram sistemas completos, como \textcite{Shin2020}, recebem atenção 
-especial para compreensão dos desafios de integração e validação em cenários 
-reais.
+processadores ARM, DSPs, e arquiteturas heterogêneas. Esta análise permite 
+identificação de tendências tecnológicas, lacunas na literatura, e 
+oportunidades de integração entre plataformas. Trabalhos que abordam aspectos 
+de integração de sistemas, como \textcite{Zhang2023} que apresenta revisão 
+sobre classificação hiperespectral em UAV, recebem atenção para compreensão 
+dos desafios de integração e validação em cenários reais.
 
 A taxonomia de abordagens identificadas organiza as técnicas segundo critérios 
 de classificação que incluem tipo de plataforma (FPGA, GPU, CPU, híbrida), 
@@ -298,10 +284,14 @@ análise quantitativa de produtividade de desenvolvimento, qualidade de
 resultados, e flexibilidade de otimização. Para cada técnica de processamento 
 hiperespectral identificada na literatura, avalia-se a adequação de HLS versus 
 HDL considerando complexidade do algoritmo, requisitos de performance, e 
-restrições de recursos. Trabalhos como \textcite{Hwang2011} demonstram que HLS 
-pode alcançar 85-95\% da performance de HDL otimizado com redução significativa 
-no tempo de desenvolvimento, enquanto algoritmos com padrões de acesso 
-irregulares podem requerer otimizações HDL específicas.
+restrições de recursos. O trabalho de \textcite{Hwang2011} propõe metodologia de design consciente de 
+energia para compressão de imagens hiperespectrais, demonstrando a importância 
+de considerações energéticas no desenvolvimento de sistemas embarcados. 
+\textcite{Khaki2025} complementam esta análise demonstrando que FPGAs 
+alcançam speedups de 3.31× versus CPU para MobileNetV2, com quantização INT8 
+preservando acurácia enquanto proporciona ganhos de eficiência. Algoritmos 
+com padrões de acesso irregulares podem requerer otimizações específicas 
+dependendo da arquitetura de implementação.
 
 A análise de paralelização em pipeline versus paralelo examina diferentes 
 estratégias de mapeamento de algoritmos para arquitetura FPGA. A paralelização 
@@ -318,9 +308,11 @@ aplicações hiperespectrais devido ao grande volume de dados e intensidade
 computacional. A análise inclui estratégias de particionamento de memória 
 (on-chip BRAM, UltraRAM, memória externa), técnicas de buffering para 
 maximização de reuso de dados, e otimizações específicas de DSP para operações 
-de ponto fixo e flutuante. Trabalhos como \textcite{Martins2019} demonstram 
-que otimizações de memória podem resultar em melhorias de 5-10x em throughput 
-através de redução de acessos à memória externa.
+de ponto fixo e flutuante. Estudos na literatura demonstram que otimizações de memória podem resultar em 
+melhorias significativas em throughput através de redução de acessos à memória 
+externa, conforme evidenciado por trabalhos como \textcite{ArucuIliev2025} que 
+apresenta análise comparativa de eficiência energética em processamento 
+hiperespectral acelerado por FPGA.
 
 As técnicas de particionamento de dados examinam diferentes estratégias para 
 divisão de imagens hiperespectrais considerando características espaciais e 
@@ -361,10 +353,16 @@ maximização de throughput.
 As técnicas de mixed precision e quantização são fundamentais para aplicações 
 embarcadas devido a restrições de memória e largura de banda. A análise 
 examina impacto da redução de precisão (FP32 para FP16, INT8) na qualidade de 
-resultados para diferentes algoritmos hiperespectrais. Trabalhos como 
-\textcite{TakuNet2024} demonstram que quantização INT8 pode manter 94\% da 
-precisão original com redução de 4x no consumo de memória e aumento de 2x no 
-throughput.
+resultados para diferentes algoritmos hiperespectrais. Pesquisas na área demonstram que técnicas de quantização podem proporcionar 
+reduções significativas no consumo de memória e melhorias no throughput, 
+mantendo níveis aceitáveis de precisão. O trabalho de \textcite{Diaz2019} 
+explora otimizações para compressão hiperespectral em tempo real, demonstrando 
+a viabilidade de implementações eficientes em GPUs embarcadas. 
+\textcite{Khaki2025} demonstram que sistemas heterogêneos utilizando 
+frameworks como Vitis AI permitem deployment escalável de CNNs, com FPGAs 
+sendo adequadas para edge computing com limitações energéticas, enquanto GPUs 
+mantêm vantagem em velocidade absoluta com latências de 13.64s versus 100.4s 
+em FPGA para MobileNetV2.
 
 \subsection{Estudo Comparativo Cross-Platform}
 \label{subsec:comparativo_cross_platform}
@@ -390,10 +388,12 @@ As métricas de eficiência energética constituem critério fundamental para
 aplicações embarcadas, especialmente em UAV com restrições de autonomia. A 
 análise compara consumo energético por operação (joules por classificação, 
 joules por frame processado) entre diferentes arquiteturas, considerando 
-consumo estático e dinâmico. Trabalhos como \textcite{Hwang2011} demonstram 
-que FPGA pode alcançar eficiência energética 10-50x superior a GPU para 
-aplicações específicas, enquanto GPU mantém vantagem para cargas de trabalho 
-com alta utilização de recursos.
+consumo estático e dinâmico. O trabalho de \textcite{Hwang2011} propõe metodologia de design consciente de 
+energia para compressão de imagens hiperespectrais, destacando a importância 
+da eficiência energética em sistemas embarcados. O estudo de \textcite{ArucuIliev2025} 
+apresenta análise comparativa sobre eficiência energética em processamento 
+hiperespectral acelerado por FPGA, enquanto \textcite{Diaz2019} demonstra 
+implementação eficiente em GPUs embarcadas para compressão em tempo real.
 
 A análise de escalabilidade e flexibilidade examina capacidade de adaptação 
 das arquiteturas a diferentes requisitos de aplicação. FPGA oferece 
@@ -567,7 +567,7 @@ segundo modelos teóricos desenvolvidos.
 
 A identificação de configurações ótimas utiliza algoritmos de otimização 
 multi-objetivo (NSGA-II, MOPSO) para exploração eficiente do espaço de 
-soluções. Estes algoritmos consideram restrições operacionais (consumo máximo, 
+soluções. Os algoritmos de otimização multi-objetivo consideram restrições operacionais (consumo máximo, 
 latência máxima, precisão mínima) e identificam conjunto de configurações 
 Pareto-ótimas que representam melhores compromissos entre objetivos 
 conflitantes.

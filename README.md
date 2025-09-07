@@ -12,7 +12,7 @@
 
 **Etapa Atual**: ✅ **Fase 1: Análise Sistemática do Estado da Arte - COMPLETA**  
 **Próxima Etapa**: 🎓 **Qualificação UNICAMP** (Dezembro 2025)  
-**Última Atualização**: 2025-09-06  
+**Última Atualização**: 2025-09-07  
 **Progresso Geral**: 100% da Fase 1 (Pronta para qualificação)
 
 ### 🎯 Próximos Passos Imediatos (Qualificação UNICAMP):
@@ -94,6 +94,21 @@ artigo-mestrado-unicamp-ft/
 │   ├── metodologia.tex             # Capítulo: Metodologia
 │   ├── conclusoes.tex              # Capítulo: Conclusões
 │   └── agradecimentos.tex          # Agradecimentos
+│
+├── 📁 figuras/                     # 🎨 FIGURAS ORGANIZADAS (NOVO)
+│   ├── 📁 capitulos/               # Figuras organizadas por capítulo
+│   │   ├── cap01-introducao/       # Figuras do Capítulo 1
+│   │   ├── cap02-levantamento/     # Figuras do Capítulo 2
+│   │   ├── cap03-metodologia/      # Figuras do Capítulo 3
+│   │   ├── cap04-resultados/       # Figuras do Capítulo 4
+│   │   └── cap05-conclusoes/       # Figuras do Capítulo 5
+│   ├── 📁 diagramas/               # Diagramas de blocos, fluxogramas
+│   ├── 📁 graficos/                # Gráficos, plots, charts
+│   ├── 📁 esquemas/                # Esquemas técnicos, circuitos
+│   ├── 📁 tabelas/                 # Tabelas complexas em formato imagem
+│   ├── 📄 README-FIGURAS.md        # 📖 Guia completo de organização
+│   ├── 📄 exemplo-uso-figuras.tex  # 📝 Exemplos de uso no LaTeX
+│   └── 📄 templates-figuras.md     # 🎨 Templates e padrões visuais
 │
 ├── 📁 output/                      # 🔧 ARQUIVOS TEMPORÁRIOS DE COMPILAÇÃO
 │   ├── *.aux                       # Arquivos auxiliares LaTeX
@@ -232,6 +247,71 @@ artigo-mestrado-unicamp-ft/
 - **1.1 Catalogação Sistemática de 25 Artigos**: ✅ **100% CONCLUÍDA**
 - **1.2 Análise dos 5 Artigos Prioritários**: ✅ **100% CONCLUÍDA**
 - **1.3 Identificação de Gaps e Oportunidades**: ✅ **100% CONCLUÍDA**
+
+### 📚 Análise Complementar Recente (2025-09-07):
+
+**Artigo Analisado**: "The Future of Heterogeneous Computing: Integrating CPUs, GPUs, and FPGAs for High-Performance Applications" (Vaithianathan, 2025)
+
+**Contribuições Principais**:
+- **Validação da Abordagem Tri-híbrida**: Confirmação científica da viabilidade de integração CPU+GPU+FPGA
+- **Métricas de Performance**: NVIDIA A100 (10,496 CUDA cores, 312 TFLOPS), FPGAs (2-10x eficiência energética)
+- **Tendências Futuras**: NPUs/TPUs (5-10x performance/watt), memória unificada (40-60% redução latência)
+- **Desafios Identificados**: Complexidade de programação, gerenciamento de energia, interoperabilidade
+
+**Integração ao Projeto**:
+- ✅ **Bibliografia Atualizada**: Referência adicionada ao `src/bibliografia.bib`
+- ✅ **Levantamento Expandido**: Nova subseção "Tendências Futuras em Computação Heterogênea"
+- ✅ **Desafios Documentados**: Seção "Desafios e Soluções em Computação Heterogênea"
+- ✅ **Análise Detalhada**: Documento completo em `documentos/analise_artigos/analise_complementar_IJETCSIT-V1I1P102.md`
+
+**Relevância para o Projeto**:
+- Fortalece fundamentação teórica da arquitetura heterogênea proposta
+- Valida métricas e benchmarks utilizados na pesquisa
+- Identifica tecnologias emergentes (NPUs, memória unificada) relevantes para trabalhos futuros
+
+### 🔧 Análise Complementar DSP - Filtros FIR (2025-09-07):
+
+**Artigo Analisado**: "Performance Evaluation of FPGA, GPU, and CPU in FIR Filter Implementation for Semiconductor-Based Systems" (Arucu & Iliev, 2025)
+
+**Contribuições Principais**:
+- **Validação Quantitativa**: FPGA 27× mais rápido que CPU (0.004s vs 0.107s), 2× mais rápido que GPU
+- **Eficiência Energética**: FPGA atinge 185 GOPS/W vs GPU (0.27 GOPS/W) e CPU (4.7 GOPS/W)
+- **Aplicação DSP**: Filtros FIR essenciais para correção radiométrica e seleção de bandas espectrais
+- **Latência Determinística**: FPGA oferece 4ms com comportamento determinístico para tempo real
+
+**Integração ao Projeto**:
+- ✅ **Bibliografia Expandida**: Nova referência `ArucuIliev2025` adicionada
+- ✅ **Seção DSP Criada**: "Processamento Digital de Sinais em Sistemas Heterogêneos"
+- ✅ **Subseções Detalhadas**: Filtros FIR e implementação multi-plataforma
+- ✅ **Análise Técnica**: Documento completo em `documentos/analise_artigos/analise_complementar_FIR_ArucuIliev2025.md`
+
+**Relevância Específica**:
+- Confirma superioridade FPGA para pré-processamento (135mW, 4ms latência)
+- Valida uso de GPU para throughput massivo em múltiplas bandas
+- Demonstra aplicabilidade de filtros FIR em pipeline hiperespectral
+- Fornece benchmarks quantitativos para validação experimental
+
+### ⚡ Análise Complementar Simulação Tempo Real (2025-09-07):
+
+**Artigo Analisado**: "Real-Time Multi-Rate Power System EMT Simulation on a Heterogeneous CPU-GPU-FPGA Architecture" (Zou et al., 2025)
+
+**Contribuições Principais**:
+- **Particionamento Sinérgico**: CPU (rede principal), FPGA (resolução sub-microsegundo), GPU (álgebra linear)
+- **Comunicação Assíncrona**: Operação simultânea sem bloqueios entre processadores
+- **Otimização Matricial**: Pré-ordenação AMD, fatoração LU otimizada para mudanças topológicas
+- **Validação HIL**: Co-simulação multi-taxa efetiva com manutenção de fidelidade tempo real
+
+**Integração ao Projeto**:
+- ✅ **Bibliografia Expandida**: Nova referência `ZouEtAl2025` adicionada
+- ✅ **Seção Tempo Real**: "Aplicações em Tempo Real e Simulação Multi-taxa"
+- ✅ **Subseções Especializadas**: Particionamento temporal, otimizações algorítmicas, trade-offs
+- ✅ **Análise Detalhada**: Documento completo em `documentos/analise_artigos/analise_complementar_EMT_ZouEtAl2025.md`
+
+**Aplicabilidade Direta**:
+- Valida arquitetura tri-híbrida para aplicações tempo real complexas
+- Demonstra viabilidade de particionamento por escalas temporais
+- Confirma eficácia de comunicação assíncrona CPU-GPU-FPGA
+- Fornece metodologia de otimização para operações matriciais especializadas
 - **1.4 Configuração Ótima de Arquitetura Heterogênea**: ✅ **100% CONCLUÍDA**
 - **1.5 Documentação para Qualificação**: ✅ **100% CONCLUÍDA**
 
@@ -308,6 +388,14 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 - ✅ **Formatação LaTeX Padronizada** - Adequação completa aos padrões UNICAMP-FT
 - ✅ **Bibliografia Sincronizada** - Referências Diaz2019, UAV_Hyperspectral e IJETCSIT-V1I1P102 atualizadas com dados corretos dos autores
 - ✅ **Formatação LaTeX Otimizada** - Arquivo introducao.tex reformatado seguindo padrões do projeto: máximo 80 caracteres por linha, uso correto de travessões, espaçamento adequado
+- ✅ **Correção de Referências na Metodologia** - Dados incorretos corrigidos no arquivo metodologia.tex baseando-se nos trabalhos reais da bibliografia
+- ✅ **Texto da Metodologia Otimizado** - Reduzida redundância e uso excessivo de adjetivos, tornando o texto mais conciso e direto
+- ✅ **Integração de 5 Artigos Científicos** - Incorporados 5 artigos de forma coerente e academicamente rigorosa: UAV Hyperspectral Review, FPGA Deep Learning, Target Detection, Heterogeneous Architectures, e Advanced Analysis
+- ✅ **Bibliografia Expandida** - Adicionadas 5 novas referências BibTeX com dados completos e DOIs
+- ✅ **Revisão Científica Completa** - Lapidação do texto eliminando características de IA: redundâncias removidas, adjetivação excessiva eliminada, linguagem objetiva e precisa
+- ✅ **Consistência Terminológica** - Verificação e correção de termos técnicos e referências em todo o documento
+- ✅ **Especificidade Terminológica** - Substituição de termos vagos como "A tecnologia" por termos específicos e precisos (ex: "O imageamento hiperespectral", "Os algoritmos de otimização multi-objetivo")
+- ✅ **Sistema de Organização de Figuras** - Criada estrutura completa para figuras com pastas organizadas por tipo e capítulo, guia detalhado, exemplos de uso e templates
 
 ### 2025-09-02:
 - ✅ **Reorganização Estrutural Completa** - Nova estrutura de pastas mais organizada e limpa

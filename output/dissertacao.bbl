@@ -19,6 +19,76 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
+    \entry{Adao2017}{article}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=39167ab419086a8a2fc2e6012c8a3ae9}{%
+           family={Adão},
+           familyi={A\bibinitperiod},
+           given={Telmo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8890887294e46c3dbe8cd026dc684188}{%
+           family={Hruška},
+           familyi={H\bibinitperiod},
+           given={Jonáš},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=379d76fb68d8353d2df7a3440ec52873}{%
+           family={Pádua},
+           familyi={P\bibinitperiod},
+           given={Luís},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b924d047070172533b2d9324ad14e295}{%
+           family={Bessa},
+           familyi={B\bibinitperiod},
+           given={José},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bda151a314df8c5ba1ee1019b52ea266}{%
+           family={Peres},
+           familyi={P\bibinitperiod},
+           given={Emanuel},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5672130f9e6dfd860ccd60a266b51ce5}{%
+           family={Morais},
+           familyi={M\bibinitperiod},
+           given={Raul},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=497ff32dd906b65bfe6877d9b145ac17}{%
+           family={Sousa},
+           familyi={S\bibinitperiod},
+           given={Joaquim\bibnamedelima João},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{fullhash}{431ab2af36597358becc5fbf7f7b93cd}
+      \strng{fullhashraw}{431ab2af36597358becc5fbf7f7b93cd}
+      \strng{bibnamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authorbibnamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authornamehash}{6693106acb836ddb7713c44be50f54a9}
+      \strng{authorfullhash}{431ab2af36597358becc5fbf7f7b93cd}
+      \strng{authorfullhashraw}{431ab2af36597358becc5fbf7f7b93cd}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Remote Sensing}
+      \field{number}{11}
+      \field{title}{Hyperspectral Imaging: A Review on UAV-Based Sensors, Data Processing and Applications for Agriculture and Forestry}
+      \field{volume}{9}
+      \field{year}{2017}
+      \field{pages}{1110}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs9111110
+      \endverb
+    \endentry
     \entry{ArucuIliev2025}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=f75a9f6112135b0dc70c145b9d4d5cd4}{%
@@ -92,6 +162,76 @@
       \field{title}{Sensoriamento remoto hiperespectral}
       \field{year}{2019}
     \endentry
+    \entry{BioucasDias2012}{article}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=d6f4a4169a533e7f56ab134016a8314e}{%
+           family={Bioucas-Dias},
+           familyi={B\bibinithyphendelim D\bibinitperiod},
+           given={José\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9b3ce6468cd35a018e12616afcd1f795}{%
+           family={Plaza},
+           familyi={P\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2414de83958f0aa54a8aee4e6160befa}{%
+           family={Dobigeon},
+           familyi={D\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=32785517680a45734de973af093b2c66}{%
+           family={Parente},
+           familyi={P\bibinitperiod},
+           given={Mario},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bf5e5f7ed3e7b3445faf336bac2a6aef}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Qian},
+           giveni={Q\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=234880c270cdadcfe78d0913758dd140}{%
+           family={Gader},
+           familyi={G\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=19a50089cae8f67ab374e30b054493ad}{%
+           family={Chanussot},
+           familyi={C\bibinitperiod},
+           given={Jocelyn},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d8d10b07099f3b183b924af92a69bf0a}
+      \strng{fullhash}{7723333f2d593e0e6564e4d9ffd5cb7d}
+      \strng{fullhashraw}{7723333f2d593e0e6564e4d9ffd5cb7d}
+      \strng{bibnamehash}{d8d10b07099f3b183b924af92a69bf0a}
+      \strng{authorbibnamehash}{d8d10b07099f3b183b924af92a69bf0a}
+      \strng{authornamehash}{d8d10b07099f3b183b924af92a69bf0a}
+      \strng{authorfullhash}{7723333f2d593e0e6564e4d9ffd5cb7d}
+      \strng{authorfullhashraw}{7723333f2d593e0e6564e4d9ffd5cb7d}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing}
+      \field{number}{2}
+      \field{title}{Hyperspectral Unmixing Overview: Geometrical, Statistical, and Sparse Regression-Based Approaches}
+      \field{volume}{5}
+      \field{year}{2012}
+      \field{pages}{354\bibrangedash 379}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1109/JSTARS.2012.2194696
+      \endverb
+    \endentry
     \entry{Diaz2019}{article}{}{}
       \name{author}{5}{}{%
         {{un=0,uniquepart=base,hash=8579c0d57dd72615e798a0ca4dc946e8}{%
@@ -161,12 +301,12 @@
            given={Jae-Jin},
            giveni={J\bibinithyphendelim J\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=eae16f2052fcdbd59820fccfea44e9cc}{%
+        {{un=1,uniquepart=given,hash=eae16f2052fcdbd59820fccfea44e9cc}{%
            family={Choi},
            familyi={C\bibinitperiod},
            given={Seungho},
            giveni={S\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=0d96bbeaef811e1f620ecada046d51d1}{%
            family={Chang},
            familyi={C\bibinitperiod},
@@ -197,6 +337,46 @@
       \range{pages}{12}
       \verb{doi}
       \verb 10.1109/TVLSI.2010.2045392
+      \endverb
+    \endentry
+    \entry{Khaki2025}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=55300cbff809a0e3ce93865e01902480}{%
+           family={Khaki},
+           familyi={K\bibinitperiod},
+           given={A.\bibnamedelimi Mouri\bibnamedelima Zadeh},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim Z\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=32587126e57362bdd88cb3b2daebd97c}{%
+           family={Choi},
+           familyi={C\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=1}}%
+      }
+      \strng{namehash}{84314fd6de2f8e97387d1c478fd88506}
+      \strng{fullhash}{84314fd6de2f8e97387d1c478fd88506}
+      \strng{fullhashraw}{84314fd6de2f8e97387d1c478fd88506}
+      \strng{bibnamehash}{84314fd6de2f8e97387d1c478fd88506}
+      \strng{authorbibnamehash}{84314fd6de2f8e97387d1c478fd88506}
+      \strng{authornamehash}{84314fd6de2f8e97387d1c478fd88506}
+      \strng{authorfullhash}{84314fd6de2f8e97387d1c478fd88506}
+      \strng{authorfullhashraw}{84314fd6de2f8e97387d1c478fd88506}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Applied Sciences}
+      \field{number}{1}
+      \field{title}{Optimizing Deep Learning Acceleration on FPGA for Real-time and Resource-efficient Image Classification}
+      \field{volume}{15}
+      \field{year}{2025}
+      \field{pages}{422}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/app15010422
       \endverb
     \endentry
     \entry{Lorenzzetti2015}{book}{}{}
@@ -232,6 +412,80 @@
       \field{note}{E-book. Disponível em: https://plataforma.bvirtual.com.br. Acesso em: 03 set 2025.}
       \field{title}{Princípios físicos de sensoriamento remoto}
       \field{year}{2015}
+    \endentry
+    \entry{Manolakis2002}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=88e6edd11f8e15cc047fbe2e57316287}{%
+           family={Manolakis},
+           familyi={M\bibinitperiod},
+           given={Dimitris},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=806e3454ef933e284c7adc78a55afcf2}{%
+           family={Shaw},
+           familyi={S\bibinitperiod},
+           given={Gary},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{54604a764f85c927b130f7cccb78b561}
+      \strng{fullhash}{54604a764f85c927b130f7cccb78b561}
+      \strng{fullhashraw}{54604a764f85c927b130f7cccb78b561}
+      \strng{bibnamehash}{54604a764f85c927b130f7cccb78b561}
+      \strng{authorbibnamehash}{54604a764f85c927b130f7cccb78b561}
+      \strng{authornamehash}{54604a764f85c927b130f7cccb78b561}
+      \strng{authorfullhash}{54604a764f85c927b130f7cccb78b561}
+      \strng{authorfullhashraw}{54604a764f85c927b130f7cccb78b561}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Signal Processing Magazine}
+      \field{number}{1}
+      \field{title}{Detection Algorithms for Hyperspectral Imaging Applications}
+      \field{volume}{19}
+      \field{year}{2002}
+      \field{pages}{29\bibrangedash 43}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/MSP.2002.1028352
+      \endverb
+    \endentry
+    \entry{Nasrabadi2014}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d8299efb6248f430bb0c465c766ed702}{%
+           family={Nasrabadi},
+           familyi={N\bibinitperiod},
+           given={Nasser\bibnamedelima M.},
+           giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d8299efb6248f430bb0c465c766ed702}
+      \strng{fullhash}{d8299efb6248f430bb0c465c766ed702}
+      \strng{fullhashraw}{d8299efb6248f430bb0c465c766ed702}
+      \strng{bibnamehash}{d8299efb6248f430bb0c465c766ed702}
+      \strng{authorbibnamehash}{d8299efb6248f430bb0c465c766ed702}
+      \strng{authornamehash}{d8299efb6248f430bb0c465c766ed702}
+      \strng{authorfullhash}{d8299efb6248f430bb0c465c766ed702}
+      \strng{authorfullhashraw}{d8299efb6248f430bb0c465c766ed702}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Signal Processing Magazine}
+      \field{number}{1}
+      \field{title}{Hyperspectral Target Detection: An Overview of Current and Future Challenges}
+      \field{volume}{31}
+      \field{year}{2014}
+      \field{pages}{34\bibrangedash 44}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/MSP.2013.2278992
+      \endverb
     \endentry
     \entry{Vaithianathan2011}{article}{}{}
       \name{author}{4}{}{%
@@ -367,15 +621,11 @@
   \enddatalist
   \missing{ADAO2017}
   \missing{ComparativeFPGAGPUCPU2025}
-  \missing{Martins2019}
   \missing{MartinsEtAl2019}
   \missing{MichonEtAl2025}
   \missing{SahovicQuinten2025}
-  \missing{Shin2020}
-  \missing{TakuNet2024}
   \missing{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}
   \missing{Vaithianathan2025}
-  \missing{Zhang}
   \missing{remotesensing-09-01110-v2}
 \endrefsection
 \endinput

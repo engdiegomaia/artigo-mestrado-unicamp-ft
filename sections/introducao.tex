@@ -1,82 +1,76 @@
 % Capítulo 1: Introdução
 \chapter{Introdução}\label{chp:introducao}
 
-O imageamento hiperespectral desenvolveu-se nas últimas décadas como uma 
-tecnologia avançada no campo do sensoriamento remoto, alterando 
-significativamente os métodos de caracterização e análise de materiais, 
-superfícies e fenômenos naturais. Esta tecnologia permite a captura 
-simultânea de informações sobre a composição química e física de objetos 
-através da aquisição de centgia tem 
-possibilitado aplicações em múltiplos domínios do conhecimeenas de bandas espectrais estreitas, sendo que 
-cada banda revela características específicas dos materiais imageados. 
-Diferentemente dos sistemas multiespectrais convencionais, que operam com 
-poucas bandas largas, os sensores hiperespectrais proporcionam resolução 
-espectral superior, possibilitando a identificação de assinaturas espectrais 
-que seriam imperceptíveis em sistemas tradicionais \cite{Lorenzzetti2015}.
+O imageamento hiperespectral desenvolveu-se como tecnologia de sensoriamento 
+remoto que altera métodos de caracterização de materiais, superfícies e 
+fenômenos naturais. O imageamento hiperespectral captura informações sobre 
+composição química e física de objetos através da aquisição de centenas de 
+bandas espectrais estreitas, cada uma revelando características específicas dos 
+materiais imageados. Diferentemente dos sistemas multiespectrais convencionais, que 
+operam com poucas bandas largas, os sensores hiperespectrais oferecem 
+resolução espectral superior, permitindo identificação de assinaturas 
+espectrais imperceptíveis em sistemas tradicionais \cite{Lorenzzetti2015}.
 
-A resolução espectral detalhada oferecida por esta tecnolonto. Na 
-agricultura de precisão, sistemas hiperespectrais permitem a detecção 
-precoce de estresse hídrico, deficiências nutricionais e infestações de 
-pragas, possibilitando intervenções que maximizam a produtividade e 
-minimizam o uso de recursos. No monitoramento ambiental, estas tecnologias 
-viabilizam a caracterização de ecossistemas, detecção de poluentes e 
-acompanhamento de mudanças climáticas. Aplicações em defesa e segurança 
-exploram a capacidade de detectar materiais camuflados ou ocultos, enquanto 
-na mineração, a tecnologia facilita a identificação remota de depósitos 
-minerais \cite{Baptista2019}.
+Essa tecnologia possibilita aplicações em agricultura de precisão, 
+permitindo detecção de estresse hídrico, deficiências nutricionais e infestações 
+de pragas. \textcite{Adao2017} demonstram que UAVs emergiram como plataforma 
+custo-efetiva para imageamento hiperespectral, substituindo satélites e 
+aeronaves tripuladas, com Support Vector Machines alcançando acurácia de 
+92\% com 10 amostras de treinamento. No monitoramento ambiental, permite 
+caracterização de ecossistemas, detecção de poluentes e acompanhamento de 
+mudanças climáticas. Em defesa e segurança, detecta materiais camuflados, 
+enquanto na mineração facilita identificação remota de depósitos minerais 
+\cite{Baptista2019}.
 
-O processamento eficiente dos grandes volumes de dados hiperespectrais ---
-que podem exceder centenas de megabytes por frame --- em plataformas com 
-restrições de energia, peso e tamanho representa um dos principais problemas 
-da computação embarcada contemporânea. Esta dissertação investiga este 
-problema fundamental, propondo uma abordagem metodológica baseada em análise 
-comparativa sistemática e síntese de arquiteturas heterogêneas otimizadas.
+O processamento de dados hiperespectrais --- que podem exceder centenas de 
+megabytes por frame --- em plataformas com restrições de energia, peso e 
+tamanho representa problema central da computação embarcada. Esta dissertação 
+investiga este problema, propondo abordagem metodológica baseada em análise 
+comparativa e síntese de arquiteturas heterogêneas.
 
-A pesquisa desenvolvida neste trabalho aborda uma lacuna identificada na 
-literatura científica atual: a ausência de frameworks sistemáticos e 
-integrados para avaliação e otimização de técnicas de processamento 
-hiperespectral em sistemas embarcados. Através de metodologia estruturada, 
-investigamos os trade-offs fundamentais entre performance computacional, 
-eficiência energética e precisão de classificação, propondo soluções 
-arquiteturais otimizadas que atendam aos requisitos específicos de 
-diferentes cenários de aplicação.
+A pesquisa aborda lacuna na literatura: ausência de frameworks para 
+avaliação e otimização de técnicas de processamento hiperespectral em 
+sistemas embarcados. Através de metodologia estruturada, investigamos 
+trade-offs entre performance computacional, eficiência energética e precisão 
+de classificação, propondo soluções arquiteturais para diferentes cenários 
+de aplicação.
 
 \section{Contexto e Motivação}\label{sec:contexto_motivacao}
 
 O processamento de imagens hiperespectrais em sistemas embarcados representa 
-um dos principais desafios computacionais da atualidade. A complexidade 
-desta tarefa emerge das características dos dados hiperespectrais, 
-onde cada pixel de uma imagem hiperespectral 
-contém uma assinatura espectral completa composta por centenas de valores 
-espectrais que capturam informações sobre propriedades biofísicas e 
-bioquímicas dos objetos observados 
-\cite{Zhang2023}. 
-Esta riqueza informacional, que constitui a principal vantagem da tecnologia, 
-representa simultaneamente seu maior desafio computacional, especialmente 
-considerando a necessidade de processamento em tempo real sob restrições de 
-recursos.
+desafio computacional significativo. A complexidade emerge das características 
+dos dados hiperespectrais, onde cada pixel contém assinatura espectral 
+composta por centenas de valores espectrais que capturam propriedades 
+biofísicas e bioquímicas dos objetos observados \cite{Zhang2023}. Esta 
+riqueza informacional constitui simultaneamente a vantagem e o desafio 
+computacional do imageamento hiperespectral, especialmente para processamento 
+em tempo real sob restrições de recursos.
 
-O desafio torna-se mais evidente quando analisamos aplicações de veículos 
-aéreos não tripulados (UAVs) para imageamento hiperespectral. As imagens 
-hiperespectrais capturadas por UAVs exibem variações espectrais mais 
-pronunciadas comparadas aos dados obtidos por plataformas espaciais, 
-apresentando desafios maiores para classificação \cite{Zhang2023}. 
-Esta complexidade surge das condições operacionais dos UAVs, incluindo 
-variações de altitude, ângulos de observação, condições atmosféricas e 
-iluminação, que introduzem heterogeneidade espectral e radiométrica que 
-sistemas tradicionais de processamento frequentemente não conseguem lidar 
-adequadamente.
+O desafio intensifica-se em aplicações de veículos aéreos não tripulados 
+(UAVs) para imageamento hiperespectral. Imagens hiperespectrais capturadas 
+por UAVs exibem variações espectrais pronunciadas comparadas aos dados de 
+plataformas espaciais, apresentando desafios para classificação 
+\cite{Zhang2023}. Esta complexidade surge das condições operacionais dos 
+UAVs: variações de altitude, ângulos de observação, condições atmosféricas e 
+iluminação introduzem heterogeneidade espectral e radiométrica que sistemas 
+tradicionais de processamento não conseguem lidar adequadamente.
 
-O problema é mais crítico quando consideramos os requisitos específicos de 
-processamento em tempo real. Sistemas 
-hiperespectrais embarcados devem atender simultaneamente a múltiplos 
-requisitos: alta taxa de compressão devido aos volumes de dados, 
-processamento em tempo real para evitar acúmulo de dados não processados, e 
-baixa complexidade computacional devido às limitações de recursos das 
-plataformas embarcadas \cite{Diaz2019}.
+O problema intensifica-se com requisitos de processamento em tempo real. 
+Sistemas hiperespectrais embarcados devem atender múltiplos requisitos: alta 
+taxa de compressão devido aos volumes de dados, processamento em tempo real 
+para evitar acúmulo de dados não processados, e baixa complexidade 
+computacional devido às limitações de recursos das plataformas embarcadas 
+\cite{Diaz2019}.
 
 A análise dos trabalhos existentes revela que as técnicas tradicionais de 
 processamento enfrentam limitações quando aplicadas ao contexto embarcado. 
+\textcite{Manolakis2002} demonstram que detectores estatísticos clássicos 
+como Reed-Xiaoli (RX) e matched filters, embora teoricamente fundamentados, 
+assumem distribuições gaussianas que frequentemente não se aplicam a 
+cenários reais. \textcite{Nasrabadi2014} complementa esta análise 
+identificando que detectores adaptativos como ACE (Adaptive Coherence 
+Estimator) e GLRT (Generalized Likelihood Ratio Test) superam métodos de 
+correlação simples, mas requerem processamento computacional intensivo. 
 Díaz et al.\ observam que, embora a maioria dos compressores com perdas 
 alcancem performance satisfatória em termos de taxa de distorção, eles são 
 caracterizados por custos computacionais altos, requisitos intensivos de 
@@ -86,11 +80,11 @@ restrições de latência, energia e memória, típicas da compressão embarcada
 
 A demanda crescente por aplicações autônomas tem impulsionado o 
 desenvolvimento de soluções baseadas em arquiteturas heterogêneas. Destacando o 
-avanço da tecnologia UAV, combinado com a 
+avanço dos UAVs, combinado com a 
 miniaturização de equipamentos de imageamento hiperespectral, tornou o 
-sensoriamento remoto hiperespectral baseado em UAV uma ferramenta essencial 
+sensoriamento remoto hiperespectral baseado em UAV uma tecnologia essencial 
 para observação da Terra 
-\cite{Zhang}. 
+\cite{Zhang2023}. 
 No entanto, é ressaltado que os sensores hiperespectrais baseados 
 em UAV oferecem vantagens em capturar informações espectrais de objetos 
 terrestres, mas também apresentam desafios relacionados ao processamento de 
@@ -102,17 +96,19 @@ redes neurais convolucionais (CNNs), métodos baseados em Transformer, redes
 neurais recorrentes (RNNs), redes neurais de grafos convolucionais (GCNs), 
 redes adversariais generativas (GANs) e modelos híbridos, demonstram 
 potencial na classificação de imagens hiperespectrais 
-\cite{Zhang2023}. 
-Estes modelos podem melhorar significativamente a 
-precisão e robustez da classificação explorando características espaciais e 
-espectrais simultaneamente, estabelecendo deep learning como paradigma 
-dominante no campo.
+\cite{Zhang2023}. \textcite{BioucasDias2012} demonstram que técnicas de 
+unmixing espectral, incluindo abordagens geométricas, estatísticas e de 
+regressão esparsa, são fundamentais para análise de pixels mistos, com 
+métodos spectral-spatial superando análise apenas espectral. Estes modelos 
+podem melhorar significativamente a precisão e robustez da classificação 
+explorando características espaciais e espectrais simultaneamente, 
+estabelecendo deep learning como paradigma dominante no campo.
 
 Paralelamente, Díaz et al.\ demonstram o potencial das GPUs embarcadas para 
 compressão hiperespectral em tempo real, implementando o compressor HyperLCA 
 (lossy compression algorithm for hyperspectral image system) nos kits de 
 desenvolvimento NVIDIA Jetson TK1 e TX2. Os resultados 
-obtidos pelos autores mostram que o sistema consegue processar mais de 330 
+obtidos pelos autores mostram que o compressor HyperLCA consegue processar mais de 330 
 frames por segundo, verificando tanto a performance do compressor HyperLCA 
 para a aplicação quanto o alcance de performance em tempo real através das 
 implementações desenvolvidas. Este trabalho demonstra como GPUs embarcadas 
@@ -121,9 +117,10 @@ hiperespectrais, aproveitando sua capacidade de processamento paralelo.
 
 A importância da eficiência energética em sistemas embarcados é demonstrada 
 pelos resultados que mostram melhorias através de 
-arquiteturas heterogêneas.\cite{Vaithianathan2011} Técnicas de co-design hardware-software 
-podem resultar em melhorias de 21x na velocidade de throughput\cite{Hwang2011} e redução de até 69,88x 
-no consumo energético comparado a implementações em GPUs \cite{ArucuIliev2025}. Estes resultados evidenciam o 
+arquiteturas heterogêneas \cite{Vaithianathan2025}. Técnicas de co-design 
+hardware-software podem resultar em melhorias de 21x na velocidade de throughput 
+\cite{Hwang2011} e redução de até 69,88x no consumo energético comparado a 
+implementações em GPUs \cite{ArucuIliev2025}. Os resultados de co-design evidenciam o 
 potencial de abordagens integradas que exploram sinergias entre diferentes 
 componentes arquiteturais.
 
@@ -134,7 +131,7 @@ desafios, incluindo processamento de dados de alta dimensionalidade,
 heterogeneidade espectral e variabilidade radiométrica entre diferentes 
 cenas'' 
 \cite{Zhang2023}. 
-Os autores enfatizam que deep learning permanece largamente uma solução de 
+Os autores enfatizam que deep learning permanece largamente uma abordagem de 
 ``caixa preta'' para a maioria dos problemas, indicando a necessidade de 
 abordagens mais sistemáticas e interpretáveis.
 
@@ -252,8 +249,9 @@ revelará oportunidades de melhoria superiores àquelas obtidas por técnicas
 isoladas. Díaz et al.\ fornecem evidência empírica para esta hipótese ao 
 demonstrar que implementações otimizadas em GPUs embarcadas alcançam 
 performance de 330 fps com compressão, enquanto 
-Vaithianathan reporta melhorias de 2100\% em throughput\cite{Hwang2011} e redução de até 69,88x 
-no consumo energético através de co-design hardware-software\cite{ArucuIliev2025}.
+Vaithianathan reporta melhorias de 2100\% em throughput \cite{Hwang2011} e 
+redução de até 69,88x no consumo energético através de co-design hardware-software 
+\cite{ArucuIliev2025}.
 
 A segunda hipótese afirma a existência de trade-offs fundamentais e 
 matematicamente modeláveis entre dimensões de performance. Zhang et al.\ 

@@ -3,7 +3,7 @@
 \contentsline {chapter}{Resumo}{9}{chapter*.4}%
 \contentsline {chapter}{Abstract}{1}{chapter*.5}%
 \contentsline {chapter}{\numberline {1}Introdução}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Contexto e Motivação}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.1}Contexto e Motivação}{2}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Problema de Pesquisa}{4}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Objetivos}{5}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Hipóteses de Trabalho}{6}{section.1.4}%
@@ -49,15 +49,15 @@
 \contentsline {section}{\numberline {3.1}Considerações Iniciais}{28}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Abordagem Metodológica}{29}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Caracterização da Pesquisa}{29}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Estratégia de Investigação Comparativa}{30}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.2}Estratégia de Investigação Comparativa}{29}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Delimitação do Escopo Tecnológico}{30}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Procedimentos de Investigação}{31}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Procedimentos de Investigação}{30}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Levantamento e Catalogação de Técnicas}{31}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Modelagem Teórica Comparativa}{32}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.2}Modelagem Teórica Comparativa}{31}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Framework de Simulação Integrado}{32}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Estudo Comparativo de Arquiteturas}{33}{section.3.4}%
+\contentsline {section}{\numberline {3.4}Estudo Comparativo de Arquiteturas}{32}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Análise de Técnicas FPGA Xilinx}{33}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Análise de Técnicas GPU Embarcadas}{34}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.2}Análise de Técnicas GPU Embarcadas}{33}{subsection.3.4.2}%
 \contentsline {subsection}{\numberline {3.4.3}Estudo Comparativo Cross-Platform}{34}{subsection.3.4.3}%
 \contentsline {section}{\numberline {3.5}Protocolo de Simulação e Benchmarking}{35}{section.3.5}%
 \contentsline {subsection}{\numberline {3.5.1}Ambiente de Simulação}{35}{subsection.3.5.1}%
@@ -65,9 +65,9 @@
 \contentsline {subsection}{\numberline {3.5.3}Protocolo de Medição e Análise}{36}{subsection.3.5.3}%
 \contentsline {section}{\numberline {3.6}Metodologia de Síntese Arquitetural}{37}{section.3.6}%
 \contentsline {subsection}{\numberline {3.6.1}Análise Multi-Critério}{37}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Design Space Exploration}{37}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.2}Design Space Exploration}{38}{subsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.6.3}Síntese da Arquitetura Proposta}{38}{subsection.3.6.3}%
-\contentsline {section}{\numberline {3.7}Planejamento de Execução}{38}{section.3.7}%
+\contentsline {section}{\numberline {3.7}Planejamento de Execução}{39}{section.3.7}%
 \contentsline {subsection}{\numberline {3.7.1}Fases de Desenvolvimento}{39}{subsection.3.7.1}%
 \contentsline {subsection}{\numberline {3.7.2}Marcos e Entregáveis}{39}{subsection.3.7.2}%
 \contentsline {subsection}{\numberline {3.7.3}Gestão de Riscos e Contingências}{40}{subsection.3.7.3}%
