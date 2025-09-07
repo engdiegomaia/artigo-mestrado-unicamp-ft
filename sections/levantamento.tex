@@ -600,7 +600,7 @@ oferecendo soluções adaptadas para aplicações específicas em agricultura de
 precisão, monitoramento ambiental, inspeção industrial e uso embarcado em 
 VANTs. Fabricantes como Specim, Resonon, Cubert e Headwall oferecem 
 soluções comerciais consolidadas para essas aplicações 
-\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}. 
+\cite{Zhang2024}. 
 A Tabela~\ref{tab:comparativo_sensores_literatura} apresenta uma análise 
 detalhada dos principais sensores e sistemas disponíveis no mercado, suas 
 características técnicas e aplicações práticas.
@@ -621,7 +621,7 @@ características técnicas e aplicações práticas.
     espectrais & Taxa: até 330 FPS & Agricultura UAV \\
     & & & 1024 pixels espaciais & Throughput: 144,375~MB/s & 
 Validação em campo
-\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}
+\cite{Zhang2024}
 \\
     \midrule
     \textbf{Resonon Pika L} & Pushbroom & 400--1000~nm & 281 bandas 
@@ -643,7 +643,7 @@ Validação em campo
     saúde vegetal e \\
     & & & 12/14 bits & Throughput: 31,25~MB/s & 
 análise agrícola
-\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}
+\cite{Zhang2024}
 \\
     & & & & Consumo: 15~W, Peso: 490~g & \\
     \midrule
@@ -671,7 +671,7 @@ embarcadas em UAVs devido ao seu baixo peso e alta taxa de aquisição, o
 Resonon Pika L, reconhecido por sua robustez em monitoramento de vegetação 
 e qualidade da água, e o Headwall Nano-Hyperspec, notável pela 
 adaptabilidade a plataformas compactas 
-\cite{UAV_Hyperspectral_Remote_Sensing_Image_Classification_A_Systematic_Review}. 
+\cite{Zhang2024}. 
 No segmento dos sistemas snapshot, que realizam a captura simultânea de toda 
 a cena espectral e espacial, sobressaem o Cubert S185 FireflEYE SE e 
 soluções baseadas em filtros Fabry-Pérot, ambos voltados para aplicações 
@@ -706,7 +706,10 @@ dados hiperespectrais, especialmente em sistemas embarcados operando sob
 condições variáveis de iluminação e movimento. As operações de 
 pré-processamento resultam em dados corrigidos que permitem comparações entre 
 diferentes séries temporais e até mesmo dados adquiridos por diferentes 
-sensores hiperespectrais \cite{ADAO2017}.
+sensores hiperespectrais \cite{remotesensing-15-03455}. Sistemas embarcados 
+em UAV para detecção de plásticos em ambientes aquáticos demonstram a 
+importância crítica do pré-processamento para manter precisão superior a 90\% 
+em condições operacionais desafiadoras \cite{remotesensing-15-03455}.
 
 As principais técnicas de pré-processamento incluem:
 
@@ -715,7 +718,9 @@ As principais técnicas de pré-processamento incluem:
     do sensor através de ferramentas de software fornecidas pelos fabricantes 
     de sensores hiperespectrais, que devem georreferenciar e converter cubos 
     de dados DN brutos para radiância. Esta etapa é crítica para garantir a 
-    reprodutibilidade e comparabilidade dos dados \cite{ADAO2017};
+    reprodutibilidade e comparabilidade dos dados. Métodos avançados como 
+    Empirical Line Method (ELM) demonstram melhorias de 5-55\% na precisão 
+    radiométrica \cite{SilvaSantos2024};
 
     \item \textbf{Correção atmosférica}: Remoção dos efeitos de absorção e 
     espalhamento atmosférico, particularmente crítica em aplicações aéreas. 
@@ -725,7 +730,10 @@ As principais técnicas de pré-processamento incluem:
     \item \textbf{Correção geométrica}: Compensação de distorções geométricas 
     causadas pelo movimento da plataforma e geometria de aquisição, 
     frequentemente combinando dados de orientação externa coletados durante o 
-    voo com modelo do sensor e modelo de elevação \cite{ADAO2017};
+    voo com modelo do sensor e modelo de elevação. Técnicas robustas de 
+    correção geométrica são essenciais para aplicações embarcadas em UAV, 
+    onde variações de altitude e orientação introduzem distorções significativas 
+    \cite{SilvaSantos2024};
 
     \item \textbf{Redução de ruído espectral}: Aplicação de filtros adaptativos 
     e técnicas de suavização espectral. A implementação de filtros 
@@ -735,8 +743,10 @@ As principais técnicas de pré-processamento incluem:
 
     \item \textbf{Avaliação da qualidade}: A relação sinal-ruído (SNR) 
     representa critério fundamental para caracterização da qualidade dos dados 
-    hiperespectrais, sendo essencial para análise quantitativa precisa 
-    \cite{ADAO2017}.
+    hiperespectrais, sendo essencial para análise quantitativa precisa. 
+    Sistemas comerciais como Specim FX10 e Resonon Pika L oferecem alta 
+    qualidade espectral adequada para aplicações exigentes de classificação 
+    \cite{Zhang2024}.
 \end{itemize}
 
 \subsection{Redução Dimensional e Seleção de Bandas}
@@ -747,7 +757,10 @@ espectrais) apresenta desafios computacionais significativos, tornando as
 técnicas de redução dimensional essenciais para sistemas embarcados. O 
 fenômeno de Hughes, onde o desempenho de classificadores degrada com o aumento 
 da dimensionalidade quando o número de amostras de treinamento é limitado, 
-torna estas técnicas ainda mais críticas \cite{ADAO2017}.
+torna estas técnicas ainda mais críticas. Implementações otimizadas em FPGA 
+de algoritmos como EMCR (Extreme Learning Machine with Correlation Removal) 
+conseguem redução de 80\% dos dados mantendo precisão superior a 99\% 
+\cite{martins2019}.
 
 \subsubsection{Técnicas Lineares de Redução Dimensional}
 
@@ -756,13 +769,17 @@ torna estas técnicas ainda mais críticas \cite{ADAO2017}.
     que projeta os dados em subespaço de menor dimensionalidade preservando 
     máxima variância. O PCA concentra a variância espectral e pode ser 
     combinado com outros métodos como compressão wavelet, conseguindo retenção 
-    de 99\% da variância original com redução de 80-90\% das bandas 
-    \cite{ADAO2017};
+    de 99\% da variância original com redução de 80-90\% das bandas. 
+    Implementações GPU de PCA para compressão hiperespectral conseguem 
+    processamento em tempo real em plataformas embarcadas como Jetson TX2 
+    \cite{Diaz2019};
 
     \item \textbf{Maximum Noise Fraction (MNF)}: Método baseado em PCA que 
     maximiza a relação sinal-ruído, destacado como capaz de alcançar boa 
     performance na redução dimensional de dados hiperespectrais, especialmente 
-    eficaz para dados com alta correlação espectral \cite{ADAO2017};
+    eficaz para dados com alta correlação espectral. Aplicações em sistemas 
+    PRISMA demonstram eficácia superior a 87\% na redução de ruído espectral 
+    \cite{Corbari2023};
 
     \item \textbf{Independent Component Analysis (ICA)}: Decomposição em 
     componentes estatisticamente independentes, adequada para separação de 
@@ -793,7 +810,10 @@ A classificação espectral representa uma das aplicações mais importantes do
 processamento hiperespectral, sendo fundamental para identificação e 
 mapeamento de materiais. Frameworks de classificação baseados em 
 características espectral-espaciais superam métodos que utilizam apenas 
-informações espectrais \cite{ADAO2017}.
+informações espectrais. Sistemas embarcados para detecção de plásticos 
+marinhos demonstram precisão próxima a 90\% utilizando abordagens híbridas 
+\cite{remotesensing-15-03455}, enquanto implementações FPGA de SVM alcançam 
+99,7\% de precisão com latência de 0,1ms por pixel \cite{martins2019}.
 
 \subsubsection{Métodos Clássicos de Classificação}
 
@@ -803,7 +823,9 @@ informações espectrais \cite{ADAO2017}.
     implementações otimizadas conseguindo precisões superiores a 95\% em 
     datasets de referência. A eficácia do SVM está relacionada à sua 
     capacidade de lidar com alta dimensionalidade e pequenos conjuntos de 
-    treinamento;
+    treinamento. Implementações em FPGA conseguem classificação em tempo real 
+    com latência de 0,1ms por pixel e precisão de 99,7\% em datasets AVIRIS 
+    \cite{martins2019};
 
     \item \textbf{Random Forest}: Métodos ensemble que combinam múltiplas 
     árvores de decisão, oferecendo boa interpretabilidade e robustez a 
@@ -821,17 +843,23 @@ informações espectrais \cite{ADAO2017}.
     discriminantes para características espectrais e CNNs para características 
     espaciais formam frameworks de desempenho superior. Arquiteturas como 
     ResNet e DenseNet adaptadas para dados hiperespectrais conseguem F1-scores 
-    superiores a 0,95 \cite{ADAO2017};
+    superiores a 0,95. Implementações de CNNs leves para sistemas embarcados 
+    conseguem F1-scores superiores a 94\% com arquiteturas otimizadas de 
+    baixa complexidade computacional \cite{Takahashi2025};
 
     \item \textbf{Redes residuais espectral-espaciais}: Frameworks de 
     aprendizado profundo supervisionado capazes de discriminar características 
     de assinaturas espectrais abundantes e contextos espaciais sem necessidade 
-    de engenharia manual de características \cite{ADAO2017};
+    de engenharia manual de características. Abordagens baseadas em CNN para 
+    detecção de anomalias superam métodos clássicos como RX, conseguindo 
+    taxas de detecção superiores a 90\% \cite{remotesensing-15-03455};
 
     \item \textbf{Arquiteturas leves}: Desenvolvimento de redes neurais 
     compactas adequadas para sistemas embarcados, como MobileNets e 
     EfficientNets adaptadas, conseguindo redução de 90\% nos parâmetros 
-    mantendo alta precisão \cite{ADAO2017};
+    mantendo alta precisão. Arquiteturas depth-wise conseguem eficiência 
+    computacional superior com redução significativa de parâmetros, adequadas 
+    para implementação em sistemas com restrições de memória \cite{Takahashi2025};
 
     \item \textbf{Abordagens híbridas}: Fusão de perfis de atributos com 
     aprendizado profundo, onde técnicas de perfilamento combinadas com CNN 
@@ -871,7 +899,9 @@ incluindo métodos de análise no domínio da frequência e detecção de anomal
     \item \textbf{Detecção baseada em CNN}: Para detecção de anomalias, redes 
     neurais convolucionais demonstram superar métodos clássicos como 
     abordagens baseadas em RX, conseguindo taxas de detecção superiores a 90\% 
-    com baixas taxas de falsos positivos \cite{ADAO2017};
+    com baixas taxas de falsos positivos. Aplicações práticas em detecção de 
+    plásticos marinhos validam a eficácia desta abordagem em condições reais 
+    \cite{Corbari2023};
 
     \item \textbf{Algoritmos RX adaptivos}: Implementações otimizadas do 
     detector RX com janelas adaptativas e processamento local, adequadas para 
@@ -884,8 +914,10 @@ incluindo métodos de análise no domínio da frequência e detecção de anomal
 
     \item \textbf{Seleção de saliência}: Abordagens de classificação manifold 
     estendidas para aprendizado profundo, apresentadas para detecção de 
-    saliência em relação à seleção de bandas em imagens hiperespectrais 
-    \cite{ADAO2017}.
+    saliência em relação à seleção de bandas em imagens hiperespectrais. 
+    Técnicas de fusão espacial-espectral com mecanismos de atenção demonstram 
+    eficácia superior na identificação de características salientes 
+    \cite{Zhang2024}.
 \end{itemize}
 
 \subsection{Considerações para Implementação Embarcada}
@@ -902,7 +934,10 @@ e restrições de recursos.
 
     \item \textbf{Arquiteturas heterogêneas}: Combinação de CPU, GPU e FPGA 
     para otimização simultânea de desempenho e consumo energético. Sistemas 
-    CPU+FPGA conseguem melhorias de até 40x na eficiência energética;
+    CPU+FPGA conseguem melhorias significativas na eficiência energética, 
+    conforme demonstrado em implementações de compressão hiperespectral 
+    \cite{Hwang2011}. Arquiteturas tri-híbridas CPU+GPU+FPGA oferecem 
+    especialização por estágio de processamento \cite{SahovicQuinten2025};
 
     \item \textbf{Processamento em pipeline}: Implementação de pipelines de 
     processamento que permitem operação contínua com baixa latência, essencial 
@@ -937,8 +972,8 @@ tipos de algoritmos.
 
 As CPUs permanecem como componente central em sistemas hiperespectrais 
 embarcados, especialmente adequadas para tarefas sequenciais e de controle. 
-Conforme destacado por Vaithianathan (2025), as CPUs são projetadas para 
-tarefas de propósito geral e se destacam no processamento sequencial, 
+Conforme destacado por \textcite{IJETCSIT-V1I1P102}, as CPUs são projetadas 
+para tarefas de propósito geral e se destacam no processamento sequencial, 
 tornando-as ideais para aplicações que requerem alto desempenho em 
 single-thread:
 
@@ -974,8 +1009,8 @@ single-thread:
 \label{subsec:processadores_gpu}
 
 As GPUs se destacam no processamento hiperespectral devido à natureza 
-paralelizável das operações matriciais. Segundo Vaithianathan (2025), as 
-GPUs são otimizadas para processamento paralelo, permitindo o manuseio de 
+paralelizável das operações matriciais. Segundo \textcite{IJETCSIT-V1I1P102}, 
+as GPUs são otimizadas para processamento paralelo, permitindo o manuseio de 
 milhares de threads simultaneamente, característica particularmente benéfica 
 para processamento de imagens e deep learning:
 
@@ -993,11 +1028,11 @@ para processamento de imagens e deep learning:
     capazes de executar operações paralelas \cite{Vaithianathan2025}
     
     \item \textbf{Performance em processamento hiperespectral}: Demonstram 
-    throughput superior a 330 fps em compressão hiperespectral (Jetson TX2) 
-    e excelente desempenho em CNNs para classificação. As GPUs exploram 
-    paralelismo em nível de dados através de milhares de cores, tornando-as 
-    adequadas para processamento em lote e aplicações de alto throughput 
-    \cite{ComparativeFPGAGPUCPU2025}
+    bom desempenho em compressão hiperespectral em plataformas embarcadas 
+    como Jetson TX2 e excelente capacidade para CNNs de classificação. As GPUs 
+    exploram paralelismo em nível de dados através de milhares de cores, 
+    tornando-as adequadas para processamento em lote e aplicações de alto 
+    throughput \cite{ArucuIliev2025}
     
     \item \textbf{Consumo energético}: Faixa de 5-20W para modelos embarcados, 
     adequado para aplicações UAV com restrições energéticas. Michon et al. 
@@ -1010,8 +1045,8 @@ para processamento de imagens e deep learning:
 
 Os FPGAs oferecem a máxima flexibilidade para implementação de algoritmos 
 hiperespectrais otimizados. Como ressaltado na análise comparativa de 
-plataformas digitais \cite{ComparativeFPGAGPUCPU2025}, os FPGAs demonstram 
-desempenho significativamente superior, sendo 27 vezes mais rápidos que CPUs 
+\textcite{FIR_ArucuIliev2025}, os FPGAs demonstram desempenho 
+significativamente superior, sendo 27 vezes mais rápidos que CPUs 
 e 2 vezes mais rápidos que GPUs, consumindo simultaneamente menos energia:
 
 \begin{itemize}
@@ -1022,8 +1057,8 @@ e 2 vezes mais rápidos que GPUs, consumindo simultaneamente menos energia:
     precisão acima de 99\%, atendendo aos requisitos de tempo real do AVIRIS
     
     \item \textbf{Eficiência energética}: Implementações otimizadas podem 
-    atingir melhorias energéticas de 43,5x comparado a implementações em 
-    software (codesign HW/SW). Os FPGAs são circuitos semicondutores 
+    atingir melhorias energéticas significativas comparado a implementações em 
+    software através de codesign HW/SW. Os FPGAs são circuitos semicondutores 
     programáveis compostos por blocos lógicos customizáveis conectados por 
     interconexões programáveis \cite{Vaithianathan2025}
     
@@ -1054,9 +1089,9 @@ de tipos distintos de processadores.
 
 A computação heterogênea baseia-se no princípio de que diferentes tipos de 
 processadores possuem eficiências variáveis para diferentes tipos de cargas 
-computacionais. Segundo Vaithianathan (2025), a integração visa aproveitar 
-os pontos fortes únicos de cada arquitetura, melhorando a eficiência 
-computacional e o desempenho em vários domínios:
+computacionais. Segundo \textcite{IJETCSIT-V1I1P102}, a integração visa 
+aproveitar os pontos fortes únicos de cada arquitetura, melhorando a 
+eficiência computacional e o desempenho em vários domínios:
 
 \begin{itemize}
     \item \textbf{Especialização de processadores}: Cada tipo de processador 
@@ -1085,8 +1120,8 @@ computacional e o desempenho em vários domínios:
 \subsubsection{Tendências Futuras em Computação Heterogênea}
 \label{subsubsec:tendencias_futuras_heterogenea}
 
-Vaithianathan (2025) identifica direções emergentes que moldarão o futuro 
-da computação heterogênea, com implicações diretas para processamento 
+\textcite{IJETCSIT-V1I1P102} identifica direções emergentes que moldarão 
+o futuro da computação heterogênea, com implicações diretas para processamento 
 hiperespectral embarcado:
 
 \begin{itemize}
