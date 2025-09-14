@@ -1,4 +1,4 @@
-# Análise do Artigo: remotesensing-09-01110-v2
+# Análise do Artigo: AlRuzouq2020
 
 **Data da Análise**: 2025-08-26
 **Analisado por**: Sistema Automático de Análise de Artigos
@@ -201,5 +201,5 @@ Este documento apresenta uma análise automatizada do artigo científico, identi
 
 ---
 
-**Arquivo Original**: remotesensing-09-01110-v2
+**Arquivo Original**: AlRuzouq2020
 **Processado em**: 2025-08-26

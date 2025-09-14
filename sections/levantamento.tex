@@ -54,7 +54,7 @@ aquisição e análise de dados hiperespectrais.
 \subsubsection{Definição e características das ondas eletromagnéticas}
 
 Ondas eletromagnéticas são perturbações que se propagam no espaço à 
-velocidade da luz ($c \approx 3 x 10^8$ m/s no vácuo). São 
+velocidade da luz ($c \approx 3 * 10^8$ m/s no vácuo). São 
 caracterizadas principalmente pelo comprimento de onda ($\lambda$) e 
 pela frequência ($f$), relacionados por:
 \begin{equation}
@@ -65,17 +65,17 @@ frequência, conforme a equação de Planck:
 \begin{equation}
 E = h \cdot f = \frac{hc}{\lambda}
 \end{equation}
-em que $h$ é a constante de Planck ($6{,}626 x 10^{-34}$~J$\cdot$s).
+em que $h$ é a constante de Planck ($6{,}626 * 10^{-34}$~J$\cdot$s).
 
 No contexto do sensoriamento remoto, diferentes unidades são empregadas para
 descrever as faixas espectrais:
 \begin{itemize}
-    \item 1~kHz = $1 x 10^3$~Hz
-    \item 1~MHz = $1 x 10^6$~Hz
-    \item 1~GHz = $1 x 10^9$~Hz
-    \item 1~THz = $1 x 10^{12}$~Hz
-    \item 1~$\mu$m = $1 x 10^{-6}$~m
-    \item 1~nm = $1 x 10^{-9}$~m
+    \item 1~kHz = $1 * 10^{3}$~Hz
+    \item 1~MHz = $1 * 10^{6}$~Hz
+    \item 1~GHz = $1 * 10^{9}$~Hz
+    \item 1~THz = $1 * 10^{12}$~Hz
+    \item 1~$\mu$m = $1 * 10^{-6}$~m
+    \item 1~nm = $1 * 10^{-9}$~m
 \end{itemize}
 
 Neste trabalho adota-se a unidade de micrometro ($\mu$m) para o 
@@ -210,20 +210,20 @@ $\mu$m$^{-1}$ no comprimento de onda ($\lambda$) e a irradiância incidente
 \end{equation}
 
 Esta definição estabelece a base quantitativa para a medição e comparação 
-das propriedades espectrais de diferentes materiais \cite{Baptista2019}. 
+das propriedades espectrais de diferentes materiais. 
 O Sol é a principal fonte natural de energia eletromagnética nas faixas do 
 espectro do ultravioleta, do visível, do infravermelho próximo e do 
 infravermelho de ondas curtas. Em comprimentos de onda maiores, na faixa do 
 infravermelho termal, a eficiência do Sol como fonte de energia é bastante 
 reduzida e a Terra passa a ter maior eficiência como fonte, porém nesta 
-faixa não se analisa o espectro óptico de reflectância e sim o de emitância.
+faixa não se analisa o espectro óptico de reflectância e sim o de emitância.\cite{Baptista2019}
 
 O processo de interação dos fótons com a matéria resulta em que parte deles 
 é refletida pelos grãos da superfície do material, alguns passam pelos 
-grãos e alguns são absorvidos \cite{Baptista2019}. Os fótons são 
+grãos e alguns são absorvidos. Os fótons são 
 absorvidos pelos minerais por diversos processos que dependem de sua 
 composição química. Essas absorções são governadas por dois processos 
-gerais: processos eletrônicos e processos vibracionais.
+gerais: processos eletrônicos e processos vibracionais.\cite{Baptista2019}
 
 \textbf{Fatores Físicos Influenciadores:}
 
@@ -568,7 +568,7 @@ Os sistemas de imageamento hiperespectral podem ser categorizados segundo
 diferentes modos de aquisição, cada um apresentando características 
 específicas quanto à velocidade, qualidade e adequação para diferentes 
 plataformas. Conforme estabelecido na literatura
-\cite{remotesensing-09-01110-v2},
+\cite{AlRuzouq2020},
 os principais modos de aquisição são:
 
 \begin{itemize}
@@ -577,14 +577,14 @@ os principais modos de aquisição são:
     de pixels simultaneamente, constituindo um cubo band-interleaved-by-line 
     (BIL). É o tipo mais comum em plataformas aéreas e UAVs devido às 
     características de tamanho compacto, baixo peso, operação simplificada 
-    e alta relação sinal/ruído \cite{remotesensing-09-01110-v2};
+    e alta relação sinal/ruído \cite{AlRuzouq2020};
     
     
     \item \textbf{Snapshot (imageamento instantâneo)}: Adquire toda a 
     informação espacial e espectral em uma única exposição dentro de um 
     único período de integração. Representa uma tecnologia em desenvolvimento 
     que ainda carece de suporte para resoluções espaciais mais altas 
-    \cite{remotesensing-09-01110-v2}.
+    \cite{AlRuzouq2020}.
 \end{itemize}
 
 A seleção do sistema adequado deve considerar os requisitos específicos da 
@@ -610,55 +610,37 @@ características técnicas e aplicações práticas.
     \caption{Análise comparativa de sensores hiperespectrais baseada na 
     literatura científica}
     \label{tab:comparativo_sensores_literatura}
-    \small
-    \begin{tabular}{p{2.5cm}p{2.0cm}p{2.5cm}p{2.0cm}p{2.5cm}p{3.0cm}}
+    \footnotesize
+    \begin{tabular}{p{2.2cm}p{1.8cm}p{2.0cm}p{2.2cm}p{2.0cm}p{2.3cm}}
     \toprule
-    \textbf{Sensor/Sistema} & \textbf{Tecnologia de Aquisição} & 
+    \textbf{Sensor/\-Sistema} & \textbf{Tecnologia de Aquisição} & 
     \textbf{Faixa Espectral} & \textbf{Características Espectrais} & 
-    \textbf{Performance Reportada} & \textbf{Referência/Aplicação} \\
+    \textbf{Performance Reportada} & \textbf{Referência/\-Aplicação} \\
     \midrule
-    \textbf{Specim FX10} & Pushbroom & 400--1000~nm (VNIR) & 224 bandas 
-    espectrais & Taxa: até 330 FPS & Agricultura UAV \\
-    & & & 1024 pixels espaciais & Throughput: 144,375~MB/s & 
-Validação em campo
-\cite{Zhang2024}
+    \textbf{Specim FX10} & Pushbroom & 400--1000~nm (VNIR) & 224 bandas espectrais & Taxa: até 330 FPS & Agricultura UAV \\
+    & & & 1024 pixels espaciais & Throughput: 144,375~MB/s & Validação em campo \cite{Zhang2024}
 \\
     \midrule
-    \textbf{Resonon Pika L} & Pushbroom & 400--1000~nm & 281 bandas 
-    espectrais & Taxa: 249 FPS & Aplicações em \\
-    & & & 900 pixels espaciais & Throughput: 94,45~MB/s & 
-    monitoramento de vegetação \\
-    & & & 12 bits/pixel & Com binning 2$x$: 47,22~MB/s & 
-    e qualidade da água \cite{remotesensing-09-01110-v2} \\
+    \textbf{Resonon Pika L} & Pushbroom & 400--1000~nm & 281 bandas espectrais & Taxa: 249 FPS & Aplicações em monitoramento \\
+    & & & 900 pixels espaciais & Throughput: 94,45~MB/s & de vegetação e qualidade \\
+    & & & 12 bits/pixel & Com binning 2$x$: 47,22~MB/s & da água \cite{AlRuzouq2020} \\
     \midrule
-    \textbf{Resonon PIKA-NIR-320} & Pushbroom & 900--1700~nm (NIR-SWIR) & 
-    164 bandas espectrais & Taxa: até 520~Hz & Detecção de resíduos \\
-    & & & 320 pixels espaciais & Pixel size: 30~$\mu$m & 
-    marinhos flutuantes \\
+    \textbf{Resonon PIKA-NIR-320} & Pushbroom & 900--1700~nm (NIR-SWIR) & 164 bandas espectrais & Taxa: até 520~Hz & Detecção de resíduos \\
+    & & & 320 pixels espaciais & Pixel size: 30~$\mu$m & marinhos flutuantes \\
     & & & 168 canais totais & Line-scan operation & \\
     \midrule
-    \textbf{Cubert S185 FireflEYE SE} & Snapshot & 450--950~nm & 125 
-    bandas espectrais & Taxa: até 25~Hz & Monitoramento de \\
-    & & & 1~MP (1000$x$1000) & 5 cubos hiperespectrais/s & 
-    saúde vegetal e \\
-    & & & 12/14 bits & Throughput: 31,25~MB/s & 
-análise agrícola
-\cite{Zhang2024}
+    \textbf{Cubert S185 FireflEYE SE} & Snapshot & 450--950~nm & 125 bandas espectrais & Taxa: até 25~Hz & Monitoramento de \\
+    & & & 1~MP (1000$x$1000) & 5 cubos hiperespectrais/s & saúde vegetal e \\
+    & & & 12/14 bits & Throughput: 31,25~MB/s & análise agrícola \cite{Zhang2024}
 \\
     & & & & Consumo: 15~W, Peso: 490~g & \\
     \midrule
-    \textbf{Headwall Nano-Hyperspec} & Pushbroom & 400--1000~nm & 270 
-    bandas espectrais & Taxa: 300 FPS & Pequenas plataformas \\
-    & & & 640 pixels espaciais & Throughput: 103,68~MB/s & 
-    UAV, excelente \\
-    & & & & Armazenamento: 480~GB & 
-    adaptabilidade \cite{remotesensing-09-01110-v2} \\
+    \textbf{Headwall Nano-Hyperspec} & Pushbroom & 400--1000~nm & 270 bandas espectrais & Taxa: 300 FPS & Pequenas plataformas \\
+    & & & 640 pixels espaciais & Throughput: 103,68~MB/s & UAV, excelente \\
+    & & & & Armazenamento: 480~GB & adaptabilidade \cite{AlRuzouq2020} \\
     \midrule
-    \textbf{Sistemas baseados em} & Snapshot & Variável & 150+ bandas & 
-    Performance variável & Tecnologia IMEC \\
-    \textbf{Filtros Fabry-Pérot} & (Captura única) & conforme filtros & 
-    Filtros sintonizáveis & dependente da aplicação & 
-    Imageamento instantâneo \\
+    \textbf{Sistemas baseados em} & Snapshot & Variável & 150+ bandas & Performance variável & Tecnologia IMEC \\
+    \textbf{Filtros Fabry-Pérot} & (Captura única) & conforme filtros & Filtros sintonizáveis & dependente da aplicação & Imageamento instantâneo \\
     \bottomrule
     \end{tabular}
     \end{table}
@@ -706,10 +688,10 @@ dados hiperespectrais, especialmente em sistemas embarcados operando sob
 condições variáveis de iluminação e movimento. As operações de 
 pré-processamento resultam em dados corrigidos que permitem comparações entre 
 diferentes séries temporais e até mesmo dados adquiridos por diferentes 
-sensores hiperespectrais \cite{remotesensing-15-03455}. Sistemas embarcados 
+sensores hiperespectrais. Sistemas embarcados 
 em UAV para detecção de plásticos em ambientes aquáticos demonstram a 
 importância crítica do pré-processamento para manter precisão superior a 90\% 
-em condições operacionais desafiadoras \cite{remotesensing-15-03455}.
+em condições operacionais desafiadoras \cite{Alboody2023}.
 
 As principais técnicas de pré-processamento incluem:
 
@@ -760,7 +742,7 @@ da dimensionalidade quando o número de amostras de treinamento é limitado,
 torna estas técnicas ainda mais críticas. Implementações otimizadas em FPGA 
 de algoritmos como EMCR (Extreme Learning Machine with Correlation Removal) 
 conseguem redução de 80\% dos dados mantendo precisão superior a 99\% 
-\cite{martins2019}.
+\cite{Martins2019}.
 
 \subsubsection{Técnicas Lineares de Redução Dimensional}
 
@@ -812,8 +794,8 @@ mapeamento de materiais. Frameworks de classificação baseados em
 características espectral-espaciais superam métodos que utilizam apenas 
 informações espectrais. Sistemas embarcados para detecção de plásticos 
 marinhos demonstram precisão próxima a 90\% utilizando abordagens híbridas 
-\cite{remotesensing-15-03455}, enquanto implementações FPGA de SVM alcançam 
-99,7\% de precisão com latência de 0,1ms por pixel \cite{martins2019}.
+\cite{Alboody2023}, enquanto implementações FPGA de SVM alcançam 
+99,7\% de precisão com latência de 0,1ms por pixel \cite{Martins2019}.
 
 \subsubsection{Métodos Clássicos de Classificação}
 
@@ -825,7 +807,7 @@ marinhos demonstram precisão próxima a 90\% utilizando abordagens híbridas
     capacidade de lidar com alta dimensionalidade e pequenos conjuntos de 
     treinamento. Implementações em FPGA conseguem classificação em tempo real 
     com latência de 0,1ms por pixel e precisão de 99,7\% em datasets AVIRIS 
-    \cite{martins2019};
+    \cite{Martins2019};
 
     \item \textbf{Random Forest}: Métodos ensemble que combinam múltiplas 
     árvores de decisão, oferecendo boa interpretabilidade e robustez a 
@@ -852,7 +834,7 @@ marinhos demonstram precisão próxima a 90\% utilizando abordagens híbridas
     de assinaturas espectrais abundantes e contextos espaciais sem necessidade 
     de engenharia manual de características. Abordagens baseadas em CNN para 
     detecção de anomalias superam métodos clássicos como RX, conseguindo 
-    taxas de detecção superiores a 90\% \cite{remotesensing-15-03455};
+    taxas de detecção superiores a 90\% \cite{Alboody2023};
 
     \item \textbf{Arquiteturas leves}: Desenvolvimento de redes neurais 
     compactas adequadas para sistemas embarcados, como MobileNets e 
@@ -864,7 +846,7 @@ marinhos demonstram precisão próxima a 90\% utilizando abordagens híbridas
     \item \textbf{Abordagens híbridas}: Fusão de perfis de atributos com 
     aprendizado profundo, onde técnicas de perfilamento combinadas com CNN 
     demonstram resultados superiores ao uso individual de cada abordagem 
-    \cite{ADAO2017}.
+    \cite{Adao2017}.
 \end{itemize}
 
 \subsection{Processamento de Sinais Espectrais Avançado}
@@ -955,7 +937,7 @@ aprendizado profundo. A escolha da técnica adequada depende da aplicação
 específica, recursos computacionais disponíveis e requisitos de precisão. A 
 tendência atual aponta para abordagens híbridas que combinam múltiplas 
 técnicas e arquiteturas heterogêneas que otimizam o balanceamento entre 
-precisão, velocidade e eficiência energética \cite{ADAO2017}.
+precisão, velocidade e eficiência energética \cite{Adao2017}.
 
 \section{Tipos de Processadores para Processamento Hiperespectral}
 \label{sec:tipos_processadores}
@@ -972,7 +954,7 @@ tipos de algoritmos.
 
 As CPUs permanecem como componente central em sistemas hiperespectrais 
 embarcados, especialmente adequadas para tarefas sequenciais e de controle. 
-Conforme destacado por \textcite{IJETCSIT-V1I1P102}, as CPUs são projetadas 
+Conforme destacado por \textcite{Vaithianathan2025}, as CPUs são projetadas 
 para tarefas de propósito geral e se destacam no processamento sequencial, 
 tornando-as ideais para aplicações que requerem alto desempenho em 
 single-thread:
@@ -1001,15 +983,14 @@ single-thread:
     \item \textbf{Limitações}: Baixo throughput para operações matriciais 
     massivamente paralelas características do processamento hiperespectral. 
     Estudos comparativos demonstram que CPUs apresentam desempenho até 27 
-    vezes inferior aos FPGAs em tarefas de processamento digital de sinais 
-    \cite{ComparativeFPGAGPUCPU2025}
+    vezes inferior aos FPGAs em tarefas de processamento digital de sinais
 \end{itemize}
 
 \subsection{Unidades de Processamento Gráfico (GPU)}
 \label{subsec:processadores_gpu}
 
 As GPUs se destacam no processamento hiperespectral devido à natureza 
-paralelizável das operações matriciais. Segundo \textcite{IJETCSIT-V1I1P102}, 
+paralelizável das operações matriciais. Segundo \textcite{Vaithianathan2025}, 
 as GPUs são otimizadas para processamento paralelo, permitindo o manuseio de 
 milhares de threads simultaneamente, característica particularmente benéfica 
 para processamento de imagens e deep learning:
@@ -1045,7 +1026,7 @@ para processamento de imagens e deep learning:
 
 Os FPGAs oferecem a máxima flexibilidade para implementação de algoritmos 
 hiperespectrais otimizados. Como ressaltado na análise comparativa de 
-\textcite{FIR_ArucuIliev2025}, os FPGAs demonstram desempenho 
+\textcite{ArucuIliev2025}, os FPGAs demonstram desempenho 
 significativamente superior, sendo 27 vezes mais rápidos que CPUs 
 e 2 vezes mais rápidos que GPUs, consumindo simultaneamente menos energia:
 
@@ -1089,7 +1070,7 @@ de tipos distintos de processadores.
 
 A computação heterogênea baseia-se no princípio de que diferentes tipos de 
 processadores possuem eficiências variáveis para diferentes tipos de cargas 
-computacionais. Segundo \textcite{IJETCSIT-V1I1P102}, a integração visa 
+computacionais. Segundo \textcite{Vaithianathan2025}, a integração visa 
 aproveitar os pontos fortes únicos de cada arquitetura, melhorando a 
 eficiência computacional e o desempenho em vários domínios:
 
@@ -1120,7 +1101,7 @@ eficiência computacional e o desempenho em vários domínios:
 \subsubsection{Tendências Futuras em Computação Heterogênea}
 \label{subsubsec:tendencias_futuras_heterogenea}
 
-\textcite{IJETCSIT-V1I1P102} identifica direções emergentes que moldarão 
+\textcite{Vaithianathan2025} identifica direções emergentes que moldarão 
 o futuro da computação heterogênea, com implicações diretas para processamento 
 hiperespectral embarcado:
 
@@ -1201,23 +1182,22 @@ hiperespectrais em tempo real usando esta abordagem:
     críticos como seleção de bandas EMCR e classificação SVM otimizada. 
     A metodologia EMCR (Entropy and Mean Correlation Ratio) aumentou 
     consideravelmente o poder de predição, alcançando níveis de precisão 
-    superiores a 99\% \cite{MartinsEtAl2019}
+    superiores a 99\% \cite{Martins2019}
     
     \item \textbf{Pipeline de baixa latência}: Processamento contínuo com 
     latência determinística, adequado para aplicações de tempo real. FPGAs 
     garantem baixo nível de latência contra GPUs e CPUs, pois trabalham em 
-    bare metal sem sistema operacional \cite{ComparativeFPGAGPUCPU2025}
+    bare metal sem sistema operacional.
     
     \item \textbf{Eficiência energética}: Melhorias de até 43,5x no consumo 
     energético através de codesign otimizado. A natureza reconfigurável dos 
     FPGAs permite maximização da otimização adaptada a aplicações específicas 
-    \cite{MichonEtAl2025}
     
     \item \textbf{Flexibilidade de reconfiguração}: Capacidade de adaptar 
     o hardware para diferentes algoritmos e requisitos de aplicação. Ao 
     contrário de CPUs e GPUs, que são arquiteturas fixas programáveis por 
     software, FPGAs são reconfiguráveis com engines computacionais definidos 
-    pelo usuário \cite{ComparativeFPGAGPUCPU2025}
+    pelo usuário
 \end{itemize}
 
 \subsection{Processamento Digital de Sinais em Sistemas Heterogêneos}
@@ -1239,7 +1219,7 @@ bandas espectrais e redução de ruído:
 
 \begin{itemize}
     \item \textbf{Performance comparativa quantificada}: Implementação de 
-    filtro FIR Kaiser (27 taps, β=5.65) demonstra superioridade clara do 
+    filtro FIR Kaiser (27 taps, $\beta$=5.65) demonstra superioridade clara do 
     FPGA com tempo de processamento de 0.004s, comparado a 0.008s da GPU 
     e 0.107s da CPU. O FPGA alcança aceleração de 27× versus CPU e 2× 
     versus GPU \cite{ArucuIliev2025}

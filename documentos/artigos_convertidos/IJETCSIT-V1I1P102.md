@@ -1,4 +1,4 @@
-# IJETCSIT-V1I1P102
+# Vaithianathan2011
 
 **Documento**: PDF convertido para Markdown
 **Data de Conversão**: 2025-08-26

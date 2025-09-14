@@ -1,755 +1,356 @@
 % Capítulo 3: Metodologia
 \chapter{Metodologia}\label{chp:metodologia}
 
-Este capítulo apresenta a metodologia para investigação comparativa de 
-técnicas de processamento de imagens hiperespectrais em arquiteturas 
-heterogêneas. A abordagem estrutura-se em oito seções: considerações iniciais, 
-estratégia de investigação, procedimentos de investigação, estudo comparativo 
-de arquiteturas FPGA e GPU, protocolo de simulação e benchmarking, metodologia 
-de síntese arquitetural, planejamento de execução, e considerações finais. A 
-metodologia privilegia análise teórica e simulada sobre implementação física, 
-justificada pela necessidade de comparação entre abordagens tecnológicas e 
-pela complexidade de validação experimental em múltiplas plataformas 
-heterogêneas.
+Este capítulo apresenta a metodologia comparativa desenvolvida para investigação 
+de técnicas de processamento hiperespectral direcionadas à agricultura de 
+precisão, utilizando arquiteturas embarcadas FPGA e GPU para análise de culturas 
+através de índices de vegetação especializados. A abordagem metodológica 
+estrutura-se em sete seções principais: considerações iniciais sobre o escopo 
+da pesquisa, delimitação das plataformas tecnológicas específicas, caracterização 
+dos datasets agrícolas selecionados, especificação das técnicas de processamento 
+aplicadas, estabelecimento do protocolo comparativo de avaliação, metodologia 
+de síntese da arquitetura híbrida proposta, e cronograma detalhado de execução. 
+A metodologia fundamenta-se em abordagem teórico-experimental que combina 
+modelagem matemática, simulação computacional e análise comparativa sistemática, 
+proporcionando framework rigoroso para identificação de soluções otimizadas 
+em processamento hiperespectral embarcado.
 
 \section{Considerações Iniciais}\label{sec:consideracoes_iniciais}
 
-A metodologia baseou-se na análise do levantamento bibliográfico apresentado 
-no \autoref{chp:levantamento}, que revelou lacunas na literatura sobre sistemas 
-integrados de processamento hiperespectral. A revisão identificou que apenas 
-parte dos trabalhos abordam sistemas completos integrados. Esta constatação 
-direcionou a pesquisa para abordagem comparativa, priorizando investigação 
-teórica e simulada sobre implementação física de protótipos.
-
-A pesquisa comparativa fundamenta-se em três aspectos. Primeiro, a análise 
-das abordagens tecnológicas disponíveis, considerando que trabalhos como 
-\textcite{Diaz2019} demonstram processamento de mais de 330 frames por segundo 
-em GPU embarcada NVIDIA Jetson TX2 com algoritmo HyperLCA para compressão 
-hiperespectral, enquanto \textcite{Hwang2011} propõe metodologia de design 
-consciente de energia para compressão de imagens hiperespectrais, evidenciando 
-diversidade de soluções e ausência de critérios unificados de comparação. 
-Segundo, a complexidade de implementar e validar múltiplas arquiteturas 
-heterogêneas em ambiente experimental, considerando que cada plataforma (FPGA 
-Xilinx, GPU NVIDIA, processadores ARM) requer ferramentas específicas, licenças 
-proprietárias e expertise técnica. Terceiro, a contribuição reside na 
-proposição de framework teórico unificado para comparação e seleção de 
-técnicas, preenchendo lacuna metodológica na literatura.
-
-A priorização da análise teórica e simulada baseia-se na natureza exploratória 
-da pesquisa. A investigação visa estabelecer critérios comparativos entre 
-abordagens arquiteturais, identificar trade-offs entre performance, consumo 
-energético e precisão, e propor metodologia para seleção de técnicas para 
-diferentes cenários de aplicação. Estes objetivos são alcançados através de 
-modelagem matemática, simulação e análise comparativa ao invés de implementação 
-física limitada a configurações específicas de hardware.
-
-\section{Abordagem Metodológica}\label{sec:abordagem_metodologica}
-
-A estratégia de pesquisa baseia-se em abordagem exploratória-comparativa com 
-ênfase quantitativa para investigar técnicas e arquiteturas disponíveis para 
-processamento de imagens hiperespectrais. Esta seção apresenta a caracterização 
-da pesquisa, a estratégia de investigação comparativa e a delimitação do escopo 
-tecnológico.
-
-\subsection{Caracterização da Pesquisa}\label{subsec:caracterizacao_pesquisa}
-
-A pesquisa caracteriza-se como exploratória-comparativa, baseada em simulação 
-e modelagem teórica. O caráter exploratório justifica-se pela ausência de 
-estudos que comparem arquiteturas heterogêneas para processamento 
-hiperespectral, conforme evidenciado no levantamento bibliográfico. A dimensão 
-comparativa emerge da necessidade de estabelecer critérios para avaliação de 
-técnicas e arquiteturas, permitindo identificação de soluções para diferentes 
-cenários de aplicação.
-
-A abordagem quantitativa baseia-se em análise de desempenho teórico e 
-modelado, utilizando métricas padronizadas para comparação entre técnicas. Os 
-parâmetros incluem throughput (frames por segundo), latência (milissegundos 
-por frame), consumo energético (watts), utilização de recursos (percentual de 
-DSPs, BRAMs, LUTs), precisão de classificação (accuracy, F1-score) e 
-eficiência computacional (operações por segundo por watt). A abordagem 
-quantitativa permite comparação entre trabalhos que utilizam métricas diferentes 
-ou cenários experimentais distintos.
-
-O benchmarking de técnicas e arquiteturas constitui elemento central da 
-metodologia, estabelecendo conjunto de testes e métricas para avaliação 
-comparativa. Os benchmarks incluem datasets de referência (AVIRIS Indian 
-Pines, Pavia University, Salinas Valley), cargas de trabalho de aplicações 
-reais, e protocolos de medição que consideram variabilidade temporal e 
-condições operacionais. Esta padronização permite comparação entre trabalhos da 
-literatura e validação dos resultados teóricos propostos.
-
-\subsection{Estratégia de Investigação Comparativa}
-\label{subsec:estrategia_investigacao}
-
-A metodologia de comparação estrutura-se em quatro etapas: mapeamento das 
-técnicas disponíveis, catalogação de características e performance, análise 
-comparativa baseada em critérios objetivos, e síntese de recomendações para 
-diferentes cenários de aplicação. A metodologia de comparação garante cobertura 
-do espaço de soluções e identificação de lacunas ou oportunidades de otimização.
-
-Os critérios de seleção de técnicas e modelos baseiam-se em relevância para 
-aplicações embarcadas, disponibilidade de dados de performance, 
-representatividade no estado da arte, e potencial de integração em arquiteturas 
-heterogêneas. Técnicas que atendem estes critérios são priorizadas para análise, 
-enquanto abordagens com limitações ou dados insuficientes são documentadas mas 
-não incluídas na comparação quantitativa.
-
-O framework de avaliação de desempenho estabelece métricas e protocolos de 
-medição que permitem comparação entre abordagens. As métricas incluem 
-indicadores de performance (throughput, latência), eficiência (consumo 
-energético, utilização de recursos), qualidade (precisão, robustez) e 
-escalabilidade (suporte a diferentes resoluções e bandas espectrais). Os 
-protocolos especificam condições experimentais, datasets de teste, e 
-procedimentos de medição que garantem reprodutibilidade e comparabilidade dos 
-resultados.
-
-A análise multi-critério para otimização utiliza técnicas de tomada de decisão 
-que consideram múltiplos objetivos conflitantes. A metodologia AHP (Analytic 
-Hierarchy Process) é empregada para ponderação de critérios segundo cenários 
-de aplicação, enquanto análise de Pareto identifica soluções não-dominadas no 
-espaço de trade-offs. A análise multi-critério permite identificação de 
-configurações para diferentes requisitos operacionais.
-
-\subsection{Delimitação do Escopo Tecnológico}
-\label{subsec:delimitacao_escopo}
-
-O escopo tecnológico concentra-se em FPGA Xilinx das famílias Zynq e 
-UltraScale+, justificado pela adoção em aplicações de processamento de sinais 
-e disponibilidade de ferramentas de desenvolvimento. A escolha por FPGA Xilinx 
-baseia-se na análise da literatura que demonstra uso desta plataforma em 
-trabalhos de processamento hiperespectral embarcado, com destaque para 
-\textcite{Hwang2011} que propõe metodologia de design consciente de energia 
-para compressão de imagens hiperespectrais, e \textcite{ArucuIliev2025} que 
-apresenta estudo comparativo sobre eficiência energética em processamento 
-hiperespectral acelerado por FPGA.
-
-As GPU embarcadas incluem plataformas NVIDIA Jetson (TX2, Xavier, Orin) e AMD 
-equivalentes, selecionadas por representarem processamento paralelo embarcado 
-com restrições energéticas. A análise de \textcite{Diaz2019} demonstra 
-viabilidade de processamento de mais de 330 frames por segundo em Jetson TX2 
-com algoritmo HyperLCA para compressão hiperespectral em tempo real, 
-evidenciando o potencial destas plataformas para processamento hiperespectral 
-embarcado. O trabalho de \textcite{Zhang2023} apresenta revisão sobre 
-classificação de imagens hiperespectrais de sensoriamento remoto por UAV, 
-destacando avanços em técnicas de deep learning para esta aplicação.
-
-As técnicas de otimização abrangem paralelização em pipeline, otimizações de 
-memória, técnicas de quantização, compressive sensing, seleção de bandas 
-espectrais, e fusão de dados multi-sensor. Esta seleção baseia-se na análise 
-da literatura que identifica as técnicas de otimização como promissoras para aplicações 
-embarcadas, considerando trade-offs entre performance e consumo energético.
-
-As limitações do estudo incluem foco em aplicações de sensoriamento remoto 
-com UAV, consideração de datasets públicos para validação, análise limitada a 
-faixa espectral de 400-2500 nm (visível e infravermelho próximo), e premissa 
-de operação em tempo real com restrições energéticas inferiores a 20W. Estas 
-limitações garantem foco da análise, evitando dispersão em cenários com 
-requisitos conflitantes.
-
-\section{Procedimentos de Investigação}\label{sec:procedimentos_investigacao}
-
-Os métodos de pesquisa e análise comparativa estruturam-se em três etapas: 
-levantamento e catalogação de técnicas disponíveis na literatura, modelagem 
-teórica comparativa baseada em análise matemática de performance, e 
-desenvolvimento de framework de simulação para validação dos modelos teóricos. Esta seção detalha os procedimentos de cada etapa, estabelecendo protocolos 
-para garantir reprodutibilidade e validade dos resultados.
-
-\subsection{Levantamento e Catalogação de Técnicas}
-\label{subsec:levantamento_catalogacao}
-
-O mapeamento de técnicas FPGA baseia-se em revisão da literatura com foco em 
-trabalhos publicados entre 2018-2024 em conferências e periódicos (IEEE TGRS, 
-Remote Sensing, IGARSS, FPL, FCCM). A estratégia de busca utiliza 
-combinações de termos-chave incluindo ``hyperspectral'', ``FPGA'', 
-``real-time'', ``embedded'', ``classification'', ``compression'', garantindo 
-cobertura do estado da arte. Cada trabalho identificado é analisado segundo 
-protocolo que extrai informações sobre arquitetura utilizada, técnicas 
-implementadas, datasets de validação, métricas de performance, e limitações 
-reportadas.
-
-A catalogação de otimizações GPU segue metodologia similar, com ênfase em 
-técnicas para plataformas embarcadas com restrições energéticas. O protocolo 
-de análise inclui identificação de otimizações CUDA/OpenCL, estratégias de 
-gerenciamento de memória, técnicas de paralelização, uso de precisão mista, e 
-implementação de algoritmos de aprendizado de máquina. Trabalhos como 
-\textcite{Diaz2019}, que implementa compressão hiperespectral em tempo real em 
-GPUs embarcadas, e \textcite{Vaithianathan2025}, que discute desafios em 
-arquiteturas de computação heterogênea, são analisados para extração de 
-padrões de otimização e identificação de práticas.
-
-A análise de trabalhos correlatos estende-se além de FPGA e GPU para incluir 
-processadores ARM, DSPs, e arquiteturas heterogêneas. Esta análise permite 
-identificação de tendências tecnológicas, lacunas na literatura, e 
-oportunidades de integração entre plataformas. Trabalhos que abordam aspectos 
-de integração de sistemas, como \textcite{Zhang2023} que apresenta revisão 
-sobre classificação hiperespectral em UAV, recebem atenção para compreensão 
-dos desafios de integração e validação em cenários reais.
-
-A taxonomia de abordagens identificadas organiza as técnicas segundo critérios 
-de classificação que incluem tipo de plataforma (FPGA, GPU, CPU, híbrida), 
-estágio de processamento (pré-processamento, processamento principal, 
-pós-processamento), técnica principal (compressão, classificação, redução 
-dimensional), e métrica de otimização (throughput, latência, energia, 
-precisão). Esta taxonomia facilita identificação de padrões, comparação entre 
-abordagens, e síntese de recomendações.
-
-\subsection{Modelagem Teórica Comparativa}
-\label{subsec:modelagem_teorica}
-
-Os modelos matemáticos de desempenho FPGA baseiam-se em análise de 
-complexidade computacional e mapeamento para recursos de hardware disponíveis. 
-Para cada técnica catalogada, desenvolve-se modelo que relaciona parâmetros de 
-entrada (resolução espacial, número de bandas espectrais, taxa de frames) com 
-utilização de recursos (DSPs, BRAMs, LUTs, flip-flops) e métricas de 
-performance (throughput, latência, consumo energético). Os modelos consideram 
-características específicas das famílias Zynq e UltraScale+, incluindo 
-arquitetura de interconexão, hierarquia de memória, e capacidades de 
-processamento em ponto fixo e flutuante.
-
-A modelagem de throughput e latência GPU utiliza modelo de execução CUDA que 
-considera características da arquitetura (número de SMs, cores CUDA, tensor 
-cores), hierarquia de memória (registradores, shared memory, L1/L2 cache, 
-memória global), e padrões de acesso a dados. Para cada algoritmo analisado, 
-calcula-se ocupancy teórica, throughput de memória requerido, e latência de 
-execução considerando overhead de comunicação CPU-GPU. Os modelos são 
-calibrados com dados experimentais disponíveis na literatura para garantir 
-precisão das estimativas.
-
-A análise de complexidade computacional estabelece bounds teóricos para 
-performance de diferentes algoritmos, independentemente da plataforma de 
-implementação. Esta análise inclui complexidade temporal (Big-O notation), 
-complexidade espacial (requisitos de memória), complexidade de comunicação 
-(transferências de dados), e complexidade energética (operações por joule). 
-A comparação de complexidades permite identificação de algoritmos 
-intrinsecamente mais eficientes e estabelecimento de limites teóricos para 
-performance.
-
-A modelagem de consumo energético integra modelos específicos de cada 
-plataforma com características dos algoritmos implementados. Para FPGA, 
-utiliza-se modelo que considera consumo estático (leakage), consumo dinâmico 
-(switching), e consumo de I/O. Para GPU, considera-se consumo base (idle), 
-consumo computacional (proporcional à utilização), e consumo de memória 
-(proporcional à largura de banda utilizada). Os modelos são validados com 
-medições experimentais reportadas na literatura.
-
-\subsection{Framework de Simulação Integrado}
-\label{subsec:framework_simulacao}
-
-O ambiente de simulação multi-plataforma integra simuladores específicos para 
-cada tipo de arquitetura, permitindo avaliação comparativa sob condições 
-controladas e padronizadas. Para FPGA, utiliza-se Vivado HLS para síntese de 
-alto nível e Vivado para implementação, permitindo estimativa precisa de 
-utilização de recursos e performance. Para GPU, emprega-se nsight Compute para 
-profiling detalhado e simuladores de arquitetura para análise de performance 
-teórica.
-
-Os simuladores específicos incluem Vivado Design Suite para FPGA Xilinx, 
-fornecendo estimativas de timing, power, e utilização de recursos após síntese 
-e place-and-route. Para GPU NVIDIA, utiliza-se CUDA toolkit com profilers 
-integrados (nsight Systems, nsight Compute) para análise detalhada de 
-performance e identificação de gargalos. Simuladores de terceiros, como 
-gem5-gpu para análise arquitetural detalhada, complementam as ferramentas 
-proprietárias.
-
-Os modelos de workload hiperespectral baseiam-se em caracterização detalhada 
-de datasets públicos (AVIRIS, Pavia, Salinas) e aplicações típicas 
-(classificação, detecção de anomalias, unmixing espectral). Cada workload é 
-caracterizado por distribuição de intensidades espectrais, padrões espaciais, 
-requisitos computacionais, e sensibilidade a diferentes tipos de otimização. 
-Esta caracterização permite simulação realística de diferentes cenários de 
-aplicação.
-
-As métricas de comparação padronizadas incluem throughput (fps, MB/s), latência 
-(ms end-to-end, ms por estágio), utilização de recursos (percentual de DSPs, 
-BRAMs, cores GPU), consumo energético (W médio, J por frame), e qualidade de 
-resultado (accuracy, F1-score, PSNR). Todas as métricas são medidas sob 
-condições padronizadas para garantir comparabilidade entre diferentes técnicas 
-e plataformas.
-
-\section{Estudo Comparativo de Arquiteturas}
-\label{sec:estudo_comparativo}
-
-A análise sistemática e comparativa das diferentes abordagens arquiteturais 
-estrutura-se em três dimensões principais: técnicas específicas para FPGA 
-Xilinx, otimizações para GPU embarcadas, e estudo comparativo cross-platform 
-que identifica trade-offs fundamentais entre as arquiteturas. Esta seção 
-apresenta metodologia detalhada para cada dimensão, estabelecendo critérios 
-objetivos para comparação e frameworks analíticos para identificação de 
-soluções ótimas.
-
-\subsection{Análise de Técnicas FPGA Xilinx}\label{subsec:analise_fpga}
-
-A comparação entre High-Level Synthesis (HLS) e HDL tradicional baseia-se em 
-análise quantitativa de produtividade de desenvolvimento, qualidade de 
-resultados, e flexibilidade de otimização. Para cada técnica de processamento 
-hiperespectral identificada na literatura, avalia-se a adequação de HLS versus 
-HDL considerando complexidade do algoritmo, requisitos de performance, e 
-restrições de recursos. O trabalho de \textcite{Hwang2011} propõe metodologia de design consciente de 
-energia para compressão de imagens hiperespectrais, demonstrando a importância 
-de considerações energéticas no desenvolvimento de sistemas embarcados. 
-\textcite{Khaki2025} complementam esta análise demonstrando que FPGAs 
-alcançam speedups de 3.31× versus CPU para MobileNetV2, com quantização INT8 
-preservando acurácia enquanto proporciona ganhos de eficiência. Algoritmos 
-com padrões de acesso irregulares podem requerer otimizações específicas 
-dependendo da arquitetura de implementação.
-
-A análise de paralelização em pipeline versus paralelo examina diferentes 
-estratégias de mapeamento de algoritmos para arquitetura FPGA. A paralelização 
-em pipeline é avaliada para algoritmos com dependências sequenciais, como 
-filtros IIR e transformadas, considerando throughput máximo, latência inicial, 
-e utilização de recursos. A paralelização espacial é analisada para operações 
-independentes, como convolução e classificação pixel-wise, avaliando 
-escalabilidade, eficiência de recursos, e balanceamento de carga. A comparação 
-utiliza métricas de eficiência computacional (operações por LUT por segundo) e 
-eficiência energética (operações por watt).
-
-As otimizações de memória e DSP constituem aspecto crítico para performance em 
-aplicações hiperespectrais devido ao grande volume de dados e intensidade 
-computacional. A análise inclui estratégias de particionamento de memória 
-(on-chip BRAM, UltraRAM, memória externa), técnicas de buffering para 
-maximização de reuso de dados, e otimizações específicas de DSP para operações 
-de ponto fixo e flutuante. Estudos na literatura demonstram que otimizações de memória podem resultar em 
-melhorias significativas em throughput através de redução de acessos à memória 
-externa, conforme evidenciado por trabalhos como \textcite{ArucuIliev2025} que 
-apresenta análise comparativa de eficiência energética em processamento 
-hiperespectral acelerado por FPGA.
-
-As técnicas de particionamento de dados examinam diferentes estratégias para 
-divisão de imagens hiperespectrais considerando características espaciais e 
-espectrais. O particionamento espacial (tiles, strips, blocks) é avaliado 
-quanto a overhead de comunicação, balanceamento de carga, e requisitos de 
-memória. O particionamento espectral (bandas individuais, grupos de bandas, 
-PCA) é analisado considerando preservação de informação, redução de 
-complexidade, e adequação a diferentes algoritmos de processamento.
-
-\subsection{Análise de Técnicas GPU Embarcadas}
-\label{subsec:analise_gpu}
-
-A comparação entre otimizações CUDA e OpenCL para GPU embarcadas considera 
-performance, portabilidade, e facilidade de desenvolvimento. CUDA oferece 
-otimizações específicas para arquiteturas NVIDIA e ferramentas de profiling 
-avançadas, enquanto OpenCL proporciona portabilidade entre diferentes 
-fabricantes com potencial perda de performance. A análise quantitativa baseia-se 
-em implementações de referência de algoritmos hiperespectrais típicos 
-(classificação SVM, PCA, unmixing espectral) em ambas as plataformas, 
-comparando throughput, utilização de recursos, e consumo energético.
-
-As estratégias de memory coalescing e shared memory são analisadas 
-considerando padrões de acesso típicos em processamento hiperespectral. 
-Imagens hiperespectrais apresentam localidade espacial (pixels vizinhos) e 
-espectral (bandas adjacentes), permitindo otimizações específicas de acesso à 
-memória. A análise inclui técnicas de tiling para maximização de coalescing, 
-uso de shared memory para reuso de dados entre threads de um warp, e 
-estratégias de prefetching para ocultação de latência de memória.
-
-A ocupancy optimization examina técnicas para maximização da utilização de 
-recursos computacionais considerando limitações específicas de GPU embarcadas. 
-Estas plataformas possuem menor número de SMs e menor largura de banda de 
-memória comparadas a GPU de desktop, requerendo estratégias específicas de 
-otimização. A análise inclui balanceamento entre paralelismo e utilização de 
-memória, técnicas de loop unrolling e tiling, e estratégias de scheduling para 
-maximização de throughput.
-
-As técnicas de mixed precision e quantização são fundamentais para aplicações 
-embarcadas devido a restrições de memória e largura de banda. A análise 
-examina impacto da redução de precisão (FP32 para FP16, INT8) na qualidade de 
-resultados para diferentes algoritmos hiperespectrais. Pesquisas na área demonstram que técnicas de quantização podem proporcionar 
-reduções significativas no consumo de memória e melhorias no throughput, 
-mantendo níveis aceitáveis de precisão. O trabalho de \textcite{Diaz2019} 
-explora otimizações para compressão hiperespectral em tempo real, demonstrando 
-a viabilidade de implementações eficientes em GPUs embarcadas. 
-\textcite{Khaki2025} demonstram que sistemas heterogêneos utilizando 
-frameworks como Vitis AI permitem deployment escalável de CNNs, com FPGAs 
-sendo adequadas para edge computing com limitações energéticas, enquanto GPUs 
-mantêm vantagem em velocidade absoluta com latências de 13.64s versus 100.4s 
-em FPGA para MobileNetV2.
-
-\subsection{Estudo Comparativo Cross-Platform}
-\label{subsec:comparativo_cross_platform}
-
-A análise de trade-offs fundamentais entre FPGA e GPU estabelece framework 
-quantitativo para comparação considerando diferentes métricas de performance e 
-cenários de aplicação. FPGA oferece baixa latência, determinismo temporal, e 
-alta eficiência energética, sendo adequada para aplicações com requisitos 
-rigorosos de tempo real. GPU proporciona alto throughput, flexibilidade de 
-programação, e capacidade de processamento de grandes volumes de dados, sendo 
-adequada para aplicações batch ou com tolerância a latência variável.
-
-A análise de adequação por workload categoriza diferentes tipos de 
-processamento hiperespectral segundo características computacionais e 
-adequação a cada arquitetura. Algoritmos com paralelismo regular e alta 
-intensidade aritmética (convolução, transformadas) favorecem GPU, enquanto 
-algoritmos com requisitos de baixa latência e padrões de acesso irregulares 
-(classificação online, controle adaptativo) favorecem FPGA. A análise 
-quantitativa baseia-se em implementações de referência e modelos teóricos de 
-performance.
-
-As métricas de eficiência energética constituem critério fundamental para 
-aplicações embarcadas, especialmente em UAV com restrições de autonomia. A 
-análise compara consumo energético por operação (joules por classificação, 
-joules por frame processado) entre diferentes arquiteturas, considerando 
-consumo estático e dinâmico. O trabalho de \textcite{Hwang2011} propõe metodologia de design consciente de 
-energia para compressão de imagens hiperespectrais, destacando a importância 
-da eficiência energética em sistemas embarcados. O estudo de \textcite{ArucuIliev2025} 
-apresenta análise comparativa sobre eficiência energética em processamento 
-hiperespectral acelerado por FPGA, enquanto \textcite{Diaz2019} demonstra 
-implementação eficiente em GPUs embarcadas para compressão em tempo real.
-
-A análise de escalabilidade e flexibilidade examina capacidade de adaptação 
-das arquiteturas a diferentes requisitos de aplicação. FPGA oferece 
-flexibilidade arquitetural através de reconfiguração, permitindo otimização 
-específica para cada algoritmo, mas requer tempo de desenvolvimento 
-significativo. GPU proporciona flexibilidade de software através de 
-programação de alto nível, permitindo adaptação rápida a novos algoritmos, mas 
-com arquitetura fixa que pode não ser ótima para todos os casos.
-
-\section{Protocolo de Simulação e Benchmarking}
-\label{sec:protocolo_simulacao}
-
-A metodologia detalhada para simulação e avaliação de desempenho estabelece 
-ambiente controlado para comparação objetiva entre diferentes técnicas e 
-arquiteturas. O protocolo estrutura-se em três componentes principais: 
-configuração de ambiente de simulação padronizado, definição de datasets e 
-cargas de trabalho representativas, e estabelecimento de protocolo de medição 
-e análise estatística. Esta padronização garante reprodutibilidade dos 
-resultados e comparabilidade entre diferentes estudos.
-
-\subsection{Ambiente de Simulação}\label{subsec:ambiente_simulacao}
-
-A configuração de ferramentas para FPGA baseia-se em Vivado Design Suite 
-2023.1 com Vitis HLS para síntese de alto nível, proporcionando ambiente 
-completo para desenvolvimento, simulação e análise de performance. As 
-configurações incluem targets específicos para dispositivos Zynq UltraScale+ 
-(XCZU7EV, XCZU9EG) com caracterização detalhada de recursos disponíveis, 
-frequências de operação, e capacidades de DSP. O ambiente é configurado para 
-simulação funcional, síntese lógica, e implementação física, permitindo 
-estimativas precisas de timing, power, e utilização de recursos.
-
-O setup de simuladores GPU utiliza CUDA Toolkit 12.0 com nsight Compute e 
-nsight Systems para profiling detalhado de aplicações CUDA. As configurações 
-incluem targets para dispositivos Jetson (TX2, Xavier, Orin) com modelagem 
-precisa de arquitetura (número de SMs, cores CUDA, tensor cores), hierarquia 
-de memória (capacidade e largura de banda), e características térmicas. 
-Simuladores complementares, como gem5-gpu, proporcionam análise arquitetural 
-detalhada para exploração de design space.
-
-Os modelos de hardware sintéticos complementam simuladores comerciais para 
-exploração de configurações não disponíveis comercialmente ou análise de 
-tendências futuras. Estes modelos baseiam-se em extrapolação de características 
-de dispositivos existentes, considerando roadmaps tecnológicos e limitações 
-físicas fundamentais. A validação dos modelos sintéticos utiliza comparação 
-com dispositivos reais para garantir precisão das estimativas.
-
-A validação dos ambientes de simulação estabelece protocolos de verificação 
-que comparam resultados simulados com medições experimentais disponíveis na 
-literatura. Para cada ferramenta de simulação, define-se conjunto de casos de 
-teste com resultados conhecidos, estabelecendo intervalos de confiança para 
-diferentes tipos de estimativa. Esta validação é essencial para garantir 
-credibilidade dos resultados teóricos propostos.
-
-\subsection{Datasets e Cargas de Trabalho}\label{subsec:datasets_workloads}
-
-A caracterização de workloads hiperespectrais baseia-se em análise estatística 
-detalhada de datasets públicos representativos de diferentes aplicações. O 
-dataset AVIRIS Indian Pines (145×145×200 bandas) representa aplicações 
-agrícolas com 16 classes de cobertura do solo, caracterizado por alta 
-variabilidade espectral e desbalanceamento entre classes. O dataset Pavia 
-University (610×340×103 bandas) representa aplicações urbanas com 9 classes, 
-caracterizado por alta resolução espacial e contraste espectral. O dataset 
-Salinas Valley (512×217×204 bandas) representa agricultura de precisão com 16 
-classes de culturas, caracterizado por sutis diferenças espectrais entre 
-classes similares.
-
-Os datasets sintéticos para benchmarking são gerados através de modelos 
-estatísticos que preservam características espectrais e espaciais dos dados 
-reais, permitindo controle preciso de parâmetros como resolução, número de 
-bandas, nível de ruído, e complexidade de classificação. Esta abordagem 
-permite avaliação sistemática de sensibilidade dos algoritmos a diferentes 
-condições operacionais e identificação de limitações específicas.
-
-As métricas de complexidade computacional caracterizam cada workload segundo 
-intensidade aritmética (operações por pixel), intensidade de memória (bytes 
-por operação), padrões de acesso a dados (sequencial, aleatório, localidade), 
-e paralelismo disponível (independência entre operações). Esta caracterização 
-permite predição de adequação a diferentes arquiteturas e identificação de 
-gargalos potenciais.
-
-Os casos de teste representativos incluem cenários típicos de aplicação com 
-requisitos específicos de performance e qualidade. O cenário de agricultura de 
-precisão simula UAV a 100m de altitude processando área de 1 hectare em tempo 
-real para detecção de estresse hídrico. O cenário de monitoramento urbano 
-simula classificação LULC contínua a 30 fps para análise de mudanças. O 
-cenário de aplicação de emergência simula detecção de incêndios florestais com 
-latência crítica inferior a 100ms.
-
-\subsection{Protocolo de Medição e Análise}
-\label{subsec:protocolo_medicao}
-
-As métricas de desempenho incluem throughput (fps, MB/s, pixels/s), latência 
-(ms end-to-end, ms por estágio, percentil 95\%), e variabilidade temporal 
-(desvio padrão, jitter). O throughput é medido sob condições de carga 
-sustentada para identificar performance máxima e degradação temporal. A 
-latência é medida desde aquisição da imagem até disponibilização do resultado, 
-incluindo overhead de comunicação e sincronização. A variabilidade temporal é 
-crítica para aplicações de tempo real que requerem comportamento determinístico.
-
-A análise de utilização de recursos quantifica eficiência de mapeamento de 
-algoritmos para hardware disponível. Para FPGA, mede-se utilização de LUTs, 
-flip-flops, DSPs, e BRAMs, identificando recursos limitantes e oportunidades 
-de otimização. Para GPU, mede-se ocupancy de SMs, utilização de memória, e 
-largura de banda consumida, identificando gargalos e possibilidades de 
-melhoria.
-
-O profiling de consumo energético utiliza modelos validados para estimativa 
-de consumo estático e dinâmico de cada arquitetura. As medições incluem 
-potência média, potência pico, energia por frame processado, e distribuição de 
-consumo entre diferentes componentes (computação, memória, I/O). Esta análise 
-é fundamental para aplicações embarcadas com restrições energéticas rigorosas.
-
-A análise estatística comparativa emprega testes de significância para 
-validação de diferenças de performance entre técnicas e arquiteturas. A 
-metodologia inclui análise de variância (ANOVA) para comparação múltipla, 
-testes post-hoc para identificação de diferenças específicas, e intervalos de 
-confiança para quantificação de incerteza. Esta rigor estatístico garante 
-validade científica das conclusões propostas.
-
-\section{Metodologia de Síntese Arquitetural}
-\label{sec:sintese_arquitetural}
-
-O processo de proposição da arquitetura otimizada baseia-se nos resultados 
-comparativos obtidos nas etapas anteriores, utilizando metodologia sistemática 
-de tomada de decisão multi-critério. Esta seção apresenta a análise 
-multi-critério para ponderação de diferentes métricas de performance, o 
-processo de design space exploration para identificação de configurações 
-ótimas, e a metodologia de síntese para composição da arquitetura final 
-proposta.
-
-\subsection{Análise Multi-Critério}\label{subsec:analise_multicriterio}
-
-A ponderação de métricas de desempenho utiliza metodologia AHP (Analytic 
-Hierarchy Process) para estabelecimento de pesos relativos entre diferentes 
-critérios segundo cenários específicos de aplicação. Para aplicações de 
-agricultura de precisão, prioriza-se eficiência energética e autonomia 
-operacional, atribuindo pesos elevados a consumo energético e throughput 
-sustentado. Para aplicações de monitoramento de emergência, prioriza-se baixa 
-latência e confiabilidade, enfatizando tempo de resposta e robustez a falhas.
-
-A análise de Pareto para trade-offs identifica conjunto de soluções 
-não-dominadas no espaço multidimensional de objetivos conflitantes. As 
-dimensões incluem performance (throughput, latência), eficiência (energia, 
-recursos), qualidade (precisão, robustez), e custo (desenvolvimento, hardware). 
-A fronteira de Pareto estabelece limites teóricos para otimização simultânea 
-e identifica regiões do espaço de soluções com melhor compromisso entre 
-objetivos conflitantes.
-
-O método AHP para tomada de decisão estrutura-se em hierarquia de critérios 
-com comparações pareadas para estabelecimento de pesos relativos. O primeiro 
-nível inclui critérios principais (performance, eficiência, qualidade, custo), 
-o segundo nível decompõe cada critério em sub-critérios específicos, e o 
-terceiro nível avalia alternativas técnicas segundo cada sub-critério. A 
-metodologia inclui verificação de consistência das comparações e análise de 
-sensibilidade para validação da robustez das decisões.
-
-O ranking de técnicas por cenário utiliza pontuação ponderada baseada nos 
-pesos AHP e performance normalizada de cada técnica segundo diferentes 
-critérios. Esta abordagem permite identificação de técnicas mais adequadas a 
-cenários específicos e composição de arquiteturas híbridas que combinam 
-diferentes técnicas segundo suas vantagens comparativas.
-
-\subsection{Design Space Exploration}\label{subsec:design_space}
-
-O mapeamento do espaço de soluções estrutura-se em dimensões que incluem tipo 
-de arquitetura (FPGA, GPU, híbrida), técnicas de processamento (compressão, 
-classificação, fusão), configurações de hardware (frequência, memória, 
-paralelismo), e parâmetros algorítmicos (precisão, janela, threshold). Cada 
-ponto no espaço representa configuração específica com performance estimada 
-segundo modelos teóricos desenvolvidos.
-
-A identificação de configurações ótimas utiliza algoritmos de otimização 
-multi-objetivo (NSGA-II, MOPSO) para exploração eficiente do espaço de 
-soluções. Os algoritmos de otimização multi-objetivo consideram restrições operacionais (consumo máximo, 
-latência máxima, precisão mínima) e identificam conjunto de configurações 
-Pareto-ótimas que representam melhores compromissos entre objetivos 
-conflitantes.
-
-A análise de sensibilidade paramétrica examina robustez das configurações 
-ótimas a variações em parâmetros de entrada e condições operacionais. Esta 
-análise inclui sensibilidade a variações em datasets (resolução, ruído, 
-complexidade), condições ambientais (temperatura, vibração), e degradação de 
-hardware (aging, variabilidade de processo). Configurações com baixa 
-sensibilidade são preferidas por proporcionarem performance mais previsível.
-
-A otimização multi-objetivo considera simultaneamente múltiplas funções 
-objetivo conflitantes, utilizando técnicas de programação matemática e 
-algoritmos evolutivos. A formulação matemática inclui funções objetivo para 
-maximização de throughput, minimização de latência, minimização de consumo 
-energético, e maximização de precisão, sujeitas a restrições de recursos 
-disponíveis e requisitos operacionais.
-
-\subsection{Síntese da Arquitetura Proposta}
-\label{subsec:sintese_arquitetura}
-
-A metodologia de composição arquitetural baseia-se em princípios de engenharia 
-de sistemas que consideram interfaces, dependências, e otimização global. A 
-arquitetura proposta integra componentes FPGA e GPU segundo pipeline otimizado 
-que explora vantagens comparativas de cada plataforma: FPGA para 
-pré-processamento de baixa latência e alta eficiência, GPU para processamento 
-principal de alto throughput.
-
-A integração de técnicas complementares utiliza análise de compatibilidade e 
-sinergia entre diferentes abordagens identificadas na literatura. Técnicas de 
-compressive sensing em FPGA são integradas com decompressão CUDA em GPU, 
-técnicas de seleção de bandas são combinadas com classificação otimizada, e 
-estratégias de fusão multi-sensor complementam processamento individual de 
-cada modalidade.
-
-A especificação da solução otimizada inclui arquitetura detalhada com 
-componentes específicos, interfaces de comunicação, protocolos de 
-sincronização, e configurações de software. A especificação é suficientemente 
-detalhada para permitir implementação futura, incluindo diagramas de blocos, 
-especificações de timing, estimativas de recursos, e análise de viabilidade 
-técnica.
-
-A validação teórica da proposta utiliza modelos matemáticos desenvolvidos para 
-estimativa de performance da arquitetura integrada. A validação inclui análise 
-de throughput end-to-end considerando gargalos e overhead de comunicação, 
-estimativa de consumo energético total, análise de latência incluindo 
-sincronização entre componentes, e avaliação de robustez a variações 
-operacionais.
-
-\section{Planejamento de Execução}\label{sec:planejamento_execucao}
-
-O cronograma e organização temporal da pesquisa comparativa estrutura-se em 
-quatro fases sequenciais com marcos específicos e entregáveis bem definidos. 
-Esta seção apresenta o planejamento detalhado de cada fase, incluindo 
-atividades, recursos necessários, marcos intermediários, e estratégias de 
-gestão de riscos para garantir execução dentro do prazo estabelecido.
-
-\subsection{Fases de Desenvolvimento}\label{subsec:fases_desenvolvimento}
-
-A Fase 1 de Levantamento e Modelagem, com duração de 3 meses, concentra-se na 
-consolidação da base teórica e desenvolvimento dos modelos matemáticos. As 
-atividades incluem revisão sistemática complementar para identificação de 
-trabalhos recentes, catalogação detalhada de técnicas segundo taxonomia 
-proposta, desenvolvimento de modelos teóricos de performance para cada 
-plataforma, e validação inicial dos modelos com dados experimentais da 
-literatura. Esta fase estabelece fundação sólida para as análises comparativas 
-subsequentes.
-
-A Fase 2 de Simulação Comparativa, com duração de 4 meses, implementa o 
-framework de simulação e executa análises comparativas sistemáticas. As 
-atividades incluem configuração de ambientes de simulação (Vivado, CUDA), 
-implementação de modelos de workload hiperespectral, execução de simulações 
-para diferentes configurações e cenários, coleta e análise estatística de 
-resultados, e identificação de padrões e tendências. Esta fase representa o 
-núcleo da contribuição metodológica da pesquisa.
-
-A Fase 3 de Análise e Síntese, com duração de 3 meses, processa os resultados 
-das simulações para proposição da arquitetura otimizada. As atividades incluem 
-análise multi-critério dos resultados comparativos, design space exploration 
-para identificação de configurações ótimas, síntese da arquitetura proposta 
-baseada nos resultados, validação teórica da proposta, e desenvolvimento de 
-recomendações para diferentes cenários de aplicação.
-
-A Fase 4 de Consolidação e Redação, com duração de 2 meses, finaliza a 
-documentação da pesquisa e prepara materiais para defesa. As atividades 
-incluem redação dos capítulos de resultados e conclusões, revisão e 
-consolidação de todo o documento, preparação de material de apresentação, 
-revisão final por orientador e colaboradores, e submissão da versão final da 
-dissertação.
-
-\subsection{Marcos e Entregáveis}\label{subsec:marcos_entregaveis}
-
-O Marco M1 - Catálogo de Técnicas e Modelos marca a conclusão da Fase 1 com 
-entregáveis que incluem catálogo sistemático de técnicas FPGA e GPU, taxonomia 
-de abordagens identificadas, modelos matemáticos validados para cada 
-plataforma, e relatório de fundamentação teórica. Este marco estabelece base 
-sólida para as fases subsequentes e permite validação da metodologia proposta.
-
-O Marco M2 - Resultados de Simulação Comparativa marca a conclusão da Fase 2 
-com entregáveis que incluem framework de simulação implementado e validado, 
-base de dados completa com resultados de simulação, análise estatística 
-comparativa entre técnicas e arquiteturas, e relatório de resultados 
-experimentais. Este marco representa a principal contribuição empírica da 
-pesquisa.
-
-O Marco M3 - Arquitetura Proposta e Validada marca a conclusão da Fase 3 com 
-entregáveis que incluem especificação detalhada da arquitetura otimizada, 
-análise de trade-offs e justificativa das escolhas, validação teórica da 
-proposta com estimativas de performance, e recomendações para implementação 
-futura. Este marco consolida a contribuição teórica principal da dissertação.
-
-O Marco M4 - Dissertação Completa marca a conclusão da Fase 4 com entregáveis 
-que incluem documento final da dissertação revisado e aprovado, material de 
-apresentação para defesa, artigos científicos preparados para submissão, e 
-código fonte do framework de simulação documentado. Este marco finaliza todos 
-os produtos da pesquisa.
-
-\subsection{Gestão de Riscos e Contingências}
-\label{subsec:gestao_riscos}
-
-Os riscos de limitação de simuladores incluem possível indisponibilidade de 
-licenças de software proprietário, limitações de precisão dos modelos de 
-simulação, e incompatibilidade entre diferentes versões de ferramentas. As 
-estratégias de mitigação incluem identificação de alternativas open-source 
-(GHDL, Verilator para FPGA; OpenCL para GPU), desenvolvimento de modelos 
-próprios quando necessário, e manutenção de múltiplas versões de ferramentas 
-para garantir compatibilidade.
-
-As contingências para validação de modelos incluem possível divergência entre 
-resultados simulados e dados experimentais da literatura, limitações de 
-datasets públicos disponíveis, e dificuldades de reprodução de resultados de 
-trabalhos anteriores. As estratégias incluem desenvolvimento de múltiplos 
-modelos com diferentes níveis de abstração, utilização de datasets sintéticos 
-com características controladas, e colaboração com autores de trabalhos 
-relevantes para esclarecimento de detalhes de implementação.
-
-As alternativas metodológicas incluem possível necessidade de ajustes na 
-abordagem comparativa, limitações de escopo devido a restrições de tempo ou 
-recursos, e mudanças nos objetivos baseadas em resultados intermediários. As 
-estratégias incluem definição de objetivos mínimos e estendidos para cada fase, 
-flexibilidade na seleção de técnicas e plataformas analisadas, e adaptação da 
-metodologia baseada em lições aprendidas.
-
-O plano de mitigação de riscos estabelece protocolos de monitoramento contínuo 
-do progresso, identificação precoce de problemas potenciais, e ativação de 
-estratégias de contingência quando necessário. O plano inclui reuniões 
-semanais de acompanhamento, relatórios mensais de progresso, e revisões 
-trimestrais de escopo e cronograma para garantir execução bem-sucedida da 
-pesquisa.
-
-\section{Considerações Finais do Capítulo}
-\label{sec:consideracoes_finais_metodologia}
-
-A metodologia proposta estabelece framework sistemático para investigação 
-comparativa de técnicas de processamento hiperespectral em arquiteturas 
-heterogêneas, preenchendo lacuna metodológica identificada na literatura. A 
-abordagem exploratória-comparativa baseada em simulação e modelagem teórica 
-permite análise abrangente do espaço de soluções disponíveis, identificação de 
-trade-offs fundamentais entre diferentes arquiteturas, e proposição de 
-arquitetura otimizada baseada em critérios objetivos e quantitativos.
-
-A justificativa das escolhas metodológicas baseia-se na análise crítica do 
-estado da arte que revela ausência de estudos sistemáticos comparativos e 
-predominância de trabalhos focados em técnicas isoladas. A metodologia proposta 
-aborda estas limitações através de framework unificado que permite comparação 
-objetiva entre diferentes abordagens, considerando múltiplos critérios de 
-performance e diferentes cenários de aplicação. A ênfase em simulação e 
-modelagem teórica justifica-se pela complexidade e custo de implementação 
-experimental em múltiplas plataformas heterogêneas.
-
-As perspectivas de contribuição do estudo comparativo para o estado da arte 
-incluem estabelecimento de metodologia padronizada para comparação de técnicas 
-hiperespectrais, identificação quantitativa de trade-offs entre diferentes 
-arquiteturas, proposição de arquitetura otimizada baseada em análise 
-sistemática, e desenvolvimento de recomendações práticas para seleção de 
-técnicas segundo requisitos específicos de aplicação. Estas contribuições 
-representam avanço significativo no conhecimento científico da área e 
-estabelecem fundação para desenvolvimentos futuros.
-
-A metodologia apresentada neste capítulo estabelece base sólida para execução 
-da pesquisa proposta, garantindo rigor científico, reprodutibilidade dos 
-resultados, e relevância prática das contribuições. A estruturação em fases 
-bem definidas com marcos específicos permite acompanhamento do progresso e 
-ajustes quando necessário, enquanto as estratégias de gestão de riscos 
-asseguram execução bem-sucedida dentro do prazo estabelecido.
+Esta pesquisa adota abordagem metodológica comparativa focada exclusivamente em 
+processamento hiperespectral para agricultura de precisão, utilizando arquiteturas 
+embarcadas FPGA e GPU para análise de culturas de milho e soja através de índices 
+de vegetação especializados. A delimitação temática 
+fundamenta-se na análise do levantamento bibliográfico, que identificou lacunas significativas na literatura 
+sobre sistemas integrados para monitoramento agrícola embarcado. 
+
+A justificativa para esta delimitação baseia-se em três aspectos fundamentais. 
+Primeiro, a crescente demanda por sistemas autônomos de monitoramento agrícola 
+que combinem alta precisão analítica com eficiência energética adequada para 
+operação em UAVs. Segundo, a ausência de estudos comparativos sistemáticos entre 
+arquiteturas FPGA e GPU especificamente direcionados para processamento 
+hiperespectral agrícola, considerando que trabalhos existentes na literatura 
+focam em compressão geral ou abordam aspectos energéticos sem especificidade agrícola. Terceiro, a necessidade 
+de estabelecer critérios objetivos para seleção de plataformas computacionais 
+considerando os requisitos específicos da agricultura de precisão: processamento 
+em tempo real, restrições energéticas rigorosas, e precisão adequada para tomada 
+de decisões agronômicas.
+
+A metodologia prioriza investigação teórico-experimental estruturada que combina 
+modelagem matemática rigorosa com validação através de simulação computacional. 
+Esta abordagem permite análise sistemática de trade-offs entre precisão de 
+classificação, eficiência energética e throughput computacional, estabelecendo 
+fundamentos científicos para proposição de arquitetura híbrida otimizada.
+
+\section{Delimitação do Escopo Tecnológico}\label{sec:delimitacao_escopo}
+
+\subsection{Plataformas de Hardware Específicas}\label{subsec:plataformas_hardware}
+
+\subsubsection{FPGA}
+
+A plataforma FPGA selecionada é o \textbf{Xilinx Zynq-7020} (XC7Z020-CLG484), 
+que integra processador dual-core ARM Cortex-A9 operando a 866MHz com sistema 
+de lógica programável contendo 85.000 células lógicas, 220 blocos DSP48E1, 
+560KB de Block RAM e 256KB de RAM distribuída. A escolha do Zynq-7020 baseia-se em sua 
+ampla adoção na literatura para aplicações similares e na disponibilidade de 
+ferramentas de desenvolvimento maduras que facilitam a implementação e 
+otimização de algoritmos hiperespectrais.
+
+\subsubsection{GPU Embarcada}
+
+A plataforma GPU selecionada é o \textbf{NVIDIA Jetson Xavier NX}, equipado 
+com GPU de 384 cores NVIDIA Volta operando a 1,1GHz, processador de 6 cores 
+NVIDIA Carmel ARM v8.2 a 1,4GHz, 8GB de memória LPDDR4x com largura de banda 
+de 51,2GB/s, e TDP configurável entre 10W, 15W e 20W. A flexibilidade de consumo 
+energético do Xavier NX é particularmente relevante para aplicações em UAV, 
+permitindo ajuste dinâmico entre performance computacional e autonomia de voo 
+conforme as demandas operacionais. O modo 10W proporciona maior autonomia para 
+missões extensas de monitoramento, enquanto os modos 15W e 20W oferecem maior 
+throughput para processamento intensivo durante janelas críticas de análise.
+
+\subsection{Ferramentas de Simulação e Desenvolvimento}\label{subsec:ferramentas}
+
+\subsubsection{FPGA}
+
+O ambiente de desenvolvimento FPGA utiliza \textbf{GHDL 3.0} para simulação 
+comportamental de código VHDL, permitindo verificação funcional detalhada dos 
+algoritmos implementados. A síntese, implementação e análise de timing são 
+realizadas através do \textbf{Vivado Design Suite 2023.2}, que proporciona 
+estimativas precisas de utilização de recursos, consumo energético e 
+performance temporal. A co-simulação entre código C/C++ e implementações VHDL 
+é facilitada pelo \textbf{Vitis HLS 2023.2}, permitindo validação cruzada 
+entre modelos algorítmicos de alto nível e implementações de hardware 
+otimizadas.
+
+\subsubsection{GPU}
+
+O desenvolvimento GPU baseia-se no \textbf{CUDA Toolkit 12.0} para programação 
+paralela nativa NVIDIA, complementado por \textbf{OpenCL 3.0} para garantir 
+portabilidade e permitir comparações cross-platform. A biblioteca 
+\textbf{cuDNN 8.9} acelera operações matriciais intensivas comuns em processamento 
+hiperespectral. O profiling detalhado de performance é realizado através do 
+\textbf{NSight Compute} para análise de kernels CUDA individuais e 
+\textbf{NSight Systems} para análise de performance do sistema completo, 
+incluindo overhead de comunicação CPU-GPU.
+
+\section{Dataset Selecionado}\label{sec:dataset_selecionado}
+
+\subsection{Dataset Principal}\label{subsec:dataset_principal}
+
+O dataset \textbf{Salinas Valley} constitui a base experimental principal desta 
+pesquisa, apresentando dimensões de 512×217×204 bandas espectrais cobrindo a 
+faixa de 400--2500nm com resolução espacial de 3,7 metros por pixel. Este dataset é particularmente 
+adequado para agricultura de precisão por conter classes específicas 
+representativas de diferentes estágios fenológicos de culturas: Corn senesced 
+green weeds (classe 2), Lettuce romaine 4wk (classe 3), Lettuce romaine 5wk 
+(classe 4), Lettuce romaine 6wk (classe 5), e Lettuce romaine 7wk (classe 6). 
+A resolução espacial de 3,7 metros por pixel é compatível com requisitos típicos 
+de monitoramento agrícola por UAV, permitindo identificação de variabilidade 
+intra-talhão relevante para tomadas de decisão agronômicas. A aplicação 
+principal foca no monitoramento de desenvolvimento fenológico de culturas, 
+essencial para otimização de práticas de manejo como irrigação, fertilização 
+e aplicação de defensivos.
+
+\subsection{Cenários de Teste Específicos}\label{subsec:cenarios_teste}
+
+\subsubsection{Cenário A: Detecção de Estresse Hídrico}
+
+Este cenário objetiva identificar pixels com estresse hídrico em culturas de 
+milho e soja através da análise de absorção espectral nas regiões de 1450nm e 
+1940nm, que correspondem às principais bandas de absorção da água. A metodologia 
+baseia-se na comparação entre pixels da classe Corn senesced green weeds versus 
+classes representativas de vegetação saudável, permitindo estabelecer limiares 
+espectrais para detecção automática de déficit hídrico.
+
+\subsubsection{Cenário B: Cálculo de Índices de Vegetação}
+
+A implementação abrange quatro índices de vegetação fundamentais para agricultura 
+de precisão:
+
+\textbf{NDVI} (Normalized Difference Vegetation Index): calculado através da 
+fórmula (NIR -- Red)/(NIR + Red) utilizando as bandas B29 (680nm) e B51 (800nm), 
+proporcionando indicador robusto de biomassa e vigor vegetativo.
+
+\textbf{NDRE} (Normalized Difference Red Edge): implementado como (NIR -- RedEdge)/(NIR + RedEdge) 
+usando bandas B40 (740nm) e B51 (800nm), oferecendo maior sensibilidade para 
+detecção de estresse em estágios iniciais.
+
+\textbf{EVI} (Enhanced Vegetation Index): calculado através da expressão 
+2,5×(NIR -- Red)/(NIR + 6×Red -- 7,5×Blue + 1) utilizando bandas B14 (480nm), 
+B29 (680nm) e B51 (800nm), proporcionando correção atmosférica melhorada e 
+redução de efeitos de solo.
+
+\textbf{SAVI} (Soil Adjusted Vegetation Index): implementado como (NIR -- Red)/(NIR + Red + L)×(1 + L) 
+com L=0,5, usando bandas B29 (680nm) e B51 (800nm), oferecendo correção para 
+influência de solo em áreas com cobertura vegetal esparsa.
+
+\section{Técnicas de Processamento Específicas}\label{sec:tecnicas_processamento}
+
+\subsection{Pipeline de Pré-processamento}\label{subsec:pipeline_preprocessamento}
+
+\subsubsection{Correção Radiométrica}
+
+A correção radiométrica implementa duas técnicas fundamentais. A \textbf{dark object 
+subtraction} realiza subtração do valor mínimo por banda espectral para correção 
+atmosférica básica, removendo efeitos de espalhamento atmosférico que afetam 
+uniformemente toda a imagem. A \textbf{normalização por reflectância} converte valores digitais (DN) em 
+reflectância através de fatores de calibração específicos do sensor, 
+proporcionando valores fisicamente significativos independentes das condições 
+de iluminação durante a aquisição.
+
+\subsubsection{Filtragem Espacial}
+
+O processamento espacial utiliza dois filtros complementares. O \textbf{filtro 
+Gaussiano passa-baixa} com kernel 3×3 e σ=0,8 realiza suavização controlada 
+para redução de ruído de alta frequência preservando características espectrais 
+essenciais. O \textbf{filtro mediano} com janela 3×3 remove ruído impulsivo 
+(pixels isolados com valores anômalos) comum em sensores hiperespectrais, 
+mantendo bordas e transições espectrais abruptas.
+
+\subsubsection{Seleção de Bandas Específica}
+
+A seleção de bandas implementa estratégia sistemática de remoção de bandas 
+com baixa qualidade espectral. As \textbf{bandas atmosféricas} removidas incluem 
+vapor d'água (bandas 105--115, correspondentes a 1340--1460nm) e (bandas 150--170, 
+1800--1970nm), além de bandas com forte absorção atmosférica (bandas 1--9, <450nm) 
+e (bandas 200--204, >2450nm). A \textbf{seleção para NDVI} prioriza manutenção 
+de bandas red (680nm) e NIR (800nm) com alta relação sinal-ruído, essenciais 
+para cálculo preciso de índices de vegetação. Esta filtragem resulta na redução 
+de 204 para 150 bandas espectrais úteis, otimizando o processamento subsequente.
+
+\subsection{Técnicas de Processamento Principal}\label{subsec:tecnicas_principais}
+
+\subsubsection{Redução Dimensional}
+
+A \textbf{Análise de Componentes Principais (PCA)} preserva 99\% da variância 
+total dos dados, resultando tipicamente em 15--20 componentes principais para 
+o dataset Salinas Valley. Esta técnica linear maximiza a variância explicada 
+enquanto remove redundâncias espectrais entre bandas adjacentes. A \textbf{Kernel 
+PCA (KPCA)} utiliza kernel RBF com σ=2,0 para preservar estruturas não-lineares 
+dos dados espectrais, particularmente relevante para discriminação entre classes 
+espectralmente similares como diferentes estágios de crescimento de culturas.
+
+\subsubsection{Seleção de Características}
+
+A técnica \textbf{EMCR} (Entropy and Mean Correlation Ratio) combina análise 
+de entropia espectral H(λ) = -Σp(λ)log₂p(λ) com análise de correlação inter-bandas 
+r(λᵢ,λⱼ) = cov(λᵢ,λⱼ)/σᵢσⱼ para seleção das 20 bandas com maior razão 
+entropia/correlação. Esta abordagem prioriza bandas com alta informatividade 
+individual e baixa redundância mútua.
+
+A \textbf{Análise de Informação Mútua} calcula MI(X,Y) = ΣΣp(x,y)log[p(x,y)/(p(x)p(y))] 
+para seleção de bandas com maior informação mútua com classes de interesse. 
+A implementação utiliza discretização em 256 bins com janela deslizante para 
+estimativa robusta de densidade de probabilidade, permitindo identificação de 
+dependências não-lineares entre bandas espectrais e classes agronômicas.
+
+\subsubsection{Classificação}
+
+O classificador \textbf{SVM com kernel RBF} implementa otimização de hiperparâmetros 
+através de busca em grade com C ∈ [0,1, 100] e γ ∈ [0,001, 10], utilizando 
+validação cruzada k-fold (k=5) para seleção ótima. A implementação utiliza 
+libsvm para FPGA e cuSVM para GPU, garantindo otimização específica para cada 
+arquitetura.
+
+O classificador \textbf{k-NN} testa valores k = 5, 7, 9 com distância Euclidiana 
+no espaço de características reduzido. A validação emprega leave-one-out 
+cross-validation para estimativa robusta de performance, particularmente 
+importante dado o desbalanceamento entre classes no dataset Salinas Valley.
+
+\section{Protocolo de Comparação e Avaliação}\label{sec:protocolo_avaliacao}
+
+\subsection{Métricas de Performance Computacional}\label{subsec:metricas_performance}
+
+As métricas de throughput quantificam a capacidade de processamento através de 
+pixels processados por segundo (pixels/s), proporcionando medida direta da 
+eficiência computacional para diferentes configurações. A latência por estágio 
+mede separadamente o tempo de pré-processamento, classificação e cálculo de 
+índices (ms), permitindo identificação de gargalos específicos no pipeline de 
+processamento. A utilização de recursos quantifica para FPGA o percentual de DSP48E1, BRAM, 
+LUTs e flip-flops utilizados, enquanto para GPU mede percentual de ocupancy, 
+bandwidth utilization e shared memory usage, permitindo análise de eficiência 
+de mapeamento algorítmico.
+
+\subsection{Métricas de Eficiência Energética}\label{subsec:metricas_energetica}
+
+O consumo instantâneo será medido a 1kHz durante o processamento utilizando 
+instrumentação específica (medidores de potência INA219 para FPGA e software 
+tegrastats para Jetson Xavier NX), proporcionando caracterização detalhada do 
+perfil energético. A energia por pixel (Joules por pixel classificado) oferece 
+métrica normalizada para comparação entre diferentes configurações e datasets. 
+A eficiência computacional GOPS/Watt relaciona operações por segundo com consumo 
+energético, permitindo identificação de configurações otimizadas para aplicações 
+com restrições energéticas rigorosas.
+
+\subsection{Métricas de Qualidade para Agricultura}\label{subsec:metricas_qualidade}
+
+A Overall Accuracy mede o percentual de pixels corretamente classificados, 
+proporcionando indicador direto da qualidade da classificação. O Kappa Coefficient 
+quantifica a concordância corrigida pelo acaso, oferecendo métrica robusta para 
+datasets desbalanceados. O F1-score por classe calcula a média harmônica entre 
+precisão e recall para cada classe agrícola, permitindo análise detalhada de 
+performance para diferentes tipos de cultura. O RMSE para índices de vegetação 
+quantifica o erro quadrático médio versus valores de referência, essencial para 
+validação da precisão dos índices NDVI, NDRE, EVI e SAVI.
+
+\subsection{Protocolo de Teste Específico}\label{subsec:protocolo_teste}
+
+O particionamento do dataset utiliza divisão estratificada com 70\% para 
+treinamento, 15\% para validação e 15\% para teste, garantindo representatividade 
+de todas as classes em cada conjunto. A replicação estatística emprega 15 
+execuções independentes com sementes aleatórias diferentes, permitindo estimativa 
+robusta de variabilidade e significância estatística. As condições controladas incluem frequência 
+fixa de operação, temperatura ambiente de 23°C±2°C, e isolamento de processos 
+concorrentes para garantir reprodutibilidade. O teste estatístico utiliza t-test 
+pareado com α=0,05 para identificação de diferenças significativas, complementado 
+por teste de normalidade Shapiro-Wilk e análise de homoscedasticidade. A análise 
+de Pareto identifica trade-offs ótimos entre accuracy vs. energy vs. throughput 
+através de normalização min-max e algoritmo de identificação de fronteira 
+não-dominada.
+
+\section{Síntese da Arquitetura Híbrida}\label{sec:sintese_arquitetura}
+
+\subsection{Critérios de Otimização Multi-objetivo}\label{subsec:criterios_otimizacao}
+
+A otimização multi-objetivo estabelece ponderação específica baseada em requisitos 
+de UAV agrícolas: precisão de classificação (40\%), eficiência energética (35\%), 
+e throughput (25\%). O peso de 40\% para precisão reflete a criticidade de decisões 
+agronômicas corretas, onde erros de classificação podem resultar em aplicações 
+inadequadas de insumos com impacto econômico e ambiental significativo. A 
+eficiência energética recebe 35\% por ser limitante fundamental para autonomia 
+de voo, considerando que UAVs agrícolas típicos operam com restrições energéticas 
+de 20W e autonomia desejada de 45--60 minutos. O throughput com 25\% garante 
+capacidade de processamento em tempo real durante o voo, essencial para 
+aplicações que requerem resposta imediata como detecção de pragas ou estresse 
+hídrico.
+
+\subsection{Design Space Exploration Focado}\label{subsec:design_space}
+
+As configurações FPGA testadas incluem frequências de 100MHz, 150MHz e 200MHz, 
+selecionadas baseado na análise de timing crítico dos algoritmos hiperespectrais 
+implementados. A frequência de 100MHz garante operação estável para algoritmos 
+complexos como KPCA, 150MHz oferece compromisso entre performance e estabilidade, 
+enquanto 200MHz maximiza throughput para algoritmos simples como NDVI. A precisão 
+numérica varia entre fixed-point 16-bit, 12-bit e 8-bit, permitindo análise de 
+trade-off entre precisão aritmética e utilização de recursos. A paralelização 
+testa pipeline temporal versus paralelo espacial com 4, 8 e 16 unidades de 
+processamento.
+
+As configurações GPU exploram os modos de energia 10W, 15W e 20W do Jetson 
+Xavier NX, correspondentes aos perfis de voo UAV: modo econômico (10W) para 
+missões extensas, modo balanceado (15W) para operação padrão, e modo performance 
+(20W) para processamento intensivo de curta duração. A precisão numérica testa 
+FP32, FP16 e INT8, com otimizações incluindo TensorRT para inferência otimizada, 
+cuBLAS para operações matriciais, e kernels customizados para algoritmos 
+específicos.
+
+\subsection{Implementação da Arquitetura Híbrida}\label{subsec:implementacao_hibrida}
+
+A arquitetura híbrida proposta distribui tarefas conforme vantagens comparativas: 
+FPGA executa pré-processamento (correção radiométrica, filtragem espacial, 
+seleção de bandas) aproveitando baixa latência e determinismo temporal, enquanto 
+GPU realiza processamento principal (PCA, classificação SVM, cálculo de índices) 
+explorando alto throughput paralelo. A comunicação entre plataformas utiliza interface PCIe 
+para transferência de dados pré-processados, com sincronização temporal através 
+de protocolos de handshaking que garantem pipeline contínuo. O controle global 
+do sistema emprega processador ARM do Zynq-7020 para orquestração de tarefas, 
+gerenciamento de energia, e interface com sistemas de navegação UAV.
+
+\section{Cronograma de Execução Específico}\label{sec:cronograma_execucao}
+
+\subsection{Fase 1 - Implementação FPGA (8 semanas)}\label{subsec:fase1_fpga}
+
+As primeiras duas semanas (1--2) concentram-se no setup do ambiente Vivado/GHDL 
+e implementação inicial da correção radiométrica, estabelecendo pipeline básico 
+de processamento espectral. As semanas 3--4 desenvolvem filtros espaciais 
+(Gaussiano e mediano) e algoritmos de seleção de bandas em VHDL, otimizando 
+para utilização eficiente de recursos DSP e BRAM. As semanas 5--6 implementam 
+PCA e EMCR em aritmética de ponto fixo, realizando análise de trade-off entre 
+precisão numérica e recursos utilizados. As semanas finais 7--8 desenvolvem 
+classificadores SVM/k-NN otimizados e algoritmos de cálculo de índices de 
+vegetação, integrando todo o pipeline FPGA.
+
+\subsection{Fase 2 - Implementação GPU (6 semanas)}\label{subsec:fase2_gpu}
+
+As semanas 9--10 estabelecem ambiente CUDA/OpenCL e desenvolvem kernels de 
+pré-processamento otimizados para arquitetura Volta do Xavier NX. As semanas 
+11--12 implementam PCA/KPCA otimizada utilizando cuBLAS para operações matriciais 
+e análise de ocupancy para maximização de throughput. As semanas 13--14 finalizam 
+classificadores com TensorRT para inferência otimizada e kernels customizados 
+para algoritmos específicos de processamento hiperespectral.
+
+\subsection{Fase 3 - Validação e Comparação (4 semanas)}\label{subsec:fase3_validacao}
+
+As semanas 15--16 executam testes sistemáticos com dataset Salinas Valley, 
+coletando métricas de performance, energia e qualidade sob condições controladas. 
+As semanas 17--18 realizam análise estatística comparativa, aplicam testes de 
+significância, e identificam configuração ótima através de análise de Pareto 
+multi-objetivo.
+
+\subsection{Fase 4 - Síntese Final (2 semanas)}\label{subsec:fase4_sintese}
+
+As semanas finais 19--20 consolidam resultados na proposição da arquitetura 
+híbrida, incluindo especificação detalhada de interfaces, protocolos de 
+comunicação, e validação teórica de performance integrada. Esta fase produz 
+a especificação completa da solução otimizada para processamento hiperespectral 
+agrícola embarcado.

@@ -1,4 +1,4 @@
-# Análise do Artigo: IJETCSIT-V1I1P102
+# Análise do Artigo: Vaithianathan2011
 
 **Data da Análise**: 2025-08-26
 **Analisado por**: Sistema Automático de Análise de Artigos
@@ -174,5 +174,5 @@ Este documento apresenta uma análise automatizada do artigo científico, identi
 
 ---
 
-**Arquivo Original**: IJETCSIT-V1I1P102
+**Arquivo Original**: Vaithianathan2011
 **Processado em**: 2025-08-26

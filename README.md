@@ -11,8 +11,8 @@
 ## 📊 Status Atual do Projeto
 
 **Etapa Atual**: ✅ **Fase 1: Análise Sistemática do Estado da Arte - COMPLETA**  
-**Próxima Etapa**: 🎓 **Qualificação UNICAMP** (Dezembro 2025)  
-**Última Atualização**: 2025-09-07  
+**Próxima Etapa**: 🎓 **Qualificação UNICAMP** (Novembro 2025)  
+**Última Atualização**: 2025-09-09  
 **Progresso Geral**: 100% da Fase 1 (Pronta para qualificação)
 
 ### 🎯 Próximos Passos Imediatos (Qualificação UNICAMP):
@@ -22,9 +22,9 @@
 - ✅ **CONCLUÍDO**: Identificação de gaps e oportunidades na literatura
 - ✅ **CONCLUÍDO**: Configuração ótima de arquitetura heterogênea
 - ✅ **CONCLUÍDO**: Documentação completa para qualificação
-- **PRÓXIMO**: Preparar apresentação para qualificação UNICAMP (Dezembro 2025)
+- **PRÓXIMO**: Preparar apresentação para qualificação UNICAMP (Novembro 2025)
 - **PRÓXIMO**: Realizar qualificação focando apenas na Fase 1
-- **PRÓXIMO**: Implementar feedback da banca (Janeiro 2026)
+- **PRÓXIMO**: Implementar feedback da banca (Novembro 2025)
 - **PRÓXIMO**: Iniciar Fase 2 - Desenvolvimento Experimental (pós-qualificação)
 
 ## 🔬 Contexto da Pesquisa
@@ -213,10 +213,10 @@ artigo-mestrado-unicamp-ft/
 | **3** | Análise de Resultados e Redação | 4 meses | ⏳ Pendente | Capítulos da dissertação, análise estatística |
 | **4** | Finalização e Preparação para Defesa | 1.5 meses | ⏳ Pendente | Dissertação final, apresentação de defesa |
 
-**Duração Total**: 14 meses (Agosto 2025 - Setembro 2026)
-**Qualificação UNICAMP**: Janeiro 2026
+**Duração Total**: 10 meses (Agosto 2025 - Maio 2026)
+**Qualificação UNICAMP**: Novembro 2025
 
-### 🎓 Fase de Qualificação UNICAMP (Dezembro 2025 - Janeiro 2026)
+### 🎓 Fase de Qualificação UNICAMP (Outubro - Novembro 2025)
 
 **Objetivo**: Apresentação e aprovação da qualificação perante banca examinadora da UNICAMP-FT, focando **APENAS na Fase 1: Análise Sistemática do Estado da Arte**.
 
@@ -238,10 +238,10 @@ artigo-mestrado-unicamp-ft/
 - Cronograma para as próximas fases (pós-qualificação)
 
 **Cronograma da Qualificação**:
-- **Início**: 10 de Dezembro 2025
-- **Apresentação**: 30 de Dezembro 2025
-- **Ajustes**: 9 de Janeiro 2026
-- **Início Fase 2**: 10 de Janeiro 2026 (pós-qualificação)
+- **Início**: 10 de Outubro 2025
+- **Apresentação**: 30 de Outubro 2025
+- **Ajustes**: 9 de Novembro 2025
+- **Início Fase 2**: 10 de Novembro 2025 (pós-qualificação)
 
 ### 📊 Progresso Detalhado da Fase 1 (Análise Sistemática do Estado da Arte):
 - **1.1 Catalogação Sistemática de 25 Artigos**: ✅ **100% CONCLUÍDA**
@@ -262,7 +262,7 @@ artigo-mestrado-unicamp-ft/
 - ✅ **Bibliografia Atualizada**: Referência adicionada ao `src/bibliografia.bib`
 - ✅ **Levantamento Expandido**: Nova subseção "Tendências Futuras em Computação Heterogênea"
 - ✅ **Desafios Documentados**: Seção "Desafios e Soluções em Computação Heterogênea"
-- ✅ **Análise Detalhada**: Documento completo em `documentos/analise_artigos/analise_complementar_IJETCSIT-V1I1P102.md`
+- ✅ **Análise Detalhada**: Documento completo em `documentos/analise_artigos/analise_complementar_Vaithianathan2011.md`
 
 **Relevância para o Projeto**:
 - Fortalece fundamentação teórica da arquitetura heterogênea proposta
@@ -283,7 +283,7 @@ artigo-mestrado-unicamp-ft/
 - ✅ **Bibliografia Expandida**: Nova referência `ArucuIliev2025` adicionada
 - ✅ **Seção DSP Criada**: "Processamento Digital de Sinais em Sistemas Heterogêneos"
 - ✅ **Subseções Detalhadas**: Filtros FIR e implementação multi-plataforma
-- ✅ **Análise Técnica**: Documento completo em `documentos/analise_artigos/analise_complementar_FIR_ArucuIliev2025.md`
+- ✅ **Análise Técnica**: Documento completo em `documentos/analise_artigos/analise_complementar_ArucuIliev2025.md`
 
 **Relevância Específica**:
 - Confirma superioridade FPGA para pré-processamento (135mW, 4ms latência)
@@ -320,11 +320,11 @@ artigo-mestrado-unicamp-ft/
 ## 📅 Cronograma Detalhado
 
 ### 🎯 Milestones Principais:
-- **M1: Framework Conceitual Completo** (Dezembro 2025): Conclusão da fundamentação teórica
-- **M2: Qualificação UNICAMP** (Janeiro 2026): Apresentação e aprovação da qualificação
-- **M3: Protótipos Validados** (Junho 2026): Validação experimental das técnicas
-- **M4: Dissertação Completa** (Outubro 2026): Documento final redigido
-- **M5: Defesa** (Setembro 2026): Apresentação e defesa da dissertação
+- **M1: Framework Conceitual Completo** (Novembro 2025): Conclusão da fundamentação teórica
+- **M2: Qualificação UNICAMP** (Novembro 2025): Apresentação e aprovação da qualificação
+- **M3: Protótipos Validados** (Fevereiro 2026): Validação experimental das técnicas
+- **M4: Dissertação Completa** (Abril 2026): Documento final redigido
+- **M5: Defesa** (Maio 2026): Apresentação e defesa da dissertação
 
 ### 📈 Visualização do Cronograma:
 - **Arquivo HTML**: `cronograma_mestrado_gantt.html` - Visualização interativa com D3.js
@@ -377,6 +377,17 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 
 ## 📈 Histórico de Mudanças Recentes
 
+### 2025-09-09:
+- ✅ **Cronograma Ajustado para 10 Meses** - Reduzido de 14 para 10 meses (Agosto 2025--Maio 2026)
+- ✅ **Etapas Comprimidas e Otimizadas** - Etapa 1: 3 meses, Etapa 2: 3 meses, Etapa 3: 2.5 meses, Etapa 4: 1.5 meses
+- ✅ **Qualificação Antecipada** - Movida de Janeiro 2026 para Novembro 2025
+- ✅ **Milestones Ajustados** - M1-M5 redistribuídos ao longo de 10 meses
+- ✅ **Script Gantt Atualizado** - Versão 4.0 com novo timeline e durações
+- ✅ **Cronograma JSON Atualizado** - Todas as datas ajustadas para 10 meses
+- ✅ **Diagrama de Gantt Integrado** - Adicionado à dissertação no Capítulo 3 (Metodologia)
+- ✅ **Metodologia Revisada** - Durações e datas atualizadas para consistência com cronograma
+- ✅ **Documentação Sincronizada** - README, resumo executivo e documentos relacionados atualizados
+
 ### 2025-09-06:
 - ✅ **Capítulo 1 (Introdução) Completamente Reescrito** - Novo texto acadêmico com estrutura mais robusta e científica
 - ✅ **Contextualização Aprofundada** - Exposição detalhada sobre imageamento hiperespectral e suas aplicações revolucionárias
@@ -386,7 +397,7 @@ Este projeto utiliza o **Template UNICAMP-FT** adaptado para dissertações de m
 - ✅ **Estrutura da Dissertação Detalhada** - Progressão lógica dos capítulos com justificativa metodológica
 - ✅ **Referências Bibliográficas Atualizadas** - Adição e correção de 3 referências principais com nomes de autores condizentes
 - ✅ **Formatação LaTeX Padronizada** - Adequação completa aos padrões UNICAMP-FT
-- ✅ **Bibliografia Sincronizada** - Referências Diaz2019, UAV_Hyperspectral e IJETCSIT-V1I1P102 atualizadas com dados corretos dos autores
+- ✅ **Bibliografia Sincronizada** - Referências Diaz2019, UAV_Hyperspectral e Vaithianathan2011 atualizadas com dados corretos dos autores
 - ✅ **Formatação LaTeX Otimizada** - Arquivo introducao.tex reformatado seguindo padrões do projeto: máximo 80 caracteres por linha, uso correto de travessões, espaçamento adequado
 - ✅ **Correção de Referências na Metodologia** - Dados incorretos corrigidos no arquivo metodologia.tex baseando-se nos trabalhos reais da bibliografia
 - ✅ **Texto da Metodologia Otimizado** - Reduzida redundância e uso excessivo de adjetivos, tornando o texto mais conciso e direto

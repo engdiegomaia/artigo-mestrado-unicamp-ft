@@ -1,4 +1,4 @@
-# Análise do Artigo: remotesensing-15-03455
+# Análise do Artigo: Alboody2023
 
 **Data da Análise**: 2025-08-26
 **Analisado por**: Sistema Automático de Análise de Artigos
@@ -189,5 +189,5 @@ Este documento apresenta uma análise automatizada do artigo científico, identi
 
 ---
 
-**Arquivo Original**: remotesensing-15-03455
+**Arquivo Original**: Alboody2023
 **Processado em**: 2025-08-26

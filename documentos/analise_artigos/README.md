@@ -28,7 +28,7 @@ Este diretório contém análises automatizadas de 28 artigos científicos relac
 3. **analise_2507.17771v1.md**
    - Métodos de otimização para dados hiperespectrais
 
-4. **analise_remotesensing-09-01110-v2.md**
+4. **analise_AlRuzouq2020.md**
    - Sensoriamento remoto e análise espectral
 
 5. **analise_remotesensing-12-03338-v2.md**
@@ -37,7 +37,7 @@ Este diretório contém análises automatizadas de 28 artigos científicos relac
 6. **analise_remotesensing-14-04579-v2.md**
    - Processamento em tempo real de imagens hiperespectrais
 
-7. **analise_remotesensing-15-03455.md**
+7. **analise_Alboody2023.md**
    - Algoritmos de compressão e otimização
 
 8. **analise_Land use land cover  LULC  classification using hyperspectral images  a review.md**
@@ -102,7 +102,7 @@ Este diretório contém análises automatizadas de 28 artigos científicos relac
 25. **analise_frsip-1-1522604.md**
     - Survey sobre processamento de sinais
 
-26. **analise_IJETCSIT-V1I1P102.md**
+26. **analise_Vaithianathan2011.md**
     - Artigo sobre técnicas computacionais
 
 27. **analise_kunkel1988.md**

@@ -6,28 +6,28 @@
 
 ## 🎯 Objetivo das Mudanças
 
-Implementar a fase de qualificação da UNICAMP no cronograma do projeto e reduzir a Etapa 1 em 1 mês para acomodar adequadamente o processo de qualificação, mantendo a duração total de 14 meses.
+Ajustar o cronograma do projeto para 10 meses, comprimindo todas as etapas para atender a novos requisitos de prazo, mantendo a qualidade e integridade das atividades.
 
 ## ✅ Mudanças Implementadas
 
-### 1. **Redução da Etapa 1 de 5 para 4 meses**
-- **Período**: Agosto 2025 - Dezembro 2025 (anteriormente até Janeiro 2026)
-- **Justificativa**: Acomodar a fase de qualificação sem estender o cronograma total
-- **Impacto**: Compressão das tarefas da Etapa 1, mantendo qualidade
+### 1. **Redução da Etapa 1 de 5 para 3 meses**
+- **Período**: Agosto 2025 - Outubro 2025 (anteriormente até Janeiro 2026)
+- **Justificativa**: Compressão para cronograma de 10 meses
+- **Impacto**: Compressão significativa das tarefas da Etapa 1, mantendo qualidade
 
-### 2. **Implementação da Fase de Qualificação UNICAMP**
-- **Período**: Dezembro 2025 - Janeiro 2026 (1 mês total)
+### 2. **Ajuste da Fase de Qualificação UNICAMP**
+- **Período**: Outubro - Novembro 2025 (1 mês total)
 - **Subfases**:
   - **Q1: Preparação para Qualificação** (2 semanas)
   - **Q2: Qualificação UNICAMP** (1 semana)
   - **Q3: Ajustes Pós-Qualificação** (1 semana)
 
 ### 3. **Atualização do Sistema de Milestones**
-- **M1**: Framework Conceitual Completo (Dezembro 2025)
-- **M2**: Qualificação UNICAMP (Janeiro 2026) ⭐ **NOVO**
-- **M3**: Protótipos Validados (Junho 2026)
-- **M4**: Dissertação Completa (Outubro 2026)
-- **M5**: Defesa (Setembro 2026)
+- **M1**: Framework Conceitual Completo (Novembro 2025)
+- **M2**: Qualificação UNICAMP (Novembro 2025)
+- **M3**: Protótipos Validados (Fevereiro 2026)
+- **M4**: Dissertação Completa (Abril 2026)
+- **M5**: Defesa (Maio 2026)
 
 ### 4. **Atualização do Script de Cronograma**
 - **Versão**: 3.0 (anteriormente 2.2)
@@ -46,8 +46,11 @@ Implementar a fase de qualificação da UNICAMP no cronograma do projeto e reduz
 
 ### Estrutura Temporal
 ```
-Agosto 2025 - Dezembro 2025: Etapa 1 (4 meses) ✅
-Dezembro 2025 - Janeiro 2026: Qualificação (1 mês) 🔄
+Agosto 2025 - Outubro 2025: Etapa 1 (3 meses) ✅
+Outubro - Novembro 2025: Qualificação (1 mês) 🔄
+Novembro 2025 - Fevereiro 2026: Etapa 2 (3 meses) ⏳
+Fevereiro - Abril 2026: Etapa 3 (2.5 meses) ⏳
+Abril - Maio 2026: Etapa 4 (1.5 meses) ⏳
 Janeiro 2026 - Junho 2026: Etapa 2 (5 meses) ⏳
 Junho 2026 - Outubro 2026: Etapa 3 (4 meses) ⏳
 Outubro 2026 - Setembro 2026: Etapa 4 (1.5 meses) ⏳
