@@ -46,8 +46,6 @@ fundamentos científicos para proposição de arquitetura híbrida otimizada.
 
 \subsection{Plataformas de Hardware Específicas}\label{subsec:plataformas_hardware}
 
-\subsubsection{FPGA}
-
 A plataforma FPGA selecionada é o \textbf{Xilinx Zynq-7020} (XC7Z020-CLG484), 
 que integra processador dual-core ARM Cortex-A9 operando a 866MHz com sistema 
 de lógica programável contendo 85.000 células lógicas, 220 blocos DSP48E1, 
@@ -55,8 +53,6 @@ de lógica programável contendo 85.000 células lógicas, 220 blocos DSP48E1,
 ampla adoção na literatura para aplicações similares e na disponibilidade de 
 ferramentas de desenvolvimento maduras que facilitam a implementação e 
 otimização de algoritmos hiperespectrais.
-
-\subsubsection{GPU Embarcada}
 
 A plataforma GPU selecionada é o \textbf{NVIDIA Jetson Xavier NX}, equipado 
 com GPU de 384 cores NVIDIA Volta operando a 1,1GHz, processador de 6 cores 
@@ -70,32 +66,26 @@ throughput para processamento intensivo durante janelas críticas de análise.
 
 \subsection{Ferramentas de Simulação e Desenvolvimento}\label{subsec:ferramentas}
 
-\subsubsection{FPGA}
-
-O ambiente de desenvolvimento FPGA utiliza \textbf{GHDL 3.0} para simulação 
+O ambiente de desenvolvimento FPGA utiliza \textbf{GHDL} para simulação 
 comportamental de código VHDL, permitindo verificação funcional detalhada dos 
 algoritmos implementados. A síntese, implementação e análise de timing são 
-realizadas através do \textbf{Vivado Design Suite 2023.2}, que proporciona 
+realizadas através do \textbf{Vivado Design Suite}, que proporciona 
 estimativas precisas de utilização de recursos, consumo energético e 
 performance temporal. A co-simulação entre código C/C++ e implementações VHDL 
-é facilitada pelo \textbf{Vitis HLS 2023.2}, permitindo validação cruzada 
+é facilitada pelo \textbf{Vitis HLS}, permitindo validação cruzada 
 entre modelos algorítmicos de alto nível e implementações de hardware 
 otimizadas.
 
-\subsubsection{GPU}
-
-O desenvolvimento GPU baseia-se no \textbf{CUDA Toolkit 12.0} para programação 
-paralela nativa NVIDIA, complementado por \textbf{OpenCL 3.0} para garantir 
+O desenvolvimento GPU baseia-se no \textbf{CUDA Toolkit} para programação 
+paralela nativa NVIDIA, complementado por \textbf{OpenCL} para garantir 
 portabilidade e permitir comparações cross-platform. A biblioteca 
-\textbf{cuDNN 8.9} acelera operações matriciais intensivas comuns em processamento 
+\textbf{cuDNN} acelera operações matriciais intensivas comuns em processamento 
 hiperespectral. O profiling detalhado de performance é realizado através do 
 \textbf{NSight Compute} para análise de kernels CUDA individuais e 
 \textbf{NSight Systems} para análise de performance do sistema completo, 
 incluindo overhead de comunicação CPU-GPU.
 
 \section{Dataset Selecionado}\label{sec:dataset_selecionado}
-
-\subsection{Dataset Principal}\label{subsec:dataset_principal}
 
 O dataset \textbf{Salinas Valley} constitui a base experimental principal desta 
 pesquisa, apresentando dimensões de 512×217×204 bandas espectrais cobrindo a 
@@ -106,43 +96,112 @@ green weeds (classe 2), Lettuce romaine 4wk (classe 3), Lettuce romaine 5wk
 (classe 4), Lettuce romaine 6wk (classe 5), e Lettuce romaine 7wk (classe 6). 
 A resolução espacial de 3,7 metros por pixel é compatível com requisitos típicos 
 de monitoramento agrícola por UAV, permitindo identificação de variabilidade 
-intra-talhão relevante para tomadas de decisão agronômicas. A aplicação 
-principal foca no monitoramento de desenvolvimento fenológico de culturas, 
+intra-talhão relevante para tomadas de decisão agronômicas.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{salinas-valley-dataset-exemplo}
+    \caption{Exemplo de imagem do dataset Salinas Valley mostrando a distribuição 
+             espacial das classes de culturas agrícolas em escala de cinza. 
+             A imagem apresenta dimensões 512×217 pixels com diferentes tonalidades 
+             representando as 16 classes de cobertura do solo, incluindo culturas 
+             de alface em diferentes estágios fenológicos e áreas de solo exposto. 
+             Fonte: Grupo de Visão Computacional e Processamento de Imagens - 
+             Universidade do País Vasco \cite{SalinasValleyDataset}.}
+    \label{fig:salinas-valley-exemplo}
+\end{figure}
+
+A aplicação principal foca no monitoramento de desenvolvimento fenológico de culturas, 
 essencial para otimização de práticas de manejo como irrigação, fertilização 
-e aplicação de defensivos.
+e aplicação de defensivos. A \autoref{fig:salinas-valley-exemplo} ilustra a 
+complexidade espacial e espectral dos dados que serão processados pelos 
+algoritmos implementados nas arquiteturas FPGA e GPU.
 
 \subsection{Cenários de Teste Específicos}\label{subsec:cenarios_teste}
 
 \subsubsection{Cenário A: Detecção de Estresse Hídrico}
 
-Este cenário objetiva identificar pixels com estresse hídrico em culturas de 
-milho e soja através da análise de absorção espectral nas regiões de 1450nm e 
-1940nm, que correspondem às principais bandas de absorção da água. A metodologia 
-baseia-se na comparação entre pixels da classe Corn senesced green weeds versus 
-classes representativas de vegetação saudável, permitindo estabelecer limiares 
-espectrais para detecção automática de déficit hídrico.
+Este cenário implementa metodologia específica para detecção de estresse 
+hídrico baseada na análise quantitativa das feições de absorção da água no 
+espectro eletromagnético. A fundamentação física baseia-se no fato de que 
+moléculas de água apresentam bandas de absorção características em 1450~nm 
+(primeira harmônica da vibração de estiramento O-H) e 1940~nm (combinação 
+das vibrações de estiramento e flexão), cujas intensidades correlacionam-se 
+diretamente com o conteúdo hídrico foliar.
+
+\textbf{Protocolo de Detecção:} O algoritmo calcula o Índice de Estresse 
+Hídrico (WBI - Water Band Index) através da razão:
+\begin{equation}
+\text{WBI} = \frac{\rho_{970}}{\rho_{900}}
+\label{eq:wbi}
+\end{equation}
+
+onde $\rho_{970}$ e $\rho_{900}$ são as reflectâncias nas bandas próximas 
+a 970~nm e 900~nm, respectivamente. Valores de $\text{WBI} < 0{,}95$ indicam estresse 
+hídrico moderado, enquanto $\text{WBI} < 0{,}90$ caracteriza estresse severo. A validação 
+utiliza comparação estatística entre pixels da classe \textit{Corn senesced 
+green weeds} (estresse conhecido) versus classes de vegetação saudável.
 
 \subsubsection{Cenário B: Cálculo de Índices de Vegetação}
 
-A implementação abrange quatro índices de vegetação fundamentais para agricultura 
-de precisão:
+A implementação abrange quatro índices de vegetação fundamentais, cada um 
+otimizado para aspectos específicos do monitoramento agrícola. A seleção 
+desses índices baseia-se em sua complementaridade para caracterização completa 
+do status vegetativo, considerando limitações e vantagens específicas de cada 
+metodologia em diferentes condições ambientais e fenológicas.
 
 \textbf{NDVI} (Normalized Difference Vegetation Index): calculado através da 
-fórmula (NIR -- Red)/(NIR + Red) utilizando as bandas B29 (680nm) e B51 (800nm), 
-proporcionando indicador robusto de biomassa e vigor vegetativo.
+equação fundamental:
+\begin{equation}
+\text{NDVI} = \frac{\rho_{\text{NIR}} - \rho_{\text{Red}}}{\rho_{\text{NIR}} + \rho_{\text{Red}}}
+\label{eq:ndvi}
+\end{equation}
+onde $\rho_{\text{NIR}}$ representa a reflectância na banda do infravermelho próximo 
+(B51, 800~nm) e $\rho_{\text{Red}}$ a reflectância na banda vermelha (B29, 680~nm). 
+Este índice normalizado varia no intervalo $[-1, +1]$, sendo que valores próximos 
+a $+1$ indicam vegetação densa e saudável, enquanto valores próximos a zero 
+ou negativos caracterizam solo nu, água ou vegetação estressada.
 
-\textbf{NDRE} (Normalized Difference Red Edge): implementado como (NIR -- RedEdge)/(NIR + RedEdge) 
-usando bandas B40 (740nm) e B51 (800nm), oferecendo maior sensibilidade para 
-detecção de estresse em estágios iniciais.
+\textbf{NDRE} (Normalized Difference Red Edge): implementado através da equação:
+\begin{equation}
+\text{NDRE} = \frac{\rho_{\text{NIR}} - \rho_{\text{RedEdge}}}{\rho_{\text{NIR}} + \rho_{\text{RedEdge}}}
+\label{eq:ndre}
+\end{equation}
+onde $\rho_{\text{RedEdge}}$ corresponde à reflectância na banda red-edge (B40, 740~nm) 
+e $\rho_{\text{NIR}}$ à banda do infravermelho próximo (B51, 800~nm). O NDRE 
+explora a região espectral de transição entre o vermelho e o infravermelho próximo, 
+caracterizada por rápida variação da reflectância foliar, oferecendo maior 
+sensibilidade para detecção precoce de estresse nutricional e hídrico comparado 
+ao NDVI tradicional.
 
-\textbf{EVI} (Enhanced Vegetation Index): calculado através da expressão 
-2,5×(NIR -- Red)/(NIR + 6×Red -- 7,5×Blue + 1) utilizando bandas B14 (480nm), 
-B29 (680nm) e B51 (800nm), proporcionando correção atmosférica melhorada e 
-redução de efeitos de solo.
+\textbf{EVI} (Enhanced Vegetation Index): calculado através da equação:
+\begin{equation}
+\text{EVI} = G \times \frac{\rho_{\text{NIR}} - \rho_{\text{Red}}}{\rho_{\text{NIR}} + C_1 \times \rho_{\text{Red}} - C_2 \times \rho_{\text{Blue}} + L}
+\label{eq:evi}
+\end{equation}
+onde $G = 2{,}5$ é o fator de ganho, $C_1 = 6{,}0$ e $C_2 = 7{,}5$ são coeficientes 
+de correção atmosférica para aerossóis, $L = 1{,}0$ é o fator de ajuste do solo, 
+$\rho_{\text{Blue}}$ representa a reflectância na banda azul (B14, 480~nm), 
+$\rho_{\text{Red}}$ na banda vermelha (B29, 680~nm) e $\rho_{\text{NIR}}$ no 
+infravermelho próximo (B51, 800~nm). O EVI minimiza influências atmosféricas 
+e de background do solo, proporcionando maior sensibilidade em regiões de alta 
+biomassa onde o NDVI tende à saturação.
 
-\textbf{SAVI} (Soil Adjusted Vegetation Index): implementado como (NIR -- Red)/(NIR + Red + L)×(1 + L) 
-com L=0,5, usando bandas B29 (680nm) e B51 (800nm), oferecendo correção para 
-influência de solo em áreas com cobertura vegetal esparsa.
+\textbf{SAVI} (Soil Adjusted Vegetation Index): implementado através da equação:
+\begin{equation}
+\text{SAVI} = \frac{\rho_{\text{NIR}} - \rho_{\text{Red}}}{\rho_{\text{NIR}} + \rho_{\text{Red}} + L} \times (1 + L)
+\label{eq:savi}
+\end{equation}
+onde $L$ é o fator de correção do solo, com valores típicos:
+\begin{align}
+L &= 0{,}5 \quad \text{(cobertura vegetal moderada)} \nonumber \\
+L &= 0{,}25 \quad \text{(alta densidade vegetal)} \nonumber \\
+L &= 1{,}0 \quad \text{(baixa densidade vegetal)} \nonumber
+\end{align} As variáveis $\rho_{\text{NIR}}$ e $\rho_{\text{Red}}$ 
+correspondem às reflectâncias nas bandas B51 (800~nm) e B29 (680~nm), 
+respectivamente. O SAVI minimiza a influência da reflectância do solo 
+subjacente, sendo particularmente eficaz em estágios iniciais de crescimento 
+de culturas ou em áreas com cobertura vegetal esparsa.
 
 \section{Técnicas de Processamento Específicas}\label{sec:tecnicas_processamento}
 
@@ -150,20 +209,38 @@ influência de solo em áreas com cobertura vegetal esparsa.
 
 \subsubsection{Correção Radiométrica}
 
-A correção radiométrica implementa duas técnicas fundamentais. A \textbf{dark object 
-subtraction} realiza subtração do valor mínimo por banda espectral para correção 
-atmosférica básica, removendo efeitos de espalhamento atmosférico que afetam 
-uniformemente toda a imagem. A \textbf{normalização por reflectância} converte valores digitais (DN) em 
-reflectância através de fatores de calibração específicos do sensor, 
-proporcionando valores fisicamente significativos independentes das condições 
-de iluminação durante a aquisição.
+A correção radiométrica implementa duas técnicas fundamentais que garantem 
+a qualidade e comparabilidade dos dados hiperespectrais. 
+
+A \textbf{dark object subtraction} baseia-se no princípio de que objetos 
+escuros (sombras, água profunda) deveriam apresentar reflectância próxima a 
+zero, mas frequentemente exibem valores positivos devido ao espalhamento 
+atmosférico. O algoritmo implementa a correção:
+\begin{equation}
+\rho_{\text{corr}}(\lambda,i,j) = \rho_{\text{obs}}(\lambda,i,j) - \min_{i,j}[\rho_{\text{obs}}(\lambda,i,j)]
+\label{eq:dark_object}
+\end{equation}
+onde $\rho_{\text{corr}}(\lambda,i,j)$ é a reflectância corrigida no comprimento 
+de onda $\lambda$ para o pixel de coordenadas $(i,j)$, $\rho_{\text{obs}}(\lambda,i,j)$ 
+é a reflectância observada, e $\min_{i,j}[\rho_{\text{obs}}(\lambda,i,j)]$ representa 
+o valor mínimo observado em toda a imagem para o comprimento de onda $\lambda$.
+
+A \textbf{normalização por reflectância} converte valores digitais (DN) em 
+reflectância através da relação:
+\begin{equation}
+\rho(\lambda) = \frac{\text{DN}(\lambda) - \text{DN}_{\text{dark}}(\lambda)}{\text{DN}_{\text{white}}(\lambda) - \text{DN}_{\text{dark}}(\lambda)} \times \rho_{\text{ref}}(\lambda)
+\label{eq:reflectance_norm}
+\end{equation}
+onde $\text{DN}_{\text{dark}}(\lambda)$ e $\text{DN}_{\text{white}}(\lambda)$ 
+são os valores digitais de referência escura e clara, respectivamente, e 
+$\rho_{\text{ref}}(\lambda)$ é a reflectância conhecida do material de referência.
 
 \subsubsection{Filtragem Espacial}
 
 O processamento espacial utiliza dois filtros complementares. O \textbf{filtro 
-Gaussiano passa-baixa} com kernel 3×3 e σ=0,8 realiza suavização controlada 
+Gaussiano passa-baixa} com kernel $3 \times 3$ e $\sigma=0{,}8$ realiza suavização controlada 
 para redução de ruído de alta frequência preservando características espectrais 
-essenciais. O \textbf{filtro mediano} com janela 3×3 remove ruído impulsivo 
+essenciais. O \textbf{filtro mediano} com janela $3 \times 3$ remove ruído impulsivo 
 (pixels isolados com valores anômalos) comum em sensores hiperespectrais, 
 mantendo bordas e transições espectrais abruptas.
 
@@ -171,10 +248,10 @@ mantendo bordas e transições espectrais abruptas.
 
 A seleção de bandas implementa estratégia sistemática de remoção de bandas 
 com baixa qualidade espectral. As \textbf{bandas atmosféricas} removidas incluem 
-vapor d'água (bandas 105--115, correspondentes a 1340--1460nm) e (bandas 150--170, 
-1800--1970nm), além de bandas com forte absorção atmosférica (bandas 1--9, <450nm) 
-e (bandas 200--204, >2450nm). A \textbf{seleção para NDVI} prioriza manutenção 
-de bandas red (680nm) e NIR (800nm) com alta relação sinal-ruído, essenciais 
+vapor d'água (bandas 105--115, correspondentes a 1340--1460~nm) e (bandas 150--170, 
+1800--1970~nm), além de bandas com forte absorção atmosférica (bandas 1--9, $< 450$~nm) 
+e (bandas 200--204, $> 2450$~nm). A \textbf{seleção para NDVI} prioriza manutenção 
+de bandas red (680~nm) e NIR (800~nm) com alta relação sinal-ruído, essenciais 
 para cálculo preciso de índices de vegetação. Esta filtragem resulta na redução 
 de 204 para 150 bandas espectrais úteis, otimizando o processamento subsequente.
 
@@ -182,37 +259,156 @@ de 204 para 150 bandas espectrais úteis, otimizando o processamento subsequente
 
 \subsubsection{Redução Dimensional}
 
-A \textbf{Análise de Componentes Principais (PCA)} preserva 99\% da variância 
-total dos dados, resultando tipicamente em 15--20 componentes principais para 
-o dataset Salinas Valley. Esta técnica linear maximiza a variância explicada 
-enquanto remove redundâncias espectrais entre bandas adjacentes. A \textbf{Kernel 
-PCA (KPCA)} utiliza kernel RBF com σ=2,0 para preservar estruturas não-lineares 
-dos dados espectrais, particularmente relevante para discriminação entre classes 
-espectralmente similares como diferentes estágios de crescimento de culturas.
+A \textbf{Análise de Componentes Principais (PCA)} implementa transformação 
+linear ortogonal que projeta dados hiperespectrais de alta dimensionalidade 
+em subespaço de menor dimensionalidade, preservando máxima variância.
+
+\textbf{Formulação Matemática:} Seja $\mathbf{X} \in \mathbb{R}^{n \times d}$ 
+a matriz de dados hiperespectrais, onde $n$ é o número de pixels ($n = 111{.}104$ 
+para Salinas Valley) e $d$ o número de bandas espectrais ($d = 150$ após filtragem). 
+A PCA determina a matriz de transformação $\mathbf{W} \in \mathbb{R}^{d \times k}$ 
+que maximiza a variância dos dados projetados:
+
+\begin{equation}
+\mathbf{Y} = \mathbf{X} \mathbf{W}
+\label{eq:pca_projection}
+\end{equation}
+
+onde $\mathbf{Y} \in \mathbb{R}^{n \times k}$ são os dados transformados e 
+$k \ll d$ é a dimensionalidade reduzida.
+
+\textbf{Algoritmo de Decomposição:} A matriz de transformação é obtida através 
+da decomposição em autovalores da matriz de covariância:
+\begin{align}
+\mathbf{C} &= \frac{1}{n-1} \mathbf{X}^T \mathbf{X} \label{eq:covariance_matrix} \\
+\mathbf{C} \mathbf{w}_i &= \lambda_i \mathbf{w}_i, \quad i = 1,\ldots,d \label{eq:eigenvalue_decomposition}
+\end{align}
+
+onde $\{\lambda_i\}$ são os autovalores ordenados decrescentemente e $\{\mathbf{w}_i\}$ 
+os autovetores correspondentes. O número de componentes $k$ é determinado pelo 
+critério de variância preservada:
+\begin{equation}
+k = \arg\min_j \left\{ \frac{\sum_{i=1}^{j} \lambda_i}{\sum_{i=1}^{d} \lambda_i} \geq 0{,}99 \right\}
+\label{eq:pca_components_selection}
+\end{equation}
+
+resultando tipicamente em $k \in [15, 20]$ para o dataset Salinas Valley.
+
+A \textbf{Kernel PCA (KPCA)} estende a PCA para captura de estruturas não-lineares 
+através do mapeamento implícito $\phi: \mathbb{R}^d \rightarrow \mathcal{H}$ 
+para um espaço de Hilbert de dimensionalidade superior. O kernel RBF é definido por:
+\begin{equation}
+K(\mathbf{x}_i, \mathbf{x}_j) = \exp\left(-\frac{||\mathbf{x}_i - \mathbf{x}_j||^2}{2\sigma^2}\right)
+\label{eq:rbf_kernel_kpca}
+\end{equation}
+
+com $\sigma = 2{,}0$ otimizado empiricamente para o dataset Salinas Valley. 
+A KPCA resolve o problema de autovalores na matriz de kernel centrada:
+\begin{equation}
+\tilde{\mathbf{K}} \boldsymbol{\alpha} = n\lambda \boldsymbol{\alpha}
+\label{eq:kpca_eigenvalue}
+\end{equation}
+
+onde $\tilde{\mathbf{K}} = \mathbf{K} - \mathbf{1}_n \mathbf{K} - \mathbf{K} \mathbf{1}_n + \mathbf{1}_n \mathbf{K} \mathbf{1}_n$ 
+é a matriz de kernel centrada e $\mathbf{1}_n$ é a matriz de uns $n \times n$ 
+normalizada por $n$.
 
 \subsubsection{Seleção de Características}
 
-A técnica \textbf{EMCR} (Entropy and Mean Correlation Ratio) combina análise 
-de entropia espectral H(λ) = -Σp(λ)log₂p(λ) com análise de correlação inter-bandas 
-r(λᵢ,λⱼ) = cov(λᵢ,λⱼ)/σᵢσⱼ para seleção das 20 bandas com maior razão 
-entropia/correlação. Esta abordagem prioriza bandas com alta informatividade 
-individual e baixa redundância mútua.
+A técnica \textbf{EMCR} (Entropy and Mean Correlation Ratio) implementa 
+uma abordagem híbrida que maximiza o conteúdo informacional enquanto minimiza 
+a redundância espectral. O algoritmo opera em três etapas principais:
 
-A \textbf{Análise de Informação Mútua} calcula MI(X,Y) = ΣΣp(x,y)log[p(x,y)/(p(x)p(y))] 
-para seleção de bandas com maior informação mútua com classes de interesse. 
-A implementação utiliza discretização em 256 bins com janela deslizante para 
-estimativa robusta de densidade de probabilidade, permitindo identificação de 
-dependências não-lineares entre bandas espectrais e classes agronômicas.
+\textbf{Etapa 1 - Cálculo da Entropia Espectral:} A entropia de cada banda 
+$\lambda_k$ é calculada considerando a distribuição de probabilidade dos 
+valores de reflectância:
+\begin{equation}
+H(\lambda_k) = -\sum_{i=1}^{N} p_i(\lambda_k) \log_2 p_i(\lambda_k)
+\label{eq:entropy_spectral}
+\end{equation}
+onde $p_i(\lambda_k) = \frac{n_i}{N_{\text{total}}}$ representa a probabilidade do 
+nível de intensidade $i$ na banda $\lambda_k$, com $n_i$ sendo o número de 
+pixels com intensidade $i$ e $N_{\text{total}}$ o número total de pixels.
+
+\textbf{Etapa 2 - Análise de Correlação Inter-bandas:} O coeficiente de 
+correlação entre bandas $\lambda_i$ e $\lambda_j$ é calculado por:
+\begin{equation}
+r(\lambda_i,\lambda_j) = \frac{\text{cov}(\lambda_i,\lambda_j)}{\sigma_{\lambda_i} \times \sigma_{\lambda_j}} = \frac{E[(\lambda_i - \mu_i)(\lambda_j - \mu_j)]}{\sigma_{\lambda_i} \times \sigma_{\lambda_j}}
+\label{eq:correlation_interbands}
+\end{equation}
+onde $\mu_i$ e $\sigma_{\lambda_i}$ são a média e o desvio padrão da banda $\lambda_i$.
+
+\textbf{Etapa 3 - Cálculo do Índice EMCR:} O índice EMCR para cada banda 
+$\lambda_k$ é definido como:
+\begin{equation}
+\text{EMCR}(\lambda_k) = \frac{H(\lambda_k)}{\frac{1}{N-1}\sum_{j \neq k}^{N} |r(\lambda_k,\lambda_j)|}
+\label{eq:emcr_index}
+\end{equation}
+onde o numerador representa a informatividade individual da banda e o 
+denominador a correlação média com todas as outras bandas. Bandas com 
+alto EMCR possuem alta entropia (informação) e baixa correlação (redundância).
+
+A \textbf{Análise de Informação Mútua} quantifica a dependência estatística 
+entre bandas espectrais e classes agronômicas, capturando relações não-lineares 
+que métodos baseados em correlação linear podem não detectar.
+
+A informação mútua entre uma banda espectral $X$ e o conjunto de classes $Y$ 
+é definida matematicamente como:
+\begin{equation}
+\text{MI}(X,Y) = \sum_{x \in X} \sum_{y \in Y} p(x,y) \log_2 \left(\frac{p(x,y)}{p(x)p(y)}\right)
+\label{eq:mutual_information}
+\end{equation}
+onde $p(x,y)$ é a densidade de probabilidade conjunta, $p(x)$ e $p(y)$ são 
+as densidades marginais. Quando $X$ e $Y$ são independentes, $\text{MI}(X,Y) = 0$; 
+quando são completamente dependentes, $\text{MI}(X,Y)$ atinge seu valor máximo 
+$\text{MI}_{\max} = \min[H(X), H(Y)]$.
+
+\textbf{Implementação Computacional:} A estimação das densidades de probabilidade 
+utiliza discretização adaptativa com 256 bins por banda espectral. Para 
+mitigar problemas de esparsidade em altas dimensões, aplica-se suavização 
+com janela deslizante Gaussiana:
+\begin{equation}
+\hat{p}(x) = \frac{1}{N h} \sum_{i=1}^{N} K\left(\frac{x - x_i}{h}\right)
+\label{eq:kernel_density}
+\end{equation}
+onde $K$ é o kernel Gaussiano, $h$ é a largura de banda ótima calculada 
+pela regra de Scott:
+\begin{equation}
+h = 1{,}06 \times \sigma \times N^{-1/5}
+\label{eq:scott_rule}
+\end{equation}
+e $N$ é o número de amostras.
 
 \subsubsection{Classificação}
 
-O classificador \textbf{SVM com kernel RBF} implementa otimização de hiperparâmetros 
-através de busca em grade com C ∈ [0,1, 100] e γ ∈ [0,001, 10], utilizando 
-validação cruzada k-fold (k=5) para seleção ótima. A implementação utiliza 
-libsvm para FPGA e cuSVM para GPU, garantindo otimização específica para cada 
-arquitetura.
+O classificador \textbf{SVM com kernel RBF} implementa uma abordagem de 
+margens máximas adaptada para classificação de dados hiperespectrais de alta 
+dimensionalidade. O problema de otimização é formulado como:
+\begin{equation}
+\min_{\mathbf{w},b,\boldsymbol{\xi}} \frac{1}{2}||\mathbf{w}||^2 + C \sum_{i=1}^{n} \xi_i
+\label{eq:svm_primal}
+\end{equation}
+sujeito às restrições:
+\begin{align}
+y_i(\mathbf{w}^T \phi(\mathbf{x}_i) + b) &\geq 1 - \xi_i, \quad i = 1,\ldots,n \label{eq:svm_constraint1} \\
+\xi_i &\geq 0, \quad i = 1,\ldots,n \label{eq:svm_constraint2}
+\end{align}
 
-O classificador \textbf{k-NN} testa valores k = 5, 7, 9 com distância Euclidiana 
+onde $\mathbf{w} \in \mathbb{R}^d$ é o vetor de pesos, $b \in \mathbb{R}$ o termo de bias, 
+$\xi_i \geq 0$ as variáveis de folga, $C > 0$ o parâmetro de regularização, 
+e $\phi(\mathbf{x}_i)$ o mapeamento no espaço de características definido pelo kernel RBF:
+\begin{equation}
+K(\mathbf{x}_i, \mathbf{x}_j) = \exp\left(-\gamma ||\mathbf{x}_i - \mathbf{x}_j||^2\right)
+\label{eq:rbf_kernel}
+\end{equation}
+
+\textbf{Otimização de Hiperparâmetros:} A busca em grade explora o espaço 
+de parâmetros $C \in \{0{,}1, 1, 10, 100\}$ e $\gamma \in \{0{,}001, 0{,}01, 0{,}1, 1, 10\}$, 
+totalizando $5 \times 5 = 25$ combinações avaliadas por validação cruzada $k$-fold com $k=5$. 
+A métrica de seleção é a acurácia média ponderada pelas classes para 
+compensar o desbalanceamento do dataset Salinas Valley.
+
+O classificador \textbf{k-NN} testa valores $k \in \{5, 7, 9\}$ com distância Euclidiana 
 no espaço de características reduzido. A validação emprega leave-one-out 
 cross-validation para estimativa robusta de performance, particularmente 
 importante dado o desbalanceamento entre classes no dataset Salinas Valley.
@@ -221,136 +417,264 @@ importante dado o desbalanceamento entre classes no dataset Salinas Valley.
 
 \subsection{Métricas de Performance Computacional}\label{subsec:metricas_performance}
 
-As métricas de throughput quantificam a capacidade de processamento através de 
-pixels processados por segundo (pixels/s), proporcionando medida direta da 
-eficiência computacional para diferentes configurações. A latência por estágio 
-mede separadamente o tempo de pré-processamento, classificação e cálculo de 
-índices (ms), permitindo identificação de gargalos específicos no pipeline de 
-processamento. A utilização de recursos quantifica para FPGA o percentual de DSP48E1, BRAM, 
-LUTs e flip-flops utilizados, enquanto para GPU mede percentual de ocupancy, 
-bandwidth utilization e shared memory usage, permitindo análise de eficiência 
-de mapeamento algorítmico.
+\subsubsection{Throughput e Latência}
+
+O \textbf{throughput} quantifica a capacidade de processamento sustentado 
+através da métrica:
+\begin{equation}
+\text{Throughput} = \frac{N_{\text{pixels}} \times N_{\text{bandas}}}{T_{\text{total}}} \quad [\text{pixels/s}]
+\label{eq:throughput}
+\end{equation}
+onde $N_{\text{pixels}}$ é o número total de pixels processados ($512 \times 217 = 111{.}104$ 
+para Salinas Valley), $N_{\text{bandas}}$ o número de bandas espectrais utilizadas 
+($N_{\text{bandas}} = 150$ após filtragem), e $T_{\text{total}}$ o tempo total de processamento incluindo 
+todas as etapas do pipeline.
+
+A \textbf{latência por estágio} é medida individualmente para cada componente 
+do pipeline:
+\begin{align}
+T_{\text{total}} &= T_{\text{pre-proc}} + T_{\text{red-dim}} + T_{\text{classif}} + T_{\text{indices}} \label{eq:latencia_total} \\
+T_{\text{pre-proc}} &= T_{\text{radiom}} + T_{\text{espacial}} + T_{\text{bandas}} \label{eq:latencia_preproc}
+\end{align}
+
+onde cada componente é cronometrado com resolução de microssegundos para 
+identificação precisa de gargalos computacionais.
+
+\subsubsection{Utilização de Recursos de Hardware}
+
+\textbf{Para FPGA (Zynq-7020):} A utilização de recursos é quantificada como:
+\begin{equation}
+U_{\text{recurso}} = \frac{R_{\text{utilizado}}}{R_{\text{disponível}}} \times 100\% 
+\label{eq:utilizacao_fpga}
+\end{equation}
+
+com os recursos monitorados:
+\begin{itemize}
+    \item DSP48E1: $R_{\text{disp}} = 220$ unidades (operações aritméticas)
+    \item BRAM: $R_{\text{disp}} = 560$~KB (armazenamento de dados)
+    \item LUTs: $R_{\text{disp}} = 53{.}200$ unidades (lógica combinacional)
+    \item Flip-flops: $R_{\text{disp}} = 106{.}400$ unidades (elementos de memória)
+\end{itemize}
+
+\textbf{Para GPU (Xavier NX):} As métricas incluem:
+\begin{align}
+\text{Occupancy} &= \frac{\text{Warps ativos}}{\text{Warps máximos por SM}} \times 100\% \label{eq:occupancy} \\
+\text{Bandwidth Util.} &= \frac{\text{Bytes transferidos/s}}{\text{Bandwidth teórico}} \times 100\% \label{eq:bandwidth}
+\end{align}
+
+com bandwidth teórico de $51{,}2$~GB/s para memória LPDDR4x.
 
 \subsection{Métricas de Eficiência Energética}\label{subsec:metricas_energetica}
 
-O consumo instantâneo será medido a 1kHz durante o processamento utilizando 
-instrumentação específica (medidores de potência INA219 para FPGA e software 
-tegrastats para Jetson Xavier NX), proporcionando caracterização detalhada do 
-perfil energético. A energia por pixel (Joules por pixel classificado) oferece 
-métrica normalizada para comparação entre diferentes configurações e datasets. 
-A eficiência computacional GOPS/Watt relaciona operações por segundo com consumo 
-energético, permitindo identificação de configurações otimizadas para aplicações 
-com restrições energéticas rigorosas.
+\subsubsection{Instrumentação Energética}
+
+O \textbf{consumo instantâneo} é monitorado com alta precisão temporal:
+
+\textbf{Para FPGA:} Utiliza-se o sensor INA219 com resolução de 12 bits para 
+medição de corrente ($\pm$3,2~A) e tensão (0--26~V), proporcionando precisão de 
+$\pm$0,5\% na faixa de operação. A potência instantânea é calculada como:
+\begin{equation}
+P(t) = V(t) \times I(t) \quad [\text{W}]
+\label{eq:potencia_instantanea}
+\end{equation}
+
+com amostragem a 1~kHz para captura de transições rápidas de consumo.
+
+\textbf{Para GPU:} O software \texttt{tegrastats} fornece leituras de potência 
+por domínio (GPU, CPU, DRAM, SoC) com resolução temporal de 100~ms.
+
+\subsubsection{Métricas Energéticas Derivadas}
+
+A \textbf{energia por pixel} normaliza o consumo pela carga computacional:
+\begin{equation}
+E_{\text{pixel}} = \frac{\int_0^{T} P(t) dt}{N_{\text{pixels}}} \quad [\text{J/pixel}]
+\label{eq:energia_pixel}
+\end{equation}
+
+A \textbf{eficiência computacional} relaciona throughput com consumo:
+\begin{equation}
+\eta_{\text{comp}} = \frac{\text{GOPS}}{P_{\text{médio}}} \quad [\text{GOPS/W}]
+\label{eq:eficiencia_computacional}
+\end{equation}
+
+onde GOPS (Giga Operations Per Second) é estimado considerando as operações 
+de ponto flutuante por pixel:
+\begin{equation}
+\text{GOPS} = \frac{\text{Ops/pixel} \times \text{Pixels/s}}{10^9}
+\label{eq:gops}
+\end{equation}
+
+Para o dataset Salinas Valley, estima-se aproximadamente $2{.}500$ operações de 
+ponto flutuante por pixel (incluindo PCA, classificação SVM e cálculo de índices).
 
 \subsection{Métricas de Qualidade para Agricultura}\label{subsec:metricas_qualidade}
 
-A Overall Accuracy mede o percentual de pixels corretamente classificados, 
-proporcionando indicador direto da qualidade da classificação. O Kappa Coefficient 
-quantifica a concordância corrigida pelo acaso, oferecendo métrica robusta para 
-datasets desbalanceados. O F1-score por classe calcula a média harmônica entre 
-precisão e recall para cada classe agrícola, permitindo análise detalhada de 
-performance para diferentes tipos de cultura. O RMSE para índices de vegetação 
-quantifica o erro quadrático médio versus valores de referência, essencial para 
-validação da precisão dos índices NDVI, NDRE, EVI e SAVI.
+\subsubsection{Métricas de Classificação}
 
-\subsection{Protocolo de Teste Específico}\label{subsec:protocolo_teste}
+A \textbf{Overall Accuracy} (OA) quantifica a performance global:
+\begin{equation}
+\text{OA} = \frac{\sum_{i=1}^{C} n_{ii}}{N} \times 100\%
+\label{eq:overall_accuracy}
+\end{equation}
+onde $n_{ii}$ são os elementos da diagonal da matriz de confusão (classificações 
+corretas), $C$ o número de classes, e $N$ o total de amostras.
 
-O particionamento do dataset utiliza divisão estratificada com 70\% para 
-treinamento, 15\% para validação e 15\% para teste, garantindo representatividade 
-de todas as classes em cada conjunto. A replicação estatística emprega 15 
-execuções independentes com sementes aleatórias diferentes, permitindo estimativa 
-robusta de variabilidade e significância estatística. As condições controladas incluem frequência 
-fixa de operação, temperatura ambiente de 23°C±2°C, e isolamento de processos 
-concorrentes para garantir reprodutibilidade. O teste estatístico utiliza t-test 
-pareado com α=0,05 para identificação de diferenças significativas, complementado 
-por teste de normalidade Shapiro-Wilk e análise de homoscedasticidade. A análise 
-de Pareto identifica trade-offs ótimos entre accuracy vs. energy vs. throughput 
-através de normalização min-max e algoritmo de identificação de fronteira 
-não-dominada.
+O \textbf{Coeficiente Kappa} ($\kappa$) corrige a concordância pelo acaso:
+\begin{equation}
+\kappa = \frac{P_o - P_e}{1 - P_e}
+\label{eq:kappa}
+\end{equation}
+onde $P_o = \frac{\text{OA}}{100}$ é a concordância observada e 
+\begin{equation}
+P_e = \sum_{i=1}^{C} \frac{n_{i+} \times n_{+i}}{N^2}
+\label{eq:kappa_pe}
+\end{equation}
+é a concordância esperada pelo acaso, com $n_{i+}$ e $n_{+i}$ sendo os totais 
+marginais da matriz de confusão.
 
-\section{Síntese da Arquitetura Híbrida}\label{sec:sintese_arquitetura}
+O \textbf{F1-score} por classe $i$ combina precisão e recall:
+\begin{align}
+\text{Precision}_i &= \frac{n_{ii}}{n_{+i}} \label{eq:precision} \\
+\text{Recall}_i &= \frac{n_{ii}}{n_{i+}} \label{eq:recall} \\
+\text{F1-score}_i &= 2 \times \frac{\text{Precision}_i \times \text{Recall}_i}{\text{Precision}_i + \text{Recall}_i} \label{eq:f1score}
+\end{align}
 
-\subsection{Critérios de Otimização Multi-objetivo}\label{subsec:criterios_otimizacao}
+\subsubsection{Validação de Índices de Vegetação}
 
-A otimização multi-objetivo estabelece ponderação específica baseada em requisitos 
-de UAV agrícolas: precisão de classificação (40\%), eficiência energética (35\%), 
-e throughput (25\%). O peso de 40\% para precisão reflete a criticidade de decisões 
-agronômicas corretas, onde erros de classificação podem resultar em aplicações 
-inadequadas de insumos com impacto econômico e ambiental significativo. A 
-eficiência energética recebe 35\% por ser limitante fundamental para autonomia 
-de voo, considerando que UAVs agrícolas típicos operam com restrições energéticas 
-de 20W e autonomia desejada de 45--60 minutos. O throughput com 25\% garante 
-capacidade de processamento em tempo real durante o voo, essencial para 
-aplicações que requerem resposta imediata como detecção de pragas ou estresse 
-hídrico.
+O \textbf{RMSE} (Root Mean Square Error) para cada índice de vegetação 
+é calculado comparando com valores de referência:
+\begin{equation}
+\text{RMSE}_{\text{índice}} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (\hat{V}_i - V_{\text{ref},i})^2}
+\label{eq:rmse_indices}
+\end{equation}
+onde $\hat{V}_i$ é o valor calculado do índice para o pixel $i$ e $V_{\text{ref},i}$ 
+é o valor de referência obtido por medidas espectrais de campo ou algoritmos 
+validados na literatura.
 
-\subsection{Design Space Exploration Focado}\label{subsec:design_space}
+Para validação cruzada entre plataformas, calcula-se também o coeficiente 
+de correlação de Pearson:
+\begin{equation}
+r = \frac{\sum_{i=1}^{N}(\hat{V}_i - \bar{\hat{V}})(V_{\text{ref},i} - \bar{V}_{\text{ref}})}{\sqrt{\sum_{i=1}^{N}(\hat{V}_i - \bar{\hat{V}})^2 \sum_{i=1}^{N}(V_{\text{ref},i} - \bar{V}_{\text{ref}})^2}}
+\label{eq:correlation_indices}
+\end{equation}
 
-As configurações FPGA testadas incluem frequências de 100MHz, 150MHz e 200MHz, 
-selecionadas baseado na análise de timing crítico dos algoritmos hiperespectrais 
-implementados. A frequência de 100MHz garante operação estável para algoritmos 
-complexos como KPCA, 150MHz oferece compromisso entre performance e estabilidade, 
-enquanto 200MHz maximiza throughput para algoritmos simples como NDVI. A precisão 
-numérica varia entre fixed-point 16-bit, 12-bit e 8-bit, permitindo análise de 
-trade-off entre precisão aritmética e utilização de recursos. A paralelização 
-testa pipeline temporal versus paralelo espacial com 4, 8 e 16 unidades de 
-processamento.
+garantindo consistência entre implementações FPGA e GPU.
 
-As configurações GPU exploram os modos de energia 10W, 15W e 20W do Jetson 
-Xavier NX, correspondentes aos perfis de voo UAV: modo econômico (10W) para 
-missões extensas, modo balanceado (15W) para operação padrão, e modo performance 
-(20W) para processamento intensivo de curta duração. A precisão numérica testa 
-FP32, FP16 e INT8, com otimizações incluindo TensorRT para inferência otimizada, 
-cuBLAS para operações matriciais, e kernels customizados para algoritmos 
-específicos.
 
-\subsection{Implementação da Arquitetura Híbrida}\label{subsec:implementacao_hibrida}
+\section{Cronograma de Execução Detalhado (10 meses)}\label{sec:cronograma_execucao}
 
-A arquitetura híbrida proposta distribui tarefas conforme vantagens comparativas: 
-FPGA executa pré-processamento (correção radiométrica, filtragem espacial, 
-seleção de bandas) aproveitando baixa latência e determinismo temporal, enquanto 
-GPU realiza processamento principal (PCA, classificação SVM, cálculo de índices) 
-explorando alto throughput paralelo. A comunicação entre plataformas utiliza interface PCIe 
-para transferência de dados pré-processados, com sincronização temporal através 
-de protocolos de handshaking que garantem pipeline contínuo. O controle global 
-do sistema emprega processador ARM do Zynq-7020 para orquestração de tarefas, 
-gerenciamento de energia, e interface com sistemas de navegação UAV.
+O cronograma de execução da pesquisa foi estruturado em 10 meses (40 semanas), 
+organizados em seis fases principais que abrangem desde a aquisição de hardware 
+até a defesa da dissertação, conforme ilustrado na \autoref{fig:cronograma-pesquisa}. 
+A distribuição temporal considera as dependências entre etapas e reserva tempo 
+adequado para atividades de disseminação científica e preparação da defesa.
 
-\section{Cronograma de Execução Específico}\label{sec:cronograma_execucao}
+\subsection{Aquisição e Setup de Hardware (8 semanas)}\label{subsec:fase1_hardware}
 
-\subsection{Fase 1 - Implementação FPGA (8 semanas)}\label{subsec:fase1_fpga}
+\textbf{Semanas 1--8:} Esta fase inicial concentra-se na aquisição 
+e configuração completa do ambiente experimental. As semanas 1--3 dedicam-se à 
+especificação técnica detalhada, cotação e aquisição das plataformas de hardware: 
+FPGA Xilinx Zynq-7020 (kit de desenvolvimento ZedBoard ou equivalente), NVIDIA 
+Jetson Xavier NX Developer Kit, instrumentação de precisão para medição energética 
+(INA219, multímetros digitais), e componentes auxiliares (fontes de alimentação, 
+cabos).
 
-As primeiras duas semanas (1--2) concentram-se no setup do ambiente Vivado/GHDL 
-e implementação inicial da correção radiométrica, estabelecendo pipeline básico 
-de processamento espectral. As semanas 3--4 desenvolvem filtros espaciais 
-(Gaussiano e mediano) e algoritmos de seleção de bandas em VHDL, otimizando 
-para utilização eficiente de recursos DSP e BRAM. As semanas 5--6 implementam 
-PCA e EMCR em aritmética de ponto fixo, realizando análise de trade-off entre 
-precisão numérica e recursos utilizados. As semanas finais 7--8 desenvolvem 
-classificadores SVM/k-NN otimizados e algoritmos de cálculo de índices de 
-vegetação, integrando todo o pipeline FPGA.
+As semanas 4--6 focam no setup inicial dos ambientes de desenvolvimento: 
+instalação e configuração do Vivado Design Suite, GHDL para simulação 
+VHDL, CUDA Toolkit, cuDNN, e ferramentas de profiling (NSight Compute, 
+NSight Systems). A configuração inclui validação de funcionalidade básica, 
+testes de conectividade, e verificação de compatibilidade entre ferramentas.
 
-\subsection{Fase 2 - Implementação GPU (6 semanas)}\label{subsec:fase2_gpu}
+As semanas 7--8 realizam testes preliminares de funcionalidade: compilação e 
+execução de exemplos básicos em ambas as plataformas, validação da instrumentação 
+energética, configuração do dataset Salinas Valley, e estabelecimento de 
+protocolos de backup e versionamento de código. Esta fase culmina com a 
+documentação completa do ambiente experimental e aprovação para início das 
+implementações.
 
-As semanas 9--10 estabelecem ambiente CUDA/OpenCL e desenvolvem kernels de 
-pré-processamento otimizados para arquitetura Volta do Xavier NX. As semanas 
-11--12 implementam PCA/KPCA otimizada utilizando cuBLAS para operações matriciais 
-e análise de ocupancy para maximização de throughput. As semanas 13--14 finalizam 
-classificadores com TensorRT para inferência otimizada e kernels customizados 
-para algoritmos específicos de processamento hiperespectral.
+\subsection{Implementação FPGA (6 semanas)}\label{subsec:fase2_fpga}
 
-\subsection{Fase 3 - Validação e Comparação (4 semanas)}\label{subsec:fase3_validacao}
+\textbf{Semanas 9--12:} Desenvolvimento da implementação FPGA com foco 
+em otimização de recursos e determinismo temporal. As semanas 9--10 concentram-se 
+na implementação do pipeline de pré-processamento em VHDL: correção radiométrica, 
+filtragem espacial (Gaussiano e mediano), e seleção de bandas espectrais. A 
+arquitetura prioriza operações pipeline com utilização eficiente de recursos 
+DSP48E1 e BRAM.
 
-As semanas 15--16 executam testes sistemáticos com dataset Salinas Valley, 
-coletando métricas de performance, energia e qualidade sob condições controladas. 
-As semanas 17--18 realizam análise estatística comparativa, aplicam testes de 
-significância, e identificam configuração ótima através de análise de Pareto 
-multi-objetivo.
+As semanas 11--12 implementam algoritmos de redução dimensional (PCA) e seleção 
+de características (EMCR) em aritmética de ponto fixo, realizando análise 
+detalhada de trade-offs entre precisão numérica e utilização de recursos. A 
+implementação inclui otimizações específicas para paralelização de operações 
+matriciais e minimização de latência de pipeline.
 
-\subsection{Fase 4 - Síntese Final (2 semanas)}\label{subsec:fase4_sintese}
+\textbf{Semanas 13--14:} Finalização da implementação FPGA com 
+desenvolvimento de classificadores SVM/k-NN otimizados e algoritmos de cálculo 
+de índices de vegetação (NDVI, NDRE, EVI, SAVI). Esta fase inclui integração 
+completa do pipeline FPGA, testes de funcionalidade, e caracterização inicial 
+de performance (throughput, latência, utilização de recursos).
 
-As semanas finais 19--20 consolidam resultados na proposição da arquitetura 
-híbrida, incluindo especificação detalhada de interfaces, protocolos de 
-comunicação, e validação teórica de performance integrada. Esta fase produz 
-a especificação completa da solução otimizada para processamento hiperespectral 
-agrícola embarcado.
+\subsection{Implementação GPU (6 semanas)}\label{subsec:fase3_gpu}
+
+\textbf{Semanas 15--20:} Desenvolvimento da implementação GPU 
+otimizada para arquitetura Volta do Xavier NX. As semanas 15--16 estabelecem 
+kernels CUDA de pré-processamento otimizados, explorando características 
+específicas da arquitetura (shared memory, coalescing, occupancy). O desenvolvimento 
+inclui implementação em OpenCL para comparação cross-platform.
+
+As semanas 17--18 implementam algoritmos de redução dimensional (PCA/KPCA) 
+utilizando cuBLAS para operações matriciais otimizadas, análise detalhada de 
+occupancy para maximização de throughput, e implementação de Kernel PCA com 
+kernel RBF otimizado. As semanas 19--20 finalizam classificadores utilizando 
+TensorRT para inferência otimizada, kernels customizados para algoritmos 
+específicos de processamento hiperespectral, e integração completa do pipeline GPU.
+
+\subsection{Validação Experimental e Comparação (6 semanas)}\label{subsec:fase4_validacao}
+
+\textbf{Semanas 21--26:} Execução sistemática de experimentos 
+comparativos e coleta de dados. As semanas 21--23 executam testes exaustivos 
+com dataset Salinas Valley, coletando métricas de performance (throughput, 
+latência), eficiência energética (GOPS/W, J/pixel), utilização de recursos, 
+e qualidade de classificação (Overall Accuracy, Kappa, F1-score) sob condições 
+experimentais controladas e reprodutíveis.
+
+As semanas 24--26 realizam análise estatística comparativa rigorosa, aplicam 
+testes de significância (t-test, ANOVA), executam análise de Pareto multi-objetivo 
+para identificação de configurações ótimas, e desenvolvem modelos matemáticos 
+de performance validados experimentalmente. Esta fase produz o conjunto completo 
+de resultados experimentais para análise e síntese.
+
+\subsection{Síntese e Publicação (6 semanas)}\label{subsec:fase5_sintese}
+
+\textbf{Semanas 27--32:} Síntese de resultados e disseminação científica. 
+As semanas 27--29 consolidam resultados experimentais na proposição da arquitetura 
+heterogênea otimizada, incluindo especificação arquitetural detalhada, interfaces 
+de comunicação, protocolos de sincronização, e validação teórica através dos 
+modelos matemáticos desenvolvidos.
+
+As semanas 30--32 dedicam-se à redação e submissão de artigo científico para 
+conferência ou periódico de impacto na área (IEEE Transactions on Computers, 
+ACM Computing Surveys, ou conferências como IPDPS, HPCA). O artigo apresenta 
+os principais resultados da pesquisa, contribuições metodológicas, e comparações 
+com estado da arte, estabelecendo visibilidade científica dos resultados obtidos.
+
+\subsection{Escrita da Dissertação e Defesa (12 semanas)}\label{subsec:fase6_dissertacao}
+
+\textbf{Semanas 33--40:} Redação completa da dissertação e preparação 
+para defesa. As semanas 33--40 concentram-se na redação dos capítulos de resultados 
+e discussão, integrando todos os dados experimentais, análises estatísticas, e 
+síntese arquitetural em uma narrativa coerente.
+
+
+Esta fase culmina com a defesa pública da dissertação, apresentação dos resultados 
+à comunidade acadêmica, e incorporação de sugestões da banca na versão definitiva 
+do trabalho.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{cronograma_mestrado_gantt}
+    \caption{Cronograma detalhado da pesquisa estruturado em 6 fases principais 
+             ao longo de 10 meses (40 semanas): Aquisição de Hardware, Implementação 
+             FPGA, Implementação GPU, Validação Experimental, Síntese e Publicação, 
+             e Escrita da Dissertação com Defesa.}
+    \label{fig:cronograma-pesquisa}
+\end{figure}

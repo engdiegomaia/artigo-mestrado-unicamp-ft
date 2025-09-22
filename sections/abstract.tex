@@ -5,44 +5,15 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-Hyperspectral image processing in embedded systems represents one of the most 
-complex computational challenges of today, requiring reconciliation between 
-apparently conflicting requirements of high performance, low latency, and 
-energy efficiency in platforms with severe resource constraints. This 
-dissertation presents a systematic comparative investigation methodology for 
-computational optimization of embedded hyperspectral processing, focusing on 
-trade-off analysis between different heterogeneous architectures and 
-optimization techniques through an exploratory-comparative approach based on 
-simulation and theoretical modeling.
+Hyperspectral image processing in embedded systems represents one of the most complex computational challenges of today, requiring reconciliation between apparently conflicting requirements of high performance, low latency, and energy efficiency in platforms with severe resource constraints. This dissertation presents a systematic methodology for computational optimization of embedded hyperspectral processing, focusing on comparative analysis of trade-offs between FPGA and GPU heterogeneous architectures through an exploratory-comparative approach based on simulation and theoretical modeling applied to precision agriculture.
 
-The research adopts an innovative methodological approach that prioritizes 
-theoretical and simulated analysis over physical implementation, justified by 
-the need to systematically investigate multiple architectural alternatives 
-under controlled conditions. The methodology is structured into eight main 
-components: systematic cataloging of FPGA and GPU optimization techniques; 
-comparative theoretical performance modeling; integrated simulation framework; 
-cross-platform comparative study; standardized benchmarking protocol; 
-multi-criteria analysis based on AHP methodology and Pareto analysis; design 
-space exploration for optimal configuration identification; and optimized 
-heterogeneous architecture synthesis.
+The research adopts an innovative methodological approach that prioritizes theoretical and simulated analysis over physical implementation, justified by the need to systematically investigate multiple architectural alternatives under controlled conditions. The methodology is structured into eight main components: systematic cataloging of FPGA and GPU optimization techniques; comparative theoretical performance modeling; integrated simulation framework using Salinas Valley dataset; cross-platform comparative study; standardized benchmarking protocol; multi-criteria analysis based on AHP methodology and Pareto analysis; design space exploration for optimal configuration identification; and optimized heterogeneous architecture synthesis.
 
-The systematic review of 25 works published between 2011-2024 revealed a 
-significant methodological gap: only 4\% of studies address complete integrated 
-systems, while 96\% focus on isolated techniques or platform-specific 
-optimizations. This fragmentation prevents systematic trade-off analysis and 
-identification of optimal solutions for specific application scenarios. As the 
-main contribution, a unified methodological framework is developed that enables 
-objective comparison between different architectural approaches considering 
-multiple performance criteria.
+The systematic review of literature revealed a significant methodological gap: only a small portion of studies address complete integrated systems for agricultural applications, while the majority focus on isolated techniques or platform-specific optimizations without considering precision agriculture requirements. This fragmentation prevents systematic trade-off analysis and identification of optimal solutions for specific crop monitoring scenarios through specialized vegetation indices (NDVI, NDRE, EVI, SAVI).
 
-The proposed methodology establishes a rigorous scientific foundation for 
-embedded hyperspectral systems investigation, filling the identified literature 
-gap and providing a reproducible framework for future research. Expected 
-results include quantitative identification of fundamental trade-offs, 
-proposition of an optimized heterogeneous architecture based on systematic 
-analysis, and development of practical recommendations for technique selection 
-according to specific application requirements in precision agriculture, 
-environmental monitoring, and autonomous UAV systems.
+As the main contribution, a unified methodological framework is developed that enables objective comparison between different architectural approaches considering multiple performance criteria: computational throughput (>200 pixels/s), deterministic latency (<50 ms), energy efficiency (>30 GOPS/W), and classification accuracy (Overall Accuracy >90\%) for corn and soybean crop applications. The proposed methodology establishes a rigorous scientific foundation for embedded hyperspectral systems investigation, filling the identified literature gap and providing a reproducible framework for future research.
+
+Expected results include quantitative identification of fundamental trade-offs between performance and energy efficiency, proposition of an optimized heterogeneous architecture based on systematic multi-criteria analysis, and development of practical recommendations for technique selection according to specific application requirements in precision agriculture, environmental monitoring, and autonomous UAV systems.
 
 \textbf{Keywords:} 
-Hyperspectral Processing, Heterogeneous Architectures, Comparative Methodology, Computational Optimization, Multi-criteria Analysis, Embedded Systems, FPGA, GPU.
+Hyperspectral Processing, Heterogeneous Architectures, Comparative Methodology, Computational Optimization, Multi-criteria Analysis, Embedded Systems, FPGA, GPU, Precision Agriculture.

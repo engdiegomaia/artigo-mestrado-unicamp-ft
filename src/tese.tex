@@ -7,25 +7,14 @@
 
 \documentclass[Portugues,Final]{tese-FT}
 
-% Configurações de codificação e fonte para compatibilidade
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+% Pacotes matemáticos essenciais (a classe já configura as fontes)
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
 
-% Configuração específica para dvilualatex
-\ifx\directlua\undefined
-  % Compilação com pdflatex - usar configuração normal
-\else
-  % Compilação com LuaLaTeX/dvilualatex - configuração simplificada
-  \usepackage{fontspec}
-  \defaultfontfeatures{Ligatures=TeX}
-  % Usar fontes Latin Modern para máxima compatibilidade
-  \setmainfont{Latin Modern Roman}
-  \setsansfont{Latin Modern Sans}
-  \setmonofont{Latin Modern Mono}
-  % Desabilitar alguns recursos problemáticos para DVI
-  \PassOptionsToPackage{dvips}{hyperref}
-\fi
+% Suporte adicional para símbolos gregos em matemática
+\usepackage{upgreek}
 
 % Configurações de bibliografia - backend já configurado na classe
 \addbibresource{bibliografia.bib}
@@ -39,7 +28,7 @@
 
 % Informações do autor e orientador
 \autor{Diego de Freitas Maia}
-\titulo{Estudo sobre estratégias para Otimização computacional visando eficiência energética e Latência no Processamento Hiperespectral Embarcado}
+\titulo{Arquiteturas Heterogêneas para Processamento Hiperespectral Embarcado: Análise Multi-critério de Soluções FPGA-GPU em Sistemas UAV Agrícolas}
 \orientador{Prof.\ Dr.\ Leandro Ronchini Ximenes}
 \mestrado
 \areaConcentracao{Sistemas de Informação e Comunicação}

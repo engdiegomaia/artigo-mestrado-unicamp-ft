@@ -3,87 +3,66 @@
 \contentsline {chapter}{Resumo}{9}{chapter*.4}%
 \contentsline {chapter}{Abstract}{1}{chapter*.5}%
 \contentsline {chapter}{\numberline {1}Introdução}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Contexto e Motivação}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Problema de Pesquisa}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Objetivos}{5}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Hipóteses de Trabalho}{6}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Estrutura da Dissertação}{6}{section.1.5}%
-\contentsline {chapter}{\numberline {2}Levantamento Bibliográfico}{8}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Princípios Físicos da Espectroscopia de Imageamento e Formação de Imagens Espectrais}{8}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}O espectro eletromagnético}{9}{subsection.2.1.1}%
-\contentsline {subsubsection}{Definição e características das ondas eletromagnéticas}{9}{section*.6}%
-\contentsline {subsubsection}{Regiões espectrais: do ultravioleta ao infravermelho}{9}{section*.7}%
-\contentsline {subsubsection}{Comprimentos de onda relevantes para sensoriamento remoto (400--2500 nm)}{10}{section*.8}%
-\contentsline {subsection}{\numberline {2.1.2}Propriedades Ópticas dos Materiais}{11}{subsection.2.1.2}%
-\contentsline {subsubsection}{Reflectância Espectral: Definição e Fatores Influenciadores}{11}{section*.9}%
-\contentsline {subsubsection}{Transmitância e Absorção: Princípios Físicos}{12}{section*.10}%
-\contentsline {subsection}{\numberline {2.1.3}Princípios de Sensoriamento Remoto Hiperespectral}{13}{subsection.2.1.3}%
-\contentsline {subsubsection}{Interação Radiação-Matéria no Contexto de Sensoriamento Remoto}{13}{section*.11}%
-\contentsline {subsubsection}{Sensores Multiespectrais vs. Hiperespectrais: Diferenças Fundamentais}{14}{section*.12}%
-\contentsline {subsubsection}{Aplicações Práticas: Agricultura de Precisão e Monitoramento Ambiental}{14}{section*.13}%
-\contentsline {section}{\numberline {2.2}Câmeras Hiperespectrais: Tecnologia e Aplicações}{17}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Tipos de Sistemas de Imageamento Hiperespectral}{17}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Sensores e Sistemas Comerciais Representativos}{18}{subsection.2.2.2}%
-\contentsline {section}{\numberline {2.3}Técnicas de Processamento de Imagens Hiperespectrais}{18}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Pré-processamento e Correção Radiométrica}{20}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Redução Dimensional e Seleção de Bandas}{20}{subsection.2.3.2}%
-\contentsline {subsubsection}{Técnicas Lineares de Redução Dimensional}{21}{section*.14}%
-\contentsline {subsubsection}{Métodos de Seleção de Bandas}{21}{section*.15}%
-\contentsline {subsection}{\numberline {2.3.3}Algoritmos de Classificação Espectral}{21}{subsection.2.3.3}%
-\contentsline {subsubsection}{Métodos Clássicos de Classificação}{22}{section*.16}%
-\contentsline {subsubsection}{Abordagens de Aprendizado Profundo}{22}{section*.17}%
-\contentsline {subsection}{\numberline {2.3.4}Processamento de Sinais Espectrais Avançado}{22}{subsection.2.3.4}%
-\contentsline {subsubsection}{Análise Espectral no Domínio da Frequência}{23}{section*.18}%
-\contentsline {subsubsection}{Detecção de Anomalias e Alvos Específicos}{23}{section*.19}%
-\contentsline {subsection}{\numberline {2.3.5}Considerações para Implementação Embarcada}{23}{subsection.2.3.5}%
-\contentsline {section}{\numberline {2.4}Tipos de Processadores para Processamento Hiperespectral}{24}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Processadores de Uso Geral (CPU)}{24}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Unidades de Processamento Gráfico (GPU)}{25}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Field-Programmable Gate Arrays (FPGA)}{25}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Arquiteturas Heterogêneas de Processamento}{26}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Fundamentos de Computação Heterogênea}{26}{subsection.2.5.1}%
-\contentsline {subsubsection}{Tendências Futuras em Computação Heterogênea}{27}{section*.20}%
-\contentsline {subsection}{\numberline {2.5.2}Arquiteturas CPU+GPU Integradas}{27}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Sistemas CPU+FPGA}{28}{subsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.5.4}Processamento Digital de Sinais em Sistemas Heterogêneos}{28}{subsection.2.5.4}%
-\contentsline {subsubsection}{Filtros FIR em Processamento Hiperespectral}{29}{section*.21}%
-\contentsline {subsubsection}{Implementação Multi-plataforma de Algoritmos DSP}{29}{section*.22}%
-\contentsline {subsection}{\numberline {2.5.5}Arquiteturas Tri-híbridas CPU+GPU+FPGA}{30}{subsection.2.5.5}%
-\contentsline {subsection}{\numberline {2.5.6}Desafios e Soluções em Computação Heterogênea}{30}{subsection.2.5.6}%
-\contentsline {subsubsection}{Consumo de Energia e Eficiência}{30}{section*.23}%
-\contentsline {subsubsection}{Complexidade de Programação}{31}{section*.24}%
-\contentsline {subsubsection}{Escalabilidade e Interoperabilidade}{31}{section*.25}%
-\contentsline {subsection}{\numberline {2.5.7}Aplicações em Tempo Real e Simulação Multi-taxa}{31}{subsection.2.5.7}%
-\contentsline {subsubsection}{Particionamento Temporal e Espacial}{32}{section*.26}%
-\contentsline {subsubsection}{Otimizações Algorítmicas para Sistemas Heterogêneos}{32}{section*.27}%
-\contentsline {subsubsection}{Trade-offs Fundamentais em Simulação Tempo Real}{33}{section*.28}%
-\contentsline {subsubsection}{Aplicabilidade ao Processamento Hiperespectral}{33}{section*.29}%
-\contentsline {chapter}{\numberline {3}Metodologia}{35}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Considerações Iniciais}{35}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Abordagem Metodológica}{36}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Caracterização da Pesquisa}{36}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Estratégia de Investigação Comparativa}{36}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Delimitação do Escopo Tecnológico}{37}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Procedimentos de Investigação}{37}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Levantamento e Catalogação de Técnicas}{38}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Modelagem Teórica Comparativa}{38}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Framework de Simulação Integrado}{39}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Estudo Comparativo de Arquiteturas}{39}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Análise de Técnicas FPGA Xilinx}{40}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Análise de Técnicas GPU Embarcadas}{40}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Estudo Comparativo Cross-Platform}{41}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Protocolo de Simulação e Benchmarking}{42}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Ambiente de Simulação}{42}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Datasets e Cargas de Trabalho}{43}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Protocolo de Medição e Análise}{43}{subsection.3.5.3}%
-\contentsline {section}{\numberline {3.6}Metodologia de Síntese Arquitetural}{44}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Análise Multi-Critério}{44}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Design Space Exploration}{44}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Síntese da Arquitetura Proposta}{45}{subsection.3.6.3}%
-\contentsline {section}{\numberline {3.7}Planejamento de Execução}{45}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Fases de Desenvolvimento}{46}{subsection.3.7.1}%
-\contentsline {subsection}{\numberline {3.7.2}Cronograma de Execução}{46}{subsection.3.7.2}%
-\contentsline {subsection}{\numberline {3.7.3}Marcos e Entregáveis}{48}{subsection.3.7.3}%
-\contentsline {subsection}{\numberline {3.7.4}Gestão de Riscos e Contingências}{48}{subsection.3.7.4}%
-\contentsline {section}{\numberline {3.8}Considerações Finais do Capítulo}{49}{section.3.8}%
-\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuros}{50}{chapter.4}%
+\contentsline {section}{\numberline {1.1}Contexto e Motivação}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problema de Pesquisa}{7}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Objetivos}{9}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Estrutura da Dissertação}{10}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Levantamento Bibliográfico}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Princípios Físicos da Espectroscopia de Imageamento e Formação de Imagens Espectrais}{11}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}O espectro eletromagnético}{11}{subsection.2.1.1}%
+\contentsline {subsubsection}{Definição e características das ondas eletromagnéticas}{12}{section*.6}%
+\contentsline {subsubsection}{Regiões espectrais: do ultravioleta ao infravermelho}{13}{section*.7}%
+\contentsline {subsubsection}{Comprimentos de onda relevantes para sensoriamento remoto (400--2500 nm)}{14}{section*.8}%
+\contentsline {subsection}{\numberline {2.1.2}Propriedades Ópticas dos Materiais}{14}{subsection.2.1.2}%
+\contentsline {subsubsection}{Reflectância Espectral: Definição e Fatores Influenciadores}{15}{section*.9}%
+\contentsline {subsection}{\numberline {2.1.3}Princípios de Sensoriamento Remoto Hiperespectral}{15}{subsection.2.1.3}%
+\contentsline {subsubsection}{Interação Radiação-Matéria no Contexto de Sensoriamento Remoto}{15}{section*.10}%
+\contentsline {subsubsection}{Sensores Multiespectrais vs. Hiperespectrais: Diferenças Fundamentais}{16}{section*.11}%
+\contentsline {subsubsection}{Aplicações Práticas: Agricultura, Monitoramento Ambiental e Defesa}{16}{section*.12}%
+\contentsline {section}{\numberline {2.2}Técnicas de Processamento de Imagens Hiperespectrais}{18}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Pré-processamento e Correção Radiométrica}{18}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Redução Dimensional e Seleção de Bandas}{19}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Algoritmos de Classificação Espectral}{20}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Arquiteturas Heterogêneas de Processamento}{20}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Fundamentos de Computação Heterogênea}{20}{subsection.2.3.1}%
+\contentsline {subsubsection}{Tendências Futuras em Computação Heterogênea}{22}{section*.13}%
+\contentsline {subsection}{\numberline {2.3.2}Arquiteturas CPU+GPU Integradas}{22}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Sistemas CPU+FPGA}{23}{subsection.2.3.3}%
+\contentsline {chapter}{\numberline {3}Metodologia}{24}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Considerações Iniciais}{24}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Delimitação do Escopo Tecnológico}{25}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Plataformas de Hardware Específicas}{25}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Ferramentas de Simulação e Desenvolvimento}{25}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Dataset Selecionado}{25}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Cenários de Teste Específicos}{26}{subsection.3.3.1}%
+\contentsline {subsubsection}{Cenário A: Detecção de Estresse Hídrico}{26}{section*.14}%
+\contentsline {subsubsection}{Cenário B: Cálculo de Índices de Vegetação}{27}{section*.15}%
+\contentsline {section}{\numberline {3.4}Técnicas de Processamento Específicas}{28}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Pipeline de Pré-processamento}{28}{subsection.3.4.1}%
+\contentsline {subsubsection}{Correção Radiométrica}{28}{section*.16}%
+\contentsline {subsubsection}{Filtragem Espacial}{28}{section*.17}%
+\contentsline {subsubsection}{Seleção de Bandas Específica}{28}{section*.18}%
+\contentsline {subsection}{\numberline {3.4.2}Técnicas de Processamento Principal}{29}{subsection.3.4.2}%
+\contentsline {subsubsection}{Redução Dimensional}{29}{section*.19}%
+\contentsline {subsubsection}{Seleção de Características}{29}{section*.20}%
+\contentsline {subsubsection}{Classificação}{30}{section*.21}%
+\contentsline {section}{\numberline {3.5}Protocolo de Comparação e Avaliação}{31}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Métricas de Performance Computacional}{31}{subsection.3.5.1}%
+\contentsline {subsubsection}{Throughput e Latência}{31}{section*.22}%
+\contentsline {subsubsection}{Utilização de Recursos de Hardware}{31}{section*.23}%
+\contentsline {subsection}{\numberline {3.5.2}Métricas de Eficiência Energética}{32}{subsection.3.5.2}%
+\contentsline {subsubsection}{Instrumentação Energética}{32}{section*.24}%
+\contentsline {subsubsection}{Métricas Energéticas Derivadas}{32}{section*.25}%
+\contentsline {subsection}{\numberline {3.5.3}Métricas de Qualidade para Agricultura}{33}{subsection.3.5.3}%
+\contentsline {subsubsection}{Métricas de Classificação}{33}{section*.26}%
+\contentsline {subsubsection}{Validação de Índices de Vegetação}{33}{section*.27}%
+\contentsline {section}{\numberline {3.6}Cronograma de Execução Detalhado (10 meses)}{34}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Aquisição e Setup de Hardware (8 semanas)}{34}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Implementação FPGA (6 semanas)}{34}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Implementação GPU (6 semanas)}{34}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Validação Experimental e Comparação (6 semanas)}{35}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.5}Síntese e Publicação (6 semanas)}{35}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}Escrita da Dissertação e Defesa (12 semanas)}{35}{subsection.3.6.6}%
+\contentsline {chapter}{\numberline {4}Conclusões}{37}{chapter.4}%
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 

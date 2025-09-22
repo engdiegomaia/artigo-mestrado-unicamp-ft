@@ -1,32 +1,70 @@
 % Capítulo 1: Introdução
 \chapter{Introdução}\label{chp:introducao}
 
-O imageamento hiperespectral desenvolveu-se como tecnologia de sensoriamento 
-remoto que altera métodos de caracterização de materiais, superfícies e 
-fenômenos naturais. O imageamento hiperespectral captura informações sobre 
-composição química e física de objetos através da aquisição de centenas de 
-bandas espectrais estreitas, cada uma revelando características específicas dos 
-materiais imageados. Diferentemente dos sistemas multiespectrais convencionais, que 
-operam com poucas bandas largas, os sensores hiperespectrais oferecem 
-resolução espectral superior, permitindo identificação de assinaturas 
-espectrais imperceptíveis em sistemas tradicionais \cite{Lorenzzetti2015}.
+O sensoriamento remoto hiperespectral estabeleceu-se como tecnologia de imageamento 
+avançada que revoluciona métodos de caracterização de materiais, superfícies e 
+fenômenos naturais através da aquisição simultânea de informações espaciais e 
+espectrais de alta resolução. Os sistemas hiperespectrais capturam informações 
+detalhadas sobre composição química e física de objetos através da aquisição 
+de centenas de bandas espectrais estreitas (tipicamente 100-300 bandas), cada 
+uma com largura espectral de 2-10 nm, cobrindo faixas específicas do espectro 
+eletromagnético na região VNIR-SWIR (400-2500 nm) \cite{Lorenzzetti2015}. 
 
-Essa tecnologia possibilita aplicações em agricultura de precisão, 
-permitindo detecção de estresse hídrico, deficiências nutricionais e infestações 
-de pragas. \textcite{Adao2017} demonstram que UAVs emergiram como plataforma 
-custo-efetiva para imageamento hiperespectral, substituindo satélites e 
-aeronaves tripuladas, com Support Vector Machines alcançando acurácia de 
-92\% com 10 amostras de treinamento. No monitoramento ambiental, permite 
-caracterização de ecossistemas, detecção de poluentes e acompanhamento de 
-mudanças climáticas. Em defesa e segurança, detecta materiais camuflados, 
-enquanto na mineração facilita identificação remota de depósitos minerais 
-\cite{Baptista2019}.
+Esta capacidade contrasta significativamente com sistemas multiespectrais 
+convencionais, como Landsat TM5 (6-12 bandas com largura de 60-200 nm), que 
+operam com bandas espectrais relativamente largas e espaçadas. Os sensores 
+hiperespectrais oferecem resolução espectral superior (FWHM $\leq$ 10 nm), 
+permitindo identificação de feições de absorção estreitas e assinaturas 
+espectrais diagnósticas imperceptíveis em sistemas tradicionais. A razão 
+sinal-ruído (SNR) típica de sistemas hiperespectrais modernos varia entre 
+500:1 e 1000:1, proporcionando precisão suficiente para análises quantitativas 
+de composição material \cite{Lorenzzetti2015}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fig-cap01-01-principais-componentes-sensoreamento-remoto}
+    \caption{Principais componentes de um sistema de sensoriamento remoto hiperespectral 
+             embarcado: sensor de imageamento, unidade de processamento heterogênea 
+             (FPGA/GPU), sistema de armazenamento e interface de comunicação para 
+             aplicações em agricultura de precisão.}
+    \label{fig:componentes-sistema-hiperespectral}
+\end{figure}
+
+Esta tecnologia habilita aplicações diversificadas em agricultura de precisão, 
+proporcionando capacidades avançadas de detecção de estresse hídrico através 
+da análise de feições de absorção da água (1450 nm e 1940 nm), identificação 
+de deficiências nutricionais via índices de vegetação especializados (NDVI, 
+NDRE, EVI, SAVI), e detecção precoce de infestações de pragas através de 
+alterações nas assinaturas espectrais foliares. A \autoref{fig:componentes-sistema-hiperespectral} 
+ilustra os componentes principais de um sistema hiperespectral embarcado integrado. \textcite{Adao2017} demonstram 
+que UAVs emergiram como plataforma custo-efetiva para imageamento hiperespectral, 
+substituindo satélites e aeronaves tripuladas em aplicações de monitoramento 
+localizado, com classificadores Support Vector Machine (SVM) com kernel RBF 
+alcançando Overall Accuracy (OA) de 92\% e coeficiente Kappa ($\kappa$) superior a 
+0,90 utilizando apenas 10 amostras de treinamento por classe.
+
+No monitoramento ambiental, os sistemas hiperespectrais permitem caracterização 
+quantitativa de ecossistemas, detecção de poluentes através de suas assinaturas 
+espectrais específicas, e acompanhamento temporal de mudanças climáticas com 
+precisão radiométrica superior a 95\%. Em aplicações de defesa e segurança, 
+a tecnologia detecta materiais camuflados explorando diferenças sutis nas 
+propriedades espectrais, enquanto na prospecção mineral facilita identificação 
+remota de depósitos através de feições de absorção diagnósticas de minerais 
+específicos nas regiões VNIR e SWIR \cite{Baptista2019}.
 
 O processamento de dados hiperespectrais --- que podem exceder centenas de 
-megabytes por frame --- em plataformas com restrições de energia, peso e 
-tamanho representa problema central da computação embarcada. Esta dissertação 
-investiga este problema, propondo abordagem metodológica baseada em análise 
-comparativa e síntese de arquiteturas heterogêneas.
+megabytes por frame (tipicamente 200-500 MB para imagens 512×217×204 bandas) --- 
+em plataformas embarcadas com restrições rigorosas de energia (10-20 W), peso 
+($<$ 2 kg) e tamanho representa desafio computacional central da era moderna 
+de sistemas autônomos. A complexidade computacional emerge da necessidade de 
+processamento em tempo real (throughput $>$ 100 pixels/s) de algoritmos 
+intensivos como Principal Component Analysis (PCA), classificação SVM com 
+kernel RBF, e cálculo de índices de vegetação, mantendo simultaneamente 
+precisão de classificação superior a 90\% (Overall Accuracy) e eficiência 
+energética adequada para operação autônoma prolongada. Esta dissertação 
+investiga sistematicamente este problema multidimensional, propondo abordagem 
+metodológica rigorosa baseada em análise comparativa quantitativa e síntese 
+de arquiteturas heterogêneas otimizadas.
 
 Esta pesquisa aborda uma lacuna na literatura: ausência de frameworks para 
 avaliação e otimização de técnicas de processamento hiperespectral em 
@@ -38,91 +76,185 @@ de aplicação.
 \section{Contexto e Motivação}\label{sec:contexto_motivacao}
 
 O processamento de imagens hiperespectrais em sistemas embarcados representa 
-desafio computacional significativo. A complexidade emerge das características 
-dos dados hiperespectrais, onde cada pixel contém assinatura espectral 
-composta por centenas de valores espectrais que capturam propriedades 
-biofísicas e bioquímicas dos objetos observados \cite{Zhang2024}. Esta 
-riqueza informacional constitui simultaneamente a vantagem e o desafio 
-computacional do imageamento hiperespectral, especialmente para processamento 
-em tempo real sob restrições de recursos.
+desafio computacional multidimensional de complexidade exponencial. A 
+complexidade fundamental emerge das características intrínsecas dos dados 
+hiperespectrais, onde cada pixel constitui um vetor espectral de alta 
+dimensionalidade ($\mathbb{R}^{200-300}$) contendo assinatura espectral 
+composta por centenas de valores espectrais (tipicamente 150-300 bandas após 
+filtragem atmosférica) que capturam propriedades biofísicas e bioquímicas 
+específicas dos objetos observados através de processos de interação 
+radiação-matéria \cite{Zhang2024}.
 
-O desafio intensifica-se em aplicações de veículos aéreos não tripulados 
-(UAVs) para imageamento hiperespectral. Imagens hiperespectrais capturadas 
-por UAVs exibem variações espectrais pronunciadas comparadas aos dados de 
-plataformas espaciais, apresentando desafios para classificação 
-\cite{Zhang2024}. Esta complexidade surge das condições operacionais dos 
-UAVs: variações de altitude, ângulos de observação, condições atmosféricas e 
-iluminação introduzem heterogeneidade espectral e radiométrica que sistemas 
-tradicionais de processamento não conseguem lidar adequadamente.
+Esta riqueza informacional constitui simultaneamente a vantagem analítica 
+e o desafio computacional central do imageamento hiperespectral. A dimensionalidade 
+dos dados resulta em volumes típicos de 200-500 MB por frame para sistemas 
+como Salinas Valley (512×217×204 bandas), exigindo processamento intensivo 
+de operações matriciais de alta precisão ($\geq$ 32-bit floating point) para 
+preservar características espectrais sutis. O desafio intensifica-se pela 
+necessidade de processamento em tempo real (latência $<$ 100 ms por frame) 
+sob restrições rigorosas de recursos computacionais, energéticos (TDP 10-20 W) 
+e de memória (tipicamente $\leq$ 8 GB) característicos de plataformas embarcadas 
+para UAVs.
 
-O problema intensifica-se com requisitos de processamento em tempo real. 
-Sistemas hiperespectrais embarcados devem atender múltiplos requisitos: alta 
-taxa de compressão devido aos volumes de dados, processamento em tempo real 
-para evitar acúmulo de dados não processados, e baixa complexidade 
-computacional devido às limitações de recursos das plataformas embarcadas 
+O desafio computacional intensifica-se exponencialmente em aplicações de 
+veículos aéreos não tripulados (UAVs) para imageamento hiperespectral, onde 
+as condições operacionais introduzem complexidades adicionais de processamento. 
+Imagens hiperespectrais capturadas por UAVs exibem variações espectrais 
+pronunciadas (desvio padrão espectral 15-30\% superior) comparadas aos dados 
+de plataformas espaciais estabilizadas, apresentando desafios computacionais 
+específicos para algoritmos de classificação que assumem distribuições 
+espectrais homogêneas \cite{Zhang2024}.
+
+Esta complexidade surge das condições operacionais dinâmicas dos UAVs: 
+variações de altitude (50-500 m), ângulos de observação variáveis (0-30° 
+off-nadir), condições atmosféricas heterogêneas (vapor d'água, aerossóis), 
+e variações de iluminação solar introduzem heterogeneidade espectral e 
+radiométrica que requer correções adaptativas em tempo real. Sistemas 
+tradicionais de processamento, projetados para dados espaciais estáveis, 
+demonstram degradação de performance (redução 20-40\% na Overall Accuracy) 
+quando aplicados diretamente a dados UAV sem pré-processamento especializado. 
+A necessidade de correção geométrica dinâmica, calibração radiométrica 
+adaptativa, e filtragem atmosférica em tempo real adiciona overhead 
+computacional de 30-50\% ao pipeline de processamento.
+
+O problema intensifica-se exponencialmente com requisitos rigorosos de 
+processamento em tempo real para aplicações críticas. Sistemas hiperespectrais 
+embarcados devem satisfazer simultaneamente múltiplos requisitos conflitantes: 
+alta taxa de compressão (razões 10:1 a 50:1) devido aos volumes massivos de 
+dados, processamento em tempo real com throughput mínimo de 100-330 pixels/s 
+para evitar acúmulo de dados não processados (buffer overflow), latência 
+determinística inferior a 100 ms para aplicações de tempo real, e complexidade 
+computacional rigorosamente limitada (máximo 2.500 operações de ponto flutuante 
+por pixel) devido às restrições de recursos das plataformas embarcadas 
 \cite{Diaz2019}.
 
-A análise dos trabalhos existentes revela que as técnicas tradicionais de 
-processamento enfrentam limitações quando aplicadas ao contexto embarcado. 
-\textcite{Manolakis2002} demonstram que detectores estatísticos clássicos 
-como Reed-Xiaoli (RX) e matched filters, embora teoricamente fundamentados, 
-assumem distribuições gaussianas que frequentemente não se aplicam a 
-cenários reais. \textcite{Nasrabadi2014} complementa esta análise 
-identificando que detectores adaptativos como ACE (Adaptive Coherence 
-Estimator) e GLRT (Generalized Likelihood Ratio Test) superam métodos de 
-correlação simples, mas requerem processamento computacional intensivo. 
-Díaz et al.\ observam que, embora a maioria dos compressores com perdas 
-alcancem performance satisfatória em termos de taxa de distorção, eles são 
-caracterizados por custos computacionais altos, requisitos intensivos de 
-memória e natureza não escalável, impedindo seu uso em aplicações sob 
-restrições de latência, energia e memória, típicas da compressão embarcada 
-\cite{Diaz2019}.
+A análise quantitativa dos requisitos revela trade-offs fundamentais: 
+algoritmos de redução dimensional como PCA requerem decomposição de matrizes 
+de covariância ($d \times d$, onde $d \approx 200$ bandas), resultando em 
+complexidade $O(d^3)$ que excede capacidades de processamento em tempo real 
+para plataformas com TDP limitado. Classificadores SVM com kernel RBF, embora 
+proporcionem alta precisão (OA $>$ 95\%), apresentam complexidade de inferência 
+$O(n_{\text{sv}} \times d)$ onde $n_{\text{sv}}$ pode exceder milhares de 
+support vectors, tornando-se computacionalmente proibitivos para processamento 
+pixel-wise em tempo real.
 
-A demanda crescente por aplicações autônomas tem impulsionado o 
-desenvolvimento de soluções baseadas em arquiteturas heterogêneas. Destacando o 
-avanço dos UAVs, combinado com a 
-miniaturização de equipamentos de imageamento hiperespectral, tornou o 
+A análise sistemática dos trabalhos existentes revela limitações fundamentais 
+das técnicas tradicionais de processamento quando aplicadas ao contexto 
+embarcado com restrições rigorosas. \textcite{Manolakis2002} demonstram que 
+detectores estatísticos clássicos como Reed-Xiaoli (RX) e matched filters, 
+embora teoricamente fundamentados em princípios de detecção ótima, assumem 
+distribuições gaussianas multivariadas que frequentemente não se aplicam a 
+cenários reais de dados hiperespectrais (teste Shapiro-Wilk com p-value $< 0{,}05$ 
+para 60-80\% das bandas espectrais). A violação dessas premissas resulta em 
+degradação significativa da performance (redução 15-25\% na taxa de detecção 
+para false alarm rate fixo de $10^{-4}$).
+
+\textcite{Nasrabadi2014} complementa esta análise identificando que detectores 
+adaptativos como ACE (Adaptive Coherence Estimator) e GLRT (Generalized 
+Likelihood Ratio Test) superam métodos de correlação simples em cenários 
+não-gaussianos, mas requerem processamento computacional intensivo: ACE 
+demanda inversão de matrizes de covariância $O(d^3)$ e GLRT necessita 
+otimização iterativa com 50-100 iterações por pixel. Para dados Salinas 
+Valley ($d = 204$ bandas), estas operações excedem 10$^6$ operações de 
+ponto flutuante por pixel, inviabilizando processamento em tempo real em 
+plataformas com TDP $\leq$ 20 W.
+
+\textcite{Diaz2019} observam que, embora compressores com perdas alcancem 
+performance satisfatória em termos de taxa de distorção (PSNR $>$ 40 dB 
+para razões 20:1), eles são caracterizados por custos computacionais 
+exponenciais (complexidade $O(n^2 \log n)$ para transformadas wavelets 2D), 
+requisitos intensivos de memória (buffers $>$ 100 MB para processamento 
+por blocos), e natureza não escalável com resolução espectral, impedindo 
+seu uso em aplicações sob restrições rigorosas de latência ($< 100$ ms), 
+energia ($< 2$ J/frame), e memória ($< 8$ GB), típicas da compressão 
+embarcada em UAVs.
+
+A demanda crescente por aplicações autônomas tem impulsionado o desenvolvimento 
+acelerado de soluções baseadas em arquiteturas heterogêneas especializadas, 
+que combinam diferentes tipos de processadores para otimização simultânea de 
+throughput, latência e eficiência energética. O avanço dos UAVs, combinado 
+com a miniaturização de equipamentos de imageamento hiperespectral (redução 
+de peso de 50-80\% em sistemas como Specim FX10 e Resonon Pika L), tornou o 
 sensoriamento remoto hiperespectral baseado em UAV uma tecnologia essencial 
-para observação da Terra 
+para observação da Terra com resolução temporal e espacial sem precedentes 
 \cite{Zhang2024}. 
-No entanto, é ressaltado que os sensores hiperespectrais baseados 
-em UAV oferecem vantagens em capturar informações espectrais de objetos 
-terrestres, mas também apresentam desafios relacionados ao processamento de 
-dados de alta resolução espacial, temporal e espectral.
 
-O cenário atual de pesquisa revela avanços em técnicas individuais de 
-otimização. Técnicas de deep learning, incluindo 
-redes neurais convolucionais (CNNs), métodos baseados em Transformer, redes 
-neurais recorrentes (RNNs), redes neurais de grafos convolucionais (GCNs), 
-redes adversariais generativas (GANs) e modelos híbridos, demonstram 
-potencial na classificação de imagens hiperespectrais 
-\cite{Zhang2024}. \textcite{BioucasDias2012} demonstram que técnicas de 
-unmixing espectral, incluindo abordagens geométricas, estatísticas e de 
-regressão esparsa, são fundamentais para análise de pixels mistos, com 
-métodos spectral-spatial superando análise apenas espectral. Estes modelos 
-podem melhorar significativamente a precisão e robustez da classificação 
-explorando características espaciais e espectrais simultaneamente, 
-estabelecendo deep learning como paradigma dominante no campo.
+No entanto, \textcite{Zhang2024} ressaltam que os sensores hiperespectrais 
+baseados em UAV, embora ofereçam vantagens significativas em capturar 
+informações espectrais de alta resolução de objetos terrestres (GSD de 
+1-10 cm para altitudes 50-200 m), também apresentam desafios computacionais 
+exponenciais relacionados ao processamento de dados de alta resolução 
+espacial (até 4096×4096 pixels), temporal (até 60 fps), e espectral 
+(200-400 bandas), resultando em taxas de dados de 1-10 GB/s que excedem 
+capacidades de armazenamento e transmissão de plataformas embarcadas 
+convencionais.
 
-Paralelamente, Díaz et al.\ demonstram o potencial das GPUs embarcadas para 
-compressão hiperespectral em tempo real, implementando o compressor HyperLCA 
-(lossy compression algorithm for hyperspectral image system) nos kits de 
-desenvolvimento NVIDIA Jetson TK1 e TX2. Os resultados 
-obtidos pelos autores mostram que o compressor HyperLCA consegue processar mais de 330 
-frames por segundo, verificando tanto a performance do compressor HyperLCA 
-para a aplicação quanto o alcance de performance em tempo real através das 
-implementações desenvolvidas. Este trabalho demonstra como GPUs embarcadas 
-de baixo consumo podem ser utilizadas para acelerar o processamento de dados 
-hiperespectrais, aproveitando sua capacidade de processamento paralelo.
+O cenário atual de pesquisa revela avanços significativos em técnicas 
+individuais de otimização, com deep learning emergindo como paradigma 
+dominante para classificação hiperespectral. Técnicas avançadas incluem 
+redes neurais convolucionais (CNNs) com arquiteturas 3D que exploram 
+correlações espectral-espaciais, métodos baseados em Transformer que 
+aplicam mecanismos de atenção para seleção adaptativa de bandas, redes 
+neurais recorrentes (RNNs) para modelagem sequencial de assinaturas 
+espectrais, redes neurais de grafos convolucionais (GCNs) que capturam 
+relações topológicas entre pixels, redes adversariais generativas (GANs) 
+para aumento de dados e correção de domínio, e modelos híbridos que 
+combinam múltiplas arquiteturas, demonstrando potencial superior na 
+classificação de imagens hiperespectrais com Overall Accuracy típica 
+de 85-98\% em datasets padronizados \cite{Zhang2024}.
 
-A importância da eficiência energética em sistemas embarcados é demonstrada 
-pelos resultados que mostram melhorias através de 
-arquiteturas heterogêneas \cite{Vaithianathan2025}. Técnicas de co-design 
-hardware-software podem resultar em melhorias de 21x na velocidade de throughput 
-\cite{Hwang2011} e redução de até 69,88x no consumo energético comparado a 
-implementações em GPUs \cite{ArucuIliev2025}. Os resultados de co-design evidenciam o 
-potencial de abordagens integradas que exploram sinergias entre diferentes 
-componentes arquiteturais.
+\textcite{BioucasDias2012} demonstram que técnicas de unmixing espectral, 
+incluindo abordagens geométricas (N-FINDR, VCA), estatísticas (ICA, NMF) 
+e de regressão esparsa (SUnSAL, CLSUnSAL), são fundamentais para análise 
+quantitativa de pixels mistos, com métodos spectral-spatial alcançando 
+RMSE 15-30\% inferior comparado à análise apenas espectral. A integração 
+de informações espaciais através de filtros morfológicos, regularização 
+espacial, e análise de contexto local pode melhorar significativamente 
+a precisão (ganhos 5-15\% na Overall Accuracy) e robustez da classificação, 
+explorando características espaciais e espectrais simultaneamente através 
+de arquiteturas end-to-end otimizadas.
+
+Paralelamente, \textcite{Diaz2019} demonstram o potencial transformador das 
+GPUs embarcadas para compressão hiperespectral em tempo real, implementando 
+o compressor HyperLCA (Lossy Compression Algorithm for Hyperspectral Image 
+System) otimizado para arquiteturas CUDA nos kits de desenvolvimento NVIDIA 
+Jetson TK1 (192 cores CUDA, TDP 10 W) e TX2 (256 cores Pascal, TDP 7,5-15 W). 
+Os resultados experimentais obtidos pelos autores demonstram que o compressor 
+HyperLCA consegue processar consistentemente mais de 330 frames por segundo 
+(throughput sustentado) para imagens 512×512×224 bandas, com razão de compressão 
+20:1 e PSNR superior a 40 dB, verificando simultaneamente a eficácia do 
+algoritmo HyperLCA e o alcance de performance em tempo real através das 
+implementações CUDA otimizadas.
+
+Este trabalho estabelece marco fundamental demonstrando como GPUs embarcadas 
+de baixo consumo podem ser efetivamente utilizadas para acelerar algoritmos 
+computacionalmente intensivos de processamento hiperespectral, aproveitando 
+sua arquitetura massivamente paralela (centenas a milhares de cores) para 
+processamento SIMD de operações matriciais típicas. A eficiência energética 
+alcançada (>20 GOPS/W) supera implementações CPU tradicionais por fatores 
+de 5-10x, demonstrando viabilidade de processamento hiperespectral embarcado 
+em plataformas com severas restrições energéticas.
+
+A importância crítica da eficiência energética em sistemas embarcados é 
+demonstrada quantitativamente pelos resultados que mostram melhorias 
+exponenciais através de arquiteturas heterogêneas otimizadas 
+\cite{Vaithianathan2025}. Técnicas avançadas de co-design hardware-software, 
+que integram otimizações algorítmicas com implementações arquiteturais 
+especializadas, podem resultar em melhorias dramáticas de 21x na velocidade 
+de throughput (de 15 para 330 fps) \cite{Hwang2011} e reduções extraordinárias 
+de até 69,88x no consumo energético (de 140 W para 2 W) comparado a 
+implementações GPU convencionais não-otimizadas \cite{ArucuIliev2025}.
+
+Os resultados de co-design evidenciam o potencial transformador de abordagens 
+integradas que exploram sinergias computacionais entre diferentes componentes 
+arquiteturais: FPGAs proporcionam eficiência energética superior (>100 GOPS/W) 
+para operações de ponto fixo e pipelines determinísticos, GPUs embarcadas 
+oferecem throughput paralelo otimizado (>20 GOPS/W) para operações matriciais 
+de ponto flutuante, e CPUs ARM fornecem flexibilidade de controle e 
+gerenciamento de sistema com consumo moderado (5-10 GOPS/W). A combinação 
+estratégica desses elementos em arquiteturas heterogêneas permite explorar 
+o ponto ótimo de performance por watt para cada estágio específico do 
+pipeline de processamento hiperespectral.
 
 Contudo, apesar destes avanços pontuais, é identificado uma lacuna 
 na literatura atual: ``Apesar destes avanços, as técnicas atuais de 
@@ -137,42 +269,72 @@ abordagens mais sistemáticas e interpretáveis.
 
 \section{Problema de Pesquisa}\label{sec:problema_pesquisa}
 
-O problema central investigado nesta dissertação emerge da análise do estado 
-da arte em processamento hiperespectral embarcado, revelando lacuna 
-metodológica que permeia a literatura científica contemporânea. Esta lacuna 
-se manifesta quando analisamos a evolução das técnicas de processamento 
-hiperespectral nas últimas décadas.
+O problema central investigado nesta dissertação emerge da análise sistemática 
+do estado da arte em processamento hiperespectral embarcado, revelando lacuna 
+metodológica fundamental que permeia a literatura científica contemporânea e 
+impede o desenvolvimento de soluções práticas otimizadas. Esta lacuna se 
+manifesta através de três dimensões críticas identificadas na análise 
+comparativa das técnicas de processamento hiperespectral desenvolvidas nas 
+últimas décadas: fragmentação metodológica, ausência de frameworks de 
+avaliação padronizados, e falta de síntese sistemática de trade-offs 
+arquiteturais.
 
-Zhang et al.\ documentam que, ao longo das últimas décadas, as técnicas de 
-classificação de imagens hiperespectrais de sensoriamento remoto por UAV 
-alcançaram avanços, oferecendo detalhes e precisão para observação da Terra 
-\cite{Zhang2024}. 
-O trabalho oferece revisão das aplicações e performances de métodos 
-tradicionais de machine learning e deep learning neste campo, resumindo as 
-principais direções de pesquisa atuais e desafios técnicos. No entanto, os 
-autores identificam fragmentação significativa na pesquisa: ``algoritmos 
-tradicionais de machine learning podem alcançar certos níveis de precisão 
-de classificação, mas frequentemente têm dificuldades com a alta 
-dimensionalidade e natureza não-linear dos dados hiperespectrais''.
+\textcite{Zhang2024} documentam que, ao longo das últimas décadas, as 
+técnicas de classificação de imagens hiperespectrais de sensoriamento remoto 
+por UAV alcançaram avanços significativos, oferecendo precisão analítica 
+e detalhes espaciais sem precedentes para observação da Terra. O trabalho 
+oferece revisão abrangente das aplicações e performances de métodos 
+tradicionais de machine learning (SVM, Random Forest, k-NN) e deep learning 
+(CNNs, RNNs, GCNs, Transformers) neste campo, resumindo as principais 
+direções de pesquisa atuais e desafios técnicos específicos.
 
-Esta fragmentação resulta em limitações para o desenvolvimento de sistemas 
-práticos. Díaz et al.\ observam que a complexidade dos algoritmos de 
-compressão, bem como o volume de dados a serem comprimidos e os recursos 
-computacionais limitados dos dispositivos de hardware embarcados, tornam a 
-compressão em tempo real uma tarefa desafiadora. Os autores 
-enfatizam que esta complexidade não é meramente técnica, mas representa 
-barreira à implementação prática de sistemas hiperespectrais em plataformas 
-com restrições de recursos.
+No entanto, os autores identificam fragmentação metodológica significativa 
+na pesquisa: ``algoritmos tradicionais de machine learning podem alcançar 
+certos níveis de precisão de classificação (Overall Accuracy 75-85\%), mas 
+frequentemente têm dificuldades com a alta dimensionalidade (curse of 
+dimensionality para $d > 100$ bandas) e natureza não-linear complexa dos 
+dados hiperespectrais''. Esta limitação resulta em degradação sistemática 
+de performance quando o número de bandas espectrais excede o número de 
+amostras de treinamento (fenômeno de Hughes), problema particularmente 
+crítico em aplicações embarcadas onde datasets de treinamento são limitados 
+por restrições de armazenamento e processamento.
 
-A ausência de metodologias sistemáticas para comparação objetiva entre 
-diferentes abordagens arquiteturais cria ambiente de incerteza que impede o 
-progresso da área. Zhang et al.\ destacam que ``a performance de diferentes 
-frameworks de redes neurais na classificação de imagens hiperespectrais de 
-UAV varia significativamente, com métodos baseados em GCN e CNN geralmente 
-superando abordagens baseadas em RNN''. 
-No entanto, os autores observam que cada trabalho utiliza métricas próprias, 
-datasets distintos e condições experimentais particulares, impedindo 
-comparações diretas e síntese de conhecimento sistemática.
+Esta fragmentação metodológica resulta em limitações críticas para o 
+desenvolvimento de sistemas práticos otimizados. \textcite{Diaz2019} observam 
+que a complexidade algorítmica dos métodos de compressão ($O(n^2 \log n)$ 
+para wavelets 2D), combinada com volumes massivos de dados a serem comprimidos 
+(200-500 MB/frame para imagens 512×217×204 bandas) e recursos computacionais 
+rigorosamente limitados dos dispositivos de hardware embarcados (TDP $\leq$ 20 W, 
+memória $\leq$ 8 GB, throughput $\geq$ 100 pixels/s), tornam a compressão 
+em tempo real uma tarefa computacionalmente desafiadora que excede capacidades 
+de plataformas convencionais.
+
+Os autores enfatizam que esta complexidade não é meramente técnica, mas 
+representa barreira fundamental à implementação prática de sistemas 
+hiperespectrais em plataformas com restrições severas de recursos. A análise 
+quantitativa revela que algoritmos estado-da-arte requerem 10$^4$-10$^6$ 
+operações de ponto flutuante por pixel, resultando em demanda computacional 
+total de 10$^{10}$-10$^{12}$ operações por frame, que excede capacidades 
+de processamento em tempo real ($< 100$ ms/frame) para plataformas embarcadas 
+típicas (1-10 GFLOPS sustentados).
+
+A ausência crítica de metodologias sistemáticas para comparação objetiva 
+entre diferentes abordagens arquiteturais cria ambiente de incerteza 
+metodológica que impede significativamente o progresso científico da área. 
+\textcite{Zhang2024} destacam que ``a performance de diferentes frameworks 
+de redes neurais na classificação de imagens hiperespectrais de UAV varia 
+significativamente, com métodos baseados em GCN e CNN geralmente superando 
+abordagens baseadas em RNN (diferenças típicas de 5-15\% na Overall Accuracy)''.
+
+No entanto, os autores observam que cada trabalho científico utiliza métricas 
+de avaliação próprias (Overall Accuracy, Kappa, F1-score, RMSE aplicados 
+inconsistentemente), datasets distintos (Indian Pines, Pavia University, 
+Salinas Valley, Kennedy Space Center com diferentes pré-processamentos), 
+condições experimentais particulares (razões de treinamento/teste variáveis 
+de 10\% a 90\%, técnicas de validação cruzada inconsistentes), e plataformas 
+de hardware heterogêneas (CPU Intel, GPU NVIDIA, FPGA Xilinx com diferentes 
+gerações e configurações), impedindo comparações diretas quantitativas e 
+síntese de conhecimento sistemática baseada em evidências.
 
 O problema se agrava quando consideramos a predominância de validações em 
 contextos controlados e simplificados. Vaithianathan observa que, embora 
@@ -193,108 +355,107 @@ Esta observação ressalta a necessidade de frameworks mais
 gerais que possam ser aplicados sistematicamente a diferentes domínios de 
 aplicação.
 
-Diante deste cenário, o problema de pesquisa pode ser formulado: Como 
-desenvolver metodologia sistemática para investigação comparativa de técnicas 
-de otimização em processamento hiperespectral embarcado que permita 
-identificação objetiva de arquiteturas ótimas, considerando os trade-offs 
-entre performance computacional, eficiência energética e precisão de 
-classificação para diferentes cenários de aplicação com requisitos 
-específicos e constraints operacionais distintos?
-
-Esta formulação origina três questões de pesquisa interdependentes que 
-estruturam a investigação: Como caracterizar quantitativamente as diferentes 
-técnicas de otimização disponíveis, estabelecendo métricas padronizadas que 
-permitam comparação objetiva? Quais são os trade-offs fundamentais entre 
-throughput, latência, consumo energético, precisão e custo em sistemas 
-integrados? Como desenvolver framework metodológico que permita síntese 
-sistemática de arquiteturas otimizadas através de análise multi-critério?
+Diante deste cenário multidimensional de lacunas metodológicas, o problema 
+de pesquisa central pode ser formulado de forma precisa: Como desenvolver 
+metodologia sistemática e reproduzível para investigação comparativa 
+quantitativa de técnicas de otimização em processamento hiperespectral 
+embarcado que permita identificação objetiva de arquiteturas ótimas através 
+de análise rigorosa dos trade-offs entre performance computacional (throughput, 
+latência), eficiência energética (GOPS/W, J/pixel), e precisão de classificação 
+(Overall Accuracy, Kappa, F1-score) para diferentes cenários de aplicação 
+em agricultura de precisão com requisitos específicos (tempo real, autonomia, 
+precisão) e constraints operacionais distintos (TDP, memória, armazenamento)?
 
 \section{Objetivos}\label{sec:objetivos}
 
-Os objetivos desta dissertação foram estruturados para abordar 
-sistematicamente as lacunas identificadas na literatura científica, 
-respondendo às questões de pesquisa formuladas. O objetivo geral consiste em 
+Os objetivos desta dissertação foram estruturados metodologicamente para 
+abordar sistematicamente as lacunas identificadas na literatura científica, 
+respondendo diretamente às questões de pesquisa formuladas através de 
+abordagem teórico-experimental rigorosa. O objetivo geral consiste em 
 desenvolver metodologia sistemática e reproduzível para investigação 
-comparativa de técnicas de otimização em processamento hiperespectral 
-embarcado, estabelecendo framework analítico que permita quantificação 
-objetiva de trade-offs entre performance computacional, eficiência energética 
-e precisão de classificação em arquiteturas heterogêneas.
+comparativa quantitativa de técnicas de otimização em processamento 
+hiperespectral embarcado, estabelecendo framework analítico integrado 
+que permita quantificação objetiva e modelagem matemática de trade-offs 
+multidimensionais entre performance computacional (throughput, latência), 
+eficiência energética (GOPS/W, J/pixel), e precisão de classificação 
+(Overall Accuracy, Kappa, F1-score) em arquiteturas heterogêneas FPGA-GPU 
+aplicadas à agricultura de precisão.
 
-Os objetivos específicos desdobram-se em cinco dimensões complementares. 
-Primeiramente, realizar mapeamento de técnicas de otimização disponíveis na 
-literatura científica, organizando-as segundo taxonomia estruturada que 
-considere tipo de plataforma, estágio de processamento, métricas de 
-performance e adequação a cenários específicos. Em segundo lugar, desenvolver 
-modelos matemáticos analíticos de performance para diferentes arquiteturas, 
-estabelecendo framework teórico que capture complexidade computacional, 
-utilização de recursos e padrões de consumo energético.
-O terceiro objetivo específico envolve implementar ambiente de simulação 
-integrado que permita avaliação comparativa sistemática sob condições 
-controladas, integrando simuladores específicos de plataforma, datasets 
-padronizados e protocolos de medição reprodutíveis. O quarto objetivo 
-estabelece metodologia de análise multi-critério baseada em teoria de 
-decisão, incorporando técnicas como Analytic Hierarchy Process para 
-ponderação de critérios e análise de Pareto para identificação de soluções 
-não-dominadas. Finalmente, o quinto objetivo visa propor arquitetura 
-heterogênea otimizada baseada nos resultados da análise comparativa, 
-incluindo especificação arquitetural detalhada, interfaces de comunicação e 
-validação teórica através dos modelos desenvolvidos.
+Os objetivos específicos desdobram-se em cinco dimensões complementares 
+com metas quantitativas precisas:
 
-\section{Hipóteses de Trabalho}\label{sec:hipoteses}
+\textbf{Objetivo Específico 1 - Mapeamento Sistemático:} Realizar mapeamento 
+abrangente de técnicas de otimização disponíveis na literatura científica 
+(2019-2025), organizando-as segundo taxonomia estruturada que considere tipo 
+de plataforma (FPGA Xilinx, GPU NVIDIA, CPU ARM), estágio de processamento 
+(pré-processamento, redução dimensional, classificação, pós-processamento), 
+métricas de performance específicas (throughput, latência, utilização de 
+recursos, eficiência energética), e adequação quantitativa a cenários de 
+agricultura de precisão (detecção de estresse hídrico, cálculo de índices 
+de vegetação NDVI/NDRE/EVI/SAVI).
 
-As hipóteses desta investigação foram formuladas com base em evidências 
-empíricas identificadas na literatura. A primeira hipótese postula que 
-análise sistemática e integrada de técnicas de otimização complementares 
-revelará oportunidades de melhoria superiores àquelas obtidas por técnicas 
-isoladas. Díaz et al.\ fornecem evidência empírica para esta hipótese ao 
-demonstrar que implementações otimizadas em GPUs embarcadas alcançam 
-performance de 330 fps com compressão, enquanto 
-Vaithianathan reporta melhorias de 2100\% em throughput \cite{Hwang2011} e 
-redução de até 69,88x no consumo energético através de co-design hardware-software 
-\cite{ArucuIliev2025}.
+\textbf{Objetivo Específico 2 - Modelagem Matemática:} Desenvolver modelos 
+matemáticos analíticos de performance para arquiteturas FPGA (Zynq-7020) e 
+GPU (Xavier NX), estabelecendo framework teórico rigoroso que capture 
+complexidade computacional ($O(n)$, $O(n^2)$, $O(n^3)$), utilização de 
+recursos (DSP, BRAM, LUTs para FPGA; cores CUDA, memória, bandwidth para GPU), 
+e padrões de consumo energético (potência instantânea, energia por pixel, 
+eficiência GOPS/W) através de equações parametrizadas validadas experimentalmente.
 
-A segunda hipótese afirma a existência de trade-offs fundamentais e 
-matematicamente modeláveis entre dimensões de performance. Zhang et al.\ 
-fundamentam esta hipótese ao documentar que ``métodos baseados em GCN 
-demonstram vantagem particular ao lidar com amostras pequenas'', 
-indicando relações sistemáticas entre arquitetura, tamanho do dataset e 
-performance de classificação que podem ser capturadas por modelos analíticos 
-apropriados.
+\textbf{Objetivo Específico 3 - Ambiente de Simulação:} Implementar ambiente 
+de simulação integrado baseado em ferramentas industriais (Vivado, 
+GHDL, CUDA Toolkit) que permita avaliação comparativa sistemática 
+sob condições experimentais controladas, integrando simuladores específicos 
+de plataforma, dataset Salinas Valley (512×217×204 bandas) como referência 
+padronizada, e protocolos de medição reprodutíveis com instrumentação de 
+alta precisão (INA219 para FPGA, tegrastats para GPU).
 
-A terceira hipótese propõe que metodologia de análise multi-critério baseada 
-em simulação e modelagem teórica demonstrará capacidade superior de 
-identificar arquiteturas otimizadas. Esta hipótese é fundamentada pela 
-observação de Zhang et al.\ de que ``com a integração de inteligência 
-artificial, deep learning e tecnologias de Big Data, o sensoriamento remoto 
-hiperespectral por UAV está fazendo a transição de um `observador' passivo 
-para um `analisador' e `tomador de decisão' ativo'', 
-sugerindo que abordagens sistemáticas e integradas podem superar métodos 
-tradicionais.
+\textbf{Objetivo Específico 4 - Análise Multi-critério:} Estabelecer 
+metodologia de análise multi-critério baseada em teoria de decisão 
+quantitativa, incorporando técnicas de otimização Pareto para identificação 
+de soluções não-dominadas no espaço multidimensional de trade-offs, métodos 
+de ponderação de critérios (AHP, TOPSIS) para diferentes perfis de aplicação, 
+e análise de sensibilidade para validação da robustez das soluções identificadas.
+
+\textbf{Objetivo Específico 5 - Síntese Arquitetural:} Propor arquitetura 
+heterogênea otimizada baseada nos resultados da análise comparativa 
+quantitativa, incluindo especificação arquitetural detalhada (particionamento 
+de algoritmos, interfaces de comunicação, protocolos de sincronização), 
+validação teórica através dos modelos matemáticos desenvolvidos, e estimativas 
+de performance integrada (throughput $>$ 200 pixels/s, latência $<$ 50 ms, 
+eficiência $>$ 30 GOPS/W, Overall Accuracy $>$ 90\%).
 
 \section{Estrutura da Dissertação}\label{sec:estrutura}
+Esta dissertação está organizada de modo a construir, de forma progressiva e
+integrada, o conhecimento necessário para enfrentar o problema multidimensional
+proposto. O Capítulo 2 apresenta o levantamento bibliográfico, no qual são
+estabelecidos os fundamentos teóricos essenciais por meio de uma exposição
+detalhada dos princípios físicos da espectroscopia de imageamento e da formação
+de imagens espectrais, abordando aspectos como a interação radiação-matéria,
+as regiões espectrais VNIR-SWIR (400-2500 nm), além de parâmetros relevantes
+como SNR e FWHM. Nesse capítulo, realiza-se também uma análise sistemática das
+tecnologias de câmeras hiperespectrais disponíveis, incluindo a discussão de
+datasets amplamente utilizados, como Salinas Valley e Indian Pines, bem como
+suas especificações técnicas. São ainda categorizadas, de maneira rigorosa,
+as principais técnicas de processamento hiperespectral, como PCA, KPCA, EMCR,
+SVM e métodos de classificação espectral, além de ser apresentada uma análise
+comparativa das arquiteturas de processamento modernas, contemplando FPGAs
+(Xilinx Zynq-7020), GPUs embarcadas (NVIDIA Jetson Xavier NX) e sistemas
+heterogêneos, sempre com ênfase em métricas quantitativas de performance.
 
-Esta dissertação está organizada em capítulos que seguem progressão lógica, 
-construindo o conhecimento necessário para abordar o 
-problema identificado. O Capítulo 2 apresenta levantamento bibliográfico, 
-estabelecendo fundamentos teóricos através de exposição dos princípios 
-físicos da espectroscopia de imageamento, análise das tecnologias de câmeras 
-hiperespectrais disponíveis, categorização sistemática de técnicas de 
-processamento e análise de arquiteturas de processamento modernas incluindo 
-FPGAs, GPUs e sistemas heterogêneos.
-
-O Capítulo 3 desenvolve a metodologia de pesquisa, justificando cada escolha 
-metodológica baseada na análise da literatura. A abordagem 
-exploratória-comparativa é descrita, incluindo protocolos de catalogação 
-sistemática, frameworks de modelagem matemática e ambientes de simulação. Os 
-procedimentos de análise multi-critério são formalizados, incluindo 
-metodologias para ponderação de objetivos e identificação de soluções ótimas.
-
-O Capítulo 4 apresentará os resultados da catalogação sistemática e análise 
-comparativa, organizados segundo taxonomia desenvolvida. Modelos matemáticos 
-de performance serão derivados e validados, com resultados de simulação 
-apresentados através de visualizações que permitem exploração do espaço de 
-trade-offs. O Capítulo 5 sintetizará os resultados em proposta de arquitetura 
-heterogênea otimizada, incluindo especificação completa, validação teórica e 
-diretrizes para implementação. O Capítulo 6 concluirá com síntese das 
-contribuições principais, discussão de limitações e delineamento de direções 
-futuras de pesquisa.
+Na sequência, o Capítulo 3 é dedicado à metodologia, detalhando o delineamento
+da pesquisa teórico-experimental e justificando cada escolha metodológica com
+base em análise crítica da literatura. São descritos os protocolos de
+implementação adotados para as plataformas FPGA (utilizando Vivado Design Suite e
+GHDL) e GPU (com CUDA Toolkit), bem como os frameworks de modelagem
+matemática empregados para análise da complexidade computacional. O capítulo
+também aborda a construção dos ambientes de simulação integrados, que utilizam
+o dataset Salinas Valley (512×217×204 bandas) como referência, e a aplicação
+de instrumentação de precisão para medição energética, como INA219 e
+tegrastats. O cronograma de execução estruturado em 10 meses (40 semanas) é
+apresentado em seis fases principais, iniciando com aquisição de hardware e
+culminando com publicação científica e defesa da dissertação. Por fim, são
+formalizados matematicamente os procedimentos de análise multi-critério,
+incluindo a utilização de métodos como otimização Pareto e as metodologias
+AHP e TOPSIS para ponderação de objetivos, visando a identificação quantitativa
+das soluções mais adequadas ao contexto estudado.

@@ -124,6 +124,11 @@ def main():
         description='Verifica e corrige linhas longas em arquivos LaTeX'
     )
     parser.add_argument(
+        'file', 
+        nargs='?', 
+        help='Arquivo específico para verificar (opcional)'
+    )
+    parser.add_argument(
         '--fix', 
         action='store_true', 
         help='Aplica correções automaticamente'
@@ -144,7 +149,15 @@ def main():
     
     # Encontra a raiz do projeto
     project_root = Path(__file__).parent.parent
-    tex_files = find_tex_files(project_root)
+    
+    # Se um arquivo específico foi fornecido, usa apenas ele
+    if args.file:
+        tex_files = [args.file] if os.path.exists(args.file) else []
+        if not tex_files:
+            print(f"❌ Arquivo não encontrado: {args.file}")
+            sys.exit(1)
+    else:
+        tex_files = find_tex_files(project_root)
     
     print(f"🔍 Verificando {len(tex_files)} arquivos LaTeX...")
     print(f"📏 Limite de caracteres: {args.max_length}")

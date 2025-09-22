@@ -1,8 +1,13 @@
 \babel@toc {brazil}{}\relax 
 \babel@toc {brazil}{}\relax 
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Principais componentes de um sistema de sensoriamento remoto hiperespectral embarcado: sensor de imageamento, unidade de processamento heterogênea (FPGA/GPU), sistema de armazenamento e interface de comunicação para aplicações em agricultura de precisão.}}{3}{figure.1.1}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Principais componentes de um sistema de sensoriamento remoto, ilustrando a interação entre fonte de energia, atmosfera, alvo e sensor. Adaptado de Lorenzzetti (2015).}}{16}{figure.2.1}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Conceito da espectroscopia de imageamento desenvolvido pelo sensor AVIRIS (JPL/NASA). A figura ilustra como 224 bandas espectrais são obtidas simultaneamente, permitindo a análise de diferentes materiais (atmosfera, solos, água, vegetação) através de suas assinaturas espectrais características. Este princípio fundamenta o processamento hiperespectral em sistemas embarcados. Fonte: \blx@tocontentsinit {0}\cite {Baptista2019}.}}{12}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Exemplo de imagem hiperespectral AVIRIS capturada sobre São João D'Aliança, GO, mostrando dados de vapor d'água em diferentes bandas espectrais. A imagem ilustra a complexidade dos dados hiperespectrais que devem ser processados por arquiteturas heterogêneas em sistemas embarcados para aplicações de sensoriamento remoto em tempo real. Fonte: \blx@tocontentsinit {0}\cite {Baptista2019}.}}{21}{figure.2.2}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Cronograma detalhado do projeto apresentado como diagrama de Gantt. O cronograma mostra as quatro etapas principais (Fundamentação Teórica, Desenvolvimento Experimental, Análise e Redação, Finalização), a fase de qualificação UNICAMP, e os cinco marcos principais (M1--M5) distribuídos ao longo de 10 meses de execução.}}{47}{figure.3.1}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Exemplo de imagem do dataset Salinas Valley mostrando a distribuição espacial das classes de culturas agrícolas em escala de cinza. A imagem apresenta dimensões 512×217 pixels com diferentes tonalidades representando as 16 classes de cobertura do solo, incluindo culturas de alface em diferentes estágios fenológicos e áreas de solo exposto. Fonte: Grupo de Visão Computacional e Processamento de Imagens - Universidade do País Vasco \blx@tocontentsinit {0}\cite {SalinasValleyDataset}.}}{26}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Cronograma detalhado da pesquisa estruturado em 6 fases principais ao longo de 10 meses (40 semanas): Aquisição de Hardware, Implementação FPGA, Implementação GPU, Validação Experimental, Síntese e Publicação, e Escrita da Dissertação com Defesa.}}{36}{figure.3.2}%
 \addvspace {10\p@ }
+\babel@toc {brazil}{}\relax 
+\babel@toc {brazil}{}\relax 

@@ -19,218 +19,229 @@ import numpy as np
 
 def create_gantt_data():
     """
-    Cria os dados do Gantt Chart baseado no cronograma detalhado do projeto.
-    Inclui fase de qualificação UNICAMP e cronograma ajustado.
+    Cria os dados do Gantt Chart baseado no cronograma detalhado de 10 meses.
+    Estruturado em 6 fases: Aquisição Hardware, Implementação FPGA, 
+    Implementação GPU, Validação, Síntese/Publicação, Escrita/Defesa.
     
     Returns:
         dict: Dados estruturados para o Gantt Chart
     """
     
-    # Data de início: Hoje (2025-08-12)
-    start_date = datetime.date(2025, 9, 29)
+    # Data de início: Setembro 2024 (ajustado para refletir cronograma real)
+    start_date = datetime.date(2024, 9, 1)
     
-    # Data de defesa: Maio 2026 (ajustado para 10 meses)
-    defense_date = datetime.date(2026, 8, 1)
+    # Data de defesa: Julho 2025 (10 meses depois)
+    defense_date = datetime.date(2025, 7, 1)
     
-    # Estrutura das tarefas detalhadas
+    # Estrutura das tarefas baseada no cronograma de 10 meses (40 semanas)
     tasks = [
-        # ===== ETAPA 1: FUNDAMENTAÇÃO TEÓRICA (Agosto 2025 - Outubro 2025) =====
-        # REDUZIDA PARA 3 MESES (cronograma 10 meses)
+        # ===== FASE 1: AQUISIÇÃO E SETUP DE HARDWARE (8 semanas) =====
         {
-            "id": "etapa1",
-            "name": "Etapa 1: Fundamentação Teórica e Estado da Arte",
+            "id": "fase1",
+            "name": "Aquisição e Setup de Hardware",
             "start": start_date.strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),  # 3 meses
-            "progress": 30,
+            "end": (start_date + timedelta(weeks=8)).strftime("%Y-%m-%d"),  # 8 semanas
+            "progress": 0,
             "dependencies": "",
             "color": "#4CAF50"
         },
         {
             "id": "1.1",
-            "name": "1.1 Revisão Sistemática da Literatura",
+            "name": "Especificação e Aquisição de Hardware",
             "start": start_date.strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=30)).strftime("%Y-%m-%d"),  # 1 mês
-            "progress": 85,
+            "end": (start_date + timedelta(weeks=3)).strftime("%Y-%m-%d"),  # 3 semanas
+            "progress": 0,
             "dependencies": "",
             "color": "#81C784"
         },
         {
             "id": "1.2",
-            "name": "1.2 Análise de Técnicas de Otimização",
-            "start": (start_date + timedelta(days=20)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=60)).strftime("%Y-%m-%d"),  # 1.3 meses
-            "progress": 60,
+            "name": "Setup dos Ambientes de Desenvolvimento",
+            "start": (start_date + timedelta(weeks=3)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=6)).strftime("%Y-%m-%d"),  # 3 semanas
+            "progress": 0,
             "dependencies": "1.1",
             "color": "#81C784"
         },
         {
             "id": "1.3",
-            "name": "1.3 Caracterização de Sistemas Heterogêneos",
-            "start": (start_date + timedelta(days=45)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=75)).strftime("%Y-%m-%d"),  # 1 mês
-            "progress": 40,
+            "name": "Testes Preliminares e Validação",
+            "start": (start_date + timedelta(weeks=6)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=8)).strftime("%Y-%m-%d"),  # 2 semanas
+            "progress": 0,
             "dependencies": "1.2",
             "color": "#81C784"
         },
+        
+        # ===== FASE 2: IMPLEMENTAÇÃO FPGA (6 semanas) =====
         {
-            "id": "1.4",
-            "name": "1.4 Framework Conceitual e Metodologia",
-            "start": (start_date + timedelta(days=70)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),  # 20 dias
-            "progress": 20,
+            "id": "fase2",
+            "name": "Implementação FPGA",
+            "start": (start_date + timedelta(weeks=8)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=14)).strftime("%Y-%m-%d"),  # 6 semanas
+            "progress": 0,
             "dependencies": "1.3",
-            "color": "#81C784"
-        },
-        
-        # ===== FASE DE QUALIFICAÇÃO UNICAMP (Outubro - Novembro 2025) =====
-        {
-            "id": "qualificacao",
-            "name": "Fase de Qualificação UNICAMP",
-            "start": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),  # 1 mês
-            "progress": 0,
-            "dependencies": "1.4",
-            "color": "#FF5722"
-        },
-        {
-            "id": "q1",
-            "name": "Q1: Preparação para Qualificação",
-            "start": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=105)).strftime("%Y-%m-%d"),  # 2 semanas
-            "progress": 0,
-            "dependencies": "1.4",
-            "color": "#FF8A65"
-        },
-        {
-            "id": "q2",
-            "name": "Q2: Qualificação UNICAMP",
-            "start": (start_date + timedelta(days=105)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=115)).strftime("%Y-%m-%d"),  # 1 semana
-            "progress": 0,
-            "dependencies": "q1",
-            "color": "#FF8A65"
-        },
-        {
-            "id": "q3",
-            "name": "Q3: Ajustes Pós-Qualificação",
-            "start": (start_date + timedelta(days=115)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),  # 1 semana
-            "progress": 0,
-            "dependencies": "q2",
-            "color": "#FF8A65"
-        },
-        
-        # ===== ETAPA 2: DESENVOLVIMENTO EXPERIMENTAL (Novembro 2025 - Janeiro 2026) =====
-        {
-            "id": "etapa2",
-            "name": "Etapa 2: Desenvolvimento Experimental e Validação",
-            "start": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=210)).strftime("%Y-%m-%d"),  # 3 meses
-            "progress": 0,
-            "dependencies": "q3",
             "color": "#2196F3"
         },
         {
             "id": "2.1",
-            "name": "2.1 Configuração do Ambiente Experimental",
-            "start": (start_date + timedelta(days=120)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=150)).strftime("%Y-%m-%d"),  # 1 mês
+            "name": "Pipeline de Pré-processamento VHDL",
+            "start": (start_date + timedelta(weeks=8)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=10)).strftime("%Y-%m-%d"),  # 2 semanas
             "progress": 0,
-            "dependencies": "q3",
+            "dependencies": "1.3",
             "color": "#64B5F6"
         },
         {
             "id": "2.2",
-            "name": "2.2 Implementação de Protótipos",
-            "start": (start_date + timedelta(days=135)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=180)).strftime("%Y-%m-%d"),  # 1.5 meses
+            "name": "Algoritmos PCA e EMCR Otimizados",
+            "start": (start_date + timedelta(weeks=10)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=12)).strftime("%Y-%m-%d"),  # 2 semanas
             "progress": 0,
             "dependencies": "2.1",
             "color": "#64B5F6"
         },
         {
             "id": "2.3",
-            "name": "2.3 Validação e Testes Experimentais",
-            "start": (start_date + timedelta(days=165)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=210)).strftime("%Y-%m-%d"),  # 1.5 meses
+            "name": "Classificadores SVM/k-NN e Índices",
+            "start": (start_date + timedelta(weeks=12)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=14)).strftime("%Y-%m-%d"),  # 2 semanas
             "progress": 0,
             "dependencies": "2.2",
             "color": "#64B5F6"
         },
         
-        # ===== ETAPA 3: ANÁLISE E REDAÇÃO (Janeiro - Março 2026) =====
+        # ===== FASE 3: IMPLEMENTAÇÃO GPU (6 semanas) =====
         {
-            "id": "etapa3",
-            "name": "Etapa 3: Análise de Resultados e Redação",
-            "start": (start_date + timedelta(days=210)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=285)).strftime("%Y-%m-%d"),  # 2.5 meses
+            "id": "fase3",
+            "name": "Implementação GPU",
+            "start": (start_date + timedelta(weeks=14)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=20)).strftime("%Y-%m-%d"),  # 6 semanas
             "progress": 0,
             "dependencies": "2.3",
             "color": "#FF9800"
         },
         {
             "id": "3.1",
-            "name": "3.1 Análise Estatística dos Resultados",
-            "start": (start_date + timedelta(days=210)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=240)).strftime("%Y-%m-%d"),  # 1 mês
+            "name": "Kernels CUDA de Pré-processamento",
+            "start": (start_date + timedelta(weeks=14)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=16)).strftime("%Y-%m-%d"),  # 2 semanas
             "progress": 0,
             "dependencies": "2.3",
             "color": "#FFB74D"
         },
         {
             "id": "3.2",
-            "name": "3.2 Redação dos Capítulos Principais",
-            "start": (start_date + timedelta(days=225)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=270)).strftime("%Y-%m-%d"),  # 1.5 meses
+            "name": "PCA/KPCA com cuBLAS Otimizado",
+            "start": (start_date + timedelta(weeks=16)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=18)).strftime("%Y-%m-%d"),  # 2 semanas
             "progress": 0,
             "dependencies": "3.1",
             "color": "#FFB74D"
         },
         {
             "id": "3.3",
-            "name": "3.3 Discussão e Conclusões",
-            "start": (start_date + timedelta(days=255)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=285)).strftime("%Y-%m-%d"),  # 1 mês
+            "name": "Classificadores com TensorRT",
+            "start": (start_date + timedelta(weeks=18)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=20)).strftime("%Y-%m-%d"),  # 2 semanas
             "progress": 0,
             "dependencies": "3.2",
             "color": "#FFB74D"
         },
         
-        # ===== ETAPA 4: FINALIZAÇÃO E SUBMISSÃO (Março - Maio 2026) =====
+        # ===== FASE 4: VALIDAÇÃO EXPERIMENTAL (6 semanas) =====
         {
-            "id": "etapa4",
-            "name": "Etapa 4: Finalização e Preparação para Defesa",
-            "start": (start_date + timedelta(days=285)).strftime("%Y-%m-%d"),
-            "end": defense_date.strftime("%Y-%m-%d"),  # 2.2 meses
+            "id": "fase4",
+            "name": "Validação Experimental e Comparação",
+            "start": (start_date + timedelta(weeks=20)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=26)).strftime("%Y-%m-%d"),  # 6 semanas
             "progress": 0,
             "dependencies": "3.3",
-            "color": "#E91E63"
+            "color": "#9C27B0"
         },
         {
             "id": "4.1",
-            "name": "4.1 Revisão e Ajustes Finais",
-            "start": (start_date + timedelta(days=285)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=315)).strftime("%Y-%m-%d"),  # 1 mês
+            "name": "Testes Exaustivos com Dataset Salinas",
+            "start": (start_date + timedelta(weeks=20)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=23)).strftime("%Y-%m-%d"),  # 3 semanas
             "progress": 0,
             "dependencies": "3.3",
-            "color": "#F06292"
+            "color": "#BA68C8"
         },
         {
             "id": "4.2",
-            "name": "4.2 Preparação da Apresentação",
-            "start": (start_date + timedelta(days=300)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=330)).strftime("%Y-%m-%d"),  # 1 mês
+            "name": "Análise Estatística e Otimização Pareto",
+            "start": (start_date + timedelta(weeks=23)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=26)).strftime("%Y-%m-%d"),  # 3 semanas
             "progress": 0,
             "dependencies": "4.1",
+            "color": "#BA68C8"
+        },
+        
+        # ===== FASE 5: SÍNTESE E PUBLICAÇÃO (6 semanas) =====
+        {
+            "id": "fase5",
+            "name": "Síntese e Publicação",
+            "start": (start_date + timedelta(weeks=26)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=32)).strftime("%Y-%m-%d"),  # 6 semanas
+            "progress": 0,
+            "dependencies": "4.2",
+            "color": "#FF5722"
+        },
+        {
+            "id": "5.1",
+            "name": "Proposição da Arquitetura Heterogênea",
+            "start": (start_date + timedelta(weeks=26)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=29)).strftime("%Y-%m-%d"),  # 3 semanas
+            "progress": 0,
+            "dependencies": "4.2",
+            "color": "#FF8A65"
+        },
+        {
+            "id": "5.2",
+            "name": "Redação e Submissão de Artigo Científico",
+            "start": (start_date + timedelta(weeks=29)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=32)).strftime("%Y-%m-%d"),  # 3 semanas
+            "progress": 0,
+            "dependencies": "5.1",
+            "color": "#FF8A65"
+        },
+        
+        # ===== FASE 6: ESCRITA DA DISSERTAÇÃO E DEFESA (12 semanas) =====
+        {
+            "id": "fase6",
+            "name": "Escrita da Dissertação e Defesa",
+            "start": (start_date + timedelta(weeks=32)).strftime("%Y-%m-%d"),
+            "end": defense_date.strftime("%Y-%m-%d"),  # 8 semanas restantes
+            "progress": 0,
+            "dependencies": "5.2",
+            "color": "#E91E63"
+        },
+        {
+            "id": "6.1",
+            "name": "Redação dos Capítulos de Resultados",
+            "start": (start_date + timedelta(weeks=32)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=36)).strftime("%Y-%m-%d"),  # 4 semanas
+            "progress": 0,
+            "dependencies": "5.2",
             "color": "#F06292"
         },
         {
-            "id": "4.3",
-            "name": "4.3 Simulação de Defesa e Ajustes",
-            "start": (start_date + timedelta(days=315)).strftime("%Y-%m-%d"),
-            "end": defense_date.strftime("%Y-%m-%d"),  # 2.5 meses
+            "id": "6.2",
+            "name": "Revisão e Formatação Final",
+            "start": (start_date + timedelta(weeks=36)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=38)).strftime("%Y-%m-%d"),  # 2 semanas
             "progress": 0,
-            "dependencies": "4.2",
+            "dependencies": "6.1",
+            "color": "#F06292"
+        },
+        {
+            "id": "6.3",
+            "name": "Preparação da Defesa",
+            "start": (start_date + timedelta(weeks=38)).strftime("%Y-%m-%d"),
+            "end": defense_date.strftime("%Y-%m-%d"),  # 2 semanas
+            "progress": 0,
+            "dependencies": "6.2",
             "color": "#F06292"
         },
         
@@ -242,57 +253,66 @@ def create_gantt_data():
             "end": defense_date.strftime("%Y-%m-%d"),
             "progress": 0,
             "dependencies": "",
-            "color": "#9C27B0"
+            "color": "#795548"
         },
         {
             "id": "m1",
-            "name": "M1: Framework Conceitual Completo",
-            "start": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=90)).strftime("%Y-%m-%d"),
+            "name": "M1: Hardware Configurado",
+            "start": (start_date + timedelta(weeks=8)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=8)).strftime("%Y-%m-%d"),
             "progress": 0,
-            "dependencies": "1.4",
-            "color": "#BA68C8"
+            "dependencies": "1.3",
+            "color": "#A1887F"
         },
         {
             "id": "m2",
-            "name": "M2: Qualificação UNICAMP",
-            "start": (start_date + timedelta(days=110)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=110)).strftime("%Y-%m-%d"),
+            "name": "M2: Implementação FPGA Completa",
+            "start": (start_date + timedelta(weeks=14)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=14)).strftime("%Y-%m-%d"),
             "progress": 0,
-            "dependencies": "q2",
-            "color": "#BA68C8"
+            "dependencies": "2.3",
+            "color": "#A1887F"
         },
         {
             "id": "m3",
-            "name": "M3: Protótipos Validados",
-            "start": (start_date + timedelta(days=210)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=210)).strftime("%Y-%m-%d"),
+            "name": "M3: Implementação GPU Completa",
+            "start": (start_date + timedelta(weeks=20)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=20)).strftime("%Y-%m-%d"),
             "progress": 0,
-            "dependencies": "2.3",
-            "color": "#BA68C8"
+            "dependencies": "3.3",
+            "color": "#A1887F"
         },
         {
             "id": "m4",
-            "name": "M4: Dissertação Completa",
-            "start": (start_date + timedelta(days=285)).strftime("%Y-%m-%d"),
-            "end": (start_date + timedelta(days=285)).strftime("%Y-%m-%d"),
+            "name": "M4: Validação Experimental Concluída",
+            "start": (start_date + timedelta(weeks=26)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=26)).strftime("%Y-%m-%d"),
             "progress": 0,
-            "dependencies": "3.3",
-            "color": "#BA68C8"
+            "dependencies": "4.2",
+            "color": "#A1887F"
         },
         {
             "id": "m5",
-            "name": "M5: Defesa",
+            "name": "M5: Artigo Científico Submetido",
+            "start": (start_date + timedelta(weeks=32)).strftime("%Y-%m-%d"),
+            "end": (start_date + timedelta(weeks=32)).strftime("%Y-%m-%d"),
+            "progress": 0,
+            "dependencies": "5.2",
+            "color": "#A1887F"
+        },
+        {
+            "id": "m6",
+            "name": "M6: Defesa da Dissertação",
             "start": defense_date.strftime("%Y-%m-%d"),
             "end": defense_date.strftime("%Y-%m-%d"),
             "progress": 0,
-            "dependencies": "4.3",
-            "color": "#BA68C8"
+            "dependencies": "6.3",
+            "color": "#A1887F"
         }
     ]
     
     return {
-        "title": "Cronograma Detalhado - Dissertação de Mestrado (Agosto 2025 - Maio 2026)",
+        "title": "Cronograma Detalhado - Dissertação de Mestrado (10 meses - 40 semanas)",
         "start_date": start_date.strftime("%Y-%m-%d"),
         "end_date": defense_date.strftime("%Y-%m-%d"),
         "tasks": tasks
@@ -319,8 +339,8 @@ def generate_png_gantt(gantt_data):
     start_date = datetime.datetime.strptime(gantt_data['start_date'], '%Y-%m-%d')
     end_date = datetime.datetime.strptime(gantt_data['end_date'], '%Y-%m-%d')
     
-    # Filtrar tarefas (excluir milestones e etapas principais)
-    task_tasks = [task for task in gantt_data['tasks'] if task['id'].startswith(('1.', '2.', '3.', '4.', 'q'))]
+    # Filtrar tarefas (incluir fases e subtarefas, excluir apenas milestones)
+    task_tasks = [task for task in gantt_data['tasks'] if task['id'].startswith(('fase', '1.', '2.', '3.', '4.', '5.', '6.'))]
     milestone_tasks = [task for task in gantt_data['tasks'] if task['id'].startswith('m')]
     
     # Preparar dados para o gráfico
@@ -385,17 +405,18 @@ def generate_png_gantt(gantt_data):
     ax.set_ylim(-0.5, len(task_names) + len(milestone_tasks) - 0.5)
     
     # Adicionar título
-    ax.set_title('Cronograma Detalhado - Dissertação de Mestrado\nAgosto 2025 - Maio 2026', 
+    ax.set_title('Cronograma Detalhado - Dissertação de Mestrado\n10 meses (40 semanas) - 6 Fases', 
                  fontsize=18, fontweight='bold', pad=20)  # Aumentado de 14 para 18
     
     # Adicionar legendas
     legend_elements = [
-        plt.Rectangle((0,0),1,1, facecolor='#4CAF50', alpha=0.8, label='Etapa 1: Fundamentação Teórica'),
-        plt.Rectangle((0,0),1,1, facecolor='#FF5722', alpha=0.8, label='Fase de Qualificação UNICAMP'),
-        plt.Rectangle((0,0),1,1, facecolor='#2196F3', alpha=0.8, label='Etapa 2: Desenvolvimento Experimental'),
-        plt.Rectangle((0,0),1,1, facecolor='#FF9800', alpha=0.8, label='Etapa 3: Análise e Redação'),
-        plt.Rectangle((0,0),1,1, facecolor='#E91E63', alpha=0.8, label='Etapa 4: Finalização'),
-        plt.scatter([], [], s=100, color='#9C27B0', marker='D', edgecolors='black', label='Milestones')
+        plt.Rectangle((0,0),1,1, facecolor='#4CAF50', alpha=0.8, label='Fase 1: Aquisição Hardware'),
+        plt.Rectangle((0,0),1,1, facecolor='#2196F3', alpha=0.8, label='Fase 2: Implementação FPGA'),
+        plt.Rectangle((0,0),1,1, facecolor='#FF9800', alpha=0.8, label='Fase 3: Implementação GPU'),
+        plt.Rectangle((0,0),1,1, facecolor='#9C27B0', alpha=0.8, label='Fase 4: Validação Experimental'),
+        plt.Rectangle((0,0),1,1, facecolor='#FF5722', alpha=0.8, label='Fase 5: Síntese e Publicação'),
+        plt.Rectangle((0,0),1,1, facecolor='#E91E63', alpha=0.8, label='Fase 6: Escrita e Defesa'),
+        plt.scatter([], [], s=100, color='#795548', marker='D', edgecolors='black', label='Milestones')
     ]
     
     if start_date <= current_date <= end_date:
@@ -521,52 +542,56 @@ def generate_html_gantt(gantt_data):
         <h1>Cronograma Detalhado - Dissertação de Mestrado</h1>
         <div class="progress-info">
             <h3>📊 Status Atual</h3>
-            <p><strong>Etapa Atual:</strong> Etapa 1 - Fundamentação Teórica (30% concluída)</p>
-            <p><strong>Próximo Milestone:</strong> Framework Conceitual Completo (Dezembro 2025)</p>
-            <p><strong>Qualificação UNICAMP:</strong> Janeiro 2026</p>
-            <p><strong>Defesa Prevista:</strong> Maio 2026</p>
+            <p><strong>Cronograma:</strong> 10 meses estruturados em 6 fases principais</p>
+            <p><strong>Primeira Fase:</strong> Aquisição e Setup de Hardware (8 semanas)</p>
+            <p><strong>Publicação Científica:</strong> Semanas 29-32</p>
+            <p><strong>Defesa Prevista:</strong> Semana 40 (final do cronograma)</p>
         </div>
         
         <div class="current-phase">
-            <h3>🎯 Fase Atual: Revisão Sistemática da Literatura</h3>
-            <p><strong>Progresso:</strong> 85% concluído</p>
-            <p><strong>Próxima Tarefa:</strong> Análise de Técnicas de Otimização</p>
+            <h3>🎯 Estrutura do Cronograma</h3>
+            <p><strong>Fase 1-3:</strong> Hardware, FPGA e GPU (20 semanas)</p>
+            <p><strong>Fase 4-6:</strong> Validação, Publicação e Defesa (20 semanas)</p>
         </div>
         
         <div class="timeline-info">
             <h3>📅 Timeline Geral</h3>
-            <p><strong>Início:</strong> Agosto 2025 | <strong>Fim:</strong> Maio 2026</p>
-            <p><strong>Duração Total:</strong> 10 meses</p>
-            <p><strong>Etapas Principais:</strong> 4 etapas com 12 tarefas detalhadas</p>
+            <p><strong>Duração Total:</strong> 40 semanas (10 meses)</p>
+            <p><strong>Fases Principais:</strong> 6 fases com 18 tarefas detalhadas</p>
+            <p><strong>Milestones:</strong> 6 marcos críticos</p>
         </div>
         
         <div class="gantt-container" id="gantt-chart"></div>
         
         <div class="legend">
-            <h3>🎨 Legenda</h3>
+            <h3>🎨 Legenda das 6 Fases</h3>
             <div class="legend-item">
                 <span class="legend-color" style="background-color: #4CAF50;"></span>
-                <span>Etapa 1: Fundamentação Teórica</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-color" style="background-color: #FF5722;"></span>
-                <span>Fase de Qualificação UNICAMP</span>
+                <span>Fase 1: Aquisição e Setup de Hardware</span>
             </div>
             <div class="legend-item">
                 <span class="legend-color" style="background-color: #2196F3;"></span>
-                <span>Etapa 2: Desenvolvimento Experimental</span>
+                <span>Fase 2: Implementação FPGA</span>
             </div>
             <div class="legend-item">
                 <span class="legend-color" style="background-color: #FF9800;"></span>
-                <span>Etapa 3: Análise e Redação</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-color" style="background-color: #E91E63;"></span>
-                <span>Etapa 4: Finalização e Defesa</span>
+                <span>Fase 3: Implementação GPU</span>
             </div>
             <div class="legend-item">
                 <span class="legend-color" style="background-color: #9C27B0;"></span>
-                <span>Milestones Principais</span>
+                <span>Fase 4: Validação Experimental</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #FF5722;"></span>
+                <span>Fase 5: Síntese e Publicação</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #E91E63;"></span>
+                <span>Fase 6: Escrita e Defesa</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: #795548;"></span>
+                <span>Milestones Críticos</span>
             </div>
         </div>
     </div>
@@ -619,7 +644,7 @@ def generate_html_gantt(gantt_data):
         
         // Barras das tarefas
         svg.selectAll(".task-bar")
-            .data(ganttData.tasks.filter(d => d.id.length > 2)) // Excluir etapas principais
+            .data(ganttData.tasks.filter(d => d.id.startsWith('fase') || d.id.match(/^\d\./))) // Incluir fases e subtarefas
             .enter()
             .append("rect")
             .attr("class", "task-bar")
@@ -761,20 +786,28 @@ def main():
     print("\n📅 RESUMO DO CRONOGRAMA DETALHADO:")
     print(f"   • Início: {gantt_data['start_date']}")
     print(f"   • Defesa: {gantt_data['end_date']}")
-    print(f"   • Duração: 10 meses")
-    print(f"   • Etapas: 4 principais + Fase de Qualificação")
-    print(f"   • Tarefas: 15 detalhadas (incluindo qualificação)")
-    print(f"   • Milestones: 5 críticos")
+    print(f"   • Duração: 10 meses (40 semanas)")
+    print(f"   • Fases: 6 principais estruturadas")
+    print(f"   • Tarefas: 18 detalhadas")
+    print(f"   • Milestones: 6 críticos")
     
     print("\n🎯 MILESTONES PRINCIPAIS:")
     milestones = [task for task in gantt_data['tasks'] if task['id'].startswith('m')]
     for milestone in milestones:
         print(f"   • {milestone['name']}: {milestone['start']}")
     
-    print("\n📋 ETAPAS PRINCIPAIS:")
-    etapas = [task for task in gantt_data['tasks'] if task['id'].startswith('etapa')]
-    for etapa in etapas:
-        print(f"   • {etapa['name']}: {etapa['start']} - {etapa['end']}")
+    print("\n📋 FASES PRINCIPAIS:")
+    fases = [task for task in gantt_data['tasks'] if task['id'].startswith('fase')]
+    for fase in fases:
+        print(f"   • {fase['name']}: {fase['start']} - {fase['end']}")
+        
+    print("\n⚡ ESTRUTURA DO CRONOGRAMA:")
+    print("   • Semanas 1-8: Aquisição e Setup de Hardware")
+    print("   • Semanas 9-14: Implementação FPGA")  
+    print("   • Semanas 15-20: Implementação GPU")
+    print("   • Semanas 21-26: Validação Experimental")
+    print("   • Semanas 27-32: Síntese e Publicação")
+    print("   • Semanas 33-40: Escrita e Defesa")
 
 
 if __name__ == "__main__":

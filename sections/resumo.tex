@@ -5,43 +5,15 @@
 \chapter*{Resumo}
 \addcontentsline{toc}{chapter}{Resumo}
 
-O processamento de imagens hiperespectrais em sistemas embarcados representa 
-um dos desafios computacionais mais complexos da atualidade, exigindo 
-conciliação entre requisitos aparentemente conflitantes de alta performance, 
-baixa latência e eficiência energética em plataformas com severas restrições 
-de recursos. Esta dissertação apresenta um estudo comparativo para otimização 
-computacional de processamento hiperespectral embarcado, focando na análise de 
-trade-offs entre diferentes arquiteturas heterogêneas e técnicas de otimização 
-através de abordagem exploratória-comparativa baseada em simulação e modelagem teórica.
+O processamento de imagens hiperespectrais em sistemas embarcados representa um dos desafios computacionais mais complexos da atualidade, exigindo conciliação entre requisitos aparentemente conflitantes de alta performance, baixa latência e eficiência energética em plataformas com severas restrições de recursos. Esta dissertação apresenta uma metodologia sistemática para otimização computacional de processamento hiperespectral embarcado, focando na análise comparativa de trade-offs entre arquiteturas heterogêneas FPGA e GPU através de abordagem exploratória-comparativa baseada em simulação e modelagem teórica aplicada à agricultura de precisão.
 
-A pesquisa adota abordagem metodológica que privilegia análise 
-teórica e simulada sobre implementação física, justificada pela necessidade 
-de investigar sistematicamente múltiplas alternativas arquiteturais sob 
-condições controladas. A metodologia estrutura-se em oito componentes principais: 
-catalogação sistemática de técnicas de otimização FPGA e GPU; modelagem 
-teórica comparativa de performance; framework de simulação integrado; estudo 
-comparativo cross-platform; protocolo de benchmarking padronizado; análise 
-multi-critério baseada em metodologia AHP e análise de Pareto; design space 
-exploration para identificação de configurações ótimas; e síntese de arquitetura 
-heterogênea otimizada.
+A pesquisa adota abordagem metodológica inovadora que privilegia análise teórica e simulada sobre implementação física, justificada pela necessidade de investigar sistematicamente múltiplas alternativas arquiteturais sob condições controladas. A metodologia estrutura-se em oito componentes principais: catalogação sistemática de técnicas de otimização FPGA e GPU; modelagem teórica comparativa de performance; framework de simulação integrado utilizando dataset Salinas Valley; estudo comparativo cross-platform; protocolo de benchmarking padronizado; análise multi-critério baseada em metodologia AHP e análise de Pareto; design space exploration para identificação de configurações ótimas; e síntese de arquitetura heterogênea otimizada.
 
-A revisão sistemática de 25 trabalhos publicados entre 2011-2024 revelou 
-lacuna metodológica significativa: apenas 4\% dos estudos abordam sistemas 
-completos integrados, enquanto 96\% focam em técnicas isoladas ou otimizações 
-específicas de plataforma. Esta fragmentação impede análise sistemática de 
-trade-offs e identificação de soluções ótimas para cenários específicos de 
-aplicação. Como principal contribuição, desenvolve-se framework metodológico 
-unificado que permite comparação objetiva entre diferentes abordagens 
-arquiteturais considerando múltiplos critérios de performance.
+A revisão sistemática da literatura revelou lacuna metodológica significativa: apenas uma pequena parcela dos estudos abordam sistemas completos integrados para aplicações agrícolas, enquanto a maioria foca em técnicas isoladas ou otimizações específicas de plataforma sem considerar requisitos de agricultura de precisão. Esta fragmentação impede análise sistemática de trade-offs e identificação de soluções ótimas para cenários específicos de monitoramento de culturas através de índices de vegetação especializados (NDVI, NDRE, EVI, SAVI).
 
-A metodologia proposta estabelece base científica rigorosa para investigação 
-de sistemas hiperespectrais embarcados, preenchendo lacuna identificada na 
-literatura e proporcionando framework reprodutível para pesquisas futuras. 
-Os resultados esperados incluem identificação quantitativa de trade-offs 
-ssfundamentais, proposição de arquitetura heterogênea otimizada baseada em 
-análise sistemática, e desenvolvimento de recomendações práticas para seleção 
-de técnicas segundo requisitos específicos de aplicação em agricultura de 
-precisão, monitoramento ambiental e sistemas UAV autônomos.
+Como principal contribuição, desenvolve-se framework metodológico unificado que permite comparação objetiva entre diferentes abordagens arquiteturais considerando múltiplos critérios de performance: throughput computacional (>200 pixels/s), latência determinística (<50 ms), eficiência energética (>30 GOPS/W), e precisão de classificação (Overall Accuracy >90\%) para aplicações em culturas de milho e soja. A metodologia proposta estabelece base científica rigorosa para investigação de sistemas hiperespectrais embarcados, preenchendo lacuna identificada na literatura e proporcionando framework reprodutível para pesquisas futuras.
+
+Os resultados esperados incluem identificação quantitativa de trade-offs fundamentais entre performance e eficiência energética, proposição de arquitetura heterogênea otimizada baseada em análise sistemática multi-critério, e desenvolvimento de recomendações práticas para seleção de técnicas segundo requisitos específicos de aplicação em agricultura de precisão, monitoramento ambiental e sistemas UAV autônomos.
 
 \textbf{Palavras-chave:} 
-Processamento Hiperespectral, Arquiteturas Heterogêneas, Metodologia Comparativa, Otimização Computacional, Análise Multi-critério, Sistemas Embarcados, FPGA, GPU.
+Processamento Hiperespectral, Arquiteturas Heterogêneas, Metodologia Comparativa, Otimização Computacional, Análise Multi-critério, Sistemas Embarcados, FPGA, GPU, Agricultura de Precisão.
